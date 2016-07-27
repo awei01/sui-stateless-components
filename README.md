@@ -21,4 +21,9 @@ See https://github.com/kadirahq/react-storybook for more info.
 ## Contributing
 If you have components to add or require additional options for components, please make the code change and add a story for the UI test. See https://github.com/kadirahq/react-storybook for more info.
 
+* fork this repo
+* install dependencies: `npm install`
+* run storybook so you can watch your components as you develop: `npm run storybook`
+* edit files, add stories
+
 Try to follow coding standards and file structure.
