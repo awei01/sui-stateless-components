@@ -1,0 +1,6 @@
+# Node stuff
+node_modules
+npm-debug.log
+
+# System
+.DS_Store

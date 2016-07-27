@@ -1,0 +1,26 @@
+{
+  "name": "sui-stateless-components",
+  "version": "0.0.0",
+  "description": "Dumb, stateless semantic-ui components",
+  "keywords": ["react", "semantic-ui", "stateless", "ui", "components"],
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -s ./.storybook/static",
+    "lint": "node_modules/.bin/standard"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@kadira/storybook": "^1.41.0",
+    "babel-eslint": "^6.1.2",
+    "css-loader": "^0.23.1",
+    "standard": "^7.1.2",
+    "style-loader": "^0.13.1"
+  },
+  "dependencies": {
+    "react": "^15.2.1",
+    "semantic-ui-css": "^2.2.2"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
