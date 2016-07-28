@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
 //import { makePassesPropsStory, LIPSUM } from '../../.storybook/utils';
-import { Modal, ModalHeader, ModalContent, ModalActions } from './index'
+import { Modal, Header, Content, Actions } from './index'
 
 storiesOf('Modal', module)
   .add('default', () => {
@@ -13,18 +13,18 @@ storiesOf('Modal', module)
           'You have to manually include a <Dimmer> to get the page to dim'
         ]}>
         <Modal>
-          <ModalContent>Some modal content here</ModalContent>
+          <Content>Some modal content here</Content>
         </Modal>
       </Story>
     )
   })
   .add('content', () => {
     return (
-      <Story examples='<Modal><ModalHeader/><ModalContent/><ModalActions/></Modal>'>
+      <Story examples='<Modal><Header/><Content/><Actions/></Modal>'>
         <Modal>
-          <ModalHeader>modal header area</ModalHeader>
-          <ModalContent>modal content area</ModalContent>
-          <ModalActions>modal actions area</ModalActions>
+          <Header>modal header area</Header>
+          <Content>modal content area</Content>
+          <Actions>modal actions area</Actions>
         </Modal>
       </Story>
     )
@@ -34,7 +34,7 @@ storiesOf('Modal', module)
       <Story examples='<Modal size="small"/>'
         notes='Toggle full screen for to get a better idea of how this behaves'>
         <Modal size="small">
-          <ModalContent>Some modal content here</ModalContent>
+          <Content>Some modal content here</Content>
         </Modal>
       </Story>
     )
@@ -44,7 +44,7 @@ storiesOf('Modal', module)
       <Story examples='<Modal size="large"/>'
         notes='Toggle full screen for to get a better idea of how this behaves'>
         <Modal size="large">
-          <ModalContent>Some modal content here</ModalContent>
+          <Content>Some modal content here</Content>
         </Modal>
       </Story>
     )
@@ -54,7 +54,7 @@ storiesOf('Modal', module)
       <Story examples='<Modal size="fullscreen"/>'
         notes='Toggle full screen for to get a better idea of how this behaves'>
         <Modal size="fullscreen">
-          <ModalContent>Some modal content here</ModalContent>
+          <Content>Some modal content here</Content>
         </Modal>
       </Story>
     )
