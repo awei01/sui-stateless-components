@@ -8,6 +8,8 @@ function loadStories() {
   require('../elements/Label/.stories')
   require('../elements/Icon/.stories')
 
+  require('../collections/Message/.stories')
+
   require('../modules/Dimmer/.stories')
   require('../modules/Modal/.stories')
 }

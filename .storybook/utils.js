@@ -4,7 +4,7 @@ import { COLORS, SIZES, ALIGNS } from '../utils';
 
 export const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lectus metus, consectetur et eros at, maximus rutrum magna. Aliquam ullamcorper, magna vel pulvinar finibus, neque augue placerat libero, vel auctor mi ligula nec risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis velit luctus congue sagittis. Etiam vel sollicitudin velit. Aliquam finibus sodales eros eu sollicitudin. Morbi commodo lorem urna, ac condimentum magna ullamcorper vitae. Sed ac dapibus dui. Aenean quis faucibus purus, ac volutpat metus. Phasellus semper sapien et lobortis interdum. Donec scelerisque orci massa, in hendrerit neque hendrerit in. Nullam porttitor ornare massa sed varius.'
 
-export const makeOptionsStory = (Component, { key, options, props }) => {
+export const makeStoryUsingOptions = (Component, { key, options, props }) => {
   props = props || {}
   return () => {
     return (
@@ -29,13 +29,13 @@ export const makeOptionsStory = (Component, { key, options, props }) => {
 }
 
 export const makeSizeStory = (Component, props) => {
-  return makeOptionsStory(Component, { key: 'size', options: SIZES, props })
+  return makeStoryUsingOptions(Component, { key: 'size', options: SIZES, props })
 }
 export const makeColorStory = (Component, props) => {
-  return makeOptionsStory(Component, { key: 'color', options: COLORS, props })
+  return makeStoryUsingOptions(Component, { key: 'color', options: COLORS, props })
 }
 export const makeAlignStory = (Component, props) => {
-  return makeOptionsStory(Component, { key: 'align', options: ALIGNS, props: {
+  return makeStoryUsingOptions(Component, { key: 'align', options: ALIGNS, props: {
     children: (value) => {
       return value.split('').join(' ')
     },

@@ -1,3 +1,4 @@
+import React from 'react'
 import classnames from 'classnames';
 
 export const COLORS = [
@@ -40,9 +41,9 @@ export const makeClassnameFactory = ({ prefix, suffix, options }) => {
     }
     const resolved = Object.keys(configs).reduce((result, key) => {
       let value = configs[key];
-      if (!value) {
-        // the option is empty. don't include it
-        return result;
+      if (value === undefined) {
+        // key not handled by configs, ignore it
+        return result
       }
       const option = options[key];
       if (option) {
@@ -66,5 +67,15 @@ export const makeClassnameFactory = ({ prefix, suffix, options }) => {
       return result;
     }, {});
     return classnames(prefix, resolved, className, suffix);
+  }
+}
+
+export const makeComponentWithClasses = ({ classes, element }) => {
+  element = element || 'div'
+  return ({ className, ...rest}) => {
+    const resolvedClasses = classnames(classes, className)
+    return (
+      React.createElement(element, { ...rest, className: resolvedClasses })
+    )
   }
 }

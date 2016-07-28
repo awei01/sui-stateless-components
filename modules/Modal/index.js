@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { makeClassnameFactory } from '../../utils';
+import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
 
 import 'semantic-ui-css/components/modal.css';
 
@@ -21,22 +21,6 @@ Modal.defaultProps = {
   active: true
 }
 
-export const ModalHeader = ({ className, ...rest }) => {
-  const classes = classnames('header', className)
-  return (
-    <div {...rest} className={classes}/>
-  )
-}
-export const ModalContent = ({ className, ...rest }) => {
-  const classes = classnames('content', className)
-  return (
-    <div {...rest} className={classes}/>
-  )
-}
-export const ModalActions = ({ className, ...rest }) => {
-  const classes = classnames('actions', className)
-  return (
-    <div {...rest} className={classes}/>
-  )
-}
-
+export const ModalHeader = makeComponentWithClasses({ classes: 'header' })
+export const ModalContent = makeComponentWithClasses({ classes: 'content' })
+export const ModalActions = makeComponentWithClasses({ classes: 'actions' })
