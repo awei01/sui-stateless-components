@@ -29,13 +29,7 @@ export const Message = ({
   visible, type, color, size,
   icon, floating, compact,
   className, ...rest }) => {
-  if (compact) {
-    // kludge hack. looks like there is a bug in SUI where
-    // .ui.visible.compact.message takes .ui.visible.message rule of {display: block}
-    visible = undefined
-  }
-
-	const classes = makeClasses({
+  const classes = makeClasses({
     visible, type, color, size,
     icon, floating, compact
   }, className)
@@ -43,9 +37,6 @@ export const Message = ({
 		<div {...rest} className={classes}/>
 	)
 }
-Message.defaultProps = {
-  visible: true
-}
 
-export const MessageHeader = makeComponentWithClasses({ classes: 'header' })
-export const MessageContent = makeComponentWithClasses({ classes: 'content' })
+export const Header = makeComponentWithClasses({ classes: 'header' })
+export const Content = makeComponentWithClasses({ classes: 'content' })
