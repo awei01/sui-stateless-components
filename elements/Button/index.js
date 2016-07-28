@@ -37,7 +37,7 @@ export const Button = ({
 
   let classes
   let element = 'button'
-  const passedProps = { ...rest, disabled }
+  const passedProps = { ...rest, type, disabled }
   if (labeled && !icon) {
     // this is a labeled div tag with content
     passedProps.className = makeClasses({ labeled, disabled }, className)
@@ -56,6 +56,9 @@ export const Button = ({
   }
 
   return React.createElement(element, passedProps)
+}
+Button.propTypes = {
+  type: PropTypes.oneOf(['button', 'submit', 'reset']).isRequired
 }
 Button.defaultProps = {
   type: "button",
