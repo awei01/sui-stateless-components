@@ -1,7 +1,13 @@
 import React from 'react';
-export const Story = ({ title, examples, notes, children, ...rest }) => {
+export const Story = ({ title, examples, notes, showToggleNote, children, ...rest }) => {
   examples = (examples && typeof examples === 'string') ? [examples] : examples;
   notes = (notes && typeof notes === 'string') ? [notes] : notes;
+  if (!notes && showToggleNote) {
+    notes = []
+  }
+  if (showToggleNote) {
+    notes = ['Toggle full screen mode to get a better a idea of how this behaves.', ...notes]
+  }
   return (
     <div style={{ margin: '1em' }}>
       { title

@@ -18,8 +18,7 @@ storiesOf('Container', module)
   })
   .add('fit', () => {
     return (
-      <Story examples='<Container fit=[ "text" | "fluid" ]/>'
-        notes='Toggle full screen mode to get a better a idea of how this behaves'
+      <Story examples='<Container fit=[ "text" | "fluid" ]/>' showToggleNote
         style={{ border: null }}>
         <Container fit='text'>{ LIPSUM }</Container>
         <Container fit='fluid'>{ LIPSUM }</Container>

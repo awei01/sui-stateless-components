@@ -1,6 +1,10 @@
 import React from 'react'
 import classnames from 'classnames';
 
+export const COUNTS = [
+  'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
+  'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'
+]
 export const COLORS = [
   'red', 'orange', 'yellow',
   'olive', 'green', 'teal', 'blue',
@@ -36,7 +40,17 @@ export const OPTIONS = {
   align: {
     values: ALIGNS,
     makeKey: _makeAlignKey
-  }
+  },
+  equalWidth: {
+    values: [true],
+    makeKey: () => {
+      return 'equal width'
+    }
+  },
+  wide: {
+    values: COUNTS,
+    makeKey: useSuffixedStringValueAsKey.bind(null, 'wide')
+  },
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {

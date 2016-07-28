@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeClassnameFactory, useSuffixedStringValueAsKey, OPTIONS } from '../../utils';
+import { makeClassnameFactory, useSuffixedStringValueAsKey, OPTIONS, COUNTS } from '../../utils';
 import 'semantic-ui-css/components/grid.css'
 
 /*
@@ -7,20 +7,10 @@ import 'semantic-ui-css/components/grid.css'
  | Shared options
  |---------------------------
  */
-const { color, align } = OPTIONS
-const SIZES = [
-  'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
-  'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'
-]
+const { color, align, equalWidth, wide } = OPTIONS
 const column = {
-  values: SIZES,
+  values: COUNTS,
   makeKey: useSuffixedStringValueAsKey.bind(null, 'column')
-}
-const equalWidth = {
-  values: [true],
-  makeKey: () => {
-    return 'equal width'
-  }
 }
 const valign = {
   values: ['top', 'middle', 'bottom'],
@@ -115,10 +105,7 @@ export const makeColumnClasses = makeClassnameFactory({
   options: {
     color,
     align,
-    wide: {
-      values: SIZES,
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'wide')
-    },
+    wide,
     float: {
       values: ['left', 'right'],
       makeKey: useSuffixedStringValueAsKey.bind(null, 'floated')
