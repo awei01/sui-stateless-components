@@ -16,12 +16,19 @@ const _makeAlignKey = (value) => {
   if (value === 'justified') {
     return value
   }
-  return `${value} aligned`
+  return useSuffixedStringValueAsKey('aligned', value)
 }
 
 const _useValueAsKey = (value) => {
   return value;
 }
+export const useSuffixedStringValueAsKey = (suffix, value) => {
+  if (typeof value !== 'string') {
+    value = ''
+  }
+  return `${value} ${suffix}`
+}
+
 
 export const OPTIONS = {
   color: COLORS,
