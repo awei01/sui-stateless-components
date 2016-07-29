@@ -9,6 +9,10 @@
     "ui",
     "components"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/awei01/sui-stateless-components.git"
+  },
   "scripts": {
     "storybook": "start-storybook -p 9001 -s ./.storybook/static",
     "lint": "node_modules/.bin/standard"
