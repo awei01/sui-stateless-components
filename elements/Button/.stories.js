@@ -7,6 +7,13 @@ import { Label } from '../Label'
 import { Icon } from '../Icon'
 
 storiesOf('Button', module)
+  .add('default', () => {
+    return (
+      <Story examples='<Button>{ content }</Button>'>
+        <Button>some button</Button>
+      </Story>
+    )
+  })
   .add('emphasis', () => {
     return (
       <Story examples='<Button emphasis=[ "primary" | "secondary" ]>'>

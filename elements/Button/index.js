@@ -27,17 +27,17 @@ export const makeClasses = makeClassnameFactory({
 });
 
 export const Button = ({
-  type,   // not SUI option
-  emphasis, hint,
-  active, loading, disabled,
-  icon, circular,
-  color, size,
-  labeled,
-  className, ...rest }) => {
+                        type,   // not SUI option
+                        emphasis, hint,
+                        active, loading, disabled,
+                        icon, circular,
+                        color, size,
+                        labeled,
+                        className, ...rest }) => {
 
-  let classes
   let element = 'button'
   const passedProps = { ...rest, type, disabled }
+
   if (labeled && !icon) {
     // this is a labeled div tag with content
     passedProps.className = makeClasses({ labeled, disabled }, className)
