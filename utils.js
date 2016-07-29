@@ -56,7 +56,8 @@ export const OPTIONS = {
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {
   options = options || {};
   return (configs, className) => {
-    if (typeof configs === 'string') {
+    if (!configs || typeof configs === 'string') {
+      // configs and className could both be undefined or falsy
       className = configs;
       configs = {};
     }
