@@ -2,7 +2,13 @@
   "name": "sui-stateless-components",
   "version": "0.0.0",
   "description": "Dumb, stateless semantic-ui components",
-  "keywords": ["react", "semantic-ui", "stateless", "ui", "components"],
+  "keywords": [
+    "react",
+    "semantic-ui",
+    "stateless",
+    "ui",
+    "components"
+  ],
   "scripts": {
     "storybook": "start-storybook -p 9001 -s ./.storybook/static",
     "lint": "node_modules/.bin/standard"
@@ -17,6 +23,7 @@
     "style-loader": "^0.13.1"
   },
   "dependencies": {
+    "lodash": "^4.14.1",
     "react": "^15.2.1",
     "semantic-ui-css": "^2.2.2"
   },

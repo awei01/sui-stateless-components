@@ -69,9 +69,9 @@ storiesOf('Icon', module)
       </IconStory>
     )
   })
-  .add('size', makeStoryForKeyAndOptions(Icon, { key: 'size', options: SIZES }, {
-    props: { children: null, type: 'user' },
-    Story: IconStory
+  .add('size', makeSizeStory(Icon, {
+    options: SIZES,
+    props: { children: null, type: 'user' }
   }))
   .add('passes .className and other props', makePassesPropsStory(Icon, {
     props: {

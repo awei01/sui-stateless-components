@@ -1,43 +1,98 @@
+import without from 'lodash/without'
 import React, { PropTypes } from 'react';
-import classnames from 'classnames';
-
+import { makeClassnameFactory, useSuffixedStringValueAsKey, OPTIONS, COUNTS as BASE_COUNTS} from '../../utils';
 import 'semantic-ui-css/components/menu.css';
 
-export const makeMenuClasses = (classes) => {
-	return classnames('ui', classes, 'menu');
+/*
+ |---------------------------
+ | Shared options
+ |---------------------------
+ */
+const fitted = {
+  values: [true, 'horizontally', 'vertically'],
+  makeKey: useSuffixedStringValueAsKey.bind(null, 'fitted')
 }
-export const Menu = ({ attached, secondary, pointing, borderless, vertical, ...rest }) => {	// eslint-disable-line
-	const classes = makeMenuClasses({ attached, secondary, pointing, borderless, vertical });
-	return (
-		<div { ...rest } className={ classes } />
-	);
+export const COLORS = without(OPTIONS.color, 'black')
+/*
+ |---------------------------
+ | Menu
+ |---------------------------
+ */
+export const SIZES = without(OPTIONS.size, 'medium', 'huge')
+export const COUNTS = without(BASE_COUNTS, 'thirteen', 'fourteen', 'fifteen', 'sixteen')
+export const makeMenuClasses = makeClassnameFactory({
+  prefix: 'ui',
+  suffix: 'menu',
+  options: {
+    type: ['secondary', 'tabular', 'text', 'pagination'],
+    fit: ['fluid', 'compact'],
+    fitted,
+    size: SIZES,
+    color: COLORS,
+    items: {
+      values: COUNTS,
+      makeKey: useSuffixedStringValueAsKey.bind(null, 'item')
+    }
+  }
+})
+export const Menu = ({
+                      type, fit, size, fitted, color, items,
+                      pointing, vertical, inverted, borderless,
+                      className, ...rest }) => {
+  const classes = makeMenuClasses({
+    type, fit, size, fitted, color, items,
+    pointing, vertical, inverted, borderless
+  }, className);
+  return (
+    <div {...rest} className={classes}/>
+  );
 }
 
-export const makeSubMenuClasses = (classes) => {
-	return classnames(classes, 'menu');
+/*
+ |---------------------------
+ | Item
+ |---------------------------
+ */
+export const makeItemClasses = makeClassnameFactory({
+  suffix: 'item',
+  options: {
+    fitted,
+    color: COLORS
+  }
+})
+export const Item = ({
+                      fitted, color,
+                      active, down, link, header,
+                      href,
+                      className, ...rest }) => {
+  const classes = makeItemClasses({
+    fitted, color,
+    active, down, link, header
+  }, className);
+  const passedProps = { ...rest, className: classes }
+  let element = 'div'
+  if (href) {
+    element = 'a'
+    passedProps.href = href
+  }
+  return React.createElement(element, passedProps)
 }
-export const SubMenu = ({ right, children }) => {
-	const classes = makeSubMenuClasses({ right });
-	return (
-		<div className={ classes }>{ children }</div>
-	);
+Item.propTypes = {
+  href: PropTypes.string
 }
 
-export const makeMenuItemClasses = (classes) => {
-	return classnames(classes, 'item');
-}
-export const MenuItem = ({ header, align, ...rest }) => {	// eslint-disable-line
-	const classes = makeMenuItemClasses({ header, [align]: true });
-	return (
-		<div { ...rest } className={ classes } />
-	);
-}
-export const MenuLink = ({ right, ...rest }) => {	// eslint-disable-line
-	const classes = makeMenuItemClasses({ right });
-	return (
-		<a { ...rest } className={ classes } />
-	);
-}
-MenuLink.defaultProps ={
-	href: "#"
+
+/*
+ |---------------------------
+ | SubMenu
+ |---------------------------
+ */
+export const makeSubMenuClasses = makeClassnameFactory({
+  suffix: 'menu'
+})
+export const SubMenu = ({ right, className, ...rest }) => {
+  const classes = makeSubMenuClasses({ right }, className)
+  return (
+    <div {...rest} className={classes}/>
+  )
 }

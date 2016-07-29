@@ -1,3 +1,4 @@
+import without from 'lodash/without'
 import React, { PropTypes } from 'react';
 import { makeClassnameFactory, OPTIONS } from '../../utils';
 import 'semantic-ui-css/components/icon.css';
@@ -30,9 +31,8 @@ export const ICONS = [
   'close'
 ]
 
-const { color, size } = OPTIONS
-const _index = size.indexOf('medium')
-export const SIZES = [...size.slice(0, _index), ...size.slice(_index + 1)]
+const { color } = OPTIONS
+export const SIZES = without(OPTIONS.size, 'medium')
 export const makeClasses = makeClassnameFactory({
   suffix: "icon",
   options: {

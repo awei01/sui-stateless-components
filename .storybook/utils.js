@@ -24,7 +24,7 @@ export const makeComponentsForKeyAndOptions = (Component, { key, options }, prop
   })
 }
 
-export const extractOptionValues = (options) => {
+export const extractOptionsValues = (options) => {
   let shown = options
   let last
   if (options.length > 4) {
@@ -43,11 +43,14 @@ export const extractOptionValues = (options) => {
   return shown.join(' | ')
 }
 
-export const makeStoryForKeyAndOptions = (Component, { key, options }, configs = {}) => {
+export const makeStoryForKeyAndOptions = (Component, defaults, configs = {}) => {
+  let { key, options } = configs;
+  key = key || defaults.key
+  options = options || defaults.options
   const props = configs.props || {}
   const Story = configs.Story
   return () => {
-    const values = extractOptionValues(options)
+    const values = extractOptionsValues(options)
     const storyProps = {
       examples: `<${Component.name} ${key}=[ ${values} ]/>`,
       notes: 'Hover over element for prop key and value',
