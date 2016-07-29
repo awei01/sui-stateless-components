@@ -4,6 +4,7 @@ import '../styles.css';
 function loadStories() {
   require('../elements/Button/.stories')
   require('../elements/Container/.stories')
+  require('../elements/Divider/.stories')
   require('../elements/Header/.stories')
   require('../elements/Label/.stories')
   require('../elements/Icon/.stories')
