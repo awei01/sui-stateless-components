@@ -82,16 +82,14 @@ export const Row = ({
  | Column
  |---------------------------
  */
+const { float } = OPTIONS
 export const makeColumnClasses = makeClassnameFactory({
   suffix: 'column',
   options: {
     color,
     align,
     wide,
-    float: {
-      values: ['left', 'right'],
-      makeKey: makeOptionForValuesAndSuffix.bind(null, 'floated')
-    }
+    float
   }
 })
 export const Column = ({

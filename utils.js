@@ -53,7 +53,8 @@ export const OPTIONS = {
       return 'equal width'
     }
   },
-  wide: makeOptionForValuesAndSuffix(COUNTS, 'wide')
+  wide: makeOptionForValuesAndSuffix(COUNTS, 'wide'),
+  float: makeOptionForValuesAndSuffix(['left', 'right'], 'floated')
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {
