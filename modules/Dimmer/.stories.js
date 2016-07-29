@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, LIPSUM } from '../../.storybook/utils';
+import { makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
 import { Dimmer } from './index'
 
 const DimmerStory = (props) => {
@@ -17,7 +17,7 @@ storiesOf('Dimmer', module)
       <DimmerStory examples='<Dimmer/>'
         notes='Dimmer prop [active] is [true] by default'>
         <Content>
-          { LIPSUM }
+          { makeLipsum() }
           <Dimmer/>
         </Content>
       </DimmerStory>
@@ -27,7 +27,7 @@ storiesOf('Dimmer', module)
     return (
       <DimmerStory examples='<Dimmer active={false}/>'>
         <Content>
-          { LIPSUM }
+          { makeLipsum() }
           <Dimmer active={false}/>
         </Content>
       </DimmerStory>
@@ -38,7 +38,7 @@ storiesOf('Dimmer', module)
       <DimmerStory examples='<Dimmer>[some content]</Dimmer>'
         notes='If you provide content, the component will automatically generate the HTML to center your content'>
         <Content>
-          { LIPSUM }
+          { makeLipsum() }
           <Dimmer><h1>This is some header</h1><p>Here is a paragraph</p></Dimmer>
         </Content>
       </DimmerStory>
@@ -48,7 +48,7 @@ storiesOf('Dimmer', module)
     return (
       <DimmerStory examples='<Dimmer page/>'>
         <Content>
-          { LIPSUM }
+          { makeLipsum() }
           <Dimmer page/>
         </Content>
       </DimmerStory>
@@ -58,7 +58,7 @@ storiesOf('Dimmer', module)
     return (
       <DimmerStory examples='<Dimmer inverted/>'>
         <Content>
-          { LIPSUM }
+          { makeLipsum() }
           <Dimmer inverted/>
         </Content>
       </DimmerStory>
