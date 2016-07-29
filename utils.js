@@ -20,17 +20,23 @@ const _makeAlignKey = (value) => {
   if (value === 'justified') {
     return value
   }
-  return useSuffixedStringValueAsKey('aligned', value)
+  return _useSuffixedStringValueAsKey('aligned', value)
 }
 
 const _useValueAsKey = (value) => {
   return value;
 }
-export const useSuffixedStringValueAsKey = (suffix, value) => {
+const _useSuffixedStringValueAsKey = (suffix, value) => {
   if (typeof value !== 'string') {
     value = ''
   }
   return `${value} ${suffix}`
+}
+export const makeOptionForValuesAndSuffix = (values, suffix) => {
+  return {
+    values,
+    makeKey: _useSuffixedStringValueAsKey.bind(null, suffix)
+  }
 }
 
 
@@ -47,10 +53,7 @@ export const OPTIONS = {
       return 'equal width'
     }
   },
-  wide: {
-    values: COUNTS,
-    makeKey: useSuffixedStringValueAsKey.bind(null, 'wide')
-  },
+  wide: makeOptionForValuesAndSuffix(COUNTS, 'wide')
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {

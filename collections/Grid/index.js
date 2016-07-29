@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeClassnameFactory, useSuffixedStringValueAsKey, OPTIONS, COUNTS } from '../../utils';
+import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS, COUNTS } from '../../utils';
 import 'semantic-ui-css/components/grid.css'
 
 /*
@@ -8,14 +8,8 @@ import 'semantic-ui-css/components/grid.css'
  |---------------------------
  */
 const { color, align, equal, wide } = OPTIONS
-const columns = {
-  values: COUNTS,
-  makeKey: useSuffixedStringValueAsKey.bind(null, 'column')
-}
-const valign = {
-  values: ['top', 'middle', 'bottom'],
-  makeKey: useSuffixedStringValueAsKey.bind(null, 'aligned')
-}
+const columns = makeOptionForValuesAndSuffix(COUNTS, 'column')
+const valign = makeOptionForValuesAndSuffix(['top', 'middle', 'bottom'], 'aligned')
 /*
  |---------------------------
  | Grid
@@ -29,22 +23,10 @@ export const makeGridClasses = makeClassnameFactory({
     equal,
     align,
     valign,
-    divided: {
-      values: [true, 'vertically'],
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'divided')
-    },
-    celled: {
-      values: [true, 'internally'],
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'celled')
-    },
-    padded: {
-      values: [true, 'vertically', 'horizontally'],
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'padded')
-    },
-    relaxed: {
-      values: [true, 'very'],
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'relaxed')
-    }
+    divided: makeOptionForValuesAndSuffix([true, 'vertically'], 'divided'),
+    celled: makeOptionForValuesAndSuffix([true, 'internally'], 'celled'),
+    padded: makeOptionForValuesAndSuffix([true, 'vertically', 'horizontally'], 'padded'),
+    relaxed: makeOptionForValuesAndSuffix([true, 'very'], 'relaxed')
   }
 })
 export const Grid = ({
@@ -108,7 +90,7 @@ export const makeColumnClasses = makeClassnameFactory({
     wide,
     float: {
       values: ['left', 'right'],
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'floated')
+      makeKey: makeOptionForValuesAndSuffix.bind(null, 'floated')
     }
   }
 })

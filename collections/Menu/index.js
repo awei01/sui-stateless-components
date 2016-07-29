@@ -1,6 +1,6 @@
 import without from 'lodash/without'
 import React, { PropTypes } from 'react';
-import { makeClassnameFactory, useSuffixedStringValueAsKey, OPTIONS, COUNTS as BASE_COUNTS} from '../../utils';
+import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS, COUNTS as BASE_COUNTS} from '../../utils';
 import 'semantic-ui-css/components/menu.css';
 
 /*
@@ -8,10 +8,7 @@ import 'semantic-ui-css/components/menu.css';
  | Shared options
  |---------------------------
  */
-const fitted = {
-  values: [true, 'horizontally', 'vertically'],
-  makeKey: useSuffixedStringValueAsKey.bind(null, 'fitted')
-}
+const fitted = makeOptionForValuesAndSuffix([true, 'horizontally', 'vertically'], 'fitted')
 export const COLORS = without(OPTIONS.color, 'black')
 /*
  |---------------------------
@@ -29,10 +26,7 @@ export const makeMenuClasses = makeClassnameFactory({
     fitted,
     size: SIZES,
     color: COLORS,
-    items: {
-      values: COUNTS,
-      makeKey: useSuffixedStringValueAsKey.bind(null, 'item')
-    }
+    items: makeOptionForValuesAndSuffix(COUNTS, 'item')
   }
 })
 export const Menu = ({

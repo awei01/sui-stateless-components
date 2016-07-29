@@ -1,23 +1,22 @@
 import React, { PropTypes } from 'react';
 import { makeClassnameFactory } from '../../utils';
-import 'semantic-ui-css/components/divider.css';
+import 'semantic-ui-css/components/segment.css';
 
 export const makeClasses = makeClassnameFactory({
   prefix: "ui",
-  suffix: "divider",
+  suffix: "segment",
   options: {
-    orientation: ['horizontal', 'vertical'],
-    margin: ['fitted', 'section']
+    type: ['raised', 'stacked', 'tall stacked', 'piled', 'vertical']
   }
 });
 
-export const Divider = ({
-                        orientation, margin,
-                        inverted, hidden, clearing,
+export const Segment = ({
+                        type,
+                        basic, inverted,
                         className, ...rest }) => {
   const classes = makeClasses({
-    orientation, margin,
-    inverted, hidden, clearing
+    type,
+    basic, inverted
   }, className)
   return (
     <div {...rest} className={classes}/>
