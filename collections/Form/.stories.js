@@ -44,10 +44,10 @@ storiesOf('Form', module)
     onSubmit: _handleSubmit,
     style: { marginBottom: '1em' }
   }}))
-  .add('<Form> equalWidth', () => {
+  .add('<Form> equal', () => {
     return (
-      <Story examples='<Form equalWidth><Fields>{ content }</Fields></Form>' showToggleNote>
-        <Form equalWidth>
+      <Story examples='<Form equal><Fields>{ content }</Fields></Form>' showToggleNote>
+        <Form equal>
           <Fields>
            {_makeFields()}
           </Fields>
@@ -145,11 +145,11 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> equalWidth', () => {
+  .add('<Fields> equal', () => {
     return (
-      <Story examples='<Form><Fields equalWidth>{ content }</Fields></Form>' showToggleNote>
+      <Story examples='<Form><Fields equal>{ content }</Fields></Form>' showToggleNote>
         <Form onSubmit={_handleSubmit}>
-          <Fields equalWidth>
+          <Fields equal>
             {_makeFields(['one', 'two'])}
           </Fields>
         </Form>

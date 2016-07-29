@@ -7,8 +7,8 @@ import 'semantic-ui-css/components/grid.css'
  | Shared options
  |---------------------------
  */
-const { color, align, equalWidth, wide } = OPTIONS
-const column = {
+const { color, align, equal, wide } = OPTIONS
+const columns = {
   values: COUNTS,
   makeKey: useSuffixedStringValueAsKey.bind(null, 'column')
 }
@@ -25,8 +25,8 @@ export const makeGridClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'grid',
   options: {
-    column,
-    equalWidth,
+    columns,
+    equal,
     align,
     valign,
     divided: {
@@ -49,14 +49,14 @@ export const makeGridClasses = makeClassnameFactory({
 })
 export const Grid = ({
   stretched, centered,
-  equalWidth, column,
+  equal, columns,
   align, valign,
   padded, relaxed,
   divided, celled,
   className, ...rest }) => {
   const classes = makeGridClasses({
     stretched, centered,
-    equalWidth, column,
+    equal, columns,
     align, valign,
     padded, relaxed,
     divided, celled
@@ -74,8 +74,8 @@ export const Grid = ({
 export const makeRowClasses = makeClassnameFactory({
   suffix: 'row',
   options: {
-    column,
-    equalWidth,
+    columns,
+    equal,
     color,
     align,
     valign
@@ -83,11 +83,11 @@ export const makeRowClasses = makeClassnameFactory({
 })
 export const Row = ({
   stretched, centered,
-  equalWidth, column, color, align, valign,
+  equal, columns, color, align, valign,
   className, ...rest }) => {
   const classes = makeRowClasses({
     stretched, centered,
-    equalWidth, column, color, align, valign,
+    equal, columns, color, align, valign,
   }, className)
   return (
     <div {...rest} className={classes}/>

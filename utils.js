@@ -41,7 +41,7 @@ export const OPTIONS = {
     values: ALIGNS,
     makeKey: _makeAlignKey
   },
-  equalWidth: {
+  equal: {
     values: [true],
     makeKey: () => {
       return 'equal width'

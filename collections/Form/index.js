@@ -8,7 +8,7 @@ import 'semantic-ui-css/components/checkbox.css'
  | Shared options
  |---------------------------
  */
-const { size, equalWidth, wide } = OPTIONS
+const { size, equal, wide } = OPTIONS
 
 /*
  |---------------------------
@@ -20,17 +20,17 @@ export const makeFormClasses = makeClassnameFactory({
   suffix: 'form',
   options: {
     size,
-    equalWidth,
+    equal,
     state: ['success', 'error', 'warning']
   }
 })
 export const Form = ({
-                      size, equalWidth,
+                      size, equal,
                       inverted, loading,
                       state,
                       className, ...rest }) => {
   const classes = makeFormClasses({
-    size, equalWidth,
+    size, equal,
     inverted, loading,
     state
   }, className)
@@ -48,15 +48,15 @@ export const makeFieldsClasses = makeClassnameFactory({
   suffix: 'fields',
   options: {
     fields: COUNTS,
-    equalWidth
+    equal
   }
 })
 export const Fields = ({
-                        fields, grouped, equalWidth, inline,
+                        fields, grouped, equal, inline,
                         className, ...rest
                         }) => {
   const classes = makeFieldsClasses({
-    fields, grouped, equalWidth, inline
+    fields, grouped, equal, inline
   }, className)
   return (
     <div {...rest} className={classes}/>

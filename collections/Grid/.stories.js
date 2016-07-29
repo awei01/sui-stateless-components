@@ -12,14 +12,14 @@ const Content = (props) => {
 }
 
 storiesOf('Grid', module)
-  .add('Grid column', () => {
+  .add('Grid columns', () => {
     return (
-      <Story examples='<Grid column=[ "one" | "two" | ... "sixteen" ]/><Column/></Grid>'>
-        <Grid column="two">
+      <Story examples='<Grid columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Grid>'>
+        <Grid columns="two">
           <Column><Content>two wide</Content></Column>
           <Column><Content>two wide</Content></Column>
         </Grid>
-        <Grid column="four">
+        <Grid columns="four">
           <Column><Content>four wide</Content></Column>
           <Column><Content>four wide</Content></Column>
           <Column><Content>four wide</Content></Column>
@@ -31,7 +31,7 @@ storiesOf('Grid', module)
   .add('Grid divided', () => {
     return (
       <Story examples='<Grid divided=[ true | "vertically" ]/><Row><Column/></Row></Grid>'>
-        <Grid column="four" divided>
+        <Grid columns="four" divided>
           <Row>
             <Column>divided</Column><Column>divided</Column><Column>divided</Column><Column>divided</Column>
           </Row>
@@ -39,7 +39,7 @@ storiesOf('Grid', module)
             <Column>divided</Column><Column>divided</Column><Column>divided</Column><Column>divided</Column>
           </Row>
         </Grid>
-        <Grid column="four" divided='vertically'>
+        <Grid columns="four" divided='vertically'>
           <Row>
             <Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column>
           </Row>
@@ -53,7 +53,7 @@ storiesOf('Grid', module)
   .add('Grid celled', () => {
     return (
       <Story examples='<Grid celled=[ true | "internally" ]/><Row><Column/></Row></Grid>'>
-        <Grid column="four" celled>
+        <Grid columns="four" celled>
           <Row>
             <Column>celled</Column><Column>celled</Column><Column>celled</Column><Column>celled</Column>
           </Row>
@@ -61,7 +61,7 @@ storiesOf('Grid', module)
             <Column>celled</Column><Column>celled</Column><Column>celled</Column><Column>celled</Column>
           </Row>
         </Grid>
-        <Grid column="four" celled='internally'>
+        <Grid columns="four" celled='internally'>
           <Row>
             <Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column>
           </Row>
@@ -72,10 +72,10 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid equalWidth', () => {
+  .add('Grid equal', () => {
     return (
-      <Story examples='<Grid equalWidth/><Column/></Grid>'>
-        <Grid equalWidth>
+      <Story examples='<Grid equal/><Column/></Grid>'>
+        <Grid equal>
           <Column><Content>three columns</Content></Column>
           <Column><Content>three columns</Content></Column>
           <Column><Content>three columns</Content></Column>
@@ -96,7 +96,7 @@ storiesOf('Grid', module)
   .add('Grid stretched', () => {
     return (
       <Story examples='<Grid stretched/><Column/></Grid>'>
-        <Grid equalWidth stretched>
+        <Grid equal stretched>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200) }</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
@@ -111,15 +111,15 @@ storiesOf('Grid', module)
   .add('Grid padded', () => {
     return (
       <Story examples='<Grid padded/><Column/></Grid>'>
-        <Grid column="two" padded>
+        <Grid columns="two" padded>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" padded="vertically">
+        <Grid columns="two" padded="vertically">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" padded="horizontally">
+        <Grid columns="two" padded="horizontally">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
@@ -129,15 +129,15 @@ storiesOf('Grid', module)
   .add('Grid relaxed', () => {
     return (
       <Story examples='<Grid relaxed=[ true | "very" ]/><Column/></Grid>'>
-        <Grid column="two" relaxed>
+        <Grid columns="two" relaxed>
           <Column><Content><h3>relaxed</h3>{ makeLipsum(100)}</Content></Column>
           <Column><Content><h3>relaxed</h3>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" relaxed="very">
+        <Grid columns="two" relaxed="very">
           <Column><Content><h3>very relaxed</h3>{ makeLipsum(100)}</Content></Column>
           <Column><Content><h3>very relaxed</h3>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two">
+        <Grid columns="two">
           <Column><Content><h3>not relaxed</h3>{ makeLipsum(100) }</Content></Column>
           <Column><Content><h3>not relaxed</h3>{ makeLipsum(100) }</Content></Column>
         </Grid>
@@ -150,12 +150,12 @@ storiesOf('Grid', module)
           '<Grid centered><Column/></Grid>',
           '<Grid centered><Row><Column/></Row></Grid>'
         ]}>
-        <Grid column="four" centered>
+        <Grid columns="four" centered>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="four" centered>
+        <Grid columns="four" centered>
           <Row>
             <Column><Content><h3>inside row</h3>{ makeLipsum(100)}</Content></Column>
             <Column><Content><h3>inside row</h3>{ makeLipsum(100)}</Content></Column>
@@ -167,19 +167,19 @@ storiesOf('Grid', module)
   .add('Grid align', () => {
     return (
       <Story examples='<Grid align=[ "left" | "right" | "center" | "justified" ]><Column/></Grid>'>
-        <Grid column="two" align="left">
+        <Grid columns="two" align="left">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" align="right">
+        <Grid columns="two" align="right">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" align="center">
+        <Grid columns="two" align="center">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid column="two" align="justified">
+        <Grid columns="two" align="justified">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
@@ -189,15 +189,15 @@ storiesOf('Grid', module)
   .add('Grid valign', () => {
     return (
       <Story examples='<Grid valign=[ "top" | "middle" | "bottom" ]><Column/></Grid>'>
-        <Grid column="two" valign="top">
+        <Grid columns="two" valign="top">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
-        <Grid column="two" valign="middle">
+        <Grid columns="two" valign="middle">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
-        <Grid column="two" valign="bottom">
+        <Grid columns="two" valign="bottom">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
@@ -209,15 +209,15 @@ storiesOf('Grid', module)
     onClick: action('Grid was clicked'),
     children: <Column>centered and clickable</Column>
   }}))
-  .add('Row column', () => {
+  .add('Row columns', () => {
     return (
-      <Story examples='<Grid><Row column=[ "one" | "two" | ... "sixteen" ]/><Column/></Row></Grid>'>
+      <Story examples='<Grid><Row columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Row></Grid>'>
         <Grid>
-          <Row column="two">
+          <Row columns="two">
             <Column><Content>two wide</Content></Column>
             <Column><Content>two wide</Content></Column>
           </Row>
-          <Row column="four">
+          <Row columns="four">
             <Column><Content>four wide</Content></Column>
             <Column><Content>four wide</Content></Column>
             <Column><Content>four wide</Content></Column>
@@ -227,22 +227,22 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row equalWidth', () => {
+  .add('Row equal', () => {
     return (
-      <Story examples='<Grid><Row equalWidth/><Column/></Row></Grid>'>
+      <Story examples='<Grid><Row equal/><Column/></Row></Grid>'>
         <Grid>
-          <Row equalWidth>
+          <Row equal>
             <Column><Content>three columns in row</Content></Column>
             <Column><Content>three columns in row</Content></Column>
             <Column><Content>three columns in row</Content></Column>
           </Row>
-          <Row equalWidth>
+          <Row equal>
             <Column><Content>four columns in row</Content></Column>
             <Column><Content>four columns in row</Content></Column>
             <Column><Content>four columns in row</Content></Column>
             <Column><Content>four columns in row</Content></Column>
           </Row>
-          <Row equalWidth>
+          <Row equal>
             <Column><Content>two columns in row</Content></Column>
             <Column><Content>two columns in row</Content></Column>
           </Row>
@@ -254,7 +254,7 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Row stretched/><Column/></Row></Grid>'>
         <Grid>
-          <Row equalWidth stretched>
+          <Row equal stretched>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200) }</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
@@ -267,14 +267,14 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Row centered><Column/></Row></Grid>'>
         <Grid>
-          <Row column="four" centered>
+          <Row columns="four" centered>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
         </Grid>
         <Grid>
-          <Row column="four" centered>
+          <Row columns="four" centered>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
@@ -286,19 +286,19 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Row align=[ "left" | "right" | "center" | "justified" ]><Column/></Row></Grid>'>
         <Grid>
-          <Row column="two" align="left">
+          <Row columns="two" align="left">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row column="two" align="right">
+          <Row columns="two" align="right">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row column="two" align="center">
+          <Row columns="two" align="center">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row column="two" align="justified">
+          <Row columns="two" align="justified">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
@@ -310,15 +310,15 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Row valign=[ "top" | "middle" | "bottom" ]><Column/></Row></Grid>'>
         <Grid>
-          <Row column="two" valign="top">
+          <Row columns="two" valign="top">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
-          <Row column="two" valign="middle">
+          <Row columns="two" valign="middle">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
-          <Row column="two" valign="bottom">
+          <Row columns="two" valign="bottom">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
@@ -380,7 +380,7 @@ storiesOf('Grid', module)
   .add('Column color', () => {
     return (
       <Story examples='<Grid><Column color={ valid color }/><Column/></Column></Grid>'>
-        <Grid column='three'>
+        <Grid columns='three'>
           { makeComponentsForKeyAndOptions(Column, { key: 'color', options: COLORS })}
         </Grid>
       </Story>
@@ -389,7 +389,7 @@ storiesOf('Grid', module)
   .add('Column align', () => {
     return (
       <Story examples='<Grid><Column align=[ "left" | "right" | "center" | "justified" ]/></Grid>'>
-        <Grid column="four">
+        <Grid columns="four">
           <Column align="left"><Content>{ makeLipsum(100)}</Content></Column>
           <Column align="right"><Content>{ makeLipsum(100)}</Content></Column>
           <Column align="center"><Content>{ makeLipsum(100)}</Content></Column>
@@ -404,7 +404,7 @@ storiesOf('Grid', module)
     const _divStyle = { display: 'inline-flex', width: '50%' }
     return (
       <Story examples='<Grid><Column valign=[ "top" | "middle" | "bottom" ]/></Grid>'>
-        <Grid column="one">
+        <Grid columns="one">
           <Column valign="top">
             <div style={_divStyle}>{ makeLipsum(100)}</div>
             <div style={_divStyle}>{ makeLipsum(200)}</div>
