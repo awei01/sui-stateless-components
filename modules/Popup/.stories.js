@@ -1,5 +1,5 @@
 import React from 'react'
-import { storiesOf, action } from '@kadira/storybook'
+import { storiesOf, action, linkTo } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
 import { Modal, Header, Content, Actions } from './index'
 

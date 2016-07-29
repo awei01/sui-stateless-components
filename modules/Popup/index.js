@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
 
 import 'semantic-ui-css/components/modal.css';
