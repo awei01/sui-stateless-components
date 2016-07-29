@@ -39,8 +39,8 @@ storiesOf('Label', module)
       </Story>
     )
   })
-  .add('passes .className and other props', makePassesPropsStory(Label, {
+  .add('passes .className and other props', makePassesPropsStory(Label, { props: {
     className: 'red',
     onClick: action('Label was clicked'),
     children: 'I am red and clickable'
-  }))
+  }}))

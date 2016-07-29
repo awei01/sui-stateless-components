@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeSizeStory, makeColorStory, makeStoryUsingOptions, makePassesPropsStory } from '../../.storybook/utils';
+import { makeSizeStory, makeColorStory, makeStoryForKeyAndOptions, makePassesPropsStory } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
 import { Message, Header, Content, TYPES } from './index'
 import { Icon } from '../../elements/Icon'
@@ -35,7 +35,7 @@ storiesOf('Message', module)
       </Story>
     )
   })
-  .add('type', makeStoryUsingOptions(Message, { key: 'type', options: TYPES }))
+  .add('type', makeStoryForKeyAndOptions(Message, { key: 'type', options: TYPES }))
   .add('color', makeColorStory(Message))
   .add('size', makeSizeStory(Message))
   .add('content', () => {
@@ -56,8 +56,8 @@ storiesOf('Message', module)
       </Story>
     )
   })
-  .add('passes .className and other props', makePassesPropsStory(Message, {
+  .add('passes .className and other props', makePassesPropsStory(Message, { props: {
     className: "red",
     onClick: action('Message was clicked'),
     children: 'I am red and clickable'
-  }))
+  }}))

@@ -1,33 +1,38 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, makeAlignStory, LIPSUM } from '../../.storybook/utils';
+import { makePassesPropsStory, makeAlignStory, makeLipsum } from '../../.storybook/utils';
 import { Container } from '../Container'
 
-const _styles = {
-  border: ''
+const ContainerStory = (props) => {
+  return <Story {...props} style={{ border: null }}/>
 }
 
 storiesOf('Container', module)
   .add('default', () => {
     return (
-      <Story examples='<Container/>' style={{ border: null }}>
-        <Container>{ LIPSUM }</Container>
-      </Story>
+      <ContainerStory examples='<Container/>'>
+        <Container>{ makeLipsum(200) }</Container>
+      </ContainerStory>
     )
   })
   .add('fit', () => {
     return (
-      <Story examples='<Container fit=[ "text" | "fluid" ]/>' showToggleNote
-        style={{ border: null }}>
-        <Container fit='text'>{ LIPSUM }</Container>
-        <Container fit='fluid'>{ LIPSUM }</Container>
-      </Story>
+      <ContainerStory examples='<Container fit=[ "text" | "fluid" ]/>' showToggleNote>
+        <Container fit='text'>{ makeLipsum(200) }</Container>
+        <Container fit='fluid'>{ makeLipsum(200) }</Container>
+      </ContainerStory>
     )
   })
-  .add('align', makeAlignStory(Container, { children: LIPSUM, style: { marginBottom: '2em' } }))
+  .add('align', makeAlignStory(Container, {
+    children: makeLipsum(200),
+    style: { marginBottom: '2em' }
+  }, ContainerStory))
   .add('passes .className and other props', makePassesPropsStory(Container, {
-    className: 'text',
-    children: LIPSUM,
-    onClick: action('Container was clicked'),
+    props: {
+      className: 'text',
+      children: makeLipsum(200),
+      onClick: action('Container was clicked')
+    },
+    Story: ContainerStory
   }))

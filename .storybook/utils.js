@@ -7,7 +7,7 @@ export const makeLipsum = (chars) => {
   return LIPSUM.substring(0, chars)
 }
 
-export const makeComponentsUsingOptions = (Component, { key, options, props }) => {
+export const makeComponentsForKeyAndOptions = (Component, { key, options }, props) => {
   props = props || {}
   return options.map((item) => {
     const passedProps = {
@@ -19,38 +19,65 @@ export const makeComponentsUsingOptions = (Component, { key, options, props }) =
       passedProps.children = passedProps.children(item)
     }
     return (
-      <Component key={ item } {...passedProps} title={ key + ': ' + item }/>
+      <Component key={item} {...passedProps} title={ key + ': ' + item }/>
     )
   })
 }
 
-export const makeStoryUsingOptions = (Component, { key, options, props }) => {
+export const extractOptionValues = (options) => {
+  let shown = options
+  let last
+  if (options.length > 4) {
+    shown = [...options.slice(0, 2), '...', options[options.length - 1]]
+    last = true
+  }
+  shown = shown.map((value) => {
+    if (value === '...') {
+      return value
+    }
+    if (typeof value === 'string') {
+      return `"${value}"`
+    }
+    return value.toString()
+  })
+  return shown.join(' | ')
+}
+
+export const makeStoryForKeyAndOptions = (Component, { key, options }, configs = {}) => {
+  const props = configs.props || {}
+  const Story = configs.Story
   return () => {
-    return (
-      <Story examples={'<' + Component.name + ' ' + key + '={valid ' + key + '}/>'}
-        notes='Hover over element for prop key and value'>
-        {makeComponentsUsingOptions(Component, { key, options, props })}
-      </Story>
-    )
+    const values = extractOptionValues(options)
+    const storyProps = {
+      examples: `<${Component.name} ${key}=[ ${values} ]/>`,
+      notes: 'Hover over element for prop key and value',
+      children: makeComponentsForKeyAndOptions(Component, { key, options }, props)
+    }
+    return _makeStory(Story, storyProps)
   }
 }
 
-export const makeSizeStory = (Component, props) => {
-  return makeStoryUsingOptions(Component, { key: 'size', options: SIZES, props })
+export const makeSizeStory = (Component, configs = {}) => {
+  return makeStoryForKeyAndOptions(Component, { key: 'size', options: SIZES }, configs)
 }
-export const makeColorStory = (Component, props) => {
-  return makeStoryUsingOptions(Component, { key: 'color', options: COLORS, props })
+export const makeColorStory = (Component, configs = {}) => {
+  return makeStoryForKeyAndOptions(Component, { key: 'color', options: COLORS }, configs)
 }
-export const makeAlignStory = (Component, props) => {
-  return makeStoryUsingOptions(Component, { key: 'align', options: ALIGNS, props: {
-    children: (value) => {
-      return value.split('').join(' ')
-    },
-    ...props
-  }})
+export const makeAlignStory = (Component, configs = {}) => {
+  configs = configs || {}
+  const props = configs.props || {}
+  return makeStoryForKeyAndOptions(Component, { key: 'align', options: ALIGNS }, {
+    ...configs,
+    props: {
+      children: (value) => {
+        return value.split('').join(' ')
+      },
+      ...props
+    }
+  })
 }
 
-export const makePassesPropsStory = (Component, props) => {
+export const makePassesPropsStory = (Component, { props, Story }) => {
   return () => {
     const propsString = Object.keys(props).reduce((result, key) => {
       if (key === 'children') {
@@ -58,17 +85,24 @@ export const makePassesPropsStory = (Component, props) => {
       }
       let value = props[key]
       if (typeof value === 'string') {
-        value = '"' + value + '"'
+        value = `"${value}"`
       } else {
-        value = '{' + typeof value + '}'
+        value = `{${typeof value}}`
       }
       result += ` ${key}=${value}`
       return result;
     }, '');
-    return (
-      <Story examples={'<' + Component.name + propsString + '/>'}>
-        <Component {...props}/>
-      </Story>
-    )
+    const storyProps = {
+      examples: `<${Component.name}${propsString}/>`,
+      children: (<Component {...props}/>)
+    }
+    return _makeStory(Story, storyProps)
   }
+}
+
+const _makeStory = (StoryComponent, props) => {
+  StoryComponent = StoryComponent || Story
+  return (
+    <StoryComponent {...props}/>
+  )
 }

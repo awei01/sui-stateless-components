@@ -10,6 +10,7 @@ function loadStories() {
 
   require('../collections/Form/.stories')
   require('../collections/Grid/.stories')
+  require('../collections/Menu/.stories')
   require('../collections/Message/.stories')
 
   require('../modules/Dimmer/.stories')

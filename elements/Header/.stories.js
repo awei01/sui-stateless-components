@@ -1,11 +1,11 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makeStoryUsingOptions, makeColorStory, makeAlignStory, makePassesPropsStory } from '../../.storybook/utils';
+import { makeStoryForKeyAndOptions, makeColorStory, makeAlignStory, makePassesPropsStory } from '../../.storybook/utils';
 import { Header, SIZES } from '../Header'
 
 storiesOf('Header', module)
-  .add('size', makeStoryUsingOptions(Header, { key: 'size', options: SIZES }))
+  .add('size', makeStoryForKeyAndOptions(Header, { key: 'size', options: SIZES }))
   .add('sub', () => {
     return (
       <Story examples='<Header sub/>'>
@@ -43,8 +43,8 @@ storiesOf('Header', module)
       </Story>
     )
   })
-  .add('passes .className and other props', makePassesPropsStory(Header, {
+  .add('passes .className and other props', makePassesPropsStory(Header, { props: {
     className: 'red',
     children: 'Red Clickable Header',
     onClick: action('Header was clicked'),
-  }))
+  }}))

@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makePassesPropsStory } from '../../.storybook/utils';
 import { Modal, Header, Content, Actions } from './index'
 
 const ModalStory = (props) => {

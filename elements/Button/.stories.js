@@ -105,8 +105,8 @@ storiesOf('Button', module)
       </Story>
     )
   })
-  .add('passes .className and other props', makePassesPropsStory(Button, {
+  .add('passes .className and other props', makePassesPropsStory(Button, { props: {
     className: "red",
     onClick: action('Button was clicked'),
     children: 'I am red and clickable'
-  }))
+  }}))

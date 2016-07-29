@@ -1,74 +1,85 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makeStoryUsingOptions, makeColorStory, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
+import { makeStoryForKeyAndOptions, makeColorStory, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
 import { Icon, CloseIcon, ICONS, SIZES } from '../Icon'
 
-const _storyStyle = { fontSize: '2em', margin: '.5em' }
+const IconStory = ({ style, ...props }) => {
+  return <Story {...props} style={{
+    fontSize: '2em',
+    border: '1px solid #ccc',
+    padding: '1em',
+    ...style }}/>
+}
 
 storiesOf('Icon', module)
-  .add('type', makeStoryUsingOptions(Icon, { key: 'type', options: ICONS,
-    props: { children: null, style: _storyStyle }
+  .add('type', makeStoryForKeyAndOptions(Icon, { key: 'type', options: ICONS }, {
+    props: { style: { margin: '.5em' }, children: null },
+    Story: IconStory
   }))
-  .add('<CloseIcon/>', () => {
+  .add('<CloseIcon>', () => {
     return (
-      <Story examples={[
+      <IconStory examples={[
           '<CloseIcon/>',
           '<CloseIcon circular/>'
         ]}
-        notes='Just because it is use so often.'
-        style={_storyStyle}>
+        notes='One-off component because it is use so often.'>
         <CloseIcon/>
         <CloseIcon circular/>
-      </Story>
+      </IconStory>
     )
   })
   .add('circular', () => {
     return (
-      <Story examples='<Icon circular/>' style={_storyStyle}>
+      <IconStory examples='<Icon circular/>' >
         <Icon circular type='user'/>
-      </Story>
+      </IconStory>
     )
   })
   .add('bordered', () => {
     return (
-      <Story examples='<Icon bordered/>' style={_storyStyle}>
+      <IconStory examples='<Icon bordered/>' >
         <Icon bordered type='user'/>
-      </Story>
+      </IconStory>
     )
   })
   .add('disabled', () => {
     return (
-      <Story examples='<Icon disabled>'
-        notes='Disabled only handles appearance. Set [on*] props to null to actually disable it.'
-        style={_storyStyle}>
+      <IconStory examples='<Icon disabled>'
+        notes='Disabled only handles appearance. Set [on*] props to null to actually disable it.'>
         <Icon disabled type='user' onClick={ action('Disabled Icon clicked')}/>
-      </Story>
+      </IconStory>
     )
   })
   .add('loading', () => {
     return (
-      <Story examples='<Icon loading>' style={_storyStyle}>
+      <IconStory examples='<Icon loading>'>
         <Icon loading type='circle notched'/>
-      </Story>
+      </IconStory>
     )
   })
-  .add('color', makeColorStory(Icon, { children: null, type: 'user', style: _storyStyle }))
+  .add('color', makeColorStory(Icon, {
+    props: { children: null, type: 'user' },
+    Story: IconStory
+  }))
   .add('inverted', () => {
     return (
-      <Story examples='<Icon inverted>' style={{ ..._storyStyle, backgroundColor: '#666', padding: '1em' }}>
+      <IconStory examples='<Icon inverted>' style={{ backgroundColor: '#666', padding: '1em' }}>
         <Icon inverted type='user'/>
-      </Story>
+      </IconStory>
     )
   })
-  .add('size', makeStoryUsingOptions(Icon, { key: 'size', options: SIZES,
-    props: { children: null, type: 'user' }
+  .add('size', makeStoryForKeyAndOptions(Icon, { key: 'size', options: SIZES }, {
+    props: { children: null, type: 'user' },
+    Story: IconStory
   }))
   .add('passes .className and other props', makePassesPropsStory(Icon, {
-    className: 'red',
-    type: 'user',
-    onClick: action('Icon was clicked'),
-    children: null,
-    style: _storyStyle
+    props: {
+      className: 'red',
+      type: 'user',
+      onClick: action('Icon was clicked'),
+      children: null,
+    },
+    Story: IconStory
   }))
 

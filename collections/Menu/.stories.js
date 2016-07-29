@@ -2,49 +2,25 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { makeSizeStory, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { COLORS } from '../../utils'
-import { Form, Field, Fields, Checkbox, Radio } from './index'
-import { Button } from '../../elements/Button'
-import { Message } from '../../collections/Message'
+import { Menu } from './index'
 
-const _handleSubmit = (event) => {
-  event.preventDefault()
-  const act = action('Form submitted');
-  act(event)
-}
-
-const _makeFields = (fields, props) => {
-  fields = fields || ['First Name', 'Last Name']
-  return fields.map((field) => {
+storiesOf('Menu', module)
+  .add('Menu', () => {
     return (
-      <Field {...props} key={field}>
-        <label>{field}</label>
-        <input type='text' placeholder={field}/>
-      </Field>
-    )
-  })
-}
-
-storiesOf('Form', module)
-  .add('<Form>', () => {
-    return (
-      <Story examples='<Form>{ content }</Form>'
-        notes='Form renders a <form> tag'>
-        <Form onSubmit={_handleSubmit}>
-          {_makeFields()}
-          <Button type='submit'>Submit</Button>
-        </Form>
+      <Story examples='<Menu>{ content }</Menu>'>
+        something in here
       </Story>
     )
   })
-  .add('<Form> size', makeSizeStory(Form, { props: {
+/*
+  .add('Form size', makeSizeStory(Form, {
     children: (value) => {
       return _makeFields([value])
     },
     onSubmit: _handleSubmit,
     style: { marginBottom: '1em' }
-  }}))
-  .add('<Form> equalWidth', () => {
+  }))
+  .add('Form equalWidth', () => {
     return (
       <Story examples='<Form equalWidth><Fields>{ content }</Fields></Form>' showToggleNote>
         <Form equalWidth>
@@ -55,7 +31,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Form> inverted', () => {
+  .add('Form inverted', () => {
     return (
       <Story examples='<Form inverted>{ content }</Form>' style={{ padding: '1em', backgroundColor: '#666' }}>
         <Form inverted>
@@ -64,7 +40,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Form> loading', () => {
+  .add('Form loading', () => {
     return (
       <Story examples='<Form loading>{ content }</Form>'>
         <Form loading>
@@ -73,7 +49,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Form> state', () => {
+  .add('Form state', () => {
     const _makeMessages = () => {
       const types = ['success', 'error', 'warning']
       return types.map((type) => {
@@ -97,12 +73,12 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Form> passes .className and other props', makePassesPropsStory(Form, { props: {
-      className: "mini",
-      onClick: action('Form was clicked'),
-      children: _makeFields(['First Name'])
-  }}))
-  .add('<Fields>', () => {
+  .add('Form passes .className and other props', makePassesPropsStory(Form, {
+    className: "mini",
+    onClick: action('Form was clicked'),
+    children: _makeFields(['First Name'])
+  }))
+  .add('Fields', () => {
     return (
       <Story examples='<Form><Fields>{ content }</Fields></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -113,7 +89,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> fields', () => {
+  .add('Fields fields', () => {
     return (
       <Story examples='<Form><Fields fields=[ "one" | "two" | ... "sixteen">{ content }</Fields></Form>' showToggleNote>
         <Form onSubmit={_handleSubmit}>
@@ -127,7 +103,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> grouped', () => {
+  .add('Fields grouped', () => {
     return (
       <Story examples='<Form><Fields grouped>{ content }</Fields></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -145,7 +121,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> equalWidth', () => {
+  .add('Fields equalWidth', () => {
     return (
       <Story examples='<Form><Fields equalWidth>{ content }</Fields></Form>' showToggleNote>
         <Form onSubmit={_handleSubmit}>
@@ -156,7 +132,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> inline', () => {
+  .add('Fields inline', () => {
     return (
       <Story examples='<Form><Fields inline>{ content }</Fields></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -169,7 +145,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Fields> passes .className and other props', () => {
+  .add('Fields passes .className and other props', () => {
     return (
       <Story examples='<Form><Fields className="inline" onClick={function}>{ content }</Fields></Form>'>
         <Form>
@@ -178,7 +154,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> inline', () => {
+  .add('Field inline', () => {
     return (
       <Story examples='<Form><Field inline/></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -187,7 +163,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> wide', () => {
+  .add('Field wide', () => {
     return (
       <Story examples='<Form><Fields><Field wide=[ "one" | "two" | ... "sixteen" ]/></Fields></Form>' showToggleNote>
         <Form onSubmit={_handleSubmit}>
@@ -201,7 +177,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> required', () => {
+  .add('Field required', () => {
     return (
       <Story examples='<Form><Field required></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -210,7 +186,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> error', () => {
+  .add('Field error', () => {
     return (
       <Story examples='<Form><Field error></Form>'>
         <Form onSubmit={_handleSubmit}>
@@ -219,7 +195,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> disabled', () => {
+  .add('Field disabled', () => {
     return (
       <Story examples='<Form><Field disabled/></Form>'
         notes={[
@@ -232,7 +208,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Field> passes .className and other props', () => {
+  .add('Field passes .className and other props', () => {
     return (
       <Story examples='<Form><Field className="required" onClick={function}/></Form>'>
         <Form>
@@ -244,7 +220,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Checkbox>', () => {
+  .add('Checkbox', () => {
     return (
       <Story examples='<Form><Checkbox [id={id}] label={label}/></Form>'
         notes={[
@@ -259,7 +235,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Checkbox> passes other props', () => {
+  .add('Checkbox passes other props', () => {
     return (
       <Story examples={[
             '<Form><Checkbox error/></Form>',
@@ -281,7 +257,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Checkbox> type', () => {
+  .add('Checkbox type', () => {
     return (
       <Story examples='<Form><Checkbox type=[ "slider" | "toggle" ]/></Form>'>
          <Form onSubmit={_handleSubmit}>
@@ -293,9 +269,9 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Radio>', () => {
+  .add('Radio', () => {
     return (
-      <Story examples='<Form><Radio [id={id}] label={label}/></Form>'
+      <Story examples='<Form><Radio  [id={id}] label={label}/></Form>'
         notes={[
           'This component wraps the checkbox with <Field> and <div>',
           'This component requires a label',
@@ -308,7 +284,7 @@ storiesOf('Form', module)
       </Story>
     )
   })
-  .add('<Radio> passes other props', () => {
+  .add('Radio passes other props', () => {
     return (
       <Story examples={[
             '<Form><Radio error/></Form>',
@@ -330,3 +306,4 @@ storiesOf('Form', module)
       </Story>
     )
   })
+*/

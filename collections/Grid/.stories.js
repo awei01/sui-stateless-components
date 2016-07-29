@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeComponentsUsingOptions, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
+import { makeComponentsForKeyAndOptions, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
 import { COLORS } from '../../utils'
 import { Grid, Row, Column } from './index'
@@ -204,11 +204,11 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid passes .className and other props', makePassesPropsStory(Grid, {
+  .add('Grid passes .className and other props', makePassesPropsStory(Grid, { props: {
     className: "centered",
     onClick: action('Grid was clicked'),
     children: <Column>centered and clickable</Column>
-  }))
+  }}))
   .add('Row column', () => {
     return (
       <Story examples='<Grid><Row column=[ "one" | "two" | ... "sixteen" ]/><Column/></Row></Grid>'>
@@ -330,7 +330,7 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Row color={ valid color }/><Column/></Row></Grid>'>
         <Grid>
-          { makeComponentsUsingOptions(Row, { key: 'color', options: COLORS, props: {
+          { makeComponentsForKeyAndOptions(Row, { key: 'color', options: COLORS, props: {
             wide: 'one',
             children: (value) => {
               return (<Column>{value}</Column>)
@@ -381,7 +381,7 @@ storiesOf('Grid', module)
     return (
       <Story examples='<Grid><Column color={ valid color }/><Column/></Column></Grid>'>
         <Grid column='three'>
-          { makeComponentsUsingOptions(Column, { key: 'color', options: COLORS })}
+          { makeComponentsForKeyAndOptions(Column, { key: 'color', options: COLORS })}
         </Grid>
       </Story>
     )

@@ -4,81 +4,71 @@ import { Story } from '../../.storybook/components';
 import { makePassesPropsStory, LIPSUM } from '../../.storybook/utils';
 import { Dimmer } from './index'
 
-const _storyStyle = {
-  padding: 0
+const DimmerStory = (props) => {
+  return <Story {...props} style={{}}/>
 }
-const _containerStyle = {
-  position: 'relative'
+const Content = (props) => {
+  return <div {...props} style={{ position: 'relative' }}/>
 }
+
 storiesOf('Dimmer', module)
   .add('default', () => {
     return (
-      <Story examples='<Dimmer/>'
-        notes='Dimmer prop [active] is [true] by default'
-        style={_storyStyle}>
-        <div style={_containerStyle}>
+      <DimmerStory examples='<Dimmer/>'
+        notes='Dimmer prop [active] is [true] by default'>
+        <Content>
           { LIPSUM }
           <Dimmer/>
-        </div>
-      </Story>
+        </Content>
+      </DimmerStory>
     )
   })
-  .add('active={ false }', () => {
+  .add('active', () => {
     return (
-      <Story examples='<Dimmer active={false}/>' style={_storyStyle}>
-        <div style={_containerStyle}>
+      <DimmerStory examples='<Dimmer active={false}/>'>
+        <Content>
           { LIPSUM }
           <Dimmer active={false}/>
-        </div>
-      </Story>
+        </Content>
+      </DimmerStory>
     )
   })
   .add('content', () => {
     return (
-      <Story examples='<Dimmer>[some content]</Dimmer>'
-        notes='If you provide content, the component will automatically generate the HTML to center your content'
-        style={_storyStyle}>
-        <div style={_containerStyle}>
+      <DimmerStory examples='<Dimmer>[some content]</Dimmer>'
+        notes='If you provide content, the component will automatically generate the HTML to center your content'>
+        <Content>
           { LIPSUM }
           <Dimmer><h1>This is some header</h1><p>Here is a paragraph</p></Dimmer>
-        </div>
-      </Story>
+        </Content>
+      </DimmerStory>
     )
   })
-  .add('page (active)', () => {
+  .add('page', () => {
     return (
-      <Story examples='<Dimmer page/>'>
-        <div style={_containerStyle}>
+      <DimmerStory examples='<Dimmer page/>'>
+        <Content>
           { LIPSUM }
-          <Dimmer page onClick={ linkTo('Dimmer', 'page (inactive)') }/>
-        </div>
-      </Story>
-    )
-  })
-  .add('page (inactive)', () => {
-    return (
-      <Story examples='<Dimmer page active={false}/>'>
-        <div style={_containerStyle}>
-          <button onClick={ linkTo('Dimmer', 'page (active)') }>Activate page dimmer</button>
-          <br/>
-          { LIPSUM }
-          <Dimmer page active={ false }/>
-        </div>
-      </Story>
+          <Dimmer page/>
+        </Content>
+      </DimmerStory>
     )
   })
   .add('inverted', () => {
     return (
-      <Story examples='<Dimmer inverted/>'>
-        <div style={_containerStyle}>
+      <DimmerStory examples='<Dimmer inverted/>'>
+        <Content>
           { LIPSUM }
           <Dimmer inverted/>
-        </div>
-      </Story>
+        </Content>
+      </DimmerStory>
     )
   })
   .add('passes .className and other props', makePassesPropsStory(Dimmer, {
-    className: "inverted",
-    onClick: action('Dimmer was clicked'),
-    children: (<h1 style={{ color: '#000' }}>I am inverted and clickable</h1>)
+    props: {
+      className: "inverted",
+      onClick: action('Dimmer was clicked'),
+      children: (<h1 style={{ color: '#000' }}>I am inverted and clickable</h1>)
+    },
+    Story: DimmerStory
   }))
