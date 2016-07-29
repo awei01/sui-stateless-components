@@ -1,6 +1,6 @@
 {
   "name": "sui-stateless-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Dumb, stateless semantic-ui components",
   "keywords": [
     "react",
