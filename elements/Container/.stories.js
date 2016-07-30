@@ -25,9 +25,12 @@ storiesOf('Container', module)
     )
   })
   .add('align', makeAlignStory(Container, {
-    children: makeLipsum(200),
-    style: { marginBottom: '2em' }
-  }, ContainerStory))
+    props: {
+      children: makeLipsum(300),
+      style: { marginBottom: '2em' }
+    },
+    Story: ContainerStory
+  }))
   .add('passes .className and other props', makePassesPropsStory(Container, {
     props: {
       className: 'text',
