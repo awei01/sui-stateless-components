@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { makeClassnameFactory, OPTIONS, COUNTS } from '../../utils';
+import { makeClassnameFactory, OPTIONS } from '../../utils';
 import 'semantic-ui-css/components/form.css'
 import 'semantic-ui-css/components/checkbox.css'
 
@@ -8,20 +8,22 @@ import 'semantic-ui-css/components/checkbox.css'
  | Shared options
  |---------------------------
  */
-const { size, equal, wide } = OPTIONS
+const { equal, wide } = OPTIONS
 
 /*
  |---------------------------
  | Form
  |---------------------------
  */
+const { size } = OPTIONS
+export const FORM_STATES = ['success', 'error', 'warning']
 export const makeFormClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'form',
   options: {
     size,
     equal,
-    state: ['success', 'error', 'warning']
+    state: FORM_STATES
   }
 })
 export const Form = ({
@@ -44,10 +46,11 @@ export const Form = ({
  | Fields
  |---------------------------
  */
+export const FIELDS_COUNTS = wide.values.slice(1, 10)
 export const makeFieldsClasses = makeClassnameFactory({
   suffix: 'fields',
   options: {
-    fields: COUNTS,
+    fields: FIELDS_COUNTS,
     equal
   }
 })

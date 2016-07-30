@@ -17,11 +17,12 @@ export const COLORS = without(OPTIONS.color, 'black')
  */
 export const SIZES = without(OPTIONS.size, 'medium', 'huge')
 export const COUNTS = without(BASE_COUNTS, 'thirteen', 'fourteen', 'fifteen', 'sixteen')
+export const FORMATS = ['secondary', 'tabular', 'text', 'pagination']
 export const makeMenuClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'menu',
   options: {
-    type: ['secondary', 'tabular', 'text', 'pagination'],
+    format: FORMATS,
     fit: ['fluid', 'compact'],
     fitted,
     size: SIZES,
@@ -30,11 +31,11 @@ export const makeMenuClasses = makeClassnameFactory({
   }
 })
 export const Menu = ({
-                      type, fit, size, fitted, color, items,
+                      format, fit, size, fitted, color, items,
                       pointing, vertical, inverted, borderless,
                       className, ...rest }) => {
   const classes = makeMenuClasses({
-    type, fit, size, fitted, color, items,
+    format, fit, size, fitted, color, items,
     pointing, vertical, inverted, borderless
   }, className);
   return (

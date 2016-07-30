@@ -1,6 +1,6 @@
 import React from 'react';
 import { Story } from './components';
-import { COLORS, SIZES, ALIGNS } from '../utils';
+import { COLORS, SIZES, ALIGNS, COUNTS } from '../utils';
 
 const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lectus metus, consectetur et eros at, maximus rutrum magna. Aliquam ullamcorper, magna vel pulvinar finibus, neque augue placerat libero, vel auctor mi ligula nec risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis velit luctus congue sagittis. Etiam vel sollicitudin velit. Aliquam finibus sodales eros eu sollicitudin. Morbi commodo lorem urna, ac condimentum magna ullamcorper vitae. Sed ac dapibus dui. Aenean quis faucibus purus, ac volutpat metus. Phasellus semper sapien et lobortis interdum. Donec scelerisque orci massa, in hendrerit neque hendrerit in. Nullam porttitor ornare massa sed varius.'
 export const makeLipsum = (chars) => {
@@ -41,6 +41,9 @@ export const extractOptionsValues = (options) => {
     return value.toString()
   })
   return shown.join(' | ')
+}
+export const extractCountsValues = () => {
+  return extractOptionsValues(COUNTS)
 }
 
 export const makeStoryForKeyAndOptions = (Component, defaults, configs = {}) => {

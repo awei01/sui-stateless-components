@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { Menu, Item, SubMenu, SIZES, COLORS, COUNTS } from './index'
+import { Menu, Item, SubMenu, SIZES, COLORS, COUNTS, FORMATS } from './index'
 
 const _makeItems = (items, activeIndex = 0) => {
   items = items || ['Menu Item 1', 'Menu Item 2', 'Menu Item 3']
@@ -29,13 +29,14 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<Menu> type', () => {
+  .add('<Menu> format', () => {
+    const formats = extractOptionsValues(FORMATS)
     return (
-      <Story examples='<Menu type=[ "secondary" | "tabular" | "text" | "pagination" ]>{ content }</Menu>'>
-        <Menu type='secondary'>{_makeItems()}</Menu>
-        <Menu type='tabular'>{_makeItems()}</Menu>
-        <Menu type='text'>{_makeItems()}</Menu>
-        <Menu type='pagination'>{_makeItems([1, 2, 3, 4, 5, 6])}</Menu>
+      <Story examples={'<Menu format=[ ' + formats + ' ]>{ content }</Menu>'}>
+        <Menu format='secondary'>{_makeItems()}</Menu>
+        <Menu format='tabular'>{_makeItems()}</Menu>
+        <Menu format='text'>{_makeItems()}</Menu>
+        <Menu format='pagination'>{_makeItems([1, 2, 3, 4, 5, 6])}</Menu>
       </Story>
     )
   })
@@ -43,7 +44,7 @@ storiesOf('Menu', module)
     return (
       <Story examples='<Menu pointing>{ content }</Menu>'>
         <Menu pointing>{_makeItems()}</Menu>
-        <Menu type='secondary' pointing>{_makeItems()}</Menu>
+        <Menu format='secondary' pointing>{_makeItems()}</Menu>
       </Story>
     )
   })
@@ -51,8 +52,8 @@ storiesOf('Menu', module)
     return (
       <Story examples='<Menu vertical>{ content }</Menu>'>
         <Menu vertical>{_makeItems()}</Menu>
-        <Menu type='secondary' vertical>{_makeItems()}</Menu>
-        <Menu type='text' vertical>{_makeItems()}</Menu>
+        <Menu format='secondary' vertical>{_makeItems()}</Menu>
+        <Menu format='text' vertical>{_makeItems()}</Menu>
       </Story>
     )
   })

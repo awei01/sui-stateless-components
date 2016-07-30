@@ -33,6 +33,9 @@ const _useSuffixedStringValueAsKey = (suffix, value) => {
   return `${value} ${suffix}`
 }
 export const makeOptionForValuesAndSuffix = (values, suffix) => {
+  if (!suffix || typeof suffix !== 'string') {
+    throw new Error(`Invalid suffix [${suffix}]`)
+  }
   return {
     values,
     makeKey: _useSuffixedStringValueAsKey.bind(null, suffix)

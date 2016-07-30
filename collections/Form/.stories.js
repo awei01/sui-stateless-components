@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeSizeStory, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
+import { makeSizeStory, makePassesPropsStory, makeLipsum, extractOptionsValues, extractCountsValues } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { COLORS } from '../../utils'
-import { Form, Field, Fields, Checkbox, Radio } from './index'
+import { Form, FORM_STATES, Fields, FIELDS_COUNTS, Field, Checkbox, Radio } from './index'
 import { Button } from '../../elements/Button'
 import { Message } from '../../collections/Message'
 
@@ -75,13 +74,15 @@ storiesOf('Form', module)
   })
   .add('<Form> state', () => {
     const _makeMessages = () => {
-      const types = ['success', 'error', 'warning']
-      return types.map((type) => {
-        return (<Message key={type} type={type}>{type} message</Message>)
+      const formats = ['success', 'error', 'warning']
+      return formats.map((format) => {
+        return (<Message key={format} format={format}>{format} message</Message>)
       })
     }
+    const states = extractOptionsValues(FORM_STATES)
     return (
-      <Story examples='<Form state=[ "success" | "error" | "warning" ]><Message/></Form>'>
+      <Story examples={'<Form state=[ ' + states + ' ]><Message/></Form>'}
+        notes='Each form has three <Message>. Each <Message> has a different [format]. Only the <Message format> matching the <Form state> will show.'>
         <Form state="success">
           <h3>success form</h3>
           {_makeMessages()}
@@ -114,14 +115,21 @@ storiesOf('Form', module)
     )
   })
   .add('<Fields> fields', () => {
+    const fields = extractOptionsValues(FIELDS_COUNTS)
     return (
-      <Story examples='<Form><Fields fields=[ "one" | "two" | ... "sixteen">{ content }</Fields></Form>' showToggleNote>
+      <Story examples={'<Form><Fields fields=[ ' + fields + ']>{ content }</Fields></Form>'} showToggleNote>
         <Form onSubmit={_handleSubmit}>
+          <h4>two fields</h4>
           <Fields fields="two">
             {_makeFields(['one', 'two'])}
           </Fields>
+          <h4>four fields</h4>
           <Fields fields="four">
             {_makeFields(['one', 'two', 'three', 'four'])}
+          </Fields>
+          <h4>ten fields</h4>
+          <Fields fields="ten">
+            {_makeFields(['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'])}
           </Fields>
         </Form>
       </Story>
@@ -189,11 +197,13 @@ storiesOf('Form', module)
   })
   .add('<Field> wide', () => {
     return (
-      <Story examples='<Form><Fields><Field wide=[ "one" | "two" | ... "sixteen" ]/></Fields></Form>' showToggleNote>
+      <Story examples={'<Form><Fields><Field wide=[ ' + extractCountsValues() + ' ]/></Fields></Form>'} showToggleNote>
         <Form onSubmit={_handleSubmit}>
+          <h4>eight wide</h4>
           <Fields>
             {_makeFields(null, { wide: "eight" })}
           </Fields>
+          <h4>four wide</h4>
           <Fields>
             {_makeFields(['One', 'Two', 'Three', 'Four'], { wide: "four" })}
           </Fields>
