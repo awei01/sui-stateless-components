@@ -50,7 +50,7 @@ storiesOf('Message', module)
           <p>some message</p>
         </Message>
         <Message icon>
-          <Icon type="user"/>
+          <Icon glyph="user"/>
           <Content>some message</Content>
         </Message>
       </Story>

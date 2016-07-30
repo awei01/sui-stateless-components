@@ -40,7 +40,7 @@ storiesOf('Button', module)
   .add('icon', () => {
     return (
       <Story examples='<Button icon><Icon/></Button>'>
-        <Button icon><Icon type="user"/></Button>
+        <Button icon><Icon format="user"/></Button>
       </Story>
     )
   })
@@ -104,10 +104,10 @@ storiesOf('Button', module)
         '<Button labeled="right">Value<Icon/></Button>'
         ]}>
         <Button labeled icon>
-          <Icon type="user"/>left icon
+          <Icon format="user"/>left icon
         </Button>
         <Button labeled="right" icon>
-          <Icon type="user"/>right icon
+          <Icon format="user"/>right icon
         </Button>
       </Story>
     )

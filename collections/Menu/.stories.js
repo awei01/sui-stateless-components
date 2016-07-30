@@ -8,7 +8,7 @@ const _makeItems = (items, activeIndex = 0) => {
   items = items || ['Menu Item 1', 'Menu Item 2', 'Menu Item 3']
   return items.map((item, index) => {
     const isActive = index === activeIndex
-    return <Item key={item} active={isActive}>{item}</Item>
+    return <Item key={index} active={isActive}>{item}</Item>
   })
 }
 
