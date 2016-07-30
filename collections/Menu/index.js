@@ -10,6 +10,7 @@ import 'semantic-ui-css/components/menu.css';
  */
 const fitted = makeOptionForValuesAndSuffix([true, 'horizontally', 'vertically'], 'fitted')
 export const COLORS = without(OPTIONS.color, 'black')
+
 /*
  |---------------------------
  | Menu
