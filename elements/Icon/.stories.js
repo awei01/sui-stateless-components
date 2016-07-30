@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makeStoryForKeyAndOptions, makeColorStory, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
-import { Icon, CloseIcon, ICONS, SIZES } from '../Icon'
+import { makeStoryForKeyAndOptions, makeColorStory, makeSizeStory, makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
+import { Icon, Close, Icons, GLYPHS, SIZES, FLIPPEDS, ROTATEDS, FORMATS } from '../Icon'
 
 const IconStory = ({ style, ...props }) => {
   return <Story {...props} style={{
@@ -13,73 +13,160 @@ const IconStory = ({ style, ...props }) => {
 }
 
 storiesOf('Icon', module)
-  .add('type', makeStoryForKeyAndOptions(Icon, { key: 'type', options: ICONS }, {
+  .add('<Icon> glyph', makeStoryForKeyAndOptions(Icon, { key: 'glyph', options: GLYPHS }, {
     props: { style: { margin: '.5em' }, children: null },
     Story: IconStory
   }))
-  .add('<CloseIcon>', () => {
+  .add('<Close>', () => {
     return (
       <IconStory examples={[
-          '<CloseIcon/>',
-          '<CloseIcon circular/>'
+          '<Close/>',
+          '<Close format="circular"/>'
         ]}
         notes='One-off component because it is use so often.'>
-        <CloseIcon/>
-        <CloseIcon circular/>
+        <Close/>
+        <Close format='circular'/>
       </IconStory>
     )
   })
-  .add('circular', () => {
-    return (
-      <IconStory examples='<Icon circular/>' >
-        <Icon circular type='user'/>
-      </IconStory>
-    )
-  })
-  .add('bordered', () => {
-    return (
-      <IconStory examples='<Icon bordered/>' >
-        <Icon bordered type='user'/>
-      </IconStory>
-    )
-  })
-  .add('disabled', () => {
+  .add('<Icon> disabled', () => {
     return (
       <IconStory examples='<Icon disabled>'
         notes='Disabled only handles appearance. Set [on*] props to null to actually disable it.'>
-        <Icon disabled type='user' onClick={ action('Disabled Icon clicked')}/>
+        <Icon disabled glyph='user' onClick={ action('Disabled Icon clicked')}/>
       </IconStory>
     )
   })
-  .add('loading', () => {
+  .add('<Icon> loading', () => {
     return (
       <IconStory examples='<Icon loading>'>
-        <Icon loading type='circle notched'/>
+        <Icon loading glyph='circle notched'/>
       </IconStory>
     )
   })
-  .add('color', makeColorStory(Icon, {
-    props: { children: null, type: 'user' },
+  .add('<Icon> fitted', () => {
+    return (
+      <IconStory examples='<Icon fitted>'>
+        <p>
+          Some text surrounding <Icon fitted glyph='user'/> a fitted icon
+        </p>
+        <p>
+          Some text surrounding <Icon glyph='user'/> a non-fitted icon
+        </p>
+      </IconStory>
+    )
+  })
+  .add('<Icon> size', makeSizeStory(Icon, {
+    options: SIZES,
+    props: { children: null, glyph: 'user' }
+  }))
+  .add('<Icon> link', () => {
+    return (
+      <IconStory examples='<Icon link>'>
+        <p>
+          A link icon <Icon link glyph='user'/>
+        </p>
+        <p>
+          A non-link icon <Icon glyph='user'/>
+        </p>
+      </IconStory>
+    )
+  })
+  .add('<Icon> flipped', () => {
+    const flippeds = extractOptionsValues(FLIPPEDS)
+    return (
+      <IconStory examples={'<Icon flipped=[ ' + flippeds + '>'}>
+        <p>
+          A non-flipped <Icon glyph='cloud'/>
+        </p>
+        <p>
+          A vertically flipped <Icon flipped='vertically' glyph='cloud'/>
+        </p>
+        <p>
+          A horizontally flipped <Icon flipped='horizontally' glyph='cloud'/>
+        </p>
+      </IconStory>
+    )
+  })
+  .add('<Icon> rotated', () => {
+    const rotateds = extractOptionsValues(ROTATEDS)
+    return (
+      <IconStory examples={'<Icon rotated=[ ' + rotateds + '>'}>
+        <p>
+          A non-rotated <Icon glyph='cloud'/>
+        </p>
+        <p>
+          A clockwise rotated <Icon rotated='clockwise' glyph='cloud'/>
+        </p>
+        <p>
+          A counterclockwise rotated <Icon rotated='counterclockwise' glyph='cloud'/>
+        </p>
+      </IconStory>
+    )
+  })
+  .add('<Icon> format', () => {
+    const formats = extractOptionsValues(FORMATS)
+    return (
+      <IconStory examples={'<Icon format=[ ' + formats + ' ]/>'}>
+        <p>
+          circular <Icon format='circular' glyph='user'/>
+        </p>
+        <p>
+          bordered <Icon format='bordered' glyph='user'/>
+        </p>
+      </IconStory>
+    )
+  })
+  .add('<Icon> color', makeColorStory(Icon, {
+    props: { children: null, glyph: 'user' },
     Story: IconStory
   }))
-  .add('inverted', () => {
+  .add('<Icon> inverted', () => {
     return (
       <IconStory examples='<Icon inverted>' style={{ backgroundColor: '#666', padding: '1em' }}>
-        <Icon inverted type='user'/>
+        <Icon inverted glyph='user'/>
       </IconStory>
     )
   })
-  .add('size', makeSizeStory(Icon, {
-    options: SIZES,
-    props: { children: null, type: 'user' }
-  }))
-  .add('passes .className and other props', makePassesPropsStory(Icon, {
+  .add('<Icon> corner', () => {
+    return (
+      <IconStory examples='<Icons><Icon corner/></Icons>'>
+        <Icons>
+          <Icon glyph='user'/>
+          <Icon corner glyph='add'/>
+        </Icons>
+      </IconStory>
+    )
+  })
+  .add('<Icon> passes .className and other props', makePassesPropsStory(Icon, {
     props: {
       className: 'red',
-      type: 'user',
+      glyph: 'user',
       onClick: action('Icon was clicked'),
       children: null,
     },
     Story: IconStory
   }))
-
+  .add('<Icons>', () => {
+    return (
+      <IconStory examples='<Icons><Icon/></Icons>'>
+        <Icons>
+          <Icon size='big' glyph='sun'/>
+          <Icon glyph='user'/>
+        </Icons>
+      </IconStory>
+    )
+  })
+  .add('<Icons> size', makeSizeStory(Icons, {
+    options: SIZES,
+    props: {
+      children: [(<Icon size='big' glyph='sun'/>), (<Icon glyph='user'/>)]
+    }
+  }))
+  .add('<Icons> passes .className and other props', makePassesPropsStory(Icons, {
+    props: {
+      className: 'huge',
+      onClick: action('Icons was clicked'),
+      children: [(<Icon size='big' glyph='sun'/>), (<Icon glyph='user'/>)]
+    }
+  }))
