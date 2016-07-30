@@ -17,6 +17,7 @@ function loadStories() {
 
   require('../modules/Dimmer/.stories')
   require('../modules/Modal/.stories')
+  require('../modules/Popup/.stories')
 }
 
 configure(loadStories(), module);

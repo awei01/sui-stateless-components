@@ -1,26 +1,27 @@
 import React from 'react';
-import classnames from 'classnames';
-import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
+//import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
+import 'semantic-ui-css/components/popup.css';
 
-import 'semantic-ui-css/components/modal.css';
-
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'modal',
-  options: {
-    size: ['fullscreen', 'small', 'large']
+export const POSITIONS = [
+  'top left', 'top center', 'top right',
+  'bottom left', 'bottom center', 'bottom right',
+  'left center', 'right center'
+]
+export const makeTooltipProps = (content, options) => {
+  options = options || {}
+  if (!content || typeof content !== 'string') {
+    throw new Error('First argument must be a non-empty string')
   }
-})
-export const Modal = ({ active, size, className, ...rest }) => {
-  const classes = makeClasses({ active, size }, className);
-  return (
-    <div {...rest} className={ classes }/>
-  );
+  let { position, inverted } = options
+  if (position && POSITIONS.indexOf(position) === -1) {
+    throw new Error(`Invalid value [${position}] for option [position]`)
+  }
+  const result = {
+    'data-tooltip': content,
+    'data-position': position,
+  }
+  if (inverted) {
+    result['data-inverted'] = ''
+  }
+  return result
 }
-Modal.defaultProps = {
-  active: true
-}
-
-export const Header = makeComponentWithClasses({ classes: 'header' })
-export const Content = makeComponentWithClasses({ classes: 'content' })
-export const Actions = makeComponentWithClasses({ classes: 'actions' })
