@@ -116,11 +116,11 @@ export const makeCheckboxClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'checkbox',
   options: {
-    type: ['slider', 'toggle']
+    format: ['slider', 'toggle']
   }
 })
-export const Checkbox = ({ type, className, ...rest }) => {
-  const classes = makeCheckboxClasses({ type }, className)
+export const Checkbox = ({ format, className, ...rest }) => {
+  const classes = makeCheckboxClasses({ format }, className)
   return (
     <CheckboxOrRadio {...rest} type='checkbox' className={classes}/>
   )

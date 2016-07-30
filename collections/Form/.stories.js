@@ -259,6 +259,18 @@ storiesOf('Form', module)
       </Story>
     )
   })
+  .add('<Checkbox> format', () => {
+    return (
+      <Story examples='<Form><Checkbox format=[ "slider" | "toggle" ]/></Form>'>
+         <Form onSubmit={_handleSubmit}>
+          <Checkbox id='slider1' label='Slider 1' format='slider'/>
+          <Checkbox id='slider2' label='Slider 2' format='slider'/>
+          <Checkbox id='toggle1' label='Toggle 1' format='toggle'/>
+          <Checkbox id='toggle2' label='Toggle 2' format='toggle'/>
+        </Form>
+      </Story>
+    )
+  })
   .add('<Checkbox> passes other props', () => {
     return (
       <Story examples={[
@@ -277,18 +289,6 @@ storiesOf('Form', module)
           <Checkbox id='disabledCheckbox' disabled label='Disabled Checkbox'/>
           <Checkbox id='requiredCheckbox' required label='Required Checkbox'/>
           <Checkbox id='onClickCheckbox' onClick={ action('Checkbox was clickd') } label='onClick Checkbox'/>
-        </Form>
-      </Story>
-    )
-  })
-  .add('<Checkbox> type', () => {
-    return (
-      <Story examples='<Form><Checkbox type=[ "slider" | "toggle" ]/></Form>'>
-         <Form onSubmit={_handleSubmit}>
-          <Checkbox id='slider1' label='Slider 1' type='slider'/>
-          <Checkbox id='slider2' label='Slider 2' type='slider'/>
-          <Checkbox id='toggle1' label='Toggle 1' type='toggle'/>
-          <Checkbox id='toggle2' label='Toggle 2' type='toggle'/>
         </Form>
       </Story>
     )
