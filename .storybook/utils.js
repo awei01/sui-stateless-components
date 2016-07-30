@@ -9,7 +9,7 @@ export const makeLipsum = (chars) => {
 
 export const makeComponentsForKeyAndOptions = (Component, { key, options }, props) => {
   props = props || {}
-  return options.map((item) => {
+  return options.map((item, index) => {
     const passedProps = {
       [key]: item,
       children: item,
@@ -19,7 +19,7 @@ export const makeComponentsForKeyAndOptions = (Component, { key, options }, prop
       passedProps.children = passedProps.children(item)
     }
     return (
-      <Component key={item} {...passedProps} title={ key + ': ' + item }/>
+      <Component key={index} {...passedProps} title={ key + ': ' + item }/>
     )
   })
 }
