@@ -9,18 +9,18 @@ import 'semantic-ui-css/components/segment.css';
  |---------------------------
  */
 
-
 /*
  |---------------------------
  | Segment
  |---------------------------
  */
 const { color, float, align } = OPTIONS
+export const SEGMENT_FORMATS = ['raised', 'stacked', 'tall stacked', 'piled', 'vertical']
 export const makeSegmentClasses = makeClassnameFactory({
   prefix: "ui",
   suffix: "segment",
   options: {
-    type: ['raised', 'stacked', 'tall stacked', 'piled', 'vertical'],
+    format: SEGMENT_FORMATS,
     attached: makeOptionForValuesAndSuffix([true, 'top', 'bottom'], 'attached'),
     padded: makeOptionForValuesAndSuffix([true, 'very'], 'padded'),
     color,
@@ -33,11 +33,11 @@ export const makeSegmentClasses = makeClassnameFactory({
   }
 });
 export const Segment = ({
-                        type, attached, padded, color, emphasis, float, align,
+                        format, attached, padded, color, emphasis, float, align,
                         basic, inverted, compact, clearing,
                         className, ...rest }) => {
   const classes = makeSegmentClasses({
-    type, attached, padded, color, emphasis, float, align,
+    format, attached, padded, color, emphasis, float, align,
     basic, inverted, compact, clearing
   }, className)
   return (
@@ -50,19 +50,20 @@ export const Segment = ({
  | Segments
  |---------------------------
  */
+export const SEGMENTS_FORMATS = ['raised', 'stacked', 'piled']
 export const makeSegementsClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'segments',
   options: {
-    type: ['raised', 'stacked', 'piled']
+    format: SEGMENTS_FORMATS
   }
 })
 export const Segments = ({
-                          type,
+                          format,
                           horizontal,
                           className, ...rest }) => {
   const classes = makeSegementsClasses({
-    type,
+    format,
     horizontal
   }, className)
   return (

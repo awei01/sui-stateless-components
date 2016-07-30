@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeLipsum, makeColorStory, makePassesPropsStory } from '../../.storybook/utils';
+import { makeLipsum, makeColorStory, makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { Segment, Segments } from './index'
+import { Segment, SEGMENT_FORMATS, Segments, SEGMENTS_FORMATS } from './index'
 
 const SegmentStory = (props) => {
   return <Story {...props} style={{}}/>
@@ -18,30 +18,31 @@ storiesOf('Segment', module)
       </SegmentStory>
     )
   })
-  .add('<Segment> type', () => {
+  .add('<Segment> format', () => {
+    const formats = extractOptionsValues(SEGMENT_FORMATS)
     return (
-      <SegmentStory examples='<Segment type=[ "raised" | "stacked" | "tall stacked" | "piled" | "vertical" ]>{ content }</Segment>'>
-        <Segment type='raised'>
+      <SegmentStory examples={'<Segment format=[ ' + formats + ' ]>{ content }</Segment>'}>
+        <Segment format='raised'>
           <h4>raised segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='stacked'>
+        <Segment format='stacked'>
           <h4>stacked segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='tall stacked'>
+        <Segment format='tall stacked'>
           <h4>tall stacked segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='piled'>
+        <Segment format='piled'>
           <h4>piled segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='vertical'>
+        <Segment format='vertical'>
           <h4>vertical segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='vertical'>
+        <Segment format='vertical'>
           <h4>vertical segment</h4>
           {makeLipsum(100)}
         </Segment>
@@ -55,7 +56,7 @@ storiesOf('Segment', module)
           <h4>basic segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment type='vertical' basic>
+        <Segment format='vertical' basic>
           <h4>vertical basic segment</h4>
           {makeLipsum(100)}
         </Segment>
@@ -214,18 +215,19 @@ storiesOf('Segment', module)
       </SegmentStory>
     )
   })
-  .add('<Segments> type', () => {
+  .add('<Segments> format', () => {
+    const formats = extractOptionsValues(SEGMENTS_FORMATS)
     return (
-      <SegmentStory examples='<Segments type=[ "raised" | "stacked" | "piled" ]><Segment/></Segments>'>
-        <Segments type='raised'>
+      <SegmentStory examples={'<Segments format=[ ' + formats + ' ]><Segment/></Segments>'}>
+        <Segments format='raised'>
           <Segment>raised segment</Segment>
           <Segment>raised segment</Segment>
         </Segments>
-        <Segments type='stacked'>
+        <Segments format='stacked'>
           <Segment>stacked segment</Segment>
           <Segment>stacked segment</Segment>
         </Segments>
-        <Segments type='piled'>
+        <Segments format='piled'>
           <Segment>piled stacked segment</Segment>
           <Segment>piled stacked segment</Segment>
         </Segments>
