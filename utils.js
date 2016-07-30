@@ -99,7 +99,10 @@ export const makeClassnameFactory = ({ prefix, suffix, options }) => {
   }
 }
 
-export const makeComponentWithClasses = ({ classes, element }) => {
+export const makeComponentWithClasses = (classes, element) => {
+  if (!classes) {
+    throw new Error(`Parameter [classes] is required`)
+  }
   element = element || 'div'
   return ({ className, ...rest}) => {
     const resolvedClasses = classnames(classes, className)

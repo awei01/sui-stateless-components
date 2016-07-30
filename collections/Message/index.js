@@ -38,5 +38,5 @@ export const Message = ({
 	)
 }
 
-export const Header = makeComponentWithClasses({ classes: 'header' })
-export const Content = makeComponentWithClasses({ classes: 'content' })
+export const Header = makeComponentWithClasses('header')
+export const Content = makeComponentWithClasses('content')

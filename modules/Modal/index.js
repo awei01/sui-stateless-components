@@ -19,6 +19,6 @@ Modal.defaultProps = {
   active: true
 }
 
-export const Header = makeComponentWithClasses({ classes: 'header' })
-export const Content = makeComponentWithClasses({ classes: 'content' })
-export const Actions = makeComponentWithClasses({ classes: 'actions' })
+export const Header = makeComponentWithClasses('header')
+export const Content = makeComponentWithClasses('content')
+export const Actions = makeComponentWithClasses('actions')

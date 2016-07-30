@@ -1,5 +1,5 @@
 import React from 'react';
-//import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
+//import { makeClassnameFactory } from '../../utils';
 import 'semantic-ui-css/components/popup.css';
 
 export const POSITIONS = [
