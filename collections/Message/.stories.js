@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { makeSizeStory, makeColorStory, makeStoryForKeyAndOptions, makePassesPropsStory } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { Message, Header, Content, TYPES } from './index'
+import { Message, Header, Content, FORMATS } from './index'
 import { Icon } from '../../elements/Icon'
 
 storiesOf('Message', module)
@@ -35,7 +35,7 @@ storiesOf('Message', module)
       </Story>
     )
   })
-  .add('type', makeStoryForKeyAndOptions(Message, { key: 'type', options: TYPES }))
+  .add('format', makeStoryForKeyAndOptions(Message, { key: 'format', options: FORMATS }))
   .add('color', makeColorStory(Message))
   .add('size', makeSizeStory(Message))
   .add('content', () => {

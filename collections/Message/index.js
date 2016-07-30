@@ -4,7 +4,7 @@ import { makeClassnameFactory, makeComponentWithClasses, OPTIONS } from '../../u
 import 'semantic-ui-css/components/message.css'
 
 const { color, size } = OPTIONS
-export const TYPES = [
+export const FORMATS = [
   'warning', 'info',
   'positive', 'success',
   'negative', 'error'
@@ -19,18 +19,18 @@ export const makeClasses = makeClassnameFactory({
         return value ? 'visible' : 'hidden'
       },
     },
-    type: TYPES,
+    format: FORMATS,
     color,
     size,
   }
 })
 
 export const Message = ({
-  visible, type, color, size,
+  visible, format, color, size,
   icon, floating, compact,
   className, ...rest }) => {
   const classes = makeClasses({
-    visible, type, color, size,
+    visible, format, color, size,
     icon, floating, compact
   }, className)
 	return (
