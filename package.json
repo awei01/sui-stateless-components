@@ -16,7 +16,7 @@
   "scripts": {
     "storybook": "start-storybook -p 9001 -s ./.storybook/static",
     "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -s ./.storybook/static",
+    "build-storybook": "build-storybook -s ./.storybook/static -o .out",
     "lint": "node_modules/.bin/standard"
   },
   "author": "",

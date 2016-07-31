@@ -9,6 +9,9 @@
 ## Requirements
 * Uses es6 `import` statements. Currently no way to include directly in browser so you have to use webpack/babel or similar build system. PR welcome.
 
+## Documentation
+Auto-generated `storybook` documentation here: https://awei01.github.io/sui-stateless-components
+
 ## Usage
 * install from npm `npm install -S sui-stateless-components`
 * import the component `import { Button } from 'sui-stateless-components'
