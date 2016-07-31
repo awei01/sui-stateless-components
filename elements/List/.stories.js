@@ -4,6 +4,7 @@ import { Story } from '../../.storybook/components';
 import { makeLipsum, extractOptionsValues, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
 import { List, Item, Content, SIZES } from './index'
 import { Icon } from '../../elements/Icon'
+import { Image } from '../../elements/Image'
 import { Segment } from '../../elements/Segment'
 
 const _makeItems = (items, props) => {
@@ -173,19 +174,18 @@ storiesOf('List', module)
   })
   .add('<Item> image content', () => {
     return (
-      <Story examples='<List><Item><Icon/><Content/></Item></List>'>
-        FIXME
+      <Story examples='<List><Item><Image/><Content/></Item></List>'>
         <List>
           <Item>
-            <Icon glyph='close'/>
+            <Image avatar src='/images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
           <Item>
-            <Icon glyph='hand pointer'/>
+            <Image avatar src='/images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
           <Item>
-            <Icon glyph='add'/>
+            <Image avatar src='/images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
         </List>
