@@ -12,7 +12,7 @@
 ## Usage
 * install from npm `npm install -S sui-stateless-components`
 * import the component `import { Button } from 'sui-stateless-components'
-* use it: <Button hint="positive" disabled>some label</Button>
+* use it: `<Button hint="positive" disabled>some label</Button>`
 
 ## Testing
 This package uses `@kadira/storybook` to help develop visual tests for components. To test it out do: `npm run storybook`
