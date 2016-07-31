@@ -57,7 +57,9 @@ export const OPTIONS = {
     }
   },
   wide: makeOptionForValuesAndSuffix(COUNTS, 'wide'),
-  float: makeOptionForValuesAndSuffix(['left', 'right'], 'floated')
+  float: makeOptionForValuesAndSuffix(['left', 'right'], 'floated'),
+  relaxed: makeOptionForValuesAndSuffix([true, 'very'], 'relaxed'),
+  valign: makeOptionForValuesAndSuffix(['top', 'middle', 'bottom'], 'aligned')
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {

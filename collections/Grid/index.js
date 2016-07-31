@@ -7,9 +7,8 @@ import 'semantic-ui-css/components/grid.css'
  | Shared options
  |---------------------------
  */
-const { color, align, equal, wide } = OPTIONS
+const { color, align, equal, wide, relaxed, valign } = OPTIONS
 const columns = makeOptionForValuesAndSuffix(COUNTS, 'column')
-const valign = makeOptionForValuesAndSuffix(['top', 'middle', 'bottom'], 'aligned')
 /*
  |---------------------------
  | Grid
@@ -26,7 +25,7 @@ export const makeGridClasses = makeClassnameFactory({
     divided: makeOptionForValuesAndSuffix([true, 'vertically'], 'divided'),
     celled: makeOptionForValuesAndSuffix([true, 'internally'], 'celled'),
     padded: makeOptionForValuesAndSuffix([true, 'vertically', 'horizontally'], 'padded'),
-    relaxed: makeOptionForValuesAndSuffix([true, 'very'], 'relaxed')
+    relaxed
   }
 })
 export const Grid = ({
