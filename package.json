@@ -15,12 +15,15 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 9001 -s ./.storybook/static",
+    "deploy-storybook": "storybook-to-ghpages",
+    "build-storybook": "build-storybook -s ./.storybook/static",
     "lint": "node_modules/.bin/standard"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@kadira/storybook": "^1.41.0",
+    "@kadira/storybook-deployer": "^1.0.0",
     "babel-eslint": "^6.1.2",
     "css-loader": "^0.23.1",
     "standard": "^7.1.2",

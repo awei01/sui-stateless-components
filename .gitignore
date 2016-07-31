@@ -2,5 +2,8 @@
 node_modules
 npm-debug.log
 
+# Storybook
+storybook-static
+
 # System
 .DS_Store
