@@ -20,17 +20,11 @@ storiesOf('Header', module)
       </Story>
     )
   })
-  .add('dividing', () => {
+  .add('format', () => {
     return (
-      <Story examples='<Header dividing/>'>
-        <Header dividing>Dividing Header</Header>
-      </Story>
-    )
-  })
-  .add('block', () => {
-    return (
-      <Story examples='<Header block/>'>
-        <Header block>Block Header</Header>
+      <Story examples='<Header format=[ "dividing" | "block" ]/>'>
+        <Header format='dividing'>Dividing Header</Header>
+        <Header format='block'>Block Header</Header>
       </Story>
     )
   })

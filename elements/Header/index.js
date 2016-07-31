@@ -11,18 +11,19 @@ export const makeClasses = makeClassnameFactory({
   options: {
     size: SIZES,
     align,
-    color
+    color,
+    format: ['dividing', 'block']
   }
 })
 
 export const Header = ({
-  size, align, color,
-  sub, disabled, dividing, block, inverted,
+  size, align, color, format,
+  sub, block, inverted,
   className, ...rest }) => {
 
   const classes = makeClasses({
-    size, align, color,
-    sub, disabled, dividing, block, inverted
+    size, align, color, format,
+    sub, block, inverted
   }, className);
   return (
     <div { ...rest } className={ classes }/>
