@@ -5,7 +5,14 @@ import { makeSizeStory, makeColorStory, makePassesPropsStory } from '../../.stor
 import { Label } from './index'
 
 storiesOf('Label', module)
-  .add('link', () => {
+  .add('<Label> default', () => {
+    return (
+      <Story examples='<Label>{ content }</Label>'>
+        <Label>default label</Label>
+      </Story>
+    )
+  })
+  .add('<Label> link', () => {
     return (
       <Story examples={['<Label link>', '<Label href="some link">']}>
         <Label link>link</Label>
@@ -13,7 +20,7 @@ storiesOf('Label', module)
       </Story>
     )
   })
-  .add('pointing', () => {
+  .add('<Label> pointing', () => {
     return (
       <Story examples='<Label pointing=[ true | "left" | "right" | "below" ]/>'>
         <Label pointing>true</Label>
@@ -23,23 +30,23 @@ storiesOf('Label', module)
       </Story>
     )
   })
-  .add('color', makeColorStory(Label))
-  .add('size', makeSizeStory(Label))
-  .add('circular', () => {
+  .add('<Label> color', makeColorStory(Label))
+  .add('<Label> size', makeSizeStory(Label))
+  .add('<Label> circular', () => {
     return (
       <Story examples='<Label circular/>'>
         <Label circular>circular</Label>
       </Story>
     )
   })
-  .add('basic', () => {
+  .add('<Label> basic', () => {
     return (
       <Story examples='<Label basic/>'>
         <Label basic>basic</Label>
       </Story>
     )
   })
-  .add('passes .className and other props', makePassesPropsStory(Label, { props: {
+  .add('<Label> passes .className and other props', makePassesPropsStory(Label, { props: {
     className: 'red',
     onClick: action('Label was clicked'),
     children: 'I am red and clickable'

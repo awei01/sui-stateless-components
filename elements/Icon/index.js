@@ -75,7 +75,7 @@ export const FLIPPEDS = ['horizontally', 'vertically']
 export const ROTATEDS = ['clockwise', 'counterclockwise']
 export const FORMATS = ['circular', 'bordered']
 export const makeIconClasses = makeClassnameFactory({
-  suffix: "icon",
+  suffix: 'icon',
   options: {
     glyph: GLYPHS,
     color,
@@ -86,9 +86,9 @@ export const makeIconClasses = makeClassnameFactory({
   }
 })
 export const Icon = ({
-  glyph, color, size, flipped, rotated, format,
-  disabled, loading, fitted, link, inverted, corner,
-  className, ...rest }) => {
+                    glyph, color, size, flipped, rotated, format,
+                    disabled, loading, fitted, link, inverted, corner,
+                    className, ...rest }) => {
 	const classes = makeIconClasses({
     glyph, color, size, flipped, rotated, format,
     disabled, loading, fitted, link, inverted, corner

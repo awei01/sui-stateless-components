@@ -171,6 +171,27 @@ storiesOf('List', module)
       </Story>
     )
   })
+  .add('<Item> image content', () => {
+    return (
+      <Story examples='<List><Item><Icon/><Content/></Item></List>'>
+        FIXME
+        <List>
+          <Item>
+            <Icon glyph='close'/>
+            <Content>item content here</Content>
+          </Item>
+          <Item>
+            <Icon glyph='hand pointer'/>
+            <Content>item content here</Content>
+          </Item>
+          <Item>
+            <Icon glyph='add'/>
+            <Content>item content here</Content>
+          </Item>
+        </List>
+      </Story>
+    )
+  })
   .add('<Item> passes .className and other props', () => {
     return (
       <Story examples='<List><Item className="link" onClick={ function }/></List>'>
