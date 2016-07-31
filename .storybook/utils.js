@@ -24,10 +24,10 @@ export const makeComponentsForKeyAndOptions = (Component, { key, options }, prop
   })
 }
 
-export const extractOptionsValues = (options) => {
+export const extractOptionsValues = (options, max = 4) => {
   let shown = options
   let last
-  if (options.length > 4) {
+  if (max && options.length > max) {
     shown = [...options.slice(0, 2), '...', options[options.length - 1]]
     last = true
   }
