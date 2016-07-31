@@ -1,7 +1,8 @@
 # Semantic UI Stateless Components
 
 ## Under Development
-* Existing prop keys/values should be stable. There are a lot of missing components. There are a lot of missing keys/values for components. I'm currently going through these and adding them as I require for my own projects. If you want to add something, send a PR.
+* There are missing components and missing options for certain components.
+* Existing prop keys/values may change.
 * File names and `export` statements may change.
 * Contributions welcomed
 
