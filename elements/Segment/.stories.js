@@ -49,15 +49,21 @@ storiesOf('Segment', module)
       </SegmentStory>
     )
   })
-  .add('<Segment> basic', () => {
+  .add('<Segment> disabled', () => {
     return (
-      <SegmentStory examples='<Segment basic>{ content }</Segment>'>
-        <Segment basic>
-          <h4>basic segment</h4>
+      <SegmentStory examples='<Segment disabled>{ content }</Segment>'>
+        <Segment disabled>
+          <h4>disabled segment</h4>
           {makeLipsum(100)}
         </Segment>
-        <Segment format='vertical' basic>
-          <h4>vertical basic segment</h4>
+      </SegmentStory>
+    )
+  })
+  .add('<Segment> loading', () => {
+    return (
+      <SegmentStory examples='<Segment loading>{ content }</Segment>'>
+        <Segment loading>
+          <h4>loading segment</h4>
           {makeLipsum(100)}
         </Segment>
       </SegmentStory>
@@ -137,6 +143,15 @@ storiesOf('Segment', module)
       </SegmentStory>
     )
   })
+  .add('<Segment> circular', () => {
+    return (
+      <SegmentStory examples='<Segment circular>{ content }</Segment>'>
+        <Segment circular>
+          Circular
+        </Segment>
+      </SegmentStory>
+    )
+  })
   .add('<Segment> clearing', () => {
     return (
       <SegmentStory examples='<Segment clearing>{ content }</Segment>'>
@@ -169,6 +184,20 @@ storiesOf('Segment', module)
         </Segment>
         <Segment aligned='right'>
           <h4>right aligned segment</h4>
+        </Segment>
+      </SegmentStory>
+    )
+  })
+  .add('<Segment> basic', () => {
+    return (
+      <SegmentStory examples='<Segment basic>{ content }</Segment>'>
+        <Segment basic>
+          <h4>basic segment</h4>
+          {makeLipsum(100)}
+        </Segment>
+        <Segment format='vertical' basic>
+          <h4>vertical basic segment</h4>
+          {makeLipsum(100)}
         </Segment>
       </SegmentStory>
     )

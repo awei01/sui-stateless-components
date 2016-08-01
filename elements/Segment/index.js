@@ -34,11 +34,11 @@ export const makeSegmentClasses = makeClassnameFactory({
 });
 export const Segment = ({
                         format, attached, padded, color, emphasis, floated, aligned,
-                        basic, inverted, compact, clearing,
+                        disabled, loading, inverted, compact, clearing, circular, basic,
                         className, ...rest }) => {
   const classes = makeSegmentClasses({
     format, attached, padded, color, emphasis, floated, aligned,
-    basic, inverted, compact, clearing
+    disabled, loading, inverted, compact, clearing, circular, basic
   }, className)
   return (
     <div {...rest} className={classes}/>
