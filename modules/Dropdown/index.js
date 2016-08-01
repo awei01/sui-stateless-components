@@ -102,7 +102,7 @@ export const Text = ({ filtered, className, ...rest }) => {
   delete rest.default
   const classes = makeTextClasses({ filtered, ...isDefault }, className)
   return (
-    <div {...rest} className={classes}/>
+    <span {...rest} className={classes}/>
   )
 }
 
@@ -114,4 +114,4 @@ export const Text = ({ filtered, className, ...rest }) => {
 export const Search = makeComponentWithClasses('search', 'input')
 export const Header = makeComponentWithClasses('header')
 export const Divider = makeComponentWithClasses('divider')
-export const Description = makeComponentWithClasses('description')
+export const Description = makeComponentWithClasses('description', 'span')

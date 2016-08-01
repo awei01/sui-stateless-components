@@ -395,7 +395,7 @@ storiesOf('Dropdown', module)
   .add('<Header>', () => {
     return (
       <Story examples='<Dropdown><Menu><Header/></Menu></Button>'>
-        <Dropdown simple>
+        <Dropdown active>
           <Text>Dropdown</Text>
           <Icon glyph='dropdown'/>
           <Menu>
@@ -409,7 +409,7 @@ storiesOf('Dropdown', module)
   .add('<Divider>', () => {
     return (
       <Story examples='<Dropdown><Menu><Divider/></Menu></Button>'>
-        <Dropdown simple>
+        <Dropdown active>
           <Text>Dropdown</Text>
           <Icon glyph='dropdown'/>
           <Menu>
@@ -424,10 +424,10 @@ storiesOf('Dropdown', module)
   .add('<Description>', () => {
     return (
       <Story examples='<Dropdown><Menu><Item><Description/></Item></Menu></Button>'>
-        <Dropdown fluid simple>
+        <Dropdown active>
           <Text>Dropdown</Text>
           <Icon glyph='dropdown'/>
-          <Menu>
+          <Menu style={{ width: '15em' }}>
             <Item><Text>Item</Text><Description>Desc 1</Description></Item>
             <Item><Text>Item</Text><Description>Desc 2</Description></Item>
             <Item><Text>Item</Text><Description>Desc 3</Description></Item>
