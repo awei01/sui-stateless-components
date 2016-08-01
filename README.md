@@ -10,7 +10,8 @@
 * Uses es6 `import` statements. Currently no way to include directly in browser so you have to use webpack/babel or similar build system. PR welcome.
 
 ## Documentation
-Auto-generated `storybook` documentation here: https://awei01.github.io/sui-stateless-components
+* Auto-generated `storybook` documentation here: https://awei01.github.io/sui-stateless-components.
+* Note, currently font and img links are breaking on github pages. They work when you run `storybook` locally. I'm trying to figure out a fix.
 
 ## Usage
 * install from npm `npm install -S sui-stateless-components`
