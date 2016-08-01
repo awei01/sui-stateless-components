@@ -3,6 +3,8 @@ import { storiesOf, action } from '@kadira/storybook'
 import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
 import { Menu, Item, SubMenu, SIZES, COLORS, COUNTS, FORMATS } from './index'
+import { Icon } from '../../elements/Icon'
+import { Segment } from '../../elements/Segment'
 
 const _makeItems = (items, activeIndex = 0) => {
   items = items || ['Menu Item 1', 'Menu Item 2', 'Menu Item 3']
@@ -20,15 +22,6 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<Menu> items', () => {
-    const values = extractOptionsValues(COUNTS)
-    return (
-      <Story examples={'<Menu items=[ ' + values + ' ]>{ content }</Menu>'}>
-        <Menu items='twelve'>{_makeItems([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])}</Menu>
-        <Menu items='three'>{_makeItems()}</Menu>
-      </Story>
-    )
-  })
   .add('<Menu> format', () => {
     const formats = extractOptionsValues(FORMATS)
     return (
@@ -37,14 +30,6 @@ storiesOf('Menu', module)
         <Menu format='tabular'>{_makeItems()}</Menu>
         <Menu format='text'>{_makeItems()}</Menu>
         <Menu format='pagination'>{_makeItems([1, 2, 3, 4, 5, 6])}</Menu>
-      </Story>
-    )
-  })
-  .add('<Menu> pointing', () => {
-    return (
-      <Story examples='<Menu pointing>{ content }</Menu>'>
-        <Menu pointing>{_makeItems()}</Menu>
-        <Menu format='secondary' pointing>{_makeItems()}</Menu>
       </Story>
     )
   })
@@ -57,20 +42,29 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<Menu> fit', () => {
+  .add('<Menu> pointing', () => {
     return (
-      <Story examples='<Menu fit=[ "fluid" | "compact" ]>{ content }</Menu>'>
-        <Menu fit="fluid" vertical>{_makeItems(['Fluid Menu Item 1', 'Fluid Menu Item 2', 'Fluid Menu Item 3'])}</Menu>
-        <Menu fit="compact">{_makeItems(['Compact Item 1', 'Compact Item 2', 'Compact Item 3'])}</Menu>
+      <Story examples='<Menu pointing>{ content }</Menu>'>
+        <Menu pointing>{_makeItems()}</Menu>
+        <Menu format='secondary' pointing>{_makeItems()}</Menu>
       </Story>
     )
   })
-  .add('<Menu> fitted', () => {
+  .add('<Menu> fixed', () => {
     return (
-      <Story examples='<Menu fitted=[ true | "horizontally" | "vertically" ]>{ content }</Menu>'>
-        <Menu fitted>{_makeItems(['Fitted 1', 'Fitted 2', 'Fitted 3'])}</Menu>
-        <Menu fitted='horizontally'>{_makeItems(['Horizontally Fitted 1', 'Horizontally Fitted 2', 'Horizontally Fitted 3'])}</Menu>
-        <Menu fitted='vertically'>{_makeItems(['Vertically Fitted 1', 'Vertically Fitted 2', 'Vertically Fitted 3'])}</Menu>
+      <Story examples='<Menu fixed=[ "top" | "bottom" | "left" | "right" ]>{ content }</Menu>'>
+        <p>The menus are fixed to the top and bottom of this { '<iframe>' }</p>
+        <Menu fixed='left' vertical>{_makeItems()}</Menu>
+        <Menu fixed='right' vertical>{_makeItems()}</Menu>
+        <Menu fixed='top'>{_makeItems()}</Menu>
+        <Menu fixed='bottom'>{_makeItems()}</Menu>
+      </Story>
+    )
+  })
+  .add('<Menu> stackable', () => {
+    return (
+      <Story examples='<Menu stackable>{ content }</Menu>' showToggleNote>
+        <Menu stackable>{_makeItems()}</Menu>
       </Story>
     )
   })
@@ -81,6 +75,67 @@ storiesOf('Menu', module)
       </Story>
     )
   })
+  .add('<Menu> color', makeColorStory(Menu, {
+    props: {
+      children: _makeItems(),
+    },
+    options: COLORS
+  }))
+  .add('<Menu> icon', () => {
+    return (
+      <Story examples='<Menu icon=[ true | "labeled" ]><Item><Icon/></Item></Menu>'>
+        <Menu icon>
+          {_makeItems([<Icon glyph='user'/>, <Icon glyph='close'/>, <Icon glyph='cloud'/>])}
+        </Menu>
+        <Menu icon='labeled'>
+          <Item active><Icon glyph='user'/>User</Item>
+          <Item><Icon glyph='close'/>Close</Item>
+          <Item><Icon glyph='cloud'/>Cloud</Item>
+        </Menu>
+      </Story>
+    )
+  })
+  .add('<Menu> fit', () => {
+    return (
+      <Story examples='<Menu fit=[ "fluid" | "compact" ]>{ content }</Menu>'>
+        <Menu fit="fluid" vertical>{_makeItems(['Fluid Menu Item 1', 'Fluid Menu Item 2', 'Fluid Menu Item 3'])}</Menu>
+        <Menu fit="compact">{_makeItems(['Compact Item 1', 'Compact Item 2', 'Compact Item 3'])}</Menu>
+      </Story>
+    )
+  })
+  .add('<Menu> items', () => {
+    const values = extractOptionsValues(COUNTS)
+    return (
+      <Story examples={'<Menu items=[ ' + values + ' ]>{ content }</Menu>'}>
+        <Menu items='twelve'>{_makeItems([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])}</Menu>
+        <Menu items='three'>{_makeItems()}</Menu>
+      </Story>
+    )
+  })
+  .add('<Menu> attached', () => {
+    return (
+      <Story examples='<Menu attached=[ "top" | "bottom" ]>{ content }</Menu>'>
+        <Menu attached='top'>{_makeItems()}</Menu>
+        <Segment attached>{makeLipsum()}</Segment>
+        <Menu attached='bottom'>{_makeItems()}</Menu>
+      </Story>
+    )
+  })
+  .add('<Menu> size', makeSizeStory(Menu, {
+    props: {
+      children: _makeItems()
+    },
+    options: SIZES
+  }))
+  .add('<Menu> fitted', () => {
+    return (
+      <Story examples='<Menu fitted=[ true | "horizontally" | "vertically" ]>{ content }</Menu>'>
+        <Menu fitted>{_makeItems(['Fitted 1', 'Fitted 2', 'Fitted 3'])}</Menu>
+        <Menu fitted='horizontally'>{_makeItems(['Horizontally Fitted 1', 'Horizontally Fitted 2', 'Horizontally Fitted 3'])}</Menu>
+        <Menu fitted='vertically'>{_makeItems(['Vertically Fitted 1', 'Vertically Fitted 2', 'Vertically Fitted 3'])}</Menu>
+      </Story>
+    )
+  })
   .add('<Menu> borderless', () => {
     return (
       <Story examples='<Menu borderless>{ content }</Menu>'>
@@ -88,18 +143,6 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<Menu> color', makeColorStory(Menu, {
-    props: {
-      children: _makeItems(),
-    },
-    options: COLORS
-  }))
-  .add('<Menu> size', makeSizeStory(Menu, {
-    props: {
-      children: _makeItems()
-    },
-    options: SIZES
-  }))
   .add('<Menu> passes .className and other props', makePassesPropsStory(Menu, { props: {
     className: "inverted",
     onClick: action('Menu was clicked'),
@@ -234,7 +277,7 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<SubMenu> (nested)', () => {
+  .add('<SubMenu> nested', () => {
     return (
       <Story examples='<Menu><Item><SubMenu>{ content }</SubMenu></Item></Menu>'
         notes='<SubMenu> can be within an <Item>. This works best with vertical <Menu>'>

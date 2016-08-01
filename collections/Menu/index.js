@@ -24,20 +24,23 @@ export const makeMenuClasses = makeClassnameFactory({
   suffix: 'menu',
   options: {
     format: FORMATS,
-    fit: ['fluid', 'compact'],
-    fitted,
-    size: SIZES,
+    fixed: makeOptionForValuesAndSuffix(['top', 'bottom', 'left', 'right'], 'fixed'),
     color: COLORS,
-    items: makeOptionForValuesAndSuffix(COUNTS, 'item')
+    icon: makeOptionForValuesAndSuffix([true, 'labeled'], 'icon'),
+    fit: ['fluid', 'compact'],
+    items: makeOptionForValuesAndSuffix(COUNTS, 'item'),
+    attached: makeOptionForValuesAndSuffix(['top', 'bottom'], 'attached'),
+    fitted,
+    size: SIZES
   }
 })
 export const Menu = ({
-                      format, fit, size, fitted, color, items,
-                      pointing, vertical, inverted, borderless,
+                      format, fixed, color, icon, fit, items, attached, size, fitted,
+                      pointing, vertical, stackable, inverted, borderless,
                       className, ...rest }) => {
   const classes = makeMenuClasses({
-    format, fit, size, fitted, color, items,
-    pointing, vertical, inverted, borderless
+    format, fixed, color, icon, fit, items, attached, size, fitted,
+    pointing, vertical, stackable, inverted, borderless
   }, className);
   return (
     <div {...rest} className={classes}/>
