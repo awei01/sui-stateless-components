@@ -16,11 +16,11 @@ storiesOf('Container', module)
       </ContainerStory>
     )
   })
-  .add('fit', () => {
+  .add('format', () => {
     return (
-      <ContainerStory examples='<Container fit=[ "text" | "fluid" ]/>' showToggleNote>
-        <Container fit='text'>{ makeLipsum(200) }</Container>
-        <Container fit='fluid'>{ makeLipsum(200) }</Container>
+      <ContainerStory examples='<Container format=[ "text" | "fluid" ]/>' showToggleNote>
+        <Container format='text'>{ makeLipsum(200) }</Container>
+        <Container format='fluid'>{ makeLipsum(200) }</Container>
       </ContainerStory>
     )
   })

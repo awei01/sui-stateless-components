@@ -67,7 +67,7 @@ storiesOf('Button', module)
     return (
       <Story examples={[
         '<Button labeled icon><Icon/>Value</Button>',
-        '<Button labeled="right">Value<Icon/></Button>'
+        '<Button labeled="right" icon>Value<Icon/></Button>'
         ]}>
         <Button labeled icon>
           <Icon glyph="user"/>left icon

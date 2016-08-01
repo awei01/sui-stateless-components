@@ -7,13 +7,13 @@ export const makeClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'container',
   options: {
-    fit: ['text', 'fluid'],
+    format: ['text', 'fluid'],
     align
   }
 })
 
-export const Container = ({ fit, align, className, ...rest }) => {
-	const classes = makeClasses({ fit, align });
+export const Container = ({ format, align, className, ...rest }) => {
+	const classes = makeClasses({ format, align });
 	return (
 		<div { ...rest } className={ classes }/>
 	);
