@@ -6,10 +6,10 @@ function loadStories() {
   require('../elements/Container/.stories')
   require('../elements/Divider/.stories')
   require('../elements/Header/.stories')
-  require('../elements/Label/.stories')
-  require('../elements/List/.stories')
   require('../elements/Icon/.stories')
   require('../elements/Image/.stories')
+  require('../elements/Label/.stories')
+  require('../elements/List/.stories')
   require('../elements/Segment/.stories')
 
   require('../collections/Form/.stories')
@@ -18,6 +18,7 @@ function loadStories() {
   require('../collections/Message/.stories')
 
   require('../modules/Dimmer/.stories')
+  require('../modules/Dropdown/.stories')
   require('../modules/Modal/.stories')
   require('../modules/Popup/.stories')
 }
