@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
 import { makeLipsum, extractOptionsValues, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
-import { List, Item, Content, SIZES } from './index'
+import { List, Item, Content, SIZES, Header, Description } from './index'
 import { Icon } from '../../elements/Icon'
 import { Image } from '../../elements/Image'
 import { Segment } from '../../elements/Segment'
@@ -17,7 +17,7 @@ const _makeItems = (items, props) => {
 }
 
 storiesOf('List', module)
-  .add('<List>', () => {
+  .add('<List> default', () => {
     return (
       <Story examples='<List><Item/></List>'
         notes='The <List> specifically renders a <div> tag. To render <ul> or <li> use exported makeListClasses() method to generate the [className] prop.'
@@ -248,6 +248,46 @@ storiesOf('List', module)
             <Content className='bottom aligned' onClick={action('Content was clicked')}>
               bottom aligned clickable item
             </Content>
+          </Item>
+        </List>
+      </Story>
+    )
+  })
+  .add('<Header>', () => {
+    return (
+      <Story examples='<List><Item><Header/></Item></List>'>
+        <List selection>
+          <Item>
+            <Header>Header 1</Header>
+            Item 1
+          </Item>
+          <Item>
+            <Header>Header 2</Header>
+            Item 2
+          </Item>
+          <Item>
+            <Header>Header 3</Header>
+            Item 3
+          </Item>
+        </List>
+      </Story>
+    )
+  })
+  .add('<Description>', () => {
+    return (
+      <Story examples='<List><Item><Description/></Item></List>'>
+        <List selection>
+          <Item>
+            <Header>Header 1</Header>
+            <Description>Description 1</Description>
+          </Item>
+          <Item>
+            <Header>Header 2</Header>
+            <Description>Description 2</Description>
+          </Item>
+          <Item>
+            <Header>Header 3</Header>
+            <Description>Description 3</Description>
           </Item>
         </List>
       </Story>

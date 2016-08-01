@@ -1,6 +1,6 @@
 import without from 'lodash/without'
 import React from 'react';
-import { makeClassnameFactory, OPTIONS } from '../../utils';
+import { makeClassnameFactory, makeComponentWithClasses, OPTIONS } from '../../utils';
 import 'semantic-ui-css/components/list.css';
 
 /*
@@ -89,3 +89,11 @@ export const Content = ({ valigned, floated, className, ...rest }) => {
     <div {...rest} className={classes}/>
   )
 }
+
+/*
+ |---------------------------
+ | Supporting components
+ |---------------------------
+ */
+export const Header = makeComponentWithClasses('header')
+export const Description = makeComponentWithClasses('description')
