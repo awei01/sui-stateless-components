@@ -15,7 +15,7 @@ const { color, size } = OPTIONS
  | Button
  |---------------------------
  */
-const { float } = OPTIONS;
+const { floated } = OPTIONS;
 export const SOCIALS = ['facebook', 'twitter', 'google plus', 'vk', 'linkedin', 'instagram', 'youtube']
 export const BUTTON_ATTACHEDS = ['top', 'bottom', 'left', 'right']
 export const makeButtonClasses = makeClassnameFactory({
@@ -36,7 +36,7 @@ export const makeButtonClasses = makeClassnameFactory({
     },
     social: SOCIALS,
     size,
-    float,
+    floated,
     color,
     toggle: makeOptionForValuesAndSuffix([true, 'active'], 'toggle'),
     hint: ['positive', 'negative'],
@@ -45,7 +45,7 @@ export const makeButtonClasses = makeClassnameFactory({
 });
 export const Button = ({
                         type,   // not SUI option
-                        emphasis, animated, labeled, social, size, float, color, toggle, hint, attached,
+                        emphasis, animated, labeled, social, size, floated, color, toggle, hint, attached,
                         basic, inverted, active, disabled, loading, icon, fluid, circular, compact,
                         className, ...rest }) => {
 
@@ -61,7 +61,7 @@ export const Button = ({
     element = 'div'
   } else {
     passedProps.className = makeButtonClasses({
-      emphasis, labeled, social, size, float, color, toggle, hint, attached,
+      emphasis, labeled, social, size, floated, color, toggle, hint, attached,
       basic, inverted, active, loading, icon, fluid, circular, compact
       // we're going to handle disabled by setting attribute,
       // otherwise ENTER can still submit on form

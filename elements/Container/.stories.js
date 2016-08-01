@@ -24,7 +24,7 @@ storiesOf('Container', module)
       </ContainerStory>
     )
   })
-  .add('align', makeAlignStory(Container, {
+  .add('aligned', makeAlignStory(Container, {
     props: {
       children: makeLipsum(300),
       style: { marginBottom: '2em' }

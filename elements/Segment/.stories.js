@@ -19,7 +19,7 @@ storiesOf('Segment', module)
     )
   })
   .add('<Segment> format', () => {
-    const formats = extractOptionsValues(SEGMENT_FORMATS)
+    const formats = extractOptionsValues(SEGMENT_FORMATS, 0)
     return (
       <SegmentStory examples={'<Segment format=[ ' + formats + ' ]>{ content }</Segment>'}>
         <Segment format='raised'>
@@ -146,28 +146,28 @@ storiesOf('Segment', module)
       </SegmentStory>
     )
   })
-  .add('<Segment> float', () => {
+  .add('<Segment> floated', () => {
     return (
-      <SegmentStory examples='<Segment float=[ "left" | "right" ]>{ content }</Segment>'>
-        <Segment float='left'>
+      <SegmentStory examples='<Segment floated=[ "left" | "right" ]>{ content }</Segment>'>
+        <Segment floated='left'>
           <h4>left floated segment</h4>
         </Segment>
-        <Segment float='right'>
+        <Segment floated='right'>
           <h4>right floated segment</h4>
         </Segment>
       </SegmentStory>
     )
   })
-  .add('<Segment> align', () => {
+  .add('<Segment> aligned', () => {
     return (
-      <SegmentStory examples='<Segment align=[ "left" | "right" | "center" ]>{ content }</Segment>'>
-        <Segment align='left'>
+      <SegmentStory examples='<Segment aligned=[ "left" | "right" | "center" ]>{ content }</Segment>'>
+        <Segment aligned='left'>
           <h4>left aligned segment</h4>
         </Segment>
-        <Segment align='center'>
+        <Segment aligned='center'>
           <h4>center aligned segment</h4>
         </Segment>
-        <Segment align='right'>
+        <Segment aligned='right'>
           <h4>right aligned segment</h4>
         </Segment>
       </SegmentStory>

@@ -7,7 +7,7 @@ import 'semantic-ui-css/components/grid.css'
  | Shared options
  |---------------------------
  */
-const { color, align, equal, wide, relaxed, valign } = OPTIONS
+const { color, aligned, equal, wide, relaxed, valigned } = OPTIONS
 const columns = makeOptionForValuesAndSuffix(COUNTS, 'column')
 /*
  |---------------------------
@@ -20,8 +20,8 @@ export const makeGridClasses = makeClassnameFactory({
   options: {
     columns,
     equal,
-    align,
-    valign,
+    aligned,
+    valigned,
     divided: makeOptionForValuesAndSuffix([true, 'vertically'], 'divided'),
     celled: makeOptionForValuesAndSuffix([true, 'internally'], 'celled'),
     padded: makeOptionForValuesAndSuffix([true, 'vertically', 'horizontally'], 'padded'),
@@ -29,18 +29,12 @@ export const makeGridClasses = makeClassnameFactory({
   }
 })
 export const Grid = ({
-  stretched, centered,
-  equal, columns,
-  align, valign,
-  padded, relaxed,
-  divided, celled,
-  className, ...rest }) => {
+                    stretched, centered,
+                    equal, columns, aligned, valigned, padded, relaxed, divided, celled,
+                    className, ...rest }) => {
   const classes = makeGridClasses({
     stretched, centered,
-    equal, columns,
-    align, valign,
-    padded, relaxed,
-    divided, celled
+    equal, columns, aligned, valigned, padded, relaxed, divided, celled
   }, className)
   return (
     <div { ...rest } className={classes}/>
@@ -58,17 +52,17 @@ export const makeRowClasses = makeClassnameFactory({
     columns,
     equal,
     color,
-    align,
-    valign
+    aligned,
+    valigned
   }
 })
 export const Row = ({
-  stretched, centered,
-  equal, columns, color, align, valign,
-  className, ...rest }) => {
+                    stretched, centered,
+                    equal, columns, color, aligned, valigned,
+                    className, ...rest }) => {
   const classes = makeRowClasses({
     stretched, centered,
-    equal, columns, color, align, valign,
+    equal, columns, color, aligned, valigned,
   }, className)
   return (
     <div {...rest} className={classes}/>
@@ -81,21 +75,21 @@ export const Row = ({
  | Column
  |---------------------------
  */
-const { float } = OPTIONS
+const { floated } = OPTIONS
 export const makeColumnClasses = makeClassnameFactory({
   suffix: 'column',
   options: {
     color,
-    align,
+    aligned,
     wide,
-    float
+    floated
   }
 })
 export const Column = ({
-  wide, float, color, align,
-  className, ...rest }) => {
+                        wide, floated, color, aligned,
+                        className, ...rest }) => {
   const classes = makeColumnClasses({
-    wide, float, color, align
+    wide, floated, color, aligned
   }, className)
   return (
     <div { ...rest } className={classes}/>

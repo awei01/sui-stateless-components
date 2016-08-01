@@ -134,11 +134,11 @@ storiesOf('Button', module)
     )
   })
   .add('<Button> size', makeSizeStory(Button))
-  .add('<Button> float', () => {
+  .add('<Button> floated', () => {
     return (
-      <Story examples='<Button float=[ "left" | "right" ]>'>
-        <Button float="left">left floated</Button>
-        <Button float="right">right floated</Button>
+      <Story examples='<Button floated=[ "left" | "right" ]>'>
+        <Button floated="left">left floated</Button>
+        <Button floated="right">right floated</Button>
       </Story>
     )
   })

@@ -203,9 +203,9 @@ storiesOf('List', module)
       </Story>
     )
   })
-  .add('<Content> valign', () => {
+  .add('<Content> valigned', () => {
     return (
-      <Story examples='<List><Item><Content valign=[ "top" | "middle" | "bottom" ]/></Item></List>'>
+      <Story examples='<List><Item><Content valigned=[ "top" | "middle" | "bottom" ]/></Item></List>'>
         <List selection>
           <Item>
             <Icon size='big' glyph='user'/>
@@ -213,27 +213,27 @@ storiesOf('List', module)
           </Item>
           <Item>
             <Icon size='big' glyph='user'/>
-            <Content valign='top'>top aligned content</Content>
+            <Content valigned='top'>top aligned content</Content>
           </Item>
           <Item>
             <Icon size='big' glyph='user'/>
-            <Content valign='middle'>middle aligned content</Content>
+            <Content valigned='middle'>middle aligned content</Content>
           </Item>
           <Item>
             <Icon size='big' glyph='user'/>
-            <Content valign='bottom'>bottom aligned content</Content>
+            <Content valigned='bottom'>bottom aligned content</Content>
           </Item>
         </List>
       </Story>
     )
   })
-  .add('<Content> float', () => {
+  .add('<Content> floated', () => {
     return (
-      <Story examples='<List><Item><Content float=[ "left" | "right" ]/></Item></List>'>
+      <Story examples='<List><Item><Content floated=[ "left" | "right" ]/></Item></List>'>
         <List selection>
           <Item>
-            <Content float='right'>right floated</Content>
-            <Content float='left'>left floated</Content>
+            <Content floated='right'>right floated</Content>
+            <Content floated='left'>left floated</Content>
           </Item>
         </List>
       </Story>

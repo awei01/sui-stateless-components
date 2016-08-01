@@ -78,20 +78,20 @@ storiesOf('Image', module)
       </Story>
     )
   })
-  .add('<Image> valign', () => {
+  .add('<Image> valigned', () => {
     return (
-      <Story examples='<Image valign=[ "top" | "middle" | "bottom" ]/>'>
+      <Story examples='<Image valigned=[ "top" | "middle" | "bottom" ]/>'>
         <Divider/>
         <Image src='/images/lindsay.png'/>
         non-aligned
         <Divider/>
-        <Image valign='top' src='/images/lindsay.png'/>
+        <Image valigned='top' src='/images/lindsay.png'/>
         top aligned
         <Divider/>
-        <Image valign='middle' src='/images/lindsay.png'/>
+        <Image valigned='middle' src='/images/lindsay.png'/>
         middle aligned
         <Divider/>
-        <Image valign='bottom' src='/images/lindsay.png'/>
+        <Image valigned='bottom' src='/images/lindsay.png'/>
         bottom aligned
         <Divider/>
       </Story>
@@ -117,15 +117,15 @@ storiesOf('Image', module)
       </Story>
     )
   })
-  .add('<Image> float', () => {
+  .add('<Image> floated', () => {
     return (
-      <Story examples='<Image float=[ "left" | "right" ]/>'>
+      <Story examples='<Image floated=[ "left" | "right" ]/>'>
         <p>
-          <Image float='left' src='/images/lindsay.png'/>
+          <Image floated='left' src='/images/lindsay.png'/>
           {makeLipsum()}
         </p>
         <p>
-          <Image float='right' src='/images/lindsay.png'/>
+          <Image floated='right' src='/images/lindsay.png'/>
           {makeLipsum()}
         </p>
       </Story>

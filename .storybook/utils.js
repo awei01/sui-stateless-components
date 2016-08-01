@@ -72,7 +72,7 @@ export const makeColorStory = (Component, configs = {}) => {
 export const makeAlignStory = (Component, configs = {}) => {
   configs = configs || {}
   const props = configs.props || {}
-  return makeStoryForKeyAndOptions(Component, { key: 'align', options: ALIGNS }, {
+  return makeStoryForKeyAndOptions(Component, { key: 'aligned', options: ALIGNS }, {
     ...configs,
     props: {
       children: (value) => {

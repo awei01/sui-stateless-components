@@ -14,25 +14,25 @@ const { size } = OPTIONS
  | Icon
  |---------------------------
  */
-const { valign, float } = OPTIONS
+const { valigned, floated } = OPTIONS
 export const makeImageClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'image',
   options: {
     format: ['rounded', 'circular'],
-    valign,
+    valigned,
     size,
     spaced: makeOptionForValuesAndSuffix([true, 'left', 'right'], 'spaced'),
-    float,
+    floated,
   }
 })
 export const Image = ({
                       src, href, width, height,
-                      format, valign, size, spaced, float,
+                      format, valigned, size, spaced, floated,
                       hidden, disabled, avatar, bordered, fluid, centered,
                       className, ...rest }) => {
   const classes = makeImageClasses({
-    format, valign, size, spaced, float,
+    format, valigned, size, spaced, floated,
     hidden, disabled, avatar, bordered, fluid, centered
   }, className)
   const imgProps = { src, width, height } // these props will always go on img

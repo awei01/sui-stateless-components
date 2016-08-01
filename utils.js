@@ -46,20 +46,23 @@ export const makeOptionForValuesAndSuffix = (values, suffix) => {
 export const OPTIONS = {
   color: COLORS,
   size: SIZES,
-  align: {
+  wide: makeOptionForValuesAndSuffix(COUNTS, 'wide'),
+
+  aligned: {
     values: ALIGNS,
     makeKey: _makeAlignKey
   },
+  valigned: makeOptionForValuesAndSuffix(['top', 'middle', 'bottom'], 'aligned'),
+
   equal: {
     values: [true],
     makeKey: () => {
       return 'equal width'
     }
   },
-  wide: makeOptionForValuesAndSuffix(COUNTS, 'wide'),
-  float: makeOptionForValuesAndSuffix(['left', 'right'], 'floated'),
-  relaxed: makeOptionForValuesAndSuffix([true, 'very'], 'relaxed'),
-  valign: makeOptionForValuesAndSuffix(['top', 'middle', 'bottom'], 'aligned')
+
+  floated: makeOptionForValuesAndSuffix(['left', 'right'], 'floated'),
+  relaxed: makeOptionForValuesAndSuffix([true, 'very'], 'relaxed')
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {

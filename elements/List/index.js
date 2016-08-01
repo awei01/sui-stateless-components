@@ -75,16 +75,16 @@ export const Item = ({
  | Content
  |---------------------------
  */
- const { valign, float } = OPTIONS
+ const { valigned, floated } = OPTIONS
 export const makeContentClasses = makeClassnameFactory({
   suffix: 'content',
   options: {
-    valign,
-    float
+    valigned,
+    floated
   }
 })
-export const Content = ({ valign, float, className, ...rest }) => {
-  const classes = makeContentClasses({ valign, float }, className)
+export const Content = ({ valigned, floated, className, ...rest }) => {
+  const classes = makeContentClasses({ valigned, floated }, className)
   return (
     <div {...rest} className={classes}/>
   )

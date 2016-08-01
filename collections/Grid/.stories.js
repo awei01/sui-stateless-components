@@ -164,40 +164,40 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('<Grid> align', () => {
+  .add('<Grid> aligned', () => {
     return (
-      <Story examples='<Grid align=[ "left" | "right" | "center" | "justified" ]><Column/></Grid>'>
-        <Grid columns="two" align="left">
+      <Story examples='<Grid aligned=[ "left" | "right" | "center" | "justified" ]><Column/></Grid>'>
+        <Grid columns="two" aligned="left">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid columns="two" align="right">
+        <Grid columns="two" aligned="right">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid columns="two" align="center">
+        <Grid columns="two" aligned="center">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
-        <Grid columns="two" align="justified">
+        <Grid columns="two" aligned="justified">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
       </Story>
     )
   })
-  .add('<Grid> valign', () => {
+  .add('<Grid> valigned', () => {
     return (
-      <Story examples='<Grid valign=[ "top" | "middle" | "bottom" ]><Column/></Grid>'>
-        <Grid columns="two" valign="top">
+      <Story examples='<Grid valigned=[ "top" | "middle" | "bottom" ]><Column/></Grid>'>
+        <Grid columns="two" valigned="top">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
-        <Grid columns="two" valign="middle">
+        <Grid columns="two" valigned="middle">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
-        <Grid columns="two" valign="bottom">
+        <Grid columns="two" valigned="bottom">
           <Column><Content>{ makeLipsum(100)}</Content></Column>
           <Column><Content>{ makeLipsum(200)}</Content></Column>
         </Grid>
@@ -282,23 +282,23 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('<Row> align', () => {
+  .add('<Row> aligned', () => {
     return (
-      <Story examples='<Grid><Row align=[ "left" | "right" | "center" | "justified" ]><Column/></Row></Grid>'>
+      <Story examples='<Grid><Row aligned=[ "left" | "right" | "center" | "justified" ]><Column/></Row></Grid>'>
         <Grid>
-          <Row columns="two" align="left">
+          <Row columns="two" aligned="left">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row columns="two" align="right">
+          <Row columns="two" aligned="right">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row columns="two" align="center">
+          <Row columns="two" aligned="center">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
-          <Row columns="two" align="justified">
+          <Row columns="two" aligned="justified">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(100)}</Content></Column>
           </Row>
@@ -306,19 +306,19 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('<Row> valign', () => {
+  .add('<Row> valigned', () => {
     return (
-      <Story examples='<Grid><Row valign=[ "top" | "middle" | "bottom" ]><Column/></Row></Grid>'>
+      <Story examples='<Grid><Row valigned=[ "top" | "middle" | "bottom" ]><Column/></Row></Grid>'>
         <Grid>
-          <Row columns="two" valign="top">
+          <Row columns="two" valigned="top">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
-          <Row columns="two" valign="middle">
+          <Row columns="two" valigned="middle">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
-          <Row columns="two" valign="bottom">
+          <Row columns="two" valigned="bottom">
             <Column><Content>{ makeLipsum(100)}</Content></Column>
             <Column><Content>{ makeLipsum(200)}</Content></Column>
           </Row>
@@ -367,12 +367,12 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('<Column> float', () => {
+  .add('<Column> floated', () => {
     return (
-      <Story examples='<Grid><Column float=[ "left" | "right" ]/></Grid>'>
+      <Story examples='<Grid><Column floated=[ "left" | "right" ]/></Grid>'>
         <Grid>
-          <Column float="left" wide="three"><Content>left floated three wide</Content></Column>
-          <Column float="right" wide="three"><Content>right floated three wide</Content></Column>
+          <Column floated="left" wide="three"><Content>left floated three wide</Content></Column>
+          <Column floated="right" wide="three"><Content>right floated three wide</Content></Column>
         </Grid>
       </Story>
     )
@@ -386,34 +386,34 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('<Column> align', () => {
+  .add('<Column> aligned', () => {
     return (
-      <Story examples='<Grid><Column align=[ "left" | "right" | "center" | "justified" ]/></Grid>'>
+      <Story examples='<Grid><Column aligned=[ "left" | "right" | "center" | "justified" ]/></Grid>'>
         <Grid columns="four">
-          <Column align="left"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column align="right"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column align="center"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column align="justified"><Content>{ makeLipsum(100)}</Content></Column>
+          <Column aligned="left"><Content>{ makeLipsum(100)}</Content></Column>
+          <Column aligned="right"><Content>{ makeLipsum(100)}</Content></Column>
+          <Column aligned="center"><Content>{ makeLipsum(100)}</Content></Column>
+          <Column aligned="justified"><Content>{ makeLipsum(100)}</Content></Column>
         </Grid>
       </Story>
     )
   })
   /*
   Not sure how to test this yet. Not sure if needed
-  .add('<Column> valign', () => {
+  .add('<Column> valigned', () => {
     const _divStyle = { display: 'inline-flex', width: '50%' }
     return (
-      <Story examples='<Grid><Column valign=[ "top" | "middle" | "bottom" ]/></Grid>'>
+      <Story examples='<Grid><Column valigned=[ "top" | "middle" | "bottom" ]/></Grid>'>
         <Grid columns="one">
-          <Column valign="top">
+          <Column valigned="top">
             <div style={_divStyle}>{ makeLipsum(100)}</div>
             <div style={_divStyle}>{ makeLipsum(200)}</div>
           </Column>
-          <Column valign="middle">
+          <Column valigned="middle">
             <div style={_divStyle}>{ makeLipsum(100)}</div>
             <div style={_divStyle}>{ makeLipsum(200)}</div>
           </Column>
-          <Column valign="bottom">
+          <Column valigned="bottom">
             <div style={_divStyle}>{ makeLipsum(100)}</div>
             <div style={_divStyle}>{ makeLipsum(200)}</div>
           </Column>

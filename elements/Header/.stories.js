@@ -28,7 +28,7 @@ storiesOf('Header', module)
       </Story>
     )
   })
-  .add('align', makeAlignStory(Header))
+  .add('aligned', makeAlignStory(Header))
   .add('color', makeColorStory(Header))
   .add('inverted', () => {
     return (

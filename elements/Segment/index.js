@@ -14,7 +14,7 @@ import 'semantic-ui-css/components/segment.css';
  | Segment
  |---------------------------
  */
-const { color, float, align } = OPTIONS
+const { color, floated, aligned } = OPTIONS
 export const SEGMENT_FORMATS = ['raised', 'stacked', 'tall stacked', 'piled', 'vertical']
 export const makeSegmentClasses = makeClassnameFactory({
   prefix: "ui",
@@ -25,19 +25,19 @@ export const makeSegmentClasses = makeClassnameFactory({
     padded: makeOptionForValuesAndSuffix([true, 'very'], 'padded'),
     color,
     emphasis: ['secondary', 'tertiary'],
-    float,
-    align: {
-      ...align,
-      values: without(align.values, 'justified')
+    floated,
+    aligned: {
+      ...aligned,
+      values: without(aligned.values, 'justified')
     }
   }
 });
 export const Segment = ({
-                        format, attached, padded, color, emphasis, float, align,
+                        format, attached, padded, color, emphasis, floated, aligned,
                         basic, inverted, compact, clearing,
                         className, ...rest }) => {
   const classes = makeSegmentClasses({
-    format, attached, padded, color, emphasis, float, align,
+    format, attached, padded, color, emphasis, floated, aligned,
     basic, inverted, compact, clearing
   }, className)
   return (

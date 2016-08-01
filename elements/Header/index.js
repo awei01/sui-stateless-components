@@ -4,25 +4,25 @@ import 'semantic-ui-css/components/header.css';
 
 export const SIZES = ['tiny', 'small', 'medium', 'large', 'huge']
 
-const { color, align } = OPTIONS
+const { color, aligned } = OPTIONS
 export const makeClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'header',
   options: {
     size: SIZES,
-    align,
+    aligned,
     color,
     format: ['dividing', 'block']
   }
 })
 
 export const Header = ({
-  size, align, color, format,
-  sub, block, inverted,
-  className, ...rest }) => {
+                        size, aligned, color, format,
+                        sub, block, inverted,
+                        className, ...rest }) => {
 
   const classes = makeClasses({
-    size, align, color, format,
+    size, aligned, color, format,
     sub, block, inverted
   }, className);
   return (
