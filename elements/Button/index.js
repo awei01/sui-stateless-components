@@ -90,17 +90,17 @@ export const makeButtonsClasses = makeClassnameFactory({
   options: {
     icon: makeOptionForValuesAndSuffix([true, 'labeled'], 'icon'),
     attached: makeOptionForValuesAndSuffix(BUTTONS_ATTACHEDS, 'attached'),
-    count: COUNTS,
+    buttons: COUNTS,
     color,
     size
   }
 })
 export const Buttons = ({
-                        icon, attached, vertical, count, color, size,
+                        icon, attached, vertical, buttons, color, size,
                         basic,
                         className, ...rest }) => {
   const classes = makeButtonsClasses({
-    icon, attached, vertical, count, color, size,
+    icon, attached, vertical, buttons, color, size,
     basic
   }, className)
   return (

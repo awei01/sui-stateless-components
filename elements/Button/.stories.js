@@ -243,15 +243,15 @@ storiesOf('Button', module)
       </Story>
     )
   })
-  .add('<Buttons> count', () => {
-    const counts = extractOptionsValues(COUNTS)
+  .add('<Buttons> buttons', () => {
+    const buttons = extractOptionsValues(COUNTS)
     return (
-      <Story examples={'<Buttons count=[ ' + counts + ' ]><Button/></Buttons>'}>
-        <Buttons count='two'>
+      <Story examples={'<Buttons buttons=[ ' + buttons + ' ]><Button/></Buttons>'}>
+        <Buttons buttons='two'>
           <Button>button 1</Button><Button>button 2</Button>
         </Buttons>
         <br/><br/>
-        <Buttons count='four'>
+        <Buttons buttons='four'>
           <Button>button 1</Button><Button>button 2</Button>
           <Button>button 3</Button><Button>button 4</Button>
         </Buttons>
