@@ -12,7 +12,7 @@ const Content = (props) => {
 }
 
 storiesOf('Grid', module)
-  .add('Grid columns', () => {
+  .add('<Grid> columns', () => {
     return (
       <Story examples='<Grid columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Grid>'>
         <Grid columns="two">
@@ -28,7 +28,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid divided', () => {
+  .add('<Grid> divided', () => {
     return (
       <Story examples='<Grid divided=[ true | "vertically" ]/><Row><Column/></Row></Grid>'>
         <Grid columns="four" divided>
@@ -50,7 +50,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid celled', () => {
+  .add('<Grid> celled', () => {
     return (
       <Story examples='<Grid celled=[ true | "internally" ]/><Row><Column/></Row></Grid>'>
         <Grid columns="four" celled>
@@ -72,7 +72,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid equal', () => {
+  .add('<Grid> equal', () => {
     return (
       <Story examples='<Grid equal/><Column/></Grid>'>
         <Grid equal>
@@ -93,7 +93,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid stretched', () => {
+  .add('<Grid> stretched', () => {
     return (
       <Story examples='<Grid stretched/><Column/></Grid>'>
         <Grid equal stretched>
@@ -108,7 +108,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid padded', () => {
+  .add('<Grid> padded', () => {
     return (
       <Story examples='<Grid padded/><Column/></Grid>'>
         <Grid columns="two" padded>
@@ -126,7 +126,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid relaxed', () => {
+  .add('<Grid> relaxed', () => {
     return (
       <Story examples='<Grid relaxed=[ true | "very" ]/><Column/></Grid>'>
         <Grid columns="two" relaxed>
@@ -144,7 +144,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid centered', () => {
+  .add('<Grid> centered', () => {
     return (
       <Story examples={[
           '<Grid centered><Column/></Grid>',
@@ -164,7 +164,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid align', () => {
+  .add('<Grid> align', () => {
     return (
       <Story examples='<Grid align=[ "left" | "right" | "center" | "justified" ]><Column/></Grid>'>
         <Grid columns="two" align="left">
@@ -186,7 +186,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid valign', () => {
+  .add('<Grid> valign', () => {
     return (
       <Story examples='<Grid valign=[ "top" | "middle" | "bottom" ]><Column/></Grid>'>
         <Grid columns="two" valign="top">
@@ -204,12 +204,12 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Grid passes .className and other props', makePassesPropsStory(Grid, { props: {
+  .add('<Grid> passes .className and other props', makePassesPropsStory(Grid, { props: {
     className: "centered",
     onClick: action('Grid was clicked'),
     children: <Column>centered and clickable</Column>
   }}))
-  .add('Row columns', () => {
+  .add('<Row> columns', () => {
     return (
       <Story examples='<Grid><Row columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Row></Grid>'>
         <Grid>
@@ -227,7 +227,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row equal', () => {
+  .add('<Row> equal', () => {
     return (
       <Story examples='<Grid><Row equal/><Column/></Row></Grid>'>
         <Grid>
@@ -250,7 +250,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row stretched', () => {
+  .add('<Row> stretched', () => {
     return (
       <Story examples='<Grid><Row stretched/><Column/></Row></Grid>'>
         <Grid>
@@ -263,7 +263,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row centered', () => {
+  .add('<Row> centered', () => {
     return (
       <Story examples='<Grid><Row centered><Column/></Row></Grid>'>
         <Grid>
@@ -282,7 +282,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row align', () => {
+  .add('<Row> align', () => {
     return (
       <Story examples='<Grid><Row align=[ "left" | "right" | "center" | "justified" ]><Column/></Row></Grid>'>
         <Grid>
@@ -306,7 +306,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row valign', () => {
+  .add('<Row> valign', () => {
     return (
       <Story examples='<Grid><Row valign=[ "top" | "middle" | "bottom" ]><Column/></Row></Grid>'>
         <Grid>
@@ -326,7 +326,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row color', () => {
+  .add('<Row> color', () => {
     return (
       <Story examples='<Grid><Row color={ valid color }/><Column/></Row></Grid>'>
         <Grid>
@@ -340,7 +340,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Row passes .className and other props', () => {
+  .add('<Row> passes .className and other props', () => {
     return (
       <Story examples='<Grid><Row className="red" onClick={function}><Column/></Row></Grid>'>
         <Grid>
@@ -351,7 +351,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Column wide', () => {
+  .add('<Column> wide', () => {
     return (
       <Story examples='<Grid><Column wide=[ "one" | "two" | ... "sixteen" ]/></Grid>'>
         <Grid>
@@ -367,7 +367,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Column float', () => {
+  .add('<Column> float', () => {
     return (
       <Story examples='<Grid><Column float=[ "left" | "right" ]/></Grid>'>
         <Grid>
@@ -377,7 +377,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Column color', () => {
+  .add('<Column> color', () => {
     return (
       <Story examples='<Grid><Column color={ valid color }/><Column/></Column></Grid>'>
         <Grid columns='three'>
@@ -386,7 +386,7 @@ storiesOf('Grid', module)
       </Story>
     )
   })
-  .add('Column align', () => {
+  .add('<Column> align', () => {
     return (
       <Story examples='<Grid><Column align=[ "left" | "right" | "center" | "justified" ]/></Grid>'>
         <Grid columns="four">
@@ -400,7 +400,7 @@ storiesOf('Grid', module)
   })
   /*
   Not sure how to test this yet. Not sure if needed
-  .add('Column valign', () => {
+  .add('<Column> valign', () => {
     const _divStyle = { display: 'inline-flex', width: '50%' }
     return (
       <Story examples='<Grid><Column valign=[ "top" | "middle" | "bottom" ]/></Grid>'>
@@ -422,7 +422,7 @@ storiesOf('Grid', module)
     )
   })
   */
-  .add('Column passes .className and other props', () => {
+  .add('<Column> passes .className and other props', () => {
     return (
       <Story examples='<Grid><Column className="red" onClick={function}></Column></Grid>'>
         <Grid>
