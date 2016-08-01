@@ -31,4 +31,4 @@ If you have components to add or require additional options for components, plea
 * run storybook so you can watch your components as you develop: `npm run storybook`
 * edit files, add stories
 
-Try to follow coding standards and file structure.
+Try to follow coding standards and file structure. Or, if you have readability suggestions, let me know.
