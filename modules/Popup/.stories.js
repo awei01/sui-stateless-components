@@ -17,7 +17,7 @@ storiesOf('Popup', module)
           'options.inverted = [ true | false ]',
         ]}
         notes='Convenience method to generate props for CSS-only tooltip solution'>
-        <Grid align='center' columns='three'>
+        <Grid aligned='center' columns='three'>
           <Row>
             <Column>
               <button {...makeTooltipProps("tooltip here")}>default position</button>
