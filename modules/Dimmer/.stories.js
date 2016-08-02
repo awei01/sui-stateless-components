@@ -15,7 +15,7 @@ storiesOf('Dimmer', module)
   .add('default', () => {
     return (
       <DimmerStory examples='<Dimmer/>'
-        notes='Dimmer prop [active] is [true] by default'>
+        notes='<Dimmer> is hidden by default'>
         <Content>
           { makeLipsum() }
           <Dimmer/>
@@ -25,10 +25,10 @@ storiesOf('Dimmer', module)
   })
   .add('active', () => {
     return (
-      <DimmerStory examples='<Dimmer active={false}/>'>
+      <DimmerStory examples='<Dimmer active/>'>
         <Content>
           { makeLipsum() }
-          <Dimmer active={false}/>
+          <Dimmer active/>
         </Content>
       </DimmerStory>
     )
@@ -39,7 +39,7 @@ storiesOf('Dimmer', module)
         notes='If you provide content, the component will automatically generate the HTML to center your content'>
         <Content>
           { makeLipsum() }
-          <Dimmer><h1>This is some header</h1><p>Here is a paragraph</p></Dimmer>
+          <Dimmer active><h1>This is some header</h1><p>Here is a paragraph</p></Dimmer>
         </Content>
       </DimmerStory>
     )
@@ -49,7 +49,7 @@ storiesOf('Dimmer', module)
       <DimmerStory examples='<Dimmer page/>'>
         <Content>
           { makeLipsum() }
-          <Dimmer page/>
+          <Dimmer active page/>
         </Content>
       </DimmerStory>
     )
@@ -59,13 +59,14 @@ storiesOf('Dimmer', module)
       <DimmerStory examples='<Dimmer inverted/>'>
         <Content>
           { makeLipsum() }
-          <Dimmer inverted/>
+          <Dimmer active inverted/>
         </Content>
       </DimmerStory>
     )
   })
   .add('passes .className and other props', makePassesPropsStory(Dimmer, {
     props: {
+      active: true,
       className: "inverted",
       onClick: action('Dimmer was clicked'),
       children: (<h1 style={{ color: '#000' }}>I am inverted and clickable</h1>)

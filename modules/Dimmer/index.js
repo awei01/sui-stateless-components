@@ -25,6 +25,3 @@ export const Dimmer = ({
     </div>
   )
 }
-Dimmer.defaultProps = {
-  active: true
-}
