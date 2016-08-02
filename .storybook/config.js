@@ -10,6 +10,7 @@ function loadStories() {
   require('../elements/Image/.stories')
   require('../elements/Label/.stories')
   require('../elements/List/.stories')
+  require('../elements/Loader/.stories')
   require('../elements/Segment/.stories')
 
   require('../collections/Form/.stories')
