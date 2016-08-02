@@ -23,12 +23,12 @@ export const makeClasses = makeClassnameFactory({
 })
 export const Header = ({
                         size, aligned, color, format, attached, floated,
-                        icon, sub, block, inverted,
+                        icon, sub, inverted,
                         className, ...rest }) => {
 
   const classes = makeClasses({
     size, aligned, color, format, attached, floated,
-    icon, sub, block, inverted
+    icon, sub, inverted
   }, className);
   return (
     <div { ...rest } className={ classes }/>

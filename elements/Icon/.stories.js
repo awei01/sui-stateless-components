@@ -4,56 +4,56 @@ import { Story } from '../../.storybook/components';
 import { makeStoryForKeyAndOptions, makeColorStory, makeSizeStory, makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
 import { Icon, Close, Icons, GLYPHS, SIZES, FLIPPEDS, ROTATEDS, FORMATS } from '../Icon'
 
-const IconStory = ({ style, ...props }) => {
-  return <Story {...props} style={{
+const _container = {
+  style: {
     fontSize: '2em',
-    border: '1px solid #ccc',
-    padding: '1em',
-    ...style }}/>
+  }
 }
 
 storiesOf('Icon', module)
   .add('<Icon> glyph', makeStoryForKeyAndOptions(Icon, { key: 'glyph', options: GLYPHS }, {
     props: { style: { margin: '.5em' }, children: null },
-    Story: IconStory
+    container: _container
   }))
   .add('<Close>', () => {
     return (
-      <IconStory examples={[
+      <Story examples={[
           '<Close/>',
           '<Close format="circular"/>'
         ]}
-        notes='One-off component because it is use so often.'>
+        notes='One-off component because it is use so often.'
+        container={_container}>
         <Close/>
         <Close format='circular'/>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> disabled', () => {
     return (
-      <IconStory examples='<Icon disabled>'
-        notes='Disabled only handles appearance. Set [on*] props to null to actually disable it.'>
+      <Story examples='<Icon disabled>'
+        notes='Disabled only handles appearance. Set [on*] props to null to actually disable it.'
+        container={_container}>
         <Icon disabled glyph='user' onClick={ action('Disabled Icon clicked')}/>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> loading', () => {
     return (
-      <IconStory examples='<Icon loading>'>
+      <Story examples='<Icon loading>' container={_container}>
         <Icon loading glyph='circle notched'/>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> fitted', () => {
     return (
-      <IconStory examples='<Icon fitted>'>
+      <Story examples='<Icon fitted>' container={_container}>
         <p>
           Some text surrounding <Icon fitted glyph='user'/> a fitted icon
         </p>
         <p>
           Some text surrounding <Icon glyph='user'/> a non-fitted icon
         </p>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> size', makeSizeStory(Icon, {
@@ -62,20 +62,20 @@ storiesOf('Icon', module)
   }))
   .add('<Icon> link', () => {
     return (
-      <IconStory examples='<Icon link>'>
+      <Story examples='<Icon link>' container={_container}>
         <p>
           A link icon <Icon link glyph='user'/>
         </p>
         <p>
           A non-link icon <Icon glyph='user'/>
         </p>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> flipped', () => {
     const flippeds = extractOptionsValues(FLIPPEDS)
     return (
-      <IconStory examples={'<Icon flipped=[ ' + flippeds + '>'}>
+      <Story examples={'<Icon flipped=[ ' + flippeds + '>'} container={_container}>
         <p>
           A non-flipped <Icon glyph='cloud'/>
         </p>
@@ -85,13 +85,13 @@ storiesOf('Icon', module)
         <p>
           A horizontally flipped <Icon flipped='horizontally' glyph='cloud'/>
         </p>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> rotated', () => {
     const rotateds = extractOptionsValues(ROTATEDS)
     return (
-      <IconStory examples={'<Icon rotated=[ ' + rotateds + '>'}>
+      <Story examples={'<Icon rotated=[ ' + rotateds + '>'} container={_container}>
         <p>
           A non-rotated <Icon glyph='cloud'/>
         </p>
@@ -101,41 +101,41 @@ storiesOf('Icon', module)
         <p>
           A counterclockwise rotated <Icon rotated='counterclockwise' glyph='cloud'/>
         </p>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> format', () => {
     const formats = extractOptionsValues(FORMATS)
     return (
-      <IconStory examples={'<Icon format=[ ' + formats + ' ]/>'}>
+      <Story examples={'<Icon format=[ ' + formats + ' ]/>'} container={_container}>
         <p>
           circular <Icon format='circular' glyph='user'/>
         </p>
         <p>
           bordered <Icon format='bordered' glyph='user'/>
         </p>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> color', makeColorStory(Icon, {
     props: { children: null, glyph: 'user' },
-    Story: IconStory
+    container: _container
   }))
   .add('<Icon> inverted', () => {
     return (
-      <IconStory examples='<Icon inverted>' style={{ backgroundColor: '#666', padding: '1em' }}>
+      <Story examples='<Icon inverted>' container={{..._container, inverted: true}}>
         <Icon inverted glyph='user'/>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> corner', () => {
     return (
-      <IconStory examples='<Icons><Icon corner/></Icons>'>
+      <Story examples='<Icons><Icon corner/></Icons>' container={_container}>
         <Icons>
           <Icon glyph='user'/>
           <Icon corner glyph='add'/>
         </Icons>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icon> passes .className and other props', makePassesPropsStory(Icon, {
@@ -145,16 +145,16 @@ storiesOf('Icon', module)
       onClick: action('Icon was clicked'),
       children: null,
     },
-    Story: IconStory
+    container: _container
   }))
   .add('<Icons>', () => {
     return (
-      <IconStory examples='<Icons><Icon/></Icons>'>
+      <Story examples='<Icons><Icon/></Icons>' container={_container}>
         <Icons>
           <Icon size='big' glyph='sun'/>
           <Icon glyph='user'/>
         </Icons>
-      </IconStory>
+      </Story>
     )
   })
   .add('<Icons> size', makeSizeStory(Icons, {

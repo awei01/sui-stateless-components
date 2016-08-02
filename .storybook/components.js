@@ -1,5 +1,7 @@
 import React from 'react';
-export const Story = ({ title, examples, notes, showToggleNote, children, ...rest }) => {
+import { Segment } from '../elements/Segment'
+
+export const Story = ({ title, examples, notes, showToggleNote, container, children }) => {
   examples = (examples && typeof examples === 'string') ? [examples] : examples;
   notes = (notes && typeof notes === 'string') ? [notes] : notes;
   if (!notes && showToggleNote) {
@@ -8,6 +10,7 @@ export const Story = ({ title, examples, notes, showToggleNote, children, ...res
   if (showToggleNote) {
     notes = ['Toggle full screen mode to get a better a idea of how this behaves.', ...notes]
   }
+  container = container || {}
   return (
     <div style={{ margin: '1em' }}>
       { title
@@ -33,7 +36,7 @@ export const Story = ({ title, examples, notes, showToggleNote, children, ...res
         : null
       }
       { children
-        ? (<div style={{ marginBottom: '1em', padding: '1em', border: '1px solid #ccc' }} {...rest}>{ children }</div>)
+        ? (<Segment clearing {...container}>{ children }</Segment>)
         : null
       }
     </div>

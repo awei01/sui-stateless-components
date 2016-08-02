@@ -4,24 +4,22 @@ import { makeLipsum, makeColorStory, makePassesPropsStory, extractOptionsValues 
 import { Story } from '../../.storybook/components';
 import { Segment, SEGMENT_FORMATS, Segments, SEGMENTS_FORMATS } from './index'
 
-const SegmentStory = (props) => {
-  return <Story {...props} style={{}}/>
-}
+const _container = { format: 'vertical' }
 
 storiesOf('Segment', module)
   .add('<Segment> default', () => {
     return (
-      <SegmentStory examples='<Segment>{ content }</Segment>'>
+      <Story examples='<Segment>{ content }</Segment>' container={_container}>
         <Segment>
           {makeLipsum(200)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> format', () => {
     const formats = extractOptionsValues(SEGMENT_FORMATS, 0)
     return (
-      <SegmentStory examples={'<Segment format=[ ' + formats + ' ]>{ content }</Segment>'}>
+      <Story examples={'<Segment format=[ ' + formats + ' ]>{ content }</Segment>'} container={_container}>
         <Segment format='raised'>
           <h4>raised segment</h4>
           {makeLipsum(100)}
@@ -46,42 +44,42 @@ storiesOf('Segment', module)
           <h4>vertical segment</h4>
           {makeLipsum(100)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> disabled', () => {
     return (
-      <SegmentStory examples='<Segment disabled>{ content }</Segment>'>
+      <Story examples='<Segment disabled>{ content }</Segment>' container={_container}>
         <Segment disabled>
           <h4>disabled segment</h4>
           {makeLipsum(100)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> loading', () => {
     return (
-      <SegmentStory examples='<Segment loading>{ content }</Segment>'>
+      <Story examples='<Segment loading>{ content }</Segment>' container={_container}>
         <Segment loading>
           <h4>loading segment</h4>
           {makeLipsum(100)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> inverted', () => {
     return (
-      <SegmentStory examples='<Segment inverted>{ content }</Segment>'>
+      <Story examples='<Segment inverted>{ content }</Segment>' container={_container}>
         <Segment inverted>
           <h4>inverted segment</h4>
           {makeLipsum(100)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> attached', () => {
     return (
-      <SegmentStory examples='<Segment attached=[ true | "top" | "bottom" ]>{ content }</Segment>'>
+      <Story examples='<Segment attached=[ true | "top" | "bottom" ]>{ content }</Segment>' container={_container}>
         <Segment attached='top'>
           <h4>top attached segment</h4>
         </Segment>
@@ -94,12 +92,12 @@ storiesOf('Segment', module)
         <Segment attached='bottom'>
           <h4>bottom attached segment</h4>
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> padded', () => {
     return (
-      <SegmentStory examples='<Segment padded=[ true | "very" ]>{ content }</Segment>'>
+      <Story examples='<Segment padded=[ true | "very" ]>{ content }</Segment>' container={_container}>
         <Segment>
           <h4>segment</h4>
           {makeLipsum(200)}
@@ -112,22 +110,22 @@ storiesOf('Segment', module)
           <h4>very padded segment</h4>
           {makeLipsum(200)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> compact', () => {
     return (
-      <SegmentStory examples='<Segment compact>{ content }</Segment>'>
+      <Story examples='<Segment compact>{ content }</Segment>' container={_container}>
         <Segment compact>
           <h4>compact segment</h4>
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
-  .add('<Segment> color', makeColorStory(Segment, { Story: SegmentStory }))
+  .add('<Segment> color', makeColorStory(Segment, { container: _container }))
   .add('<Segment> emphasis', () => {
     return (
-      <SegmentStory examples='<Segment emphasis=[ "secondary" | "tertiary" ]>{ content }</Segment>'>
+      <Story examples='<Segment emphasis=[ "secondary" | "tertiary" ]>{ content }</Segment>' container={_container}>
         <Segment>
           <h4>segment</h4>
           {makeLipsum(200)}
@@ -140,42 +138,42 @@ storiesOf('Segment', module)
           <h4>tertiary segment</h4>
           {makeLipsum(200)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> circular', () => {
     return (
-      <SegmentStory examples='<Segment circular>{ content }</Segment>'>
+      <Story examples='<Segment circular>{ content }</Segment>' container={_container}>
         <Segment circular>
           Circular
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> clearing', () => {
     return (
-      <SegmentStory examples='<Segment clearing>{ content }</Segment>'>
+      <Story examples='<Segment clearing>{ content }</Segment>' container={_container}>
         <Segment clearing>
           <h4 style={{ float: 'right' }}>clearing segment</h4>
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> floated', () => {
     return (
-      <SegmentStory examples='<Segment floated=[ "left" | "right" ]>{ content }</Segment>'>
+      <Story examples='<Segment floated=[ "left" | "right" ]>{ content }</Segment>' container={_container}>
         <Segment floated='left'>
           <h4>left floated segment</h4>
         </Segment>
         <Segment floated='right'>
           <h4>right floated segment</h4>
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> aligned', () => {
     return (
-      <SegmentStory examples='<Segment aligned=[ "left" | "right" | "center" ]>{ content }</Segment>'>
+      <Story examples='<Segment aligned=[ "left" | "right" | "center" ]>{ content }</Segment>' container={_container}>
         <Segment aligned='left'>
           <h4>left aligned segment</h4>
         </Segment>
@@ -185,12 +183,12 @@ storiesOf('Segment', module)
         <Segment aligned='right'>
           <h4>right aligned segment</h4>
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> basic', () => {
     return (
-      <SegmentStory examples='<Segment basic>{ content }</Segment>'>
+      <Story examples='<Segment basic>{ content }</Segment>' container={_container}>
         <Segment basic>
           <h4>basic segment</h4>
           {makeLipsum(100)}
@@ -199,7 +197,7 @@ storiesOf('Segment', module)
           <h4>vertical basic segment</h4>
           {makeLipsum(100)}
         </Segment>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segment> passes .className and other props', makePassesPropsStory(Segment, {
@@ -208,11 +206,11 @@ storiesOf('Segment', module)
       children: 'Red Clickable Segment',
       onClick: action('Segment was clicked'),
     },
-    Story: SegmentStory
+    container: _container
   }))
   .add('<Segments> default', () => {
     return (
-      <SegmentStory examples='<Segments><Segment/></Segments>'>
+      <Story examples='<Segments><Segment/></Segments>' container={_container}>
         <Segments>
           <Segment>
             {makeLipsum(100)}
@@ -224,12 +222,12 @@ storiesOf('Segment', module)
             {makeLipsum(100)}
           </Segment>
         </Segments>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segments> horizontal', () => {
     return (
-      <SegmentStory examples='<Segments horizontal><Segment/></Segments>'>
+      <Story examples='<Segments horizontal><Segment/></Segments>' container={_container}>
         <Segments horizontal>
           <Segment>
             {makeLipsum(100)}
@@ -241,13 +239,13 @@ storiesOf('Segment', module)
             {makeLipsum(100)}
           </Segment>
         </Segments>
-      </SegmentStory>
+      </Story>
     )
   })
   .add('<Segments> format', () => {
     const formats = extractOptionsValues(SEGMENTS_FORMATS)
     return (
-      <SegmentStory examples={'<Segments format=[ ' + formats + ' ]><Segment/></Segments>'}>
+      <Story examples={'<Segments format=[ ' + formats + ' ]><Segment/></Segments>'} container={_container}>
         <Segments format='raised'>
           <Segment>raised segment</Segment>
           <Segment>raised segment</Segment>
@@ -260,6 +258,6 @@ storiesOf('Segment', module)
           <Segment>piled stacked segment</Segment>
           <Segment>piled stacked segment</Segment>
         </Segments>
-      </SegmentStory>
+      </Story>
     )
   })

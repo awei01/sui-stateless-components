@@ -1,4 +1,5 @@
 import without from 'lodash/without'
+import classnames from 'classnames'
 import React from 'react';
 import { makeClassnameFactory, makeComponentWithClasses, OPTIONS } from '../../utils';
 import 'semantic-ui-css/components/list.css';
@@ -52,13 +53,10 @@ export const List = ({
  | Item
  |---------------------------
  */
-export const makeItemClasses = makeClassnameFactory({
-  suffix: 'item'
-})
 export const Item = ({
                       link, href,
                       className, ...rest}) => {
-  const classes = makeItemClasses({}, className)
+  const classes = classnames(className, 'item')
   const passedProps = { ...rest, className: classes }
   let element = 'div'
   if (link || href) {

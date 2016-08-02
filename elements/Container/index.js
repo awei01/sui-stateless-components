@@ -13,7 +13,7 @@ export const makeClasses = makeClassnameFactory({
 })
 
 export const Container = ({ format, aligned, className, ...rest }) => {
-	const classes = makeClasses({ format, aligned });
+	const classes = makeClasses({ format, aligned }, className);
 	return (
 		<div { ...rest } className={ classes }/>
 	);

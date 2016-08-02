@@ -56,7 +56,7 @@ storiesOf('Form', module)
   })
   .add('<Form> inverted', () => {
     return (
-      <Story examples='<Form inverted>{ content }</Form>' style={{ padding: '1em', backgroundColor: '#666' }}>
+      <Story examples='<Form inverted>{ content }</Form>' container={{ inverted: true }}>
         <Form inverted>
           {_makeFields()}
         </Form>

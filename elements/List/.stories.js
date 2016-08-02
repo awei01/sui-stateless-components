@@ -5,7 +5,6 @@ import { makeLipsum, extractOptionsValues, makeSizeStory, makePassesPropsStory }
 import { List, Item, Content, SIZES, Header, Description } from './index'
 import { Icon } from '../../elements/Icon'
 import { Image } from '../../elements/Image'
-import { Segment } from '../../elements/Segment'
 
 const _makeItems = (items, props) => {
   items = items || ['Item 1', 'Item 2', 'Item 3']
@@ -51,12 +50,10 @@ storiesOf('List', module)
   })
   .add('<List> inverted', () => {
     return (
-      <Story examples='<List inverted><Item/></List>'>
-        <Segment inverted>
-          <List inverted>
-            {_makeItems()}
-          </List>
-        </Segment>
+      <Story examples='<List inverted><Item/></List>' container={{ inverted: true }}>
+        <List inverted>
+          {_makeItems()}
+        </List>
       </Story>
     )
   })

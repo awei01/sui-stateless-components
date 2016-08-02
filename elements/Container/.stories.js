@@ -4,24 +4,21 @@ import { Story } from '../../.storybook/components';
 import { makePassesPropsStory, makeAlignStory, makeLipsum } from '../../.storybook/utils';
 import { Container } from '../Container'
 
-const ContainerStory = (props) => {
-  return <Story {...props} style={{ border: null }}/>
-}
-
+const _container = { format: 'vertical' }
 storiesOf('Container', module)
   .add('default', () => {
     return (
-      <ContainerStory examples='<Container/>'>
+      <Story examples='<Container/>' container={_container}>
         <Container>{ makeLipsum(200) }</Container>
-      </ContainerStory>
+      </Story>
     )
   })
   .add('format', () => {
     return (
-      <ContainerStory examples='<Container format=[ "text" | "fluid" ]/>' showToggleNote>
+      <Story examples='<Container format=[ "text" | "fluid" ]/>' container={_container} showToggleNote>
         <Container format='text'>{ makeLipsum(200) }</Container>
         <Container format='fluid'>{ makeLipsum(200) }</Container>
-      </ContainerStory>
+      </Story>
     )
   })
   .add('aligned', makeAlignStory(Container, {
@@ -29,13 +26,13 @@ storiesOf('Container', module)
       children: makeLipsum(300),
       style: { marginBottom: '2em' }
     },
-    Story: ContainerStory
+    container: _container
   }))
   .add('passes .className and other props', makePassesPropsStory(Container, {
     props: {
-      className: 'text',
+      className: 'right aligned',
       children: makeLipsum(200),
       onClick: action('Container was clicked')
     },
-    Story: ContainerStory
+    container: _container
   }))

@@ -7,7 +7,7 @@ import { Icon } from '../../elements/Icon'
 import { Grid, Row, Column } from '../../collections/Grid'
 import { Label } from '../../elements/Label'
 
-const MultiLabel = ({ children, ...rest }) => {
+const MultipleSelectionLabel = ({ children, ...rest }) => {
   return (<Label {...rest} link>{children}<Icon glyph='delete'/></Label>)
 }
 
@@ -108,8 +108,8 @@ storiesOf('Dropdown', module)
             <h4>multiple dropdown</h4>
             <Dropdown fluid selection='multiple'>
               <Icon glyph='dropdown'/>
-              <MultiLabel>Selected 1</MultiLabel>
-              <MultiLabel>Selected 2</MultiLabel>
+              <MultipleSelectionLabel>Selected 1</MultipleSelectionLabel>
+              <MultipleSelectionLabel>Selected 2</MultipleSelectionLabel>
               <Menu>{_makeItems('selection')}</Menu>
             </Dropdown>
           </Column>
@@ -117,8 +117,8 @@ storiesOf('Dropdown', module)
             <h4>active multiple dropdown</h4>
             <Dropdown active fluid selection='multiple'>
               <Icon glyph='dropdown'/>
-              <MultiLabel>Selected 1</MultiLabel>
-              <MultiLabel>Selected 2</MultiLabel>
+              <MultipleSelectionLabel>Selected 1</MultipleSelectionLabel>
+              <MultipleSelectionLabel>Selected 2</MultipleSelectionLabel>
               <Menu>
                 {_makeItems('selection')}
                 <Item filtered>Selected 1</Item>
@@ -139,8 +139,8 @@ storiesOf('Dropdown', module)
             <h4>multiple search dropdown</h4>
             <Dropdown fluid selection='multiple search'>
               <Icon glyph='dropdown'/>
-              <MultiLabel>Selected 1</MultiLabel>
-              <MultiLabel>Selected 2</MultiLabel>
+              <MultipleSelectionLabel>Selected 1</MultipleSelectionLabel>
+              <MultipleSelectionLabel>Selected 2</MultipleSelectionLabel>
               <Search placeholder='Search...'/>
               <Menu>{_makeItems('selection')}</Menu>
             </Dropdown>
@@ -149,8 +149,8 @@ storiesOf('Dropdown', module)
             <h4>active multiple search dropdown</h4>
             <Dropdown active fluid selection='multiple search'>
               <Icon glyph='dropdown'/>
-              <MultiLabel>Selected 1</MultiLabel>
-              <MultiLabel>Selected 2</MultiLabel>
+              <MultipleSelectionLabel>Selected 1</MultipleSelectionLabel>
+              <MultipleSelectionLabel>Selected 2</MultipleSelectionLabel>
               <Search placeholder='Search...'/>
               <Menu>
                 {_makeItems('selection')}

@@ -90,7 +90,7 @@ storiesOf('Header', module)
   .add('<Header> color', makeColorStory(Header))
   .add('<Header> inverted', () => {
     return (
-      <Story examples='<Header inverted>' style={{ backgroundColor: '#666', padding: '1em' }}>
+      <Story examples='<Header inverted>' container={{ inverted: true }}>
         <Header inverted>Inverted Header</Header>
       </Story>
     )
@@ -116,7 +116,10 @@ storiesOf('Header', module)
   .add('<SubHeader>', () => {
     return (
       <Story examples='<Header><SubHeader/></Header>'>
-        <Header>Header<SubHeader>Sub Header</SubHeader></Header>
+        <Header>
+          Header
+          <SubHeader>Sub Header</SubHeader>
+        </Header>
       </Story>
     )
   })

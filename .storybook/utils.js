@@ -51,15 +51,16 @@ export const makeStoryForKeyAndOptions = (Component, defaults, configs = {}) => 
   key = key || defaults.key
   options = options || defaults.options
   const props = configs.props || {}
-  const Story = configs.Story
+  const container = configs.container || {}
   return () => {
     const values = extractOptionsValues(options)
     const storyProps = {
+      container: container,
       examples: `<${Component.name} ${key}=[ ${values} ]/>`,
       notes: 'Hover over element for prop key and value',
       children: makeComponentsForKeyAndOptions(Component, { key, options }, props)
     }
-    return _makeStory(Story, storyProps)
+    return (<Story {...storyProps}/>)
   }
 }
 
@@ -83,7 +84,7 @@ export const makeAlignStory = (Component, configs = {}) => {
   })
 }
 
-export const makePassesPropsStory = (Component, { props, Story }) => {
+export const makePassesPropsStory = (Component, { props, container }) => {
   return () => {
     const propsString = Object.keys(props).reduce((result, key) => {
       if (key === 'children') {
@@ -98,17 +99,11 @@ export const makePassesPropsStory = (Component, { props, Story }) => {
       result += ` ${key}=${value}`
       return result;
     }, '');
-    const storyProps = {
-      examples: `<${Component.name}${propsString}/>`,
-      children: (<Component {...props}/>)
-    }
-    return _makeStory(Story, storyProps)
+    const examples = `<${Component.name}${propsString}/>`
+    const children = (<Component {...props}/>)
+    return (
+      <Story examples={examples} container={container}>{children}</Story>
+    )
   }
 }
 
-const _makeStory = (StoryComponent, props) => {
-  StoryComponent = StoryComponent || Story
-  return (
-    <StoryComponent {...props}/>
-  )
-}

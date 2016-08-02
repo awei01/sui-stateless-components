@@ -1,7 +1,13 @@
 import React from 'react';
+import classnames from 'classnames'
 import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
 import 'semantic-ui-css/components/modal.css';
 
+/*
+ |---------------------------
+ | Modal
+ |---------------------------
+ */
 export const makeClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'modal',
@@ -15,10 +21,24 @@ export const Modal = ({ active, size, className, ...rest }) => {
     <div {...rest} className={ classes }/>
   );
 }
-Modal.defaultProps = {
-  active: true
+
+/*
+ |---------------------------
+ | Content
+ |---------------------------
+ */
+export const Content = ({ image, className, ...rest }) => {
+  const classes = classnames({image}, className, 'content')
+  return (
+    <div {...rest} className={classes}/>
+  )
 }
 
+/*
+ |---------------------------
+ | Supporting components
+ |---------------------------
+ */
 export const Header = makeComponentWithClasses('header')
-export const Content = makeComponentWithClasses('content')
+export const Description = makeComponentWithClasses('description')
 export const Actions = makeComponentWithClasses('actions')

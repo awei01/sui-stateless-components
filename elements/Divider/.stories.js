@@ -38,7 +38,7 @@ storiesOf('Divider', module)
   .add('inverted', () => {
     return (
       <Story examples='<Divider inverted/>'>
-        <div style={{ backgroundColor: '#666', color: 'yellow' }}>
+        <div style={{ backgroundColor: '#666', color: '#ccc' }}>
           <p>{makeLipsum(200)}</p>
           <Divider inverted orientation='horizontal'>inverted horizontal divider</Divider>
           <p>{makeLipsum(200)}</p>

@@ -1,6 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { makeClassnameFactory } from '../../utils';
-
 import 'semantic-ui-css/components/dimmer.css'
 
 export const makeClasses = makeClassnameFactory({

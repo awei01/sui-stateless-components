@@ -75,7 +75,7 @@ export const makeClassnameFactory = ({ prefix, suffix, options }) => {
     }
     const resolved = Object.keys(configs).reduce((result, key) => {
       let value = configs[key];
-      if (value === undefined || value === false) {
+      if (value === undefined) {
         // key not handled by configs, ignore it
         return result
       }
