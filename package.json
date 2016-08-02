@@ -17,7 +17,8 @@
     "storybook": "start-storybook -p 9001 -s ./.storybook/static",
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -s ./.storybook/static -o .out",
-    "lint": "node_modules/.bin/standard"
+    "lint": "node_modules/.bin/standard",
+    "publish": "git push origin master && npm publish && npm run deploy-storybook"
   },
   "author": "",
   "license": "ISC",

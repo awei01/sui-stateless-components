@@ -22,6 +22,9 @@ storiesOf('Popup', module)
             <Column>
               <button {...makeTooltipProps("tooltip here")}>default position</button>
             </Column>
+            <Column>
+              <button {...makeTooltipProps("tooltip here", { inverted: true })}>inverted</button>
+            </Column>
           </Row>
           <Row>
             <Column>
