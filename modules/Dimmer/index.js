@@ -9,19 +9,17 @@ export const makeClasses = makeClassnameFactory({
 })
 export const Dimmer = ({
   active, page, inverted,
-  className, children, ...rest }) => {
+  className, ...rest }) => {
   const classes = makeClasses({ active, page, inverted }, className)
   return (
-    <div {...rest} className={classes}>
-      {
-        children
-        ? (
-            <div className='content'>
-              <div className='center'>{children}</div>
-            </div>
-          )
-        : null
-      }
+    <div {...rest} className={classes}/>
+  )
+}
+
+export const Content = ({ children }) => {
+  return (
+    <div className='content'>
+      <div className='center'>{children}</div>
     </div>
   )
 }
