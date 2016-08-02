@@ -2,7 +2,8 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
-import { Menu, Item, SubMenu, SIZES, COLORS, COUNTS, FORMATS } from './index'
+import { Menu, Item, Submenu, SIZES, COLORS, COUNTS, FORMATS } from './index'
+import { Menu as DropdownMenu } from '../../modules/Dropdown'
 import { Icon } from '../../elements/Icon'
 import { Segment } from '../../elements/Segment'
 
@@ -155,6 +156,16 @@ storiesOf('Menu', module)
       </Story>
     )
   })
+  .add('<Item> right', () => {
+    return (
+      <Story examples='<Menu><Item right/></Menu>'>
+        <Menu>
+          {_makeItems()}
+          <Item right>Right Item</Item>
+        </Menu>
+      </Story>
+    )
+  })
   .add('<Item> down', () => {
     return (
       <Story examples='<Menu><Item down/></Menu>'>
@@ -206,11 +217,23 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  /*
   .add('<Item> dropdown', () => {
+    return (
+      <Story examples='<Menu><Item dropdown/></Menu>'>
+        <Menu>
+          {_makeItems()}
+          <Item dropdown>
+            Dropdown
+            <Icon glyph='dropdown'/>
+            <DropdownMenu active>
+              {_makeItems()}
+            </DropdownMenu>
+          </Item>
+        </Menu>
+      </Story>
+    )
   })
-  .add('<Item> popup', () => {
-  })
+  /*
   .add('<Item> search', () => {
   })
   */
@@ -256,38 +279,38 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  .add('<SubMenu>', () => {
+  .add('<Submenu>', () => {
     return (
-      <Story examples='<Menu><SubMenu>{ content }</SubMenu></Menu>'
-        notes='<SubMenu> can be on same level as <Menu> items'>
+      <Story examples='<Menu><Submenu>{ content }</Submenu></Menu>'
+        notes='<Submenu> can be on same level as <Menu> items'>
         <Menu>
           <Item>Item 1</Item><Item>Item 2</Item>
-          <SubMenu><Item>SubMenu Item 1</Item><Item>SubMenu Item 2</Item></SubMenu>
+          <Submenu><Item>Submenu Item 1</Item><Item>Submenu Item 2</Item></Submenu>
         </Menu>
       </Story>
     )
   })
-  .add('<SubMenu> right', () => {
+  .add('<Submenu> right', () => {
     return (
-      <Story examples='<Menu><SubMenu right>{ content }</SubMenu></Menu>'>
+      <Story examples='<Menu><Submenu right>{ content }</Submenu></Menu>'>
         <Menu>
           <Item>Item 1</Item><Item>Item 2</Item>
-          <SubMenu right><Item>SubMenu Item 1</Item><Item>SubMenu Item 2</Item></SubMenu>
+          <Submenu right><Item>Submenu Item 1</Item><Item>Submenu Item 2</Item></Submenu>
         </Menu>
       </Story>
     )
   })
-  .add('<SubMenu> nested', () => {
+  .add('<Submenu> nested', () => {
     return (
-      <Story examples='<Menu><Item><SubMenu>{ content }</SubMenu></Item></Menu>'
-        notes='<SubMenu> can be within an <Item>. This works best with vertical <Menu>'>
+      <Story examples='<Menu><Item><Submenu>{ content }</Submenu></Item></Menu>'
+        notes='<Submenu> can be within an <Item>. This works best with vertical <Menu>'>
         <Menu vertical>
           <Item>Item 1</Item><Item>Item 2</Item>
           <Item>
-            <SubMenu>
-              <Item header>SubMenu Header</Item>
-              <Item>SubMenu Item 1</Item><Item>SubMenu Item 2</Item>
-            </SubMenu>
+            <Submenu>
+              <Item header>Submenu Header</Item>
+              <Item>Submenu Item 1</Item><Item>Submenu Item 2</Item>
+            </Submenu>
           </Item>
         </Menu>
       </Story>

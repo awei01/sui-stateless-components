@@ -61,12 +61,16 @@ export const makeItemClasses = makeClassnameFactory({
 })
 export const Item = ({
                       fitted, color,
-                      active, down, link, header,
+                      active, right, down, link, header, dropdown,
                       href,
                       className, ...rest }) => {
+  // special handling for dropdown because it should be 'ui dropdown'
+  const isDropdown = {
+    'ui dropdown': dropdown
+  }
   const classes = makeItemClasses({
     fitted, color,
-    active, down, link, header
+    active, right, down, link, header, ...isDropdown
   }, className);
   const passedProps = { ...rest, className: classes }
   let element = 'div'
@@ -83,14 +87,14 @@ Item.propTypes = {
 
 /*
  |---------------------------
- | SubMenu
+ | Submenu
  |---------------------------
  */
-export const makeSubMenuClasses = makeClassnameFactory({
+export const makeSubmenuClasses = makeClassnameFactory({
   suffix: 'menu'
 })
-export const SubMenu = ({ right, className, ...rest }) => {
-  const classes = makeSubMenuClasses({ right }, className)
+export const Submenu = ({ right, className, ...rest }) => {
+  const classes = makeSubmenuClasses({ right }, className)
   return (
     <div {...rest} className={classes}/>
   )
