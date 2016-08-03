@@ -61,8 +61,8 @@ export const Menu = ({
                       active, scrolling, direction,
                       style, className, ...rest }) => {
   style = style || {}
-  const classes = makeMenuClasses({ active, scrolling, direction }, className)
-
+  // active doesn't do anything other than set the style
+  const classes = makeMenuClasses({ scrolling, direction }, className)
   if (active) {
     style.display = 'block'
   }
