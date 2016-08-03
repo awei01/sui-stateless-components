@@ -1,5 +1,5 @@
 import React from 'react';
-//import { makeClassnameFactory } from '../../utils';
+import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
 import 'semantic-ui-css/components/popup.css';
 
 export const POSITIONS = [
@@ -7,6 +7,12 @@ export const POSITIONS = [
   'bottom left', 'bottom center', 'bottom right',
   'left center', 'right center'
 ]
+
+/*
+ |---------------------------
+ | makeTooltipProps
+ |---------------------------
+ */
 export const makeTooltipProps = (content, options) => {
   options = options || {}
   if (!content || typeof content !== 'string') {
@@ -25,3 +31,49 @@ export const makeTooltipProps = (content, options) => {
   }
   return result
 }
+
+/*
+ |---------------------------
+ | Popup
+ |---------------------------
+ */
+export const WIDTHS = ['wide', 'very wide', 'fluid', 'flowing']
+export const SIZES = ['mini', 'tiny', 'small', 'large', 'huge']
+export const makeClasses = makeClassnameFactory({
+  prefix: 'ui',
+  suffix: 'popup',
+  options: {
+    position: POSITIONS,
+    width: WIDTHS,
+    size: SIZES
+  }
+})
+export const Popup = ({
+                      position, width, size,
+                      visible, basic, inverted,
+                      style, className, ...rest }) => {
+  const classes = makeClasses({
+    position, width, size,
+    visible, basic, inverted
+  }, className)
+  // handle flowing style to set right: auto
+  style = style || {}
+  const passedStyle = { ...style }
+  if (width === 'flowing') {
+    passedStyle.right = 'auto'
+  }
+  return (
+    <div {...rest} className={classes} style={passedStyle}/>
+  )
+}
+Popup.defaultProps = {
+  position: 'top center'
+}
+
+/*
+ |---------------------------
+ | Supporting components
+ |---------------------------
+ */
+export const Header = makeComponentWithClasses('header')
+export const Content = makeComponentWithClasses('content')
