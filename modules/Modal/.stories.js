@@ -7,7 +7,7 @@ import { Image } from '../../elements/Image'
 const _container = { format: 'vertical' }
 
 storiesOf('Modal', module)
-  .add('default', () => {
+  .add('<Modal> default', () => {
     return (
       <Story examples='<Modal>[ content ]</Modal>'
         notes='<Modal> is hidden by default' container={_container}>
@@ -17,7 +17,7 @@ storiesOf('Modal', module)
       </Story>
     )
   })
-  .add('active', () => {
+  .add('<Modal> active', () => {
     return (
       <Story examples='<Modal>[ content ]</Modal>' container={_container}>
         <Modal active>
@@ -26,7 +26,7 @@ storiesOf('Modal', module)
       </Story>
     )
   })
-  .add('size="small"', () => {
+  .add('<Modal> size="small"', () => {
     return (
       <Story examples='<Modal size="small"/>' showToggleNote container={_container}>
         <Modal active size="small">
@@ -35,7 +35,7 @@ storiesOf('Modal', module)
       </Story>
     )
   })
-  .add('size="large"', () => {
+  .add('<Modal> size="large"', () => {
     return (
       <Story examples='<Modal size="large"/>' showToggleNote container={_container}>
         <Modal active size="large">
@@ -44,7 +44,7 @@ storiesOf('Modal', module)
       </Story>
     )
   })
-  .add('size="fullscreen"', () => {
+  .add('<Modal> size="fullscreen"', () => {
     return (
       <Story examples='<Modal size="fullscreen"/>' showToggleNote container={_container}>
         <Modal active size="fullscreen">
@@ -53,7 +53,7 @@ storiesOf('Modal', module)
       </Story>
     )
   })
-  .add('passes .className and other props', () => {
+  .add('<Modal> passes .className and other props', () => {
     return (
       <Story examples='<Modal className="small" onClick={function}/>' showToggleNote container={_container}>
         <Modal active className="small" onClick={ action('Modal was clicked')}>
