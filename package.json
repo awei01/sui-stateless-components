@@ -1,6 +1,6 @@
 {
   "name": "sui-stateless-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Dumb, stateless semantic-ui components",
   "keywords": [
     "react",
@@ -18,7 +18,7 @@
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -s ./.storybook/static -o .out",
     "lint": "node_modules/.bin/standard",
-    "publish": "git push origin master && npm publish && npm run deploy-storybook"
+    "publish-all": "git push origin master && npm publish && npm run deploy-storybook"
   },
   "author": "",
   "license": "ISC",
@@ -28,13 +28,17 @@
     "babel-eslint": "^6.1.2",
     "css-loader": "^0.23.1",
     "standard": "^7.1.2",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "react": "^15.2.1",
+    "semantic-ui-css": "^2.2.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "lodash": "^4.14.1",
-    "react": "^15.2.1",
-    "semantic-ui-css": "^2.2.2"
+    "lodash": "^4.14.1"
+  },
+  "peerDependencies": {
+    "react": "~15.0",
+    "semantic-ui-css": "~2.0"
   },
   "standard": {
     "parser": "babel-eslint"
