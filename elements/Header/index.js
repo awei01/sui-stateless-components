@@ -41,4 +41,4 @@ export const Header = ({
  |---------------------------
  */
 export const Content = makeComponentWithClasses('content')
-export const SubHeader = makeComponentWithClasses('sub header')
+export const Subheader = makeComponentWithClasses('sub header')

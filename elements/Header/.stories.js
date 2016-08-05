@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
 import { makeSizeStory, makeColorStory, makeAlignStory, makePassesPropsStory } from '../../.storybook/utils';
-import { Header, SIZES, Content, SubHeader } from '../Header'
+import { Header, SIZES, Content, Subheader } from '../Header'
 import { Icon } from '../../elements/Icon'
 import { Image } from '../../elements/Image'
 import { Segment } from '../../elements/Segment'
@@ -107,18 +107,18 @@ storiesOf('Header', module)
           <Icon glyph='user'/>
           <Content>
             Header
-            <SubHeader>Sub Header</SubHeader>
+            <Subheader>Sub Header</Subheader>
           </Content>
         </Header>
       </Story>
     )
   })
-  .add('<SubHeader>', () => {
+  .add('<Subheader>', () => {
     return (
-      <Story examples='<Header><SubHeader/></Header>'>
+      <Story examples='<Header><Subheader/></Header>'>
         <Header>
           Header
-          <SubHeader>Sub Header</SubHeader>
+          <Subheader>Sub Header</Subheader>
         </Header>
       </Story>
     )
