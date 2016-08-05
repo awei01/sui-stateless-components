@@ -94,8 +94,6 @@ export const makeClassnameFactory = ({ prefix, suffix, options }) => {
         }
         key = makeKey(value);
         value = true;
-      } else {
-        value = true;
       }
       result[key] = value;
       return result;
