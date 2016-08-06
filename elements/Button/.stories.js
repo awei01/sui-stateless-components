@@ -15,6 +15,14 @@ storiesOf('Button', module)
       </Story>
     )
   })
+  .add('<Button> href', () => {
+    return (
+      <Story examples='<Button href={ url }>{ content }</Button>'
+          notes='If [href] is passed, an <a> tag will be rendered'>
+        <Button href='http://www.google.com' target='_blank'>href button</Button>
+      </Story>
+    )
+  })
   .add('<Button> emphasis', () => {
     return (
       <Story examples='<Button emphasis=[ "primary" | "secondary" ]>'>

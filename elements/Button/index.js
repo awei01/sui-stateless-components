@@ -44,28 +44,32 @@ export const makeButtonClasses = makeClassnameFactory({
   }
 });
 export const Button = ({
-                        type,   // not SUI option
+                        type, href,  // not SUI options
                         emphasis, animated, labeled, social, size, floated, color, toggle, hint, attached,
                         basic, inverted, active, disabled, loading, icon, fluid, circular, compact,
                         className, ...rest }) => {
 
   let element = 'button'
-  const passedProps = { ...rest, type, disabled }
+  const passedProps = { ...rest, type }
 
   if (animated || (labeled && !icon)) {
     // this is animated or labeled (but not a labeled icon) so use a div
     // if this is a labeled icon button, we can just use the button tag
     passedProps.className = makeButtonClasses({ labeled, animated, disabled }, className)
     passedProps.tabIndex = 0
-    delete passedProps.disabled
     element = 'div'
   } else {
     passedProps.className = makeButtonClasses({
       emphasis, labeled, social, size, floated, color, toggle, hint, attached,
-      basic, inverted, active, loading, icon, fluid, circular, compact
-      // we're going to handle disabled by setting attribute,
-      // otherwise ENTER can still submit on form
+      basic, inverted, active, disabled, loading, icon, fluid, circular, compact
     }, className)
+    // need to actually disable button otherwise ENTER on forms will still work
+    passedProps.disabled = disabled
+    if (href) {
+      // this is an <a> tag styled as button
+      passedProps.href = href
+      element = 'a'
+    }
   }
 
   return React.createElement(element, passedProps)
