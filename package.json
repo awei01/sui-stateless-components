@@ -1,6 +1,6 @@
 {
   "name": "sui-stateless-components",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Dumb, stateless semantic-ui components",
   "keywords": [
     "react",
@@ -37,8 +37,8 @@
     "lodash": "^4.14.1"
   },
   "peerDependencies": {
-    "react": "~15.0",
-    "semantic-ui-css": "~2.0"
+    "react": "^15.0",
+    "semantic-ui-css": "^2.0"
   },
   "standard": {
     "parser": "babel-eslint"
