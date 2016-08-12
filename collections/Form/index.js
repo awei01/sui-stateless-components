@@ -91,7 +91,7 @@ export const Field = ({
   )
 }
 
-
+// checkbox and radio helpers
 const CheckboxOrRadio = ({
                           id, label, type,
                           required, disabled, error,
@@ -115,6 +115,11 @@ CheckboxOrRadio.propTypes = {
   label: PropTypes.string.isRequired
 }
 
+/*
+ |---------------------------
+ | Checkbox
+ |---------------------------
+ */
 export const makeCheckboxClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'checkbox',
@@ -128,6 +133,12 @@ export const Checkbox = ({ format, className, ...rest }) => {
     <CheckboxOrRadio {...rest} type='checkbox' className={classes}/>
   )
 }
+
+/*
+ |---------------------------
+ | Radio
+ |---------------------------
+ */
 export const makeRadioClasses = makeClassnameFactory({
   prefix: 'ui',
   suffix: 'radio checkbox',
