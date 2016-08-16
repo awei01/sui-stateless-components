@@ -23,18 +23,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@kadira/storybook": "^1.41.0",
-    "@kadira/storybook-deployer": "^1.0.0",
+    "@kadira/storybook": "^2.3.0",
+    "@kadira/storybook-deployer": "^1.1.0",
     "babel-eslint": "^6.1.2",
     "css-loader": "^0.23.1",
     "standard": "^7.1.2",
     "style-loader": "^0.13.1",
-    "react": "^15.2.1",
+    "react": "^15.3.0",
     "semantic-ui-css": "^2.2.2"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "lodash": "^4.14.1"
+    "lodash": "^4.15.0"
   },
   "peerDependencies": {
     "react": "^15.0",
