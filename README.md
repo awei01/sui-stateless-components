@@ -6,11 +6,11 @@
 * File names and `export` statements may change.
 * Contributions welcomed
 
-## Requirements
-* Uses es6 `import` statements. Currently no way to include directly in browser so you have to use webpack/babel or similar build system. PR welcome.
-
 ## Demo/Docs
 * `storybook` demonstration and documentation here: https://awei01.github.io/sui-stateless-components.
+
+## Requirements
+* Uses es6 `import` statements. Currently no way to include directly in browser so you have to use webpack/babel or similar build system. PR welcome.
 
 ## Usage
 * install from npm `npm install -S sui-stateless-components`
