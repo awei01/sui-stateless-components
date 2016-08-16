@@ -5,6 +5,7 @@ npm-debug.log
 # Storybook
 storybook-static
 .out
+out*
 
 # System
 .DS_Store

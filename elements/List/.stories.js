@@ -174,15 +174,15 @@ storiesOf('List', module)
       <Story examples='<List><Item><Image/><Content/></Item></List>'>
         <List>
           <Item>
-            <Image avatar src='/images/lindsay.png'/>
+            <Image avatar src='images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
           <Item>
-            <Image avatar src='/images/lindsay.png'/>
+            <Image avatar src='images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
           <Item>
-            <Image avatar src='/images/lindsay.png'/>
+            <Image avatar src='images/lindsay.png'/>
             <Content>item content here</Content>
           </Item>
         </List>

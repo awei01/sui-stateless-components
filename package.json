@@ -14,9 +14,9 @@
     "url": "git+https://github.com/awei01/sui-stateless-components.git"
   },
   "scripts": {
-    "storybook": "start-storybook -p 9001 -s ./.storybook/static",
+    "storybook": "start-storybook -p 9001 -s ./.storybook/assets",
     "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -s ./.storybook/static -o .out",
+    "build-storybook": "build-storybook -s ./.storybook/assets -o .out",
     "lint": "node_modules/.bin/standard",
     "publish-all": "git push origin master && npm publish && npm run deploy-storybook"
   },
@@ -27,10 +27,11 @@
     "@kadira/storybook-deployer": "^1.1.0",
     "babel-eslint": "^6.1.2",
     "css-loader": "^0.23.1",
-    "standard": "^7.1.2",
-    "style-loader": "^0.13.1",
     "react": "^15.3.0",
-    "semantic-ui-css": "^2.2.2"
+    "semantic-ui-css": "^2.2.2",
+    "standard": "^7.1.2",
+    "string-replace-webpack-plugin": "0.0.3",
+    "style-loader": "^0.13.1"
   },
   "dependencies": {
     "classnames": "^2.2.5",

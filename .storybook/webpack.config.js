@@ -1,3 +1,5 @@
+var StringReplacePlugin = require('string-replace-webpack-plugin')
+
 module.exports = {
   module: {
     loaders: [
@@ -7,12 +9,26 @@ module.exports = {
         exclude: /node_modules/,
         loaders: ['style', 'css?modules']
       },
+      // ignore css url() syntax
       {
-        // this ensures url() syntax does not get processed
         test: /\.css$/,
         include: /node_modules/,
         loaders: ['style', 'css?-url']
+      },
+      // fix url() to use correct relative paths
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: StringReplacePlugin.replace({
+          replacements: [{
+            pattern: /url\(".\/..\/themes/g,
+            replacement: function(match, p1, offset, string) {
+              return 'url("./themes'
+            }
+          }]
+        })
       }
     ]
-  }
+  },
+  plugins: [new StringReplacePlugin()]
 }

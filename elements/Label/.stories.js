@@ -18,7 +18,7 @@ storiesOf('Label', module)
     return (
       <Story examples='<Label image>{ content }</Label>'>
         <Label image>
-          <Image src='/images/lindsay.png'/>
+          <Image src='images/lindsay.png'/>
           image label
         </Label>
       </Story>
