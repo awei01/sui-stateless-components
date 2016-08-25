@@ -133,6 +133,29 @@ export const Category = ({ name, children, className, ...rest }) => {
 
 /*
  |---------------------------
+ | Message
+ |---------------------------
+ */
+export const makeMessageClasses = makeClassnameFactory({
+  suffix: 'message'
+})
+export const Message = ({ header, description, className, ...rest }) => {
+  const classes = makeMessageClasses({}, className)
+  return (
+    <div {...rest} className={classes}>
+      { header
+        ? (<div className='header'>{header}</div>)
+        : null
+      }
+      { description
+        ? (<div className='description'>{description}</div>)
+        : null
+      }
+    </div>
+  )
+}
+/*
+ |---------------------------
  | Supporting components
  |---------------------------
  */
@@ -143,3 +166,5 @@ export const Description = makeComponentWithClasses('description')
 export const Price = makeComponentWithClasses('price')
 export const Action = makeComponentWithClasses('action', 'a')
 export const Name = makeComponentWithClasses('name')
+export const Icon = makeComponentWithClasses('search icon', 'i')
+
