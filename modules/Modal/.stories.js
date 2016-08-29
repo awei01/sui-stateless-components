@@ -1,8 +1,10 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
+import { makeLipsum } from '../../.storybook/utils'
 import { Modal, Header, Content, Actions, Description } from './index'
 import { Image } from '../../elements/Image'
+import { Dimmer } from '../../modules/Dimmer'
 
 const _container = { format: 'vertical' }
 
@@ -50,6 +52,30 @@ storiesOf('Modal', module)
         <Modal active size="fullscreen">
           <Content>fullscreen modal</Content>
         </Modal>
+      </Story>
+    )
+  })
+  .add('<Modal> scrolling', () => {
+    return (
+      <Story examples='<Modal scrolling/>' showToggleNote container={_container}
+          notes={['<Modal scrolling> should be wrapped in <Dimmer modals>',
+            '<Dimmer modals> should be immediate child of an element with className="scrolling dimmable dimmed"']}>
+        <div className='scrolling dimmable dimmed' style={{height: '1000px'}}>
+          <Dimmer page active modals>
+            <Modal active scrolling>
+              <Content>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+                <p>{makeLipsum()}</p>
+              </Content>
+            </Modal>
+          </Dimmer>
+
+        </div>
       </Story>
     )
   })

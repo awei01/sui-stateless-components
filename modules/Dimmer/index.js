@@ -7,9 +7,9 @@ export const makeClasses = makeClassnameFactory({
   suffix: 'dimmer'
 })
 export const Dimmer = ({
-  active, page, inverted,
+  active, page, inverted, modals,
   className, ...rest }) => {
-  const classes = makeClasses({ active, page, inverted }, className)
+  const classes = makeClasses({ active, page, modals, inverted }, className)
   return (
     <div {...rest} className={classes}/>
   )

@@ -15,8 +15,8 @@ export const makeClasses = makeClassnameFactory({
     size: ['fullscreen', 'small', 'large']
   }
 })
-export const Modal = ({ active, size, className, ...rest }) => {
-  const classes = makeClasses({ active, size }, className);
+export const Modal = ({ active, size, scrolling, className, ...rest }) => {
+  const classes = makeClasses({ active, size, scrolling }, className);
   return (
     <div {...rest} className={ classes }/>
   );
