@@ -105,6 +105,7 @@ const CheckboxOrRadio = ({
             it seems like SUI doesn't do this for us
           - we CANNOT wrap <label><input/></label> nor can we put <label/> before <input/>
             because SUI does some funky stuff with CSS to cover up the actual input
+          - we ALWAYS render label, otherwise SUI can't display properly
         */}
         <label htmlFor={id} style={id && { cursor: 'pointer' }}>{label}</label>
       </div>
@@ -112,7 +113,7 @@ const CheckboxOrRadio = ({
   )
 }
 CheckboxOrRadio.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string
 }
 
 /*
