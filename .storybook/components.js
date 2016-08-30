@@ -8,7 +8,7 @@ export const Story = ({ title, examples, notes, showToggleNote, container, child
     notes = []
   }
   if (showToggleNote) {
-    notes = ['Toggle full screen mode to get a better a idea of how this behaves.', ...notes]
+    notes = ['Toggle full screen mode to get a better idea of how this behaves.', ...notes]
   }
   container = container || {}
   return (

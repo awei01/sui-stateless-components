@@ -18,6 +18,7 @@ function loadStories() {
   require('../collections/Grid/.stories')
   require('../collections/Menu/.stories')
   require('../collections/Message/.stories')
+  require('../collections/Table/.stories')
 
   require('../modules/Dimmer/.stories')
   require('../modules/Dropdown/.stories')
