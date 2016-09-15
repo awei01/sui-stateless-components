@@ -93,23 +93,20 @@ export const Field = ({
 
 // checkbox and radio helpers
 const CheckboxOrRadio = ({
-                          id, label, type,
-                          required, disabled, error,
+                          id, label, type, disabled,
                           className, ...rest }) => {
   return (
-    <Field required={required} disabled={disabled} error={error}>
-      <div className={className}>
-        <input {...rest} id={id} type={type} disabled={disabled}/>
-        {/*
-          - we're manually adding in the { cursor: pointer } when [id] is present
-            it seems like SUI doesn't do this for us
-          - we CANNOT wrap <label><input/></label> nor can we put <label/> before <input/>
-            because SUI does some funky stuff with CSS to cover up the actual input
-          - we ALWAYS render label, otherwise SUI can't display properly
-        */}
-        <label htmlFor={id} style={id && { cursor: 'pointer' }}>{label}</label>
-      </div>
-    </Field>
+    <div className={className}>
+      <input {...rest} id={id} type={type} disabled={disabled}/>
+      {/*
+        - we're manually adding in the { cursor: pointer } when [id] is present
+          it seems like SUI doesn't do this for us
+        - we CANNOT wrap <label><input/></label> nor can we put <label/> before <input/>
+          because SUI does some funky stuff with CSS to cover up the actual input
+        - we ALWAYS render label, otherwise SUI can't display properly
+      */}
+      <label htmlFor={id} style={id && { cursor: 'pointer' }}>{label}</label>
+    </div>
   )
 }
 CheckboxOrRadio.propTypes = {

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { makeClassnameFactory, OPTIONS } from '../../utils';
+import { makeClassnameFactory, OPTIONS, makeOptionForValuesAndSuffix } from '../../utils';
 import 'semantic-ui-css/components/table.css'
 
 /*
@@ -33,15 +33,17 @@ export const makeTableClasses = makeClassnameFactory({
       makeKey: () => {
         return 'single line'
       }
-    }
+    },
+    compact: makeOptionForValuesAndSuffix([true, 'very'], 'compact'),
+    size: ['small', 'large']
   }
 })
 export const Table = ({
-                      stackable, singleLine,
+                      stackable, singleLine, compact, size,
                       definition, structured, fixed,
                       className, ...rest }) => {
   const classes = makeTableClasses({
-    stackable, singleLine,
+    stackable, singleLine, compact, size,
     definition, structured, fixed
   }, className)
   return (
