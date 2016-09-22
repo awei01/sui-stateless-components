@@ -3,6 +3,7 @@ import '../styles.css';
 
 function loadStories() {
   require('../elements/Button/.stories')
+  return
   require('../elements/Container/.stories')
   require('../elements/Divider/.stories')
   require('../elements/Header/.stories')
@@ -19,6 +20,8 @@ function loadStories() {
   require('../collections/Menu/.stories')
   require('../collections/Message/.stories')
   require('../collections/Table/.stories')
+
+  require ('../views/Card/.stories')
 
   require('../modules/Dimmer/.stories')
   require('../modules/Dropdown/.stories')

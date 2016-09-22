@@ -1,5 +1,5 @@
 import React from 'react'
-import classnames from 'classnames';
+import classnames from 'classnames'
 
 export const COUNTS = [
   'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
@@ -24,7 +24,7 @@ const _makeAlignKey = (value) => {
 }
 
 const _useValueAsKey = (value) => {
-  return value;
+  return value
 }
 const _useSuffixedStringValueAsKey = (suffix, value) => {
   if (typeof value !== 'string') {
@@ -66,40 +66,41 @@ export const OPTIONS = {
 }
 
 export const makeClassnameFactory = ({ prefix, suffix, options }) => {
-  options = options || {};
-  return (configs, className) => {
+  options = options || {}
+  const factory = (configs, className) => {
     if (!configs || typeof configs === 'string') {
       // configs and className could both be undefined or falsy
-      className = configs;
-      configs = {};
+      className = configs
+      configs = {}
     }
     const resolved = Object.keys(configs).reduce((result, key) => {
-      let value = configs[key];
+      let value = configs[key]
       if (value === undefined) {
         // key not handled by configs, ignore it
         return result
       }
-      const option = options[key];
+      const option = options[key]
       if (option) {
-        let values;
+        let values
         if (Array.isArray(option)) {
-          values = option;
+          values = option
         } else {
-          values = option.values;
+          values = option.values
         }
-        const makeKey = option.makeKey || _useValueAsKey;
+        const makeKey = option.makeKey || _useValueAsKey
 
         if (values.indexOf(value) === -1) {
           throw new Error(`The value [${value}] provided for [${key}] should be one of [${values}]`)
         }
-        key = makeKey(value);
-        value = true;
+        key = makeKey(value)
+        value = true
       }
-      result[key] = value;
-      return result;
-    }, {});
-    return classnames(prefix, resolved, className, suffix);
+      result[key] = value
+      return result
+    }, {})
+    return classnames(prefix, resolved, className, suffix)
   }
+  return factory
 }
 
 export const makeComponentWithClasses = (classes, element) => {

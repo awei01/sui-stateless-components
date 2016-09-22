@@ -1,20 +1,19 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
-import { Button, SOCIALS, BUTTON_ATTACHEDS, Buttons, BUTTONS_ATTACHEDS, COUNTS } from './index'
-import { Label } from '../../elements/Label'
-import { Icon } from '../../elements/Icon'
-import { Segment } from '../../elements/Segment'
+import { Story, Example } from '../../.storybook/comps'
+import { Button, makeButtonProps } from './index'
 
 storiesOf('Button', module)
-  .add('<Button> default', () => {
+  .add('<Button>', () => {
     return (
-      <Story examples='<Button>{ content }</Button>'>
-        <Button>some button</Button>
+      <Story title='<Button>'>
+        <Example>
+          <Button>this is a button</Button>
+        </Example>
       </Story>
     )
   })
+  /*
   .add('<Button> href', () => {
     return (
       <Story examples='<Button href={ url }>{ content }</Button>'
@@ -286,3 +285,4 @@ storiesOf('Button', module)
     onClick: action('Buttons was clicked'),
     children: [<Button>button 1</Button>, <Button>button 2</Button>]
   }}))
+*/
