@@ -11,6 +11,7 @@ export class Story extends Component {
     const { title, children } = this.props
     return (
       <div>
+        <a name='top'></a>
         <div style={{background: '#ccc'}}>
           <h3>sui-stateless-components</h3>
         </div>
@@ -25,7 +26,8 @@ export class Story extends Component {
 
 const StorySegment = ({ title, children }) => {
   return (
-    <div style={{ marginTop: '2em', borderBottom: '1px solid #ccc' }}>
+    <div id={title} style={{ marginTop: '2em', borderBottom: '1px solid #ccc' }}>
+      <a style={{ float: 'right' }} href='#top'>back to top</a>
       { title ? (<h2>{title}</h2>) : null }
       {children}
     </div>
@@ -83,7 +85,7 @@ export const Api = ({ options, children }) => {
             }
             return (
               <tr key={index}>
-                <th style={{ textAlign: 'left', verticalAlign: 'top' }}>{key}</th>
+                <th style={{ textAlign: 'left', verticalAlign: 'top' }}><a href={'#' + key}>{key}</a></th>
                 <td style={{ fontWeight: 'bold', color: 'red', paddingRight: '.5em' }}>{ isRequired ? '*' : ' ' }</td>
                 <td>{values}</td>
               </tr>
@@ -106,13 +108,13 @@ const _extractJsx = (children) => {
 }
 export class Example extends Component {
   render () {
-    let { children, code, ...rest } = this.props
+    let { children, code } = this.props
     code = code || _extractJsx(children)
     return (
       <div>
-        <div {...rest}>{children}</div>
+        <div>{children}</div>
         <br style={{ clear: 'both' }} />
-        <div style={{ border: '1px solid #eee', padding: '1em', marginBottom: '1em', position: 'relative' }}>
+        <div style={{ background: '#333', color: '#eee', marginBottom: '1em', position: 'relative' }}>
           <div style={{ padding: '.25em .5em', background: '#666', color: '#fff', position: 'absolute', top: 0, right: 0 }}>
             Code
           </div>

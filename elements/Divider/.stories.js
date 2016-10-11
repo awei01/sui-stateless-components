@@ -1,92 +1,77 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeLipsum, makePassesPropsStory } from '../../.storybook/utils';
-import { Story } from '../../.storybook/components';
-import { Divider } from './index'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Container, containerOptions } from '../Container'
+import Divider, { dividerOptions } from './index'
 import { Grid, Column } from '../../collections/Grid'
 
 storiesOf('Divider', module)
-  .add('default', () => {
+  .add('<Divider />', () => {
     return (
-      <Story examples='<Divider/>'>
-        <p>{makeLipsum(200)}</p>
-        <Divider/>
-        <p>{makeLipsum(200)}</p>
-        <Divider/>
-        <p>{makeLipsum(200)}</p>
-      </Story>
-    )
-  })
-  .add('orientation', () => {
-    return (
-      <Story examples='<Divider orientation=[ "horizontal" | "vertical" ]>{content}</Divider>'
-        notes='The element containing a vertical <Divider> must have { position: "relative" }'>
-        <Grid relaxed='very' columns='three' style={{ position: 'relative' }}>
-          <Column>{makeLipsum(200)}</Column>
-          <Divider orientation='vertical'>or</Divider>
-          <Column>{makeLipsum(200)}</Column>
-          <Divider orientation='vertical'>and</Divider>
-          <Column>{makeLipsum(200)}</Column>
-        </Grid>
-        <Divider orientation='horizontal'>horizontal divider</Divider>
-        <p>{makeLipsum(200)}</p>
-        <Divider orientation='horizontal'>horizontal divider</Divider>
-        <p>{makeLipsum(200)}</p>
-      </Story>
-    )
-  })
-  .add('inverted', () => {
-    return (
-      <Story examples='<Divider inverted/>'>
-        <div style={{ backgroundColor: '#666', color: '#ccc' }}>
-          <p>{makeLipsum(200)}</p>
-          <Divider inverted orientation='horizontal'>inverted horizontal divider</Divider>
-          <p>{makeLipsum(200)}</p>
-          <Divider inverted orientation='horizontal'>inverted horizontal divider</Divider>
-          <p>{makeLipsum(200)}</p>
-        </div>
-      </Story>
-    )
-  })
-  .add('margin', () => {
-    return (
-      <Story examples='<Divider margin=[ "fitted" | "section" ]/>'>
-        <div>{makeLipsum(200)}</div>
-        <Divider margin='fitted'/>
-        <div>{makeLipsum(200)}</div>
-        <Divider margin='section'/>
-        <div>{makeLipsum(200)}</div>
-      </Story>
-    )
-  })
-  .add('hidden', () => {
-    return (
-      <Story examples='<Divider hidden/>'>
-        <div>{makeLipsum(200)}</div>
-        <Divider hidden/>
-        <div>{makeLipsum(200)}</div>
-        <Divider hidden/>
-        <div>{makeLipsum(200)}</div>
-      </Story>
-    )
-  })
-  .add('clearing', () => {
-    return (
-      <Story examples='<Divider clearing/>'>
-        <div style={{ float: 'right' }}>{makeLipsum(200)}</div>
-        <Divider clearing/>
-        <div style={{ float: 'left' }}>{makeLipsum(200)}</div>
-        <Divider clearing/>
-        <div>{makeLipsum(200)}</div>
-      </Story>
-    )
-  })
-  .add('passes .className and other props', () => {
-    return (
-      <Story examples='<Divider className="section" onClick={ function }/>'>
-        <div>The divider below is a section divider and clickable</div>
-        <Divider className='section' onClick={action('Divider was clicked')}/>
-        <div>{makeLipsum(200)}</div>
+      <Story title='<Divider />'>
+        <Api options={dividerOptions}>
+          import Divider from 'sui-stateless-components/elements/Divider'
+        </Api>
+        <Story.Segment>
+          <Example>
+            <div>
+              <p>{makeLipsum(200)}</p>
+              <Divider />
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='orientation'>
+          <p>The element containing a vertical {'<Divider />'} must have [position="relative"]</p>
+          <Example>
+            <Grid columns='two' style={{ position: 'relative' }}>
+              <Column>{makeLipsum(200)}</Column>
+              <Divider orientation='vertical'>Or</Divider>
+              <Column>{makeLipsum(200)}</Column>
+            </Grid>
+          </Example>
+          <Example>
+            <div>
+              <p>{makeLipsum(200)}</p>
+              <Divider orientation='horizontal'>Or</Divider>
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <div style={{ background: '#000', padding: '1em', color: '#fff' }}>
+              <p>{makeLipsum(200)}</p>
+              <Divider inverted />
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='margin'>
+          <Example>
+            <div>
+              <p>{makeLipsum(200)}</p>
+              <Divider margin='fitted' />
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+          <Example>
+            <div>
+              <p>{makeLipsum(200)}</p>
+              <Divider margin='section' />
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='clearing'>
+          <Example>
+            <div>
+              <div style={{ float: 'right' }}>right floated</div>
+              <Divider clearing />
+              <p>{makeLipsum(200)}</p>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

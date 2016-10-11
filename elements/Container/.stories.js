@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import { Container, containerOptions } from '../Container'
+import Container, { containerOptions } from '../Container'
 
 const _path = 'sui-stateless-components/elements/Container'
 

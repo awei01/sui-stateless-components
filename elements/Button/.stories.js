@@ -76,8 +76,10 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='inverted'>
-          <Example style={{background: '#000'}}>
-            <Button inverted>inverted</Button>
+          <Example>
+            <div style={{ background: '#000', padding: '1em' }}>
+              <Button inverted>inverted</Button>
+            </div>
           </Example>
         </Story.Segment>
         <Story.Segment title='active'>

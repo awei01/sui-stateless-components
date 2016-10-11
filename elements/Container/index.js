@@ -17,7 +17,7 @@ export const containerOptions = {
 }
 
 const _containerFactory = makeFactory(containerOptions)
-export const Container = (props) => {
+const Container = (props) => {
   const [classes, rest] = _containerFactory.extractClassesAndProps(props)
   const className= classnames('ui', classes, 'container')
   return (
@@ -25,3 +25,5 @@ export const Container = (props) => {
   );
 }
 Container.propTypes = { ..._containerFactory.propTypes }
+
+export default Container

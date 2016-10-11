@@ -1,25 +1,21 @@
 import React, { PropTypes } from 'react';
-import { makeClassnameFactory } from '../../utils';
+import { makeSuffixedClass, makeFactory, enums } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/divider.css';
 
-export const makeClasses = makeClassnameFactory({
-  prefix: "ui",
-  suffix: "divider",
-  options: {
-    orientation: ['horizontal', 'vertical'],
-    margin: ['fitted', 'section']
-  }
-});
-
-export const Divider = ({
-                        orientation, margin,
-                        inverted, hidden, clearing,
-                        className, ...rest }) => {
-  const classes = makeClasses({
-    orientation, margin,
-    inverted, hidden, clearing
-  }, className)
+export const dividerOptions = {
+  orientation: ['vertical', 'horizontal'],
+  inverted: true,
+  margin: ['fitted', 'section'],
+  clearing: true
+}
+const _dividerFactory = makeFactory(dividerOptions)
+const Divider = (props) => {
+  const [classes, rest] = _dividerFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'divider')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className}/>
   )
 }
+Divider.propTypes = { ..._dividerFactory.propTypes }
+export default Divider
