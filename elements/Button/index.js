@@ -1,77 +1,7 @@
 import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/button.css'
-
-function useValueAsClass (value) {
-  return value
-}
-function makeSuffixedClass (suffix, value) {
-  if (typeof value !== 'string') {
-    value = ''
-  }
-  return `${value} ${suffix}`
-}
-
-function extractClassesAndProps (props = {}) {
-  const classes = {}
-  const rest = {}
-  const options = this.options
-  const makeClassnames = this.makeClassnames
-  Object.keys(props).forEach((key) => {
-    const value = props[key]
-    if (!options[key]) {
-      // this prop does not exist in the options, let component handle it
-      rest[key] = value
-      return
-    }
-    if (typeof value === 'undefined') {
-      // the prop is set to undefined, completely skip it
-      return
-    }
-    // we got here so this prop should be put into classes
-    const makeClassname = makeClassnames[key]
-    const className = makeClassname ? makeClassname(value) : key
-    classes[className] = true
-  })
-  return [classes, rest]
-}
-
-function makeFactory (options) {
-  const factory = Object.keys(options).reduce((result, key) => {
-    const definition = options[key]
-    // define defaults
-    let values = true
-    let makeClassname
-    let isRequired
-    if (Array.isArray(definition)) {
-      values = definition
-    } else if (typeof definition === 'object') {
-      // we're passing an object as the option definition
-      values = definition.values || values
-      makeClassname = definition.makeClassname || makeClassname
-      isRequired = definition.isRequired
-    }
-
-    // make the propTypes
-    let propType = values === true ? PropTypes.bool : PropTypes.oneOf(values)
-    if (isRequired) {
-      propType = propType.isRequired
-    }
-    result.propTypes[key] = propType
-    result.options[key] = values
-    // when makeClassname is set, use it
-    // if values === true, don't pass a method
-    // otherwise, use the default useValueAsClass
-    result.makeClassnames[key] = makeClassname || (values === true ? null : useValueAsClass)
-    return result
-  }, {
-    propTypes: {},
-    options: {},
-    makeClassnames: {}
-  })
-  factory.extractClassesAndProps = extractClassesAndProps.bind(factory)
-  return factory
-}
 
 /*
  |-----------------------
@@ -79,8 +9,7 @@ function makeFactory (options) {
  |-----------------------
  */
 const makeAttachedClassname = makeSuffixedClass.bind(null, 'attached')
-const _colors = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black']
-const _sizes = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
+
 /*
  |-----------------------
  | Button
@@ -103,12 +32,12 @@ export const buttonOptions = {
   disabled: true,
   loading: true,
   social: ['facebook', 'twitter', 'google plus', 'vk', 'linkedin', 'instagram', 'youtube'],
-  size: _sizes,
+  size: enums.sizes,
   floated: {
     values: ['left', 'right'],
     makeClassname: makeSuffixedClass.bind(null, 'floated')
   },
-  color: _colors,
+  color: enums.colors,
   compact: true,
   toggle: {
     values: [true, 'active'],
@@ -134,6 +63,10 @@ const Button = (props) => {
     case !!props.labeled :
     case props.attached === 'top' || props.attached === 'bottom' :
       element = 'div'
+      break;
+    case !!props.href :
+      element = 'a'
+      break;
   }
   return React.createElement(element, {
     ...rest,
@@ -184,8 +117,8 @@ export const buttonsOptions = {
   labeled: true,
   count: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'],
   basic: true,
-  color: _colors,
-  size: _sizes
+  color: enums.colors,
+  size: enums.sizes
 }
 const _buttonsFactory = makeFactory(buttonsOptions)
 export const Buttons = (props) => {

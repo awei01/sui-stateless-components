@@ -1,6 +1,8 @@
 import React from 'react';
 import { Segment } from '../elements/Segment'
 
+
+
 export const Story = ({ title, examples, notes, showToggleNote, container, children }) => {
   examples = (examples && typeof examples === 'string') ? [examples] : examples;
   notes = (notes && typeof notes === 'string') ? [notes] : notes;

@@ -1,33 +1,154 @@
-import React, { Component } from 'react'
-import ReactDOMServer from 'react-dom/server'
+import React, { Component, PropTypes } from 'react'
+import reactToJsx from 'react-to-jsx'
 
-const Banner = () => {
-  return (
-    <div style={{ padding: '1em', background: '#ccc' }}>
-      <h1>sui-stateless-components</h1>
-    </div>
-  )
+const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lectus metus, consectetur et eros at, maximus rutrum magna. Aliquam ullamcorper, magna vel pulvinar finibus, neque augue placerat libero, vel auctor mi ligula nec risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis velit luctus congue sagittis. Etiam vel sollicitudin velit. Aliquam finibus sodales eros eu sollicitudin. Morbi commodo lorem urna, ac condimentum magna ullamcorper vitae. Sed ac dapibus dui. Aenean quis faucibus purus, ac volutpat metus. Phasellus semper sapien et lobortis interdum. Donec scelerisque orci massa, in hendrerit neque hendrerit in. Nullam porttitor ornare massa sed varius.'
+export const makeLipsum = (chars) => {
+  return LIPSUM.substring(0, chars)
 }
 
-export const Story = ({ title, children }) => {
+export class Story extends Component {
+  render () {
+    const { title, children } = this.props
+    return (
+      <div>
+        <div style={{background: '#ccc'}}>
+          <h3>sui-stateless-components</h3>
+        </div>
+        <div style={{margin: '1em'}}>
+          <h1>{title}</h1>
+          {children}
+        </div>
+      </div>
+    )
+  }
+}
+
+const StorySegment = ({ title, children }) => {
   return (
-    <div>
-      <Banner/>
-      <h2>{title}</h2>
+    <div style={{ marginTop: '2em', borderBottom: '1px solid #ccc' }}>
+      { title ? (<h2>{title}</h2>) : null }
       {children}
     </div>
   )
 }
+StorySegment.displayName = 'Story.Segement'
+Story.Segment = StorySegment
 
+// Api component
+const _extractValues = (values, options) => {
+  options = options || {}
+  let { delimiter, separator } = options
+  delimiter = typeof delimiter === 'undefined' ? '"' : delimiter
+  separator = separator || ', '
+  const formatted = values.map((value) => {
+    if (typeof value === 'string') {
+      return `${delimiter}${value}${delimiter}`
+    }
+    return value.toString()
+  })
+  return formatted.join(separator)
+}
+const _extractDefinition = (definition) => {
+  let isRequired = false
+  let values = true
+  if (Array.isArray(definition)) {
+    // the values are the definition
+    values = definition
+  } else if (typeof definition === 'object') {
+    isRequired = definition.isRequired
+    values = definition.values || values
+  }
+  return { values, isRequired }
+}
+
+
+export const Api = ({ options, children }) => {
+  return (
+    <div>
+      <pre>{children}</pre>
+      <table>
+        <thead>
+          <tr>
+            <th colSpan={3} style={{ background: '#eee' }}>Component props API</th>
+          </tr>
+        </thead>
+        <tbody>
+        {
+          Object.keys(options).map((key, index) => {
+            let { values, isRequired } = _extractDefinition(options[key])
+            if (values === true) {
+              values = 'boolean'
+            } else {
+              values = _extractValues(values)
+            }
+            return (
+              <tr key={index}>
+                <th style={{ textAlign: 'left', verticalAlign: 'top' }}>{key}</th>
+                <td style={{ fontWeight: 'bold', color: 'red', paddingRight: '.5em' }}>{ isRequired ? '*' : ' ' }</td>
+                <td>{values}</td>
+              </tr>
+            )
+          })
+        }
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+const _extractJsx = (children) => {
+  if (!Array.isArray(children)) {
+    children = [children]
+  }
+  return children.map((child) => {
+    return reactToJsx(child, { indent: '    ' })
+  })
+}
 export class Example extends Component {
   render () {
+    let { children, code, ...rest } = this.props
+    code = code || _extractJsx(children)
     return (
       <div>
-        <div>{this.props.children}</div>
-        <code>
-        </code>
+        <div {...rest}>{children}</div>
+        <br style={{ clear: 'both' }} />
+        <div style={{ border: '1px solid #eee', padding: '1em', marginBottom: '1em', position: 'relative' }}>
+          <div style={{ padding: '.25em .5em', background: '#666', color: '#fff', position: 'absolute', top: 0, right: 0 }}>
+            Code
+          </div>
+        {
+          code.map((jsx, index) => {
+            return (
+              <pre key={index}>{jsx}</pre>
+            )
+          })
+        }
+        </div>
       </div>
     )
   }
-
 }
+const Options = ({ component, propKey, options, makeChildren }) => {
+  const { values } = _extractDefinition(options[propKey])
+  let lastValue
+
+  const components = values.map((value, index) => {
+    const children = makeChildren ? makeChildren(value, propKey) : value
+    lastValue = value
+    return React.createElement(component, { [propKey]: value, key: index }, children)
+  })
+  let code = reactToJsx(components[components.length - 1])
+  code = code.replace('"' + lastValue + '"', '"' + _extractValues(values, { delimiter: '', separator: '|' }) + '"')
+  return (
+    <Example code={[code]}>
+      {components}
+    </Example>
+  )
+}
+Options.displayName = 'Example.Options'
+Options.propTypes = {
+  component: PropTypes.func.isRequired,
+  propKey: PropTypes.string.isRequired,
+  options: PropTypes.object.isRequired
+}
+Example.Options = Options

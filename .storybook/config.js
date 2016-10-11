@@ -3,8 +3,8 @@ import '../styles.css';
 
 function loadStories() {
   require('../elements/Button/.stories')
-  return
   require('../elements/Container/.stories')
+  return
   require('../elements/Divider/.stories')
   require('../elements/Header/.stories')
   require('../elements/Icon/.stories')

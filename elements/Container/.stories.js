@@ -1,38 +1,44 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, makeAlignStory, makeLipsum } from '../../.storybook/utils';
-import { Container } from '../Container'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Container, containerOptions } from '../Container'
 
-const _container = { format: 'vertical' }
+const _path = 'sui-stateless-components/elements/Container'
+
 storiesOf('Container', module)
-  .add('default', () => {
+  .add('<Container />', () => {
     return (
-      <Story examples='<Container/>' container={_container}>
-        <Container>{ makeLipsum(200) }</Container>
+      <Story examples='<Container />'>
+        <Api options={containerOptions}>
+          import Container from '{_path}'
+        </Api>
+        <Story.Segment>
+          <Example>
+            <Container>{makeLipsum(200)}</Container>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='format'>
+          <Example>
+            <Container format='fluid'>{makeLipsum(200)}</Container>
+          </Example>
+          <Example>
+            <Container format='text'>{makeLipsum(200)}</Container>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Container aligned='left'>{makeLipsum()}</Container>
+          </Example>
+          <Example>
+            <Container aligned='right'>{makeLipsum()}</Container>
+          </Example>
+          <Example>
+            <Container aligned='center'>{makeLipsum()}</Container>
+          </Example>
+          <Example>
+            <Container aligned='justified'>{makeLipsum()}</Container>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('format', () => {
-    return (
-      <Story examples='<Container format=[ "text" | "fluid" ]/>' container={_container} showToggleNote>
-        <Container format='text'>{ makeLipsum(200) }</Container>
-        <Container format='fluid'>{ makeLipsum(200) }</Container>
-      </Story>
-    )
-  })
-  .add('aligned', makeAlignStory(Container, {
-    props: {
-      children: makeLipsum(300),
-      style: { marginBottom: '2em' }
-    },
-    container: _container
-  }))
-  .add('passes .className and other props', makePassesPropsStory(Container, {
-    props: {
-      className: 'right aligned',
-      children: makeLipsum(200),
-      onClick: action('Container was clicked')
-    },
-    container: _container
-  }))

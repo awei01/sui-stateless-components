@@ -1,61 +1,77 @@
 import { PropTypes } from 'react'
-import classnames from 'classnames'
-import without from 'lodash/without'
 
-const _useValueAsClass = (value) => {
+export const useValueAsClass = (value) => {
   return value
 }
-export const makeFactory = ({ prefix, suffix, options }) => {
-  // first resolve the options to make generate propTypes
-  // and to generate the rules to convert props to classes
-  options = options || {}
-  const propTypes = {}
-  const propsToClasses = {}
-  Object.keys(options).forEach((key) => {
-    if (key === 'className') {
-      throw new Error('Invalid options property [className]')
+export const makeSuffixedClass = (suffix, value) => {
+  if (typeof value !== 'string') {
+    value = ''
+  }
+  return `${value} ${suffix}`
+}
+
+function extractClassesAndProps (props = {}) {
+  const classes = {}
+  const rest = {}
+  const options = this.options
+  const makeClassnames = this.makeClassnames
+  Object.keys(props).forEach((key) => {
+    const value = props[key]
+    if (!options[key]) {
+      // this prop does not exist in the options, let component handle it
+      rest[key] = value
+      return
     }
-    const option = options[key]
-    let values
-    let makeClassName
-    if (Array.isArray(option)) {
-      // this is an option with an array of possible values, use the default makeClassName method
-      values = option
-      makeClassName = _useValueAsClass
-    } else if (typeof option === 'object') {
-      ({ values, makeClassName } = option)
+    if (typeof value === 'undefined') {
+      // the prop is set to undefined, completely skip it
+      return
     }
-    propTypes[key] = values ? PropTypes.oneOf(values) : PropTypes.boolean
-    propsToClasses[key] = {
-      values,
-      makeClassName
-    }
+    // we got here so this prop should be put into classes
+    const makeClassname = makeClassnames[key]
+    const className = makeClassname ? makeClassname(value) : key
+    classes[className] = true
   })
+  return [classes, rest]
+}
 
-  const extractClassName = (props) => {
-    const classes = Object.keys(props).reduce((result, key) => {
-      const value = props[key]
-      if (key === 'className') {
-        // passing a className, just set it to true so classnames can handle it
-        result[value] = true
-        return result
-      }
-      const option = propsToClasses[key]
-      if (!option) {
-        // this prop key is not handled by this factory, just skip it
-        return result
-      }
-      result[option.makeClassName(value)] = true
-    }, {})
-    return classnames(prefix, classes, suffix)
-  }
+export const makeFactory = (options) => {
+  const factory = Object.keys(options).reduce((result, key) => {
+    const definition = options[key]
+    // define defaults
+    let values = true
+    let makeClassname
+    let isRequired
+    if (Array.isArray(definition)) {
+      values = definition
+    } else if (typeof definition === 'object') {
+      // we're passing an object as the option definition
+      values = definition.values || values
+      makeClassname = definition.makeClassname || makeClassname
+      isRequired = definition.isRequired
+    }
 
-  const
+    // make the propTypes
+    let propType = values === true ? PropTypes.bool : PropTypes.oneOf(values)
+    if (isRequired) {
+      propType = propType.isRequired
+    }
+    result.propTypes[key] = propType
+    result.options[key] = values
+    // when makeClassname is set, use it
+    // if values === true, don't pass a method
+    // otherwise, use the default useValueAsClass
+    result.makeClassnames[key] = makeClassname || (values === true ? null : useValueAsClass)
+    return result
+  }, {
+    propTypes: {},
+    options: {},
+    makeClassnames: {}
+  })
+  factory.extractClassesAndProps = extractClassesAndProps.bind(factory)
+  return factory
+}
 
-  return {
-    prefix,
-    suffix,
-    propTypes,
-    extractClassName
-  }
+export const enums = {
+  colors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'],
+  sizes: ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
 }

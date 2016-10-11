@@ -1,20 +1,27 @@
 import React, { PropTypes } from 'react';
-import { makeClassnameFactory, OPTIONS } from '../../utils';
+import { makeSuffixedClass, makeFactory, enums } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/container.css';
 
-const { aligned } = OPTIONS
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'container',
-  options: {
-    format: ['text', 'fluid'],
-    aligned
+export const containerOptions = {
+  format: ['fluid', 'text'],
+  aligned: {
+    values: ['left', 'right', 'center', 'justified'],
+    makeClassname: (value) => {
+      if (value === 'justified') {
+        return value
+      }
+      return makeSuffixedClass('aligned', value)
+    }
   }
-})
-
-export const Container = ({ format, aligned, className, ...rest }) => {
-	const classes = makeClasses({ format, aligned }, className);
-	return (
-		<div { ...rest } className={ classes }/>
-	);
 }
+
+const _containerFactory = makeFactory(containerOptions)
+export const Container = (props) => {
+  const [classes, rest] = _containerFactory.extractClassesAndProps(props)
+  const className= classnames('ui', classes, 'container')
+  return (
+    <div {...rest} className={className}/>
+  );
+}
+Container.propTypes = { ..._containerFactory.propTypes }

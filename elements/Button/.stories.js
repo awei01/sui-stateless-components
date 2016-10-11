@@ -1,121 +1,33 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
+import { Story, Api, Example } from '../../.storybook/comps'
 import Button, { buttonOptions, contentOptions, Buttons, buttonsOptions } from './index'
 import { Label } from '../../elements/Label'
 import { Icon } from '../../elements/Icon'
 import { Segment } from '../../elements/Segment'
 
-const _path = "'sui-stateless-components/elements/Button'"
-
-const Story = ({ title, children }) => {
-  return (
-    <div style={{margin: '1em'}}>
-      <h1>{title}</h1>
-      {children}
-    </div>
-  )
-}
-const StorySegment = ({ title, children }) => {
-  return (
-    <div>
-      { title ? (<h2>{title}</h2>) : null }
-      {children}
-    </div>
-  )
-}
-StorySegment.displayName = 'Story.Segement'
-Story.Segment = StorySegment
-
-import reactToJsx from 'react-to-jsx'
-const _extractJsx = (children) => {
-  if (!Array.isArray(children)) {
-    children = [children]
-  }
-  return children.map((child) => {
-    return reactToJsx(child, { indent: '    ' })
-  })
-}
-const Example = ({ children, ...rest }) => {
-  const jsxes = _extractJsx(children)
-  return (
-    <div>
-      <div {...rest}>{children}</div>
-      {
-        jsxes.map((jsx, index) => {
-          return (
-            <pre key={index}>{jsx}</pre>
-          )
-        })
-      }
-    </div>
-  )
-}
-
-const _extractValues = (values) => {
-  const formatted = values.map((value) => {
-    if (typeof value === 'string') {
-      return `'${value}'`
-    }
-    return value.toString()
-  })
-  return formatted.join(' | ')
-}
-const _extractApi = (options) => {
-  let isRequired = false
-  let values = true
-  if (Array.isArray(options)) {
-    // the values are the options
-    values = options
-  } else if (typeof options === 'object') {
-    isRequired = options.isRequired
-    values = options.values || values
-  }
-  if (values === true) {
-    values = 'boolean'
-  } else {
-    values = _extractValues(values)
-  }
-  return { values, isRequired }
-}
-
-const Api = ({ options, children }) => {
-  return (
-    <div>
-      <pre>{children}</pre>
-      <ul>
-      {
-        Object.keys(options).map((key, index) => {
-          const { values, isRequired } = _extractApi(options[key])
-          return (
-            <li key={index}>
-              <b>{key}:</b>
-              { isRequired ? ' *' + values : ' [ ' + values + ' ]' }
-            </li>
-          )
-        })
-      }
-      </ul>
-    </div>
-  )
-}
+const _path = 'sui-stateless-components/elements/Button'
 
 storiesOf('Button', module)
   .add('<Button />', () => {
     return (
       <Story title='<Button />'>
         <Api options={buttonOptions}>
-          {'import Button from ' + _path}
+          import Button from '{_path}'
         </Api>
         <Story.Segment>
           <Example>
             <Button>default</Button>
           </Example>
         </Story.Segment>
-        <Story.Segment title='emphasis'>
+        <Story.Segment title='href'>
+          <p>If [href] is passed, the component will render as an {'<a />'} element</p>
           <Example>
-            <Button emphasis='primary'>primary emphasis</Button>
-            <Button emphasis='secondary'>secondary emphasis</Button>
+            <Button href='http://www.google.com' target='_blank'>this is a link</Button>
           </Example>
+        </Story.Segment>
+        <Story.Segment title='emphasis'>
+          <Example.Options component={Button} propKey='emphasis' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='animated'>
           <p>Using the [animated] prop renders component as a {'<div>'} element</p>
@@ -174,7 +86,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='disabled'>
-          <p>This prop will actually set the [disabled] attribute on the underlying button</p>
+          <p>This prop will actually set the [disabled] attribute on the underlying {'<button/>'}</p>
           <Example>
             <Button disabled>disabled</Button>
           </Example>
@@ -186,41 +98,18 @@ storiesOf('Button', module)
         </Story.Segment>
         <Story.Segment title='social'>
           <p>You will need to provide the {'<Icon glyph />'} and appropriate children</p>
-          <Example>
-            <Button social='facebook'>
-              <Icon glyph='facebook' />
-              Facebook
-            </Button>
-            <Button social='twitter'>
-              <Icon glyph='twitter' />
-              Twitter
-            </Button>
-            <Button social='instagram'>
-              <Icon glyph='instagram' />
-              Instagram
-            </Button>
-          </Example>
+          <Example.Options component={Button} propKey='social' options={buttonOptions} makeChildren={(value) => {
+              return [<Icon key={value} glyph={value}/>, value]
+            }} />
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example>
-            <Button size='mini'>mini</Button>
-            <Button size='small'>small</Button>
-            <Button size='large'>large</Button>
-            <Button size='massive'>massive</Button>
-          </Example>
+          <Example.Options component={Button} propKey='size' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='floated'>
-          <Example>
-            <Button floated='right'>right floated</Button>
-            <Button floated='left'>left floated</Button>
-          </Example>
+          <Example.Options component={Button} propKey='floated' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example>
-            <Button color='red'>red</Button>
-            <Button color='green'>green</Button>
-            <Button color='blue'>blue</Button>
-          </Example>
+          <Example.Options component={Button} propKey='color' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='compact'>
           <Example>
@@ -235,10 +124,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='hint'>
-          <Example>
-            <Button hint='positive'>positive hint</Button>
-            <Button hint='negative'>negative hint</Button>
-          </Example>
+          <Example.Options component={Button} propKey='hint' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='fluid'>
           <Example>
@@ -289,7 +175,7 @@ storiesOf('Button', module)
     return (
       <Story title='<Buttons />'>
         <Api options={buttonsOptions}>
-          {'import { Buttons } from ' + _path}
+          {'import { Buttons } from \'' + _path + '\''}
         </Api>
         <Story.Segment>
           <Example>
