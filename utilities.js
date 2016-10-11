@@ -75,3 +75,19 @@ export const enums = {
   colors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'],
   sizes: ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
 }
+
+export const options = {
+  floated: {
+    values: ['left', 'right'],
+    makeClassname: makeSuffixedClass.bind(null, 'floated')
+  },
+  aligned: {
+    values: ['left', 'right', 'center', 'justified'],
+    makeClassname: (value) => {
+      if (value === 'justified') {
+        return value
+      }
+      return makeSuffixedClass('aligned', value)
+    }
+  }
+}

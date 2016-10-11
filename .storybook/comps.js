@@ -118,13 +118,7 @@ export class Example extends Component {
           <div style={{ padding: '.25em .5em', background: '#666', color: '#fff', position: 'absolute', top: 0, right: 0 }}>
             Code
           </div>
-        {
-          code.map((jsx, index) => {
-            return (
-              <pre key={index}>{jsx}</pre>
-            )
-          })
-        }
+          <pre style={{ padding: '2em' }}>{code}</pre>
         </div>
       </div>
     )

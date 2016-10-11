@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import { Container, containerOptions } from '../Container'
 import Divider, { dividerOptions } from './index'
 import { Grid, Column } from '../../collections/Grid'
 
@@ -14,11 +13,9 @@ storiesOf('Divider', module)
         </Api>
         <Story.Segment>
           <Example>
-            <div>
-              <p>{makeLipsum(200)}</p>
-              <Divider />
-              <p>{makeLipsum(200)}</p>
-            </div>
+            <p>{makeLipsum(200)}</p>
+            <Divider />
+            <p>{makeLipsum(200)}</p>
           </Example>
         </Story.Segment>
         <Story.Segment title='orientation'>
@@ -31,11 +28,9 @@ storiesOf('Divider', module)
             </Grid>
           </Example>
           <Example>
-            <div>
-              <p>{makeLipsum(200)}</p>
-              <Divider orientation='horizontal'>Or</Divider>
-              <p>{makeLipsum(200)}</p>
-            </div>
+            <p>{makeLipsum(200)}</p>
+            <Divider orientation='horizontal'>Or</Divider>
+            <p>{makeLipsum(200)}</p>
           </Example>
         </Story.Segment>
         <Story.Segment title='inverted'>
@@ -49,27 +44,21 @@ storiesOf('Divider', module)
         </Story.Segment>
         <Story.Segment title='margin'>
           <Example>
-            <div>
-              <p>{makeLipsum(200)}</p>
-              <Divider margin='fitted' />
-              <p>{makeLipsum(200)}</p>
-            </div>
+            <p>{makeLipsum(200)}</p>
+            <Divider margin='fitted' />
+            <p>{makeLipsum(200)}</p>
           </Example>
           <Example>
-            <div>
-              <p>{makeLipsum(200)}</p>
-              <Divider margin='section' />
-              <p>{makeLipsum(200)}</p>
-            </div>
+            <p>{makeLipsum(200)}</p>
+            <Divider margin='section' />
+            <p>{makeLipsum(200)}</p>
           </Example>
         </Story.Segment>
         <Story.Segment title='clearing'>
           <Example>
-            <div>
-              <div style={{ float: 'right' }}>right floated</div>
-              <Divider clearing />
-              <p>{makeLipsum(200)}</p>
-            </div>
+            <div style={{ float: 'right' }}>right floated</div>
+            <Divider clearing />
+            <p>{makeLipsum(200)}</p>
           </Example>
         </Story.Segment>
       </Story>

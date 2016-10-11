@@ -1,21 +1,117 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makeSizeStory, makeColorStory, makeAlignStory, makePassesPropsStory } from '../../.storybook/utils';
-import { Header, SIZES, Content, Subheader } from '../Header'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Header, { headerOptions } from './index'
 import { Icon } from '../../elements/Icon'
-import { Image } from '../../elements/Image'
-import { Segment } from '../../elements/Segment'
 
 storiesOf('Header', module)
-  .add('<Header> default', () => {
+  .add('<Header />', () => {
     return (
-      <Story examples='<Header>{ content }</Header'
-        notes='This component always renders a <div> element. If you are using <h#> tags, consider importing makeClasses() instead.'>
-        <Header>Some header</Header>
+      <Story title='<Header />'>
+        <p>This component always renders a {'<div>'} element.</p>
+        <Api options={headerOptions}>
+          import Header from 'sui-stateless-components/elements/Header'
+        </Api>
+        <Story.Segment>
+          <Example>
+            <Header>Some header</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Options component={Header} propKey='size' options={headerOptions} />
+        </Story.Segment>
+        <Story.Segment title='icon'>
+          <Example>
+            <Header icon>
+              <Icon glyph='user' />
+              Header with icon
+            </Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='sub'>
+          <Example>
+            <Header sub>sub header</Header>
+            <p>some other content</p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='disabled'>
+          <Example>
+            <Header disabled>disabled header</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='format'>
+          <Example>
+            <Header format='dividing'>dividing header</Header>
+          </Example>
+          <Example>
+            <Header format='block'>block header</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='attached'>
+          <Example>
+            <Header attached='top'>top attached header</Header>
+            <Header attached>attached header</Header>
+            <Header attached='bottom'>bottom attached header</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floated'>
+          <Example>
+            <Header floated='right'>right floated header</Header>
+            <Header floated='left'>left floated header</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Header aligned='right'>right aligned header</Header>
+            <Header aligned='left'>left aligned header</Header>
+            <Header aligned='center'>center aligned header</Header>
+            <Header aligned='justified'>justified header takes up all the space</Header>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='color'>
+          <Example.Options component={Header} propKey='color' options={headerOptions} />
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <div style={{ background: '#000', padding: '1em' }}>
+              <Header inverted>inverted header</Header>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
+  .add('<Header.Sub />', () => {
+    return (
+      <Story title='<Header.Sub />'>
+        <p>This component is to be used within a {'<Header />'}</p>
+        <Story.Segment>
+          <Example>
+            <Header>
+              Some header
+              <Header.Sub>sub header here</Header.Sub>
+            </Header>
+          </Example>
+        </Story.Segment>
+      </Story>
+    )
+  })
+  .add('<Header.Content />', () => {
+    return (
+      <Story title='<Header.Content />'>
+        <p>This component is to be used within a {'<Header />'} and allows for proper formatting of content when an {'<Icon /> or <Image />'} is used</p>
+        <Story.Segment>
+          <Example>
+            <Header>
+              <Icon glyph='user' />
+              <Header.Content>header here</Header.Content>
+            </Header>
+          </Example>
+        </Story.Segment>
+      </Story>
+    )
+  })
+    /*
   .add('<Header> size', makeSizeStory(Header, { options: SIZES }))
   .add('<Header> icon', () => {
     return (
@@ -123,3 +219,4 @@ storiesOf('Header', module)
       </Story>
     )
   })
+*/

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { makeSuffixedClass, makeFactory, enums } from '../../utilities'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/button.css'
 
@@ -33,10 +33,7 @@ export const buttonOptions = {
   loading: true,
   social: ['facebook', 'twitter', 'google plus', 'vk', 'linkedin', 'instagram', 'youtube'],
   size: enums.sizes,
-  floated: {
-    values: ['left', 'right'],
-    makeClassname: makeSuffixedClass.bind(null, 'floated')
-  },
+  floated: options.floated,
   color: enums.colors,
   compact: true,
   toggle: {
