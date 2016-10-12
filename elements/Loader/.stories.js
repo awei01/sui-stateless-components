@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
+import { makePassesPropsStory, extractDefinitionValues, makeLipsum } from '../../.storybook/utils';
 import { SIZES } from '../../utils'
 import { Loader } from './index'
 import { Dimmer } from '../../modules/Dimmer'
@@ -70,7 +70,7 @@ storiesOf('Loader', module)
     )
   })
   .add('<Loader> size', () => {
-    const sizes = extractOptionsValues(SIZES)
+    const sizes = extractDefinitionValues(SIZES)
     return (
       <Story examples={'<Loader size=[ ' + sizes + ' ]/>'} container={{ format: 'vertical' }}>
       {

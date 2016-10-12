@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Container, { containerOptions } from '../Container'
+import Container, { containerDefinition } from '../Container'
 
 const _path = 'sui-stateless-components/elements/Container'
 
@@ -9,7 +9,7 @@ storiesOf('Container', module)
   .add('<Container />', () => {
     return (
       <Story examples='<Container />'>
-        <Api options={containerOptions}>
+        <Api definition={containerDefinition}>
           import Container from '{_path}'
         </Api>
         <Story.Segment title='(default)'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
+import { makeSizeStory, makeColorStory, makePassesPropsStory, extractDefinitionValues, makeLipsum } from '../../.storybook/utils';
 import { Label, ATTACHEDS, Labels } from './index'
 import { Image } from '../../elements/Image'
 import { Grid, Row, Column } from '../../collections/Grid'
@@ -65,7 +65,7 @@ storiesOf('Label', module)
     )
   })
   .add('<Label> attached', () => {
-    const attacheds = extractOptionsValues(ATTACHEDS, 0)
+    const attacheds = extractDefinitionValues(ATTACHEDS, 0)
     return (
       <Story examples={'<Label attached=[ ' + attacheds + ' ]/>'}>
         <Grid columns='three' celled>

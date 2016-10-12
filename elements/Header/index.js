@@ -3,7 +3,7 @@ import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/header.css';
 
-export const headerOptions = {
+export const headerDefinition = {
   size: ['tiny', 'small', 'medium', 'large', 'huge'],
   icon: true,
   sub: true,
@@ -18,7 +18,7 @@ export const headerOptions = {
   color: enums.colors,
   inverted: true
 }
-const _headerFactory = makeFactory(headerOptions)
+const _headerFactory = makeFactory(headerDefinition)
 
 const Header = (props) => {
   const [classes, rest] = _headerFactory.extractClassesAndProps(props)

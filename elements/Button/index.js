@@ -15,7 +15,7 @@ const makeAttachedClassname = makeSuffixedClass.bind(null, 'attached')
  | Button
  |-----------------------
  */
-export const buttonOptions = {
+export const buttonDefinition = {
   emphasis: ['primary', 'secondary'],
   animated: {
     values: [true, 'vertical', 'fade'],
@@ -49,7 +49,7 @@ export const buttonOptions = {
   hint: ['positive', 'negative']
 }
 
-const _buttonFactory = makeFactory(buttonOptions)
+const _buttonFactory = makeFactory(buttonDefinition)
 
 const Button = (props) => {
   const [classes, rest] = _buttonFactory.extractClassesAndProps(props)
@@ -79,7 +79,7 @@ export default Button
  | Button.Content
  |-----------------------
  */
-export const contentOptions = {
+export const contentDefinition = {
   visible: {
     makeClassname: (value) => {
       return value ? 'visible' : 'hidden'
@@ -87,7 +87,7 @@ export const contentOptions = {
     isRequired: true
   }
 }
-const _contentFactory = makeFactory(contentOptions)
+const _contentFactory = makeFactory(contentDefinition)
 const Content = (props) => {
   const [classes, rest] = _contentFactory.extractClassesAndProps(props)
   const className = classnames(classes, 'content')
@@ -104,7 +104,7 @@ Button.Content = Content
  | Buttons
  |-----------------------
  */
-export const buttonsOptions = {
+export const buttonsDefinition = {
   icon: true,
   attached: {
     values: ['top', 'bottom'],
@@ -117,7 +117,7 @@ export const buttonsOptions = {
   color: enums.colors,
   size: enums.sizes
 }
-const _buttonsFactory = makeFactory(buttonsOptions)
+const _buttonsFactory = makeFactory(buttonsDefinition)
 export const Buttons = (props) => {
   const [classes, rest] = _buttonsFactory.extractClassesAndProps(props)
   const className = classnames('ui', classes, 'buttons')

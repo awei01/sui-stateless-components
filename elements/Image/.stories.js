@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Image, { imageOptions, Images, imagesOptions } from './index'
+import Image, { imageDefinition, Images, imagesDefinition } from './index'
 import Divider from '../../elements/Divider'
 
 const _path = 'sui-stateless-components/elements/Image'
@@ -19,7 +19,7 @@ storiesOf('Image', module)
   .add('<Image />', () => {
     return (
       <Story title='<Image />'>
-        <Api options={imageOptions} otherProps={_otherProps}>
+        <Api definition={imageDefinition} otherProps={_otherProps}>
           import Image from '{_path}'
         </Api>
         <Story.Segment title='src'>
@@ -124,7 +124,7 @@ storiesOf('Image', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Iterator component={Image} propKey='size' options={imageOptions} props={{ src: 'images/lindsay.png', children: null }} />
+          <Example.Iterator component={Image} propKey='size' definition={imageDefinition} props={{ src: 'images/lindsay.png', children: null }} />
         </Story.Segment>
       </Story>
     )
@@ -132,9 +132,18 @@ storiesOf('Image', module)
   .add('<Images />', () => {
     return (
       <Story title='<Images />'>
-        <Api options={imagesOptions}>
+        <Api definition={imagesDefinition}>
           {'import { Image } from \'' + _path + '\''}
         </Api>
+        <Story.Segment title='(default)'>
+          <Example title='[className] gets passed'>
+            <Images className='tiny'>
+              <Image spaced='right' src='images/jenny.jpg' />
+              <Image format='circular' src='images/lindsay.png' />
+              <Image bordered src='images/matthew.png' />
+            </Images>
+          </Example>
+        </Story.Segment>
         <Story.Segment title='size'>
           <Example>
             <Images size='tiny'>

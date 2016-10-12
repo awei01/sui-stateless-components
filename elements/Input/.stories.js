@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Input, { inputOptions } from './index'
+import Input, { inputDefinition } from './index'
 import Icon from '../../elements/Icon'
 import Button from '../../elements/Button'
 import { Label } from '../../elements/Label'
@@ -10,7 +10,7 @@ storiesOf('Input', module)
   .add('<Input />', () => {
     return (
       <Story title='<Input />'>
-        <Api options={inputOptions}>
+        <Api definition={inputDefinition}>
           import Input from 'sui-stateless-components/elements/Input'
         </Api>
         <Story.Segment title='(default)'>
@@ -135,7 +135,7 @@ storiesOf('Input', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Iterator component={Input} propKey='size' options={inputOptions} props={{
+          <Example.Iterator component={Input} propKey='size' definition={inputDefinition} props={{
             children: (value) => {
               return (<input placeholder={value} />)
             }

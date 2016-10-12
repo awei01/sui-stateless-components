@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Icon, { iconOptions, Icons, iconsOptions } from '../Icon'
+import Icon, { iconDefinition, Icons, iconsDefinition } from '../Icon'
 
 const _path = 'sui-stateless-components/elements/Icon'
 const _overridden = {
@@ -12,7 +12,7 @@ storiesOf('Icon', module)
   .add('<Icon />', () => {
     return (
       <Story title='<Icon />'>
-        <Api options={iconOptions} overridden={_overridden} >
+        <Api definition={iconDefinition} overridden={_overridden} >
           import Icon from '{_path}'
         </Api>
         <Story.Segment title='glyph'>
@@ -48,7 +48,7 @@ storiesOf('Icon', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Iterator component={Icon} propKey='size' options={iconOptions} props={{ glyph: 'user', children: null }}/>
+          <Example.Iterator component={Icon} propKey='size' definition={iconDefinition} props={{ glyph: 'user', children: null }}/>
         </Story.Segment>
         <Story.Segment title='link'>
           <Example>
@@ -74,7 +74,7 @@ storiesOf('Icon', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example.Iterator component={Icon} propKey='color' options={iconOptions} props={{ glyph: 'user', children: null }} />
+          <Example.Iterator component={Icon} propKey='color' definition={iconDefinition} props={{ glyph: 'user', children: null }} />
         </Story.Segment>
         <Story.Segment title='inverted'>
           <Example>
@@ -97,12 +97,12 @@ storiesOf('Icon', module)
   .add('<Icons />', () => {
     return (
       <Story title='<Icons />'>
-        <Api options={iconsOptions}>
+        <Api definition={iconsDefinition}>
           {'import { Icon } from \'' + _path + '\''}
         </Api>
-        <Story.Segment>
-          <Example>
-            <Icons>
+        <Story.Segment title='(default)'>
+          <Example title='[className] gets passed'>
+            <Icons className='huge'>
               <Icon size='big' glyph='circle thin' />
               <Icon glyph='user' />
             </Icons>

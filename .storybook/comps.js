@@ -64,7 +64,7 @@ const _extractDefinition = (definition) => {
 }
 
 
-export const Api = ({ options, overridden, otherProps, children }) => {
+export const Api = ({ definition, overridden, otherProps, children }) => {
   overridden = overridden || {}
   otherProps = otherProps || {}
   return (
@@ -90,8 +90,8 @@ export const Api = ({ options, overridden, otherProps, children }) => {
           })
         }
         {
-          Object.keys(options).map((key, index) => {
-            let { values, isRequired } = _extractDefinition(options[key])
+          Object.keys(definition).map((key, index) => {
+            let { values, isRequired } = _extractDefinition(definition[key])
             if (overridden[key]) {
               values = overridden[key]
             } else {
@@ -144,10 +144,10 @@ export class Example extends Component {
     )
   }
 }
-const ExampleIterator = ({ component, propKey, options, props }) => {
+const ExampleIterator = ({ component, propKey, definition, props }) => {
   props = props || {}
   const { children, ...rest } = props
-  const { values } = _extractDefinition(options[propKey])
+  const { values } = _extractDefinition(definition[propKey])
   const components = values.map((value, index) => {
     let result = value
     if (typeof children === 'function') {
@@ -173,7 +173,7 @@ ExampleIterator.displayName = 'Example.Iterator'
 ExampleIterator.propTypes = {
   component: PropTypes.func.isRequired,
   propKey: PropTypes.string.isRequired,
-  options: PropTypes.object.isRequired,
+  definition: PropTypes.object.isRequired,
   props: PropTypes.object
 }
 Example.Iterator = ExampleIterator

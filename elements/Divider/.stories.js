@@ -1,14 +1,14 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Divider, { dividerOptions } from './index'
+import Divider, { dividerDefinition } from './index'
 import { Grid, Column } from '../../collections/Grid'
 
 storiesOf('Divider', module)
   .add('<Divider />', () => {
     return (
       <Story title='<Divider />'>
-        <Api options={dividerOptions}>
+        <Api definition={dividerDefinition}>
           import Divider from 'sui-stateless-components/elements/Divider'
         </Api>
         <Story.Segment title='(default)'>

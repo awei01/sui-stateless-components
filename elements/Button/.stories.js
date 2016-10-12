@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example } from '../../.storybook/comps'
-import Button, { buttonOptions, contentOptions, Buttons, buttonsOptions } from './index'
+import Button, { buttonDefinition, contentDefinition, Buttons, buttonsDefinition } from './index'
 import { Label } from '../../elements/Label'
 import Icon from '../../elements/Icon'
 import { Segment } from '../../elements/Segment'
@@ -12,7 +12,7 @@ storiesOf('Button', module)
   .add('<Button />', () => {
     return (
       <Story title='<Button />'>
-        <Api options={buttonOptions}>
+        <Api definition={buttonDefinition}>
           import Button from '{_path}'
         </Api>
         <Story.Segment title='(default)'>
@@ -30,7 +30,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='emphasis'>
-          <Example.Iterator component={Button} propKey='emphasis' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='emphasis' definition={buttonDefinition} />
         </Story.Segment>
         <Story.Segment title='animated'>
           <p>Using the [animated] prop renders component as a {'<div>'} element</p>
@@ -115,20 +115,20 @@ storiesOf('Button', module)
         </Story.Segment>
         <Story.Segment title='social'>
           <p>You will need to provide the {'<Icon glyph />'} and appropriate children</p>
-          <Example.Iterator component={Button} propKey='social' options={buttonOptions} props={{
+          <Example.Iterator component={Button} propKey='social' definition={buttonDefinition} props={{
             children: (value) => {
               return [<Icon key={value} glyph={value} />, value]
             }
           }}/>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Iterator component={Button} propKey='size' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='size' definition={buttonDefinition} />
         </Story.Segment>
         <Story.Segment title='floated'>
-          <Example.Iterator component={Button} propKey='floated' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='floated' definition={buttonDefinition} />
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example.Iterator component={Button} propKey='color' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='color' definition={buttonDefinition} />
         </Story.Segment>
         <Story.Segment title='compact'>
           <Example>
@@ -143,7 +143,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='hint'>
-          <Example.Iterator component={Button} propKey='hint' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='hint' definition={buttonDefinition} />
         </Story.Segment>
         <Story.Segment title='fluid'>
           <Example>
@@ -178,8 +178,8 @@ storiesOf('Button', module)
         <p>
           This component is to be used within {'<Button animated />'}
         </p>
-        <Api options={contentOptions} />
-        <Story.Segment title='animated'>
+        <Api definition={contentDefinition} />
+        <Story.Segment title='visible'>
           <Example>
             <Button animated>
               <Button.Content visible>visible content</Button.Content>
@@ -193,7 +193,7 @@ storiesOf('Button', module)
   .add('<Buttons />', () => {
     return (
       <Story title='<Buttons />'>
-        <Api options={buttonsOptions}>
+        <Api definition={buttonsDefinition}>
           {'import { Buttons } from \'' + _path + '\''}
         </Api>
         <Story.Segment title='(default)'>

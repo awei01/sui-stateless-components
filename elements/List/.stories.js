@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story } from '../../.storybook/components';
-import { makeLipsum, extractOptionsValues, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
+import { makeLipsum, extractDefinitionValues, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
 import { List, Item, Content, SIZES, Header, Description } from './index'
 import { Icon } from '../../elements/Icon'
 import { Image } from '../../elements/Image'

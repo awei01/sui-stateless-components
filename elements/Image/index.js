@@ -8,7 +8,7 @@ import 'semantic-ui-css/components/image.css';
  | Image
  |---------------------------
  */
-export const imageOptions = {
+export const imageDefinition = {
   hidden: true,
   disabled: true,
   format: ['avatar', 'rounded', 'circular'],
@@ -26,7 +26,7 @@ export const imageOptions = {
   floated: options.floated,
   size: enums.sizes
 }
-const _imageFactory = makeFactory(imageOptions)
+const _imageFactory = makeFactory(imageDefinition)
 const Image = (props) => {
   const [classes, rest] = _imageFactory.extractClassesAndProps(props)
   const className = classnames('ui', classes, 'image')
@@ -53,10 +53,10 @@ export default Image
  | Images
  |---------------------------
  */
-export const imagesOptions = {
+export const imagesDefinition = {
   size: enums.sizes
 }
-const _imagesFactory = makeFactory(imagesOptions)
+const _imagesFactory = makeFactory(imagesDefinition)
 export const Images = (props) => {
   const [classes, rest] = _imagesFactory.extractClassesAndProps(props)
   const className = classnames('ui', classes, 'images')

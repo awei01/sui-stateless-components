@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Header, { headerOptions } from './index'
+import Header, { headerDefinition } from './index'
 import Icon from '../../elements/Icon'
 
 storiesOf('Header', module)
@@ -9,7 +9,7 @@ storiesOf('Header', module)
     return (
       <Story title='<Header />'>
         <p>This component always renders a {'<div>'} element.</p>
-        <Api options={headerOptions}>
+        <Api definition={headerDefinition}>
           import Header from 'sui-stateless-components/elements/Header'
         </Api>
         <Story.Segment title='(default)'>
@@ -21,7 +21,7 @@ storiesOf('Header', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Iterator component={Header} propKey='size' options={headerOptions} />
+          <Example.Iterator component={Header} propKey='size' definition={headerDefinition} />
         </Story.Segment>
         <Story.Segment title='icon'>
           <Example>
@@ -72,7 +72,7 @@ storiesOf('Header', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example.Iterator component={Header} propKey='color' options={headerOptions} />
+          <Example.Iterator component={Header} propKey='color' definition={headerDefinition} />
         </Story.Segment>
         <Story.Segment title='inverted'>
           <Example>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeLipsum, makeColorStory, makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
+import { makeLipsum, makeColorStory, makePassesPropsStory, extractDefinitionValues } from '../../.storybook/utils';
 import { Story } from '../../.storybook/components';
 import { Segment, SEGMENT_FORMATS, Segments, SEGMENTS_FORMATS } from './index'
 
@@ -17,7 +17,7 @@ storiesOf('Segment', module)
     )
   })
   .add('<Segment> format', () => {
-    const formats = extractOptionsValues(SEGMENT_FORMATS, 0)
+    const formats = extractDefinitionValues(SEGMENT_FORMATS, 0)
     return (
       <Story examples={'<Segment format=[ ' + formats + ' ]>{ content }</Segment>'} container={_container}>
         <Segment format='raised'>
@@ -243,7 +243,7 @@ storiesOf('Segment', module)
     )
   })
   .add('<Segments> format', () => {
-    const formats = extractOptionsValues(SEGMENTS_FORMATS)
+    const formats = extractDefinitionValues(SEGMENTS_FORMATS)
     return (
       <Story examples={'<Segments format=[ ' + formats + ' ]><Segment/></Segments>'} container={_container}>
         <Segments format='raised'>

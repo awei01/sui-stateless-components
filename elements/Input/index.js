@@ -7,7 +7,7 @@ import 'semantic-ui-css/components/input.css'
  | Input
  |---------------------------
  */
-export const inputOptions = {
+export const inputDefinition = {
   focus: true,
   loading: true,
   disabled: true,
@@ -29,7 +29,7 @@ export const inputOptions = {
   fluid: true,
   size: ['mini', 'small', 'large', 'big', 'huge', 'massive']
 }
-const _inputFactory = makeFactory(inputOptions)
+const _inputFactory = makeFactory(inputDefinition)
 const Input = (props) => {
   const [classes, rest] = _inputFactory.extractClassesAndProps(props)
   const className = classnames('ui', classes, 'input')
