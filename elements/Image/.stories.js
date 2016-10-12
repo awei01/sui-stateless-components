@@ -75,19 +75,19 @@ storiesOf('Image', module)
             <Image fluid src='images/matthew.png' />
           </Example>
         </Story.Segment>
-        <Story.Segment title='aligned'>
+        <Story.Segment title='valigned'>
           <Example>
             <p>
-              <Image aligned='top' src='images/jenny.jpg' />
-              top aligned
+              <Image valigned='top' src='images/jenny.jpg' />
+              top valigned
             </p>
             <p>
-              <Image aligned='middle' src='images/jenny.jpg' />
-              middle aligned
+              <Image valigned='middle' src='images/jenny.jpg' />
+              middle valigned
             </p>
             <p>
-              <Image aligned='bottom' src='images/jenny.jpg' />
-              bottom aligned
+              <Image valigned='bottom' src='images/jenny.jpg' />
+              bottom valigned
             </p>
           </Example>
         </Story.Segment>

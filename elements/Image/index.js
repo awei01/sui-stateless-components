@@ -14,10 +14,7 @@ export const imageDefinition = {
   format: ['avatar', 'rounded', 'circular'],
   bordered: true,
   fluid: true,
-  aligned: {
-    values: ['top', 'middle', 'bottom'],
-    makeClassname: makeSuffixedClass.bind(null, 'aligned')
-  },
+  valigned: options.valigned,
   centered: true,
   spaced: {
     values: [true, 'right', 'left'],

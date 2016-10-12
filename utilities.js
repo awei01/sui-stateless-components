@@ -95,5 +95,9 @@ export const options = {
       }
       return makeSuffixedClass('aligned', value)
     }
+  },
+  valigned: {
+    values: ['top', 'middle', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'aligned')
   }
 }
