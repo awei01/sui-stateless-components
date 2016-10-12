@@ -4,7 +4,7 @@ import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Input, { inputDefinition } from './index'
 import Icon from '../../elements/Icon'
 import Button from '../../elements/Button'
-import { Label } from '../../elements/Label'
+import Label from '../../elements/Label'
 
 storiesOf('Input', module)
   .add('<Input />', () => {

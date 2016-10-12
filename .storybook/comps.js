@@ -36,7 +36,6 @@ const StorySegment = ({ title, children }) => {
 StorySegment.displayName = 'Story.Segement'
 Story.Segment = StorySegment
 
-// Api component
 const _extractValues = (values, options) => {
   options = options || {}
   let { delimiter, separator } = options
@@ -63,8 +62,9 @@ const _extractDefinition = (definition) => {
   return { values, isRequired }
 }
 
-
+// Api component
 export const Api = ({ definition, overridden, otherProps, children }) => {
+  definition = definition || {}
   overridden = overridden || {}
   otherProps = otherProps || {}
   return (
