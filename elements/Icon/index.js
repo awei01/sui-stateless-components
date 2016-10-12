@@ -1,21 +1,21 @@
-import without from 'lodash/without'
-import React, { PropTypes } from 'react';
-import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS } from '../../utils';
+import React from 'react';
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/icon.css';
 
 /*
  |---------------------------
- | Shared options
+ | shared
  |---------------------------
- */
-export const SIZES = without(OPTIONS.size, 'medium')
-const size = SIZES
+*/
+const _sizes = ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
+
 /*
  |---------------------------
  | Icon
  |---------------------------
- */
-export const GLYPHS = [
+*/
+const _glyphs = [
   /* Web Content */
   'search', 'mail outline', 'signal', 'setting', 'home', 'inbox', 'browser', 'tag', 'tags', 'image', 'calendar', 'comment', 'shop', 'comments', 'external', 'privacy', 'settings', 'comments', 'external', 'trophy', 'payment', 'feed', 'alarm outline', 'tasks', 'cloud', 'lab', 'mail', 'dashboard', 'comment outline', 'comments outline', 'sitemap', 'idea', 'alarm', 'terminal', 'code', 'protect', 'calendar outline', 'ticket', 'external square', 'bug', 'mail square', 'history', 'options', 'text telephone', 'find', 'wifi', 'alarm mute', 'alarm mute outline', 'copyright', 'at', 'eyedropper', 'paint brush', 'heartbeat', 'mouse pointer', 'hourglass empty', 'hourglass start', 'hourglass half', 'hourglass end', 'hourglass full', 'hand pointer', 'trademark', 'registered', 'creative commons', 'add to calendar', 'remove from calendar', 'delete calendar', 'checked calendar', 'industry', 'shopping bag', 'shopping basket', 'hashtag', 'percent',
   /* User Actions */
@@ -72,62 +72,53 @@ export const GLYPHS = [
   'left dropdown'
 ]
 
-const { color } = OPTIONS
-export const FLIPPEDS = ['horizontally', 'vertically']
-export const ROTATEDS = ['clockwise', 'counterclockwise']
-export const FORMATS = ['circular', 'bordered']
-export const makeIconClasses = makeClassnameFactory({
-  suffix: 'icon',
-  options: {
-    glyph: GLYPHS,
-    color,
-    size,
-    flipped: makeOptionForValuesAndSuffix(FLIPPEDS, 'flipped'),
-    rotated: makeOptionForValuesAndSuffix(ROTATEDS, 'rotated'),
-    format: FORMATS
-  }
-})
-export const Icon = ({
-                    glyph, color, size, flipped, rotated, format,
-                    disabled, loading, fitted, link, inverted, corner,
-                    className, ...rest }) => {
-	const classes = makeIconClasses({
-    glyph, color, size, flipped, rotated, format,
-    disabled, loading, fitted, link, inverted, corner
-  }, className)
-	return (
-		<i { ...rest } className={ classes }/>
-	)
+export const iconOptions = {
+  glyph: {
+    values: _glyphs,
+    isRequired: true
+  },
+  disabled: true,
+  loading: true,
+  fitted: true,
+  size: _sizes,
+  link: true,
+  flipped: {
+    values: ['vertcially', 'horizontally'],
+    makeClassname: makeSuffixedClass.bind(null, 'flipped')
+  },
+  rotated: {
+    values: ['clockwise', 'counterclockwise'],
+    makeClassname: makeSuffixedClass.bind(null, 'rotated')
+  },
+  format: ['circular', 'bordered'],
+  color: enums.colors,
+  inverted: true,
+  corner: true
 }
-Icon.propTypes = {
-  glyph: PropTypes.string.isRequired
-}
-
-/*
- |---------------------------
- | Close icon
- |---------------------------
- */
-export const Close = (props) => {
+const _iconFactory = makeFactory(iconOptions)
+const Icon = (props) => {
+  const [classes, rest] = _iconFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'icon')
   return (
-    <Icon {...props} glyph='close'/>
+    <i {...rest} className={className} />
   )
 }
+Icon.propTypes = { ..._iconFactory.propTypes }
+export default Icon
 
 /*
  |---------------------------
- | Icons
+ | Shared options
  |---------------------------
  */
-export const makeIconsClasses = makeClassnameFactory({
-  suffix: 'icons',
-  options: {
-    size
-  }
-})
-export const Icons = ({ size, className, ...rest}) => {
-  const classes = makeIconsClasses({ size }, className)
+export const iconsOptions = {
+  size: _sizes
+}
+const _iconsFactory = makeFactory(iconsOptions)
+export const Icons = (props) => {
+  const [classes, rest] = _iconsFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'icons')
   return (
-    <i {...rest} className={classes}/>
+    <i {...rest} className={className} />
   )
 }

@@ -20,14 +20,14 @@ storiesOf('Divider', module)
         </Story.Segment>
         <Story.Segment title='orientation'>
           <p>The element containing a vertical {'<Divider />'} must have [position="relative"]</p>
-          <Example>
+          <Example title='vertical'>
             <Grid columns='two' style={{ position: 'relative' }}>
               <Column>{makeLipsum(200)}</Column>
               <Divider orientation='vertical'>Or</Divider>
               <Column>{makeLipsum(200)}</Column>
             </Grid>
           </Example>
-          <Example>
+          <Example title='horizontal'>
             <p>{makeLipsum(200)}</p>
             <Divider orientation='horizontal'>Or</Divider>
             <p>{makeLipsum(200)}</p>
@@ -43,12 +43,12 @@ storiesOf('Divider', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='margin'>
-          <Example>
+          <Example title='fitted'>
             <p>{makeLipsum(200)}</p>
             <Divider margin='fitted' />
             <p>{makeLipsum(200)}</p>
           </Example>
-          <Example>
+          <Example title='section'>
             <p>{makeLipsum(200)}</p>
             <Divider margin='section' />
             <p>{makeLipsum(200)}</p>

@@ -64,7 +64,8 @@ const _extractDefinition = (definition) => {
 }
 
 
-export const Api = ({ options, children }) => {
+export const Api = ({ options, override, children }) => {
+  override = override || {}
   return (
     <div>
       <pre>{children}</pre>
@@ -78,10 +79,14 @@ export const Api = ({ options, children }) => {
         {
           Object.keys(options).map((key, index) => {
             let { values, isRequired } = _extractDefinition(options[key])
-            if (values === true) {
-              values = 'boolean'
+            if (override[key]) {
+              values = override[key]
             } else {
-              values = _extractValues(values)
+              if (values === true) {
+                values = 'boolean'
+              } else {
+                values = _extractValues(values)
+              }
             }
             return (
               <tr key={index}>
@@ -108,10 +113,11 @@ const _extractJsx = (children) => {
 }
 export class Example extends Component {
   render () {
-    let { children, code } = this.props
+    let { title, children, code } = this.props
     code = code || _extractJsx(children)
     return (
-      <div>
+      <div style={{ margin: '2em 1em', paddingBottom: '1em' }}>
+        { title ? (<h3>{title}</h3>) : null }
         <div>{children}</div>
         <br style={{ clear: 'both' }} />
         <div style={{ background: '#333', color: '#eee', marginBottom: '1em', position: 'relative' }}>
@@ -124,27 +130,36 @@ export class Example extends Component {
     )
   }
 }
-const Options = ({ component, propKey, options, makeChildren }) => {
+const ExampleIterator = ({ component, propKey, options, props }) => {
+  props = props || {}
+  const { children, ...rest } = props
   const { values } = _extractDefinition(options[propKey])
-  let lastValue
-
   const components = values.map((value, index) => {
-    const children = makeChildren ? makeChildren(value, propKey) : value
-    lastValue = value
-    return React.createElement(component, { [propKey]: value, key: index }, children)
+    let result = value
+    if (typeof children === 'function') {
+      result = children(value)
+    } else if (typeof children !== 'undefined') {
+      result = children
+    }
+
+    return React.createElement(component, {
+      ...rest,
+      [propKey]: value,
+      key: index
+    }, result)
   })
-  let code = reactToJsx(components[components.length - 1])
-  code = code.replace('"' + lastValue + '"', '"' + _extractValues(values, { delimiter: '', separator: '|' }) + '"')
+  const code = reactToJsx(components[0])
   return (
-    <Example code={[code]}>
+    <Example code={code}>
       {components}
     </Example>
   )
 }
-Options.displayName = 'Example.Options'
-Options.propTypes = {
+ExampleIterator.displayName = 'Example.Iterator'
+ExampleIterator.propTypes = {
   component: PropTypes.func.isRequired,
   propKey: PropTypes.string.isRequired,
-  options: PropTypes.object.isRequired
+  options: PropTypes.object.isRequired,
+  props: PropTypes.object
 }
-Example.Options = Options
+Example.Iterator = ExampleIterator

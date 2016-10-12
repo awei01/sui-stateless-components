@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example } from '../../.storybook/comps'
 import Button, { buttonOptions, contentOptions, Buttons, buttonsOptions } from './index'
 import { Label } from '../../elements/Label'
-import { Icon } from '../../elements/Icon'
+import Icon from '../../elements/Icon'
 import { Segment } from '../../elements/Segment'
 
 const _path = 'sui-stateless-components/elements/Button'
@@ -27,7 +27,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='emphasis'>
-          <Example.Options component={Button} propKey='emphasis' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='emphasis' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='animated'>
           <p>Using the [animated] prop renders component as a {'<div>'} element</p>
@@ -100,18 +100,20 @@ storiesOf('Button', module)
         </Story.Segment>
         <Story.Segment title='social'>
           <p>You will need to provide the {'<Icon glyph />'} and appropriate children</p>
-          <Example.Options component={Button} propKey='social' options={buttonOptions} makeChildren={(value) => {
-              return [<Icon key={value} glyph={value}/>, value]
-            }} />
+          <Example.Iterator component={Button} propKey='social' options={buttonOptions} props={{
+            children: (value) => {
+              return [<Icon key={value} glyph={value} />, value]
+            }
+          }}/>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Options component={Button} propKey='size' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='size' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='floated'>
-          <Example.Options component={Button} propKey='floated' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='floated' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example.Options component={Button} propKey='color' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='color' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='compact'>
           <Example>
@@ -126,7 +128,7 @@ storiesOf('Button', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='hint'>
-          <Example.Options component={Button} propKey='hint' options={buttonOptions} />
+          <Example.Iterator component={Button} propKey='hint' options={buttonOptions} />
         </Story.Segment>
         <Story.Segment title='fluid'>
           <Example>
@@ -142,12 +144,12 @@ storiesOf('Button', module)
         </Story.Segment>
         <Story.Segment title='attached'>
           <p>When prop attached=[ 'top' | 'bottom' ] the component renders as a {'<div>'} element</p>
-          <Example>
+          <Example title='vertical attachment'>
             <Button attached='top'>top attached</Button>
             <Segment attached />
             <Button attached='bottom'>bottom attached</Button>
           </Example>
-          <Example>
+          <Example title='horizontal attachment'>
             <Button attached='left'>left attached</Button>
             <Button attached='right'>right attached</Button>
           </Example>
@@ -249,11 +251,6 @@ storiesOf('Button', module)
         <Story.Segment title='color'>
           <Example>
             <Buttons color='red'>
-              <Button>one</Button>
-              <Button>two</Button>
-              <Button>three</Button>
-            </Buttons>
-            <Buttons color='blue'>
               <Button>one</Button>
               <Button>two</Button>
               <Button>three</Button>

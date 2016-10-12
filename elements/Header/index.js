@@ -1,26 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/header.css';
-
-/*
- |---------------------------
- | List
- |---------------------------
-export const SIZES = ['tiny', 'small', 'medium', 'large', 'huge']
-const { color, aligned, floated } = OPTIONS
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'header',
-  options: {
-    size: SIZES,
-    aligned,
-    color,
-    format: ['dividing', 'block'],
-    attached: makeOptionForValuesAndSuffix(['top', 'bottom'], 'attached'),
-    floated
-  }
-}) */
 
 export const headerOptions = {
   size: ['tiny', 'small', 'medium', 'large', 'huge'],
@@ -68,11 +49,4 @@ const Content = (props) => {
 }
 Content.displayName = 'Header.Content'
 Header.Content = Content
-/*
- |---------------------------
- | Supporting components
- |---------------------------
 
-export const Content = makeComponentWithClasses('content')
-export const Subheader = makeComponentWithClasses('sub header')
- */

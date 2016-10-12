@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/button.css'

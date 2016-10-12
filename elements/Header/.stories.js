@@ -18,7 +18,7 @@ storiesOf('Header', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example.Options component={Header} propKey='size' options={headerOptions} />
+          <Example.Iterator component={Header} propKey='size' options={headerOptions} />
         </Story.Segment>
         <Story.Segment title='icon'>
           <Example>
@@ -69,7 +69,7 @@ storiesOf('Header', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='color'>
-          <Example.Options component={Header} propKey='color' options={headerOptions} />
+          <Example.Iterator component={Header} propKey='color' options={headerOptions} />
         </Story.Segment>
         <Story.Segment title='inverted'>
           <Example>
