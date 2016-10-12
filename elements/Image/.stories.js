@@ -1,156 +1,146 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makeSizeStory, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
-import { Image, Images } from './index'
-import { Divider } from '../../elements/Divider'
-import { Segment } from '../../elements/Segment'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Image, { imageOptions, Images, imagesOptions } from './index'
+import Divider from '../../elements/Divider'
+
+const _path = 'sui-stateless-components/elements/Image'
+const _otherProps = {
+  src: {
+    description: 'The url of the the image',
+    isRequired: true
+  },
+  href: {
+    description: 'The link for the image. This will wrap the <img /> within an <a />'
+  }
+}
 
 storiesOf('Image', module)
-  .add('<Image> default', () => {
+  .add('<Image />', () => {
     return (
-      <Story examples='<Image src={ url } [width={ width } height={ height }]/>'
-          notes='<Image> will automatically generate an <img> tag. To generate an <a> look at [href]'>
-        <Image src='images/lindsay.png'/>
-        <Image src='images/lindsay.png' width='100'/>
-        <Image src='images/lindsay.png' width='200' height='100'/>
+      <Story title='<Image />'>
+        <Api options={imageOptions} otherProps={_otherProps}>
+          import Image from '{_path}'
+        </Api>
+        <Story.Segment title='src'>
+          <Example>
+            <Image src='images/lindsay.png' />
+          </Example>
+          <Example title='{ width, height } can be passed'>
+            <Image src='images/lindsay.png' width={100} height={50}/>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='href'>
+          <p>Adding the [href] prop will wrap the {'<img />'} within an {'<a />'} tag</p>
+          <Example>
+            <Image href='http://www.google.com' target='_blank' src='images/lindsay.png' />
+          </Example>
+          <Example title='{ width, height } will be passed to <img />'>
+            <Image href='http://www.google.com' target='_blank' src='images/lindsay.png' width={100} height={50}/>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='hidden'>
+          <Example>
+            <Image hidden src='images/lindsay.png' />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='disabled'>
+          <p>When [disabled] is true, the component will not render the {'<a />'} even if [href] is passed</p>
+          <Example>
+            <Image disabled src='images/lindsay.png' />
+            <Image disabled href='http://www.google.com' target='_blank' src='images/lindsay.png'/>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='format'>
+          <Example title='avatar'>
+            <Image format='avatar' src='images/lindsay.png' />
+          </Example>
+          <Example title='circular'>
+            <Image format='circular' src='images/lindsay.png' />
+          </Example>
+          <Example title='rounded'>
+            <Image format='rounded' src='images/lindsay.png' />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='bordered'>
+          <Example>
+            <Image bordered src='images/matthew.png' />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='fluid'>
+          <Example>
+            <Image fluid src='images/matthew.png' />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <p>
+              <Image aligned='top' src='images/jenny.jpg' />
+              top aligned
+            </p>
+            <p>
+              <Image aligned='middle' src='images/jenny.jpg' />
+              middle aligned
+            </p>
+            <p>
+              <Image aligned='bottom' src='images/jenny.jpg' />
+              bottom aligned
+            </p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='centered'>
+          <Example>
+            <p>
+              {makeLipsum(200)}
+              <Image centered src='images/jenny.jpg' />
+              {makeLipsum(200)}
+            </p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='spaced'>
+          <Example>
+            <p>
+              <Image spaced='right' src='images/jenny.jpg' />
+              {makeLipsum(300)}
+              <Image spaced src='images/jenny.jpg' />
+              {makeLipsum(300)}
+              <Image spaced='left' src='images/jenny.jpg' />
+            </p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floated'>
+          <Example>
+            <p>
+              <Image floated='left' src='images/jenny.jpg' />
+              {makeLipsum()}
+            </p>
+            <p>
+              <Image floated='right' src='images/jenny.jpg' />
+              {makeLipsum()}
+            </p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Iterator component={Image} propKey='size' options={imageOptions} props={{ src: 'images/lindsay.png', children: null }} />
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Image> href', () => {
+  .add('<Images />', () => {
     return (
-      <Story examples='<Image href={ url }/>'
-        notes={[
-          '<Image> [href] prop generates an <a> tag wrapping an <img> tag',
-          'The [height] property will be overridden by SUI CSS declaration [height: auto]'
-        ]}>
-        <Image href='http://www.google.com' target='_blank' src='images/lindsay.png'/>
-        <Image href='http://www.google.com' target='_blank' src='images/lindsay.png' width='100'/>
-        <Image href='http://www.google.com' target='_blank' src='images/lindsay.png' width='200' height='100'/>
+      <Story title='<Images />'>
+        <Api options={imagesOptions}>
+          {'import { Image } from \'' + _path + '\''}
+        </Api>
+        <Story.Segment title='size'>
+          <Example>
+            <Images size='tiny'>
+              <Image spaced='right' src='images/jenny.jpg' />
+              <Image format='circular' src='images/lindsay.png' />
+              <Image bordered src='images/matthew.png' />
+            </Images>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Image> hidden', () => {
-    return (
-      <Story examples='<Image hidden/>'>
-        This image is hidden
-        <Image hidden src='images/lindsay.png'/>
-      </Story>
-    )
-  })
-  .add('<Image> disabled', () => {
-    return (
-      <Story examples='<Image disabled/>'>
-        <Image disabled src='images/lindsay.png'/>
-      </Story>
-    )
-  })
-  .add('<Image> avatar', () => {
-    return (
-      <Story examples='<Image avatar/>'>
-        <Image avatar src='images/lindsay.png'/>
-        avatar image
-      </Story>
-    )
-  })
-  .add('<Image> bordered', () => {
-    return (
-      <Story examples='<Image bordered/>'>
-        <Image bordered src='images/white-image.png'/>
-      </Story>
-    )
-  })
-  .add('<Image> fluid', () => {
-    return (
-      <Story examples='<Image fluid/>'>
-        <div style={{ width: '200px' }}>
-          <h4>200px container</h4>
-          <Image fluid src='images/lindsay.png'/>
-        </div>
-      </Story>
-    )
-  })
-  .add('<Image> format', () => {
-    return (
-      <Story examples='<Image format=[ "rounded" | "circular" ]/>'>
-        <Image format='rounded' src='images/lindsay.png'/>
-        <Image format='circular' src='images/lindsay.png'/>
-      </Story>
-    )
-  })
-  .add('<Image> valigned', () => {
-    return (
-      <Story examples='<Image valigned=[ "top" | "middle" | "bottom" ]/>'>
-        <Divider/>
-        <Image src='images/lindsay.png'/>
-        non-aligned
-        <Divider/>
-        <Image valigned='top' src='images/lindsay.png'/>
-        top aligned
-        <Divider/>
-        <Image valigned='middle' src='images/lindsay.png'/>
-        middle aligned
-        <Divider/>
-        <Image valigned='bottom' src='images/lindsay.png'/>
-        bottom aligned
-        <Divider/>
-      </Story>
-    )
-  })
-  .add('<Image> centered', () => {
-    return (
-      <Story examples='<Image centered/>'>
-        {makeLipsum(200)}
-        <Image centered src='images/lindsay.png'/>
-        {makeLipsum(200)}
-      </Story>
-    )
-  })
-  .add('<Image> spaced', () => {
-    return (
-      <Story examples='<Image spaced=[ true | "left" | "right" ]/>'>
-        <Image spaced='right' size='mini' src='images/lindsay.png'/>
-        {makeLipsum(200)}
-        <Image spaced size='mini' src='images/lindsay.png'/>
-        {makeLipsum(200)}
-        <Image spaced='left' size='mini' src='images/lindsay.png'/>
-      </Story>
-    )
-  })
-  .add('<Image> floated', () => {
-    return (
-      <Story examples='<Image floated=[ "left" | "right" ]/>'>
-        <p>
-          <Image floated='left' src='images/lindsay.png'/>
-          {makeLipsum()}
-        </p>
-        <p>
-          <Image floated='right' src='images/lindsay.png'/>
-          {makeLipsum()}
-        </p>
-      </Story>
-    )
-  })
-  .add('<Image> size', makeSizeStory(Image, { props: {
-    src: '/images/lindsay.png',
-    children: null
-  }}))
-  .add('<Image> passes .className and other props', makePassesPropsStory(Image, { props: {
-    src: '/images/white-image.png',
-    className: 'bordered small',
-    onClick: action('Image was clicked')
-  }}))
-  .add('<Image> with [href] passes .className and other props to <a>', makePassesPropsStory(Image, { props: {
-    href: 'http://www.google.com',
-    target: '_blank',
-    src: '/images/white-image.png',
-    className: 'bordered small'
-  }}))
-  .add('<Images> size', makeSizeStory(Images, { props: {
-    children: [<Image src='images/lindsay.png'/>, <Image src='images/lindsay.png'/>, <Image src='images/lindsay.png'/>]
-  }}))
-  .add('<Images> passes .className and other props', makePassesPropsStory(Images, { props: {
-    className: 'mini small',
-    children: [<Image src='images/lindsay.png'/>, <Image src='images/lindsay.png'/>, <Image src='images/lindsay.png'/>],
-    onClick: action('Images was clicked')
-  }}))

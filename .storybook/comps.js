@@ -64,8 +64,9 @@ const _extractDefinition = (definition) => {
 }
 
 
-export const Api = ({ options, override, children }) => {
-  override = override || {}
+export const Api = ({ options, overridden, otherProps, children }) => {
+  overridden = overridden || {}
+  otherProps = otherProps || {}
   return (
     <div>
       <pre>{children}</pre>
@@ -77,10 +78,22 @@ export const Api = ({ options, override, children }) => {
         </thead>
         <tbody>
         {
+          Object.keys(otherProps).map((key, index) => {
+            const { description, isRequired } = otherProps[key]
+            return (
+              <tr key={index}>
+                <th style={{ textAlign: 'left', verticalAlign: 'top' }}><a href={'#' + key}>{key}</a></th>
+                <td style={{ fontWeight: 'bold', color: 'red', paddingRight: '.5em' }}>{ isRequired ? '*' : ' ' }</td>
+                <td>{description}</td>
+              </tr>
+            )
+          })
+        }
+        {
           Object.keys(options).map((key, index) => {
             let { values, isRequired } = _extractDefinition(options[key])
-            if (override[key]) {
-              values = override[key]
+            if (overridden[key]) {
+              values = overridden[key]
             } else {
               if (values === true) {
                 values = 'boolean'

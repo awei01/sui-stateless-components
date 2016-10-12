@@ -1,70 +1,67 @@
-import without from 'lodash/without'
 import React, { PropTypes } from 'react';
-import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS } from '../../utils';
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/image.css';
 
 /*
  |---------------------------
- | Shared options
+ | Image
  |---------------------------
  */
-const { size } = OPTIONS
-/*
- |---------------------------
- | Icon
- |---------------------------
- */
-const { valigned, floated } = OPTIONS
-export const makeImageClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'image',
-  options: {
-    format: ['rounded', 'circular'],
-    valigned,
-    size,
-    spaced: makeOptionForValuesAndSuffix([true, 'left', 'right'], 'spaced'),
-    floated,
-  }
-})
-export const Image = ({
-                      src, href, width, height,
-                      format, valigned, size, spaced, floated,
-                      hidden, disabled, avatar, bordered, fluid, centered,
-                      className, ...rest }) => {
-  const classes = makeImageClasses({
-    format, valigned, size, spaced, floated,
-    hidden, disabled, avatar, bordered, fluid, centered
-  }, className)
-  const imgProps = { src, width, height } // these props will always go on img
-
-  if (href) {
-    // we're generating a link, we need to wrap our img
-    const aProps = { ...rest, href, className: classes }
+export const imageOptions = {
+  hidden: true,
+  disabled: true,
+  format: ['avatar', 'rounded', 'circular'],
+  bordered: true,
+  fluid: true,
+  aligned: {
+    values: ['top', 'middle', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'aligned')
+  },
+  centered: true,
+  spaced: {
+    values: [true, 'right', 'left'],
+    makeClassname: makeSuffixedClass.bind(null, 'spaced')
+  },
+  floated: options.floated,
+  size: enums.sizes
+}
+const _imageFactory = makeFactory(imageOptions)
+const Image = (props) => {
+  const [classes, rest] = _imageFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'image')
+  // pull out the image-related props and href to determine if we need an <a />
+  const { src, height, width, href, ...other } = rest
+  if (href && !props.disabled) {
+    const aProps = { ...other, href, className }
     return (
-      <a {...aProps}><img {...imgProps}/></a>
+      <a {...aProps}><img src={src} height={height} width={width} /></a>
     )
   }
-
-  const passedProps = { ...rest, ...imgProps, className: classes }
   return (
-    <img {...passedProps}/>
+    <img {...rest} className={className} />
   )
 }
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
-  href: PropTypes.string
+  ..._imageFactory.propTypes,
+  src: PropTypes.string.isRequired
 }
+export default Image
 
-export const makeImagesClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'images',
-  options: {
-    size
-  }
-})
-export const Images = ({ size, className, ...rest }) => {
-  const classes = makeImagesClasses({ size }, className)
+/*
+ |---------------------------
+ | Images
+ |---------------------------
+ */
+export const imagesOptions = {
+  size: enums.sizes
+}
+const _imagesFactory = makeFactory(imagesOptions)
+export const Images = (props) => {
+  const [classes, rest] = _imagesFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'images')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Images.propTypes = { ..._imagesFactory.propTypes }

@@ -83,7 +83,7 @@ export const iconOptions = {
   size: _sizes,
   link: true,
   flipped: {
-    values: ['vertcially', 'horizontally'],
+    values: ['vertically', 'horizontally'],
     makeClassname: makeSuffixedClass.bind(null, 'flipped')
   },
   rotated: {

@@ -4,12 +4,15 @@ import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Icon, { iconOptions, Icons, iconsOptions } from '../Icon'
 
 const _path = 'sui-stateless-components/elements/Icon'
+const _overridden = {
+  glyph: 'See (http://semantic-ui.com/elements/icon.html) for possible values'
+}
 
 storiesOf('Icon', module)
   .add('<Icon />', () => {
     return (
       <Story title='<Icon />'>
-        <Api options={iconOptions} override={{ glyph: 'See (http://semantic-ui.com/elements/icon.html) for possible values' }} >
+        <Api options={iconOptions} overridden={_overridden} >
           import Icon from '{_path}'
         </Api>
         <Story.Segment title='glyph'>
