@@ -126,11 +126,12 @@ const _extractJsx = (children) => {
 }
 export class Example extends Component {
   render () {
-    let { title, children, code } = this.props
+    let { title, description, children, code } = this.props
     code = code || _extractJsx(children)
     return (
       <div style={{ margin: '2em 1em', paddingBottom: '1em' }}>
         { title ? (<h3>{title}</h3>) : null }
+        { description ? (<p>{description}</p>) : null }
         <div>{children}</div>
         <br style={{ clear: 'both' }} />
         <div style={{ background: '#333', color: '#eee', marginBottom: '1em', position: 'relative' }}>

@@ -15,9 +15,12 @@ storiesOf('Button', module)
         <Api options={buttonOptions}>
           import Button from '{_path}'
         </Api>
-        <Story.Segment>
+        <Story.Segment title='(default)'>
           <Example>
             <Button>default</Button>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Button className='red'>red button</Button>
           </Example>
         </Story.Segment>
         <Story.Segment title='href'>
@@ -193,9 +196,16 @@ storiesOf('Button', module)
         <Api options={buttonsOptions}>
           {'import { Buttons } from \'' + _path + '\''}
         </Api>
-        <Story.Segment>
+        <Story.Segment title='(default)'>
           <Example>
             <Buttons>
+              <Button>one</Button>
+              <Button>two</Button>
+              <Button>three</Button>
+            </Buttons>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Buttons className='red'>
               <Button>one</Button>
               <Button>two</Button>
               <Button>three</Button>

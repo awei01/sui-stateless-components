@@ -12,9 +12,12 @@ storiesOf('Header', module)
         <Api options={headerOptions}>
           import Header from 'sui-stateless-components/elements/Header'
         </Api>
-        <Story.Segment>
+        <Story.Segment title='(default)'>
           <Example>
             <Header>Some header</Header>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Header className='red'>red header</Header>
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>

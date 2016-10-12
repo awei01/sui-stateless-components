@@ -16,6 +16,12 @@ function extractClassesAndProps (props = {}) {
   const options = this.options
   const makeClassnames = this.makeClassnames
   Object.keys(props).forEach((key) => {
+    if (key === 'className') {
+      // a className prop was passed, we'll assume developer knows what's going on
+      // pull it out of the [rest] and put it into [classes]
+      classes[props.className] = true
+      return
+    }
     const value = props[key]
     if (!options[key]) {
       // this prop does not exist in the options, let component handle it

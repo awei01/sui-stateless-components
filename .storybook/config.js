@@ -8,8 +8,8 @@ function loadStories() {
   require('../elements/Header/.stories')
   require('../elements/Icon/.stories')
   require('../elements/Image/.stories')
-  return
   require('../elements/Input/.stories')
+  return
   require('../elements/Label/.stories')
   require('../elements/List/.stories')
   require('../elements/Loader/.stories')

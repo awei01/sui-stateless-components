@@ -7,6 +7,7 @@ export const dividerOptions = {
   orientation: ['vertical', 'horizontal'],
   inverted: true,
   margin: ['fitted', 'section'],
+  hidden: true,
   clearing: true
 }
 const _dividerFactory = makeFactory(dividerOptions)

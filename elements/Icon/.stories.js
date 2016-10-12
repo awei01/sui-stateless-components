@@ -22,6 +22,9 @@ storiesOf('Icon', module)
             <Icon glyph='copyright' />
             <Icon glyph='align center' />
           </Example>
+          <Example title='[className] gets passed'>
+            <Icon glyph='user' className='big' />
+          </Example>
         </Story.Segment>
         <Story.Segment title='disabled'>
           <Example>

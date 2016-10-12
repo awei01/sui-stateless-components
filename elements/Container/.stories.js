@@ -12,9 +12,12 @@ storiesOf('Container', module)
         <Api options={containerOptions}>
           import Container from '{_path}'
         </Api>
-        <Story.Segment>
+        <Story.Segment title='(default)'>
           <Example>
             <Container>{makeLipsum(200)}</Container>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Container className='right aligned'>{makeLipsum(200)}</Container>
           </Example>
         </Story.Segment>
         <Story.Segment title='format'>

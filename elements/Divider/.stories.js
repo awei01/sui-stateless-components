@@ -11,11 +11,14 @@ storiesOf('Divider', module)
         <Api options={dividerOptions}>
           import Divider from 'sui-stateless-components/elements/Divider'
         </Api>
-        <Story.Segment>
+        <Story.Segment title='(default)'>
           <Example>
             <p>{makeLipsum(200)}</p>
             <Divider />
             <p>{makeLipsum(200)}</p>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Divider className='hidden'/>
           </Example>
         </Story.Segment>
         <Story.Segment title='orientation'>
@@ -51,6 +54,13 @@ storiesOf('Divider', module)
           <Example title='section'>
             <p>{makeLipsum(200)}</p>
             <Divider margin='section' />
+            <p>{makeLipsum(200)}</p>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='hidden'>
+          <Example>
+            <p>{makeLipsum(200)}</p>
+            <Divider hidden />
             <p>{makeLipsum(200)}</p>
           </Example>
         </Story.Segment>

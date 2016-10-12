@@ -26,8 +26,11 @@ storiesOf('Image', module)
           <Example>
             <Image src='images/lindsay.png' />
           </Example>
-          <Example title='{ width, height } can be passed'>
+          <Example title='[width, height] can be passed'>
             <Image src='images/lindsay.png' width={100} height={50}/>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Image src='images/lindsay.png' className='avatar'/>
           </Example>
         </Story.Segment>
         <Story.Segment title='href'>
