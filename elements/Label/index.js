@@ -84,4 +84,4 @@ export const Labels = (props) => {
     <div {...rest} className={className} />
   )
 }
-Labels.propTypes = _labelsFactory.propTypes
+Labels.propTypes = { ..._labelsFactory.propTypes }
