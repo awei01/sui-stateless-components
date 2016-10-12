@@ -31,8 +31,20 @@ storiesOf('Button', module)
         </Story.Segment>
         <Story.Segment title='animated'>
           <p>Using the [animated] prop renders component as a {'<div>'} element</p>
-          <Example>
+          <Example title='(true)'>
+            <Button animated>
+              <Button.Content visible>visible content</Button.Content>
+              <Button.Content visible={false}>hidden content</Button.Content>
+            </Button>
+          </Example>
+          <Example title='vertical'>
             <Button animated='vertical'>
+              <Button.Content visible>visible content</Button.Content>
+              <Button.Content visible={false}>hidden content</Button.Content>
+            </Button>
+          </Example>
+          <Example title='fade'>
+            <Button animated='fade'>
               <Button.Content visible>visible content</Button.Content>
               <Button.Content visible={false}>hidden content</Button.Content>
             </Button>

@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Header, { headerOptions } from './index'
-import { Icon } from '../../elements/Icon'
+import Icon from '../../elements/Icon'
 
 storiesOf('Header', module)
   .add('<Header />', () => {
@@ -40,10 +40,10 @@ storiesOf('Header', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='format'>
-          <Example>
+          <Example title='dividing'>
             <Header format='dividing'>dividing header</Header>
           </Example>
-          <Example>
+          <Example title='block'>
             <Header format='block'>block header</Header>
           </Example>
         </Story.Segment>
