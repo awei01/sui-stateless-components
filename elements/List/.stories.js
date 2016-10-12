@@ -1,292 +1,332 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makeLipsum, extractDefinitionValues, makeSizeStory, makePassesPropsStory } from '../../.storybook/utils';
-import { List, Item, Content, SIZES, Header, Description } from './index'
-import { Icon } from '../../elements/Icon'
-import { Image } from '../../elements/Image'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import List, { listDefinition, itemDefinition, contentDefinition } from './index'
+import Icon from '../../elements/Icon'
+import Image from '../../elements/Image'
 
-const _makeItems = (items, props) => {
-  items = items || ['Item 1', 'Item 2', 'Item 3']
-  return items.map((item, index) => {
-    return (
-      <Item {...props} key={index}>{item}</Item>
-    )
-  })
+const _otherProps = {
+  href: {
+    description: 'When passed, component will render as an <a /> tag'
+  }
 }
 
 storiesOf('List', module)
-  .add('<List> default', () => {
+  .add('<List />', () => {
     return (
-      <Story examples='<List><Item/></List>'
-        notes='The <List> specifically renders a <div> tag. To render <ul> or <li> use exported makeListClasses() method to generate the [className] prop.'
-        >
-        <List>
-          {_makeItems()}
-        </List>
+      <Story title='<List />'>
+        <Api definition={listDefinition}>
+          import List from 'sui-stateless-components/elements/List'
+        </Api>
+        <Story.Segment title='(default)'>
+          <p>This component will render as a {'<div />'} tag</p>
+          <Example>
+            <List>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+          <Example title='[className] gets passsed'>
+            <List className='horizontal'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='format'>
+          <Example>
+            <List format='bulleted'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+            <List format='ordered'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='link'>
+          <Example>
+            <List link>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='horizontal'>
+          <Example>
+            <List horizontal>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <div style={{ background: '#000', padding: '1em' }}>
+              <List inverted>
+                <List.Item>
+                  <List.Item.Header>header one</List.Item.Header>
+                  <List.Item.Description>description one</List.Item.Description>
+                </List.Item>
+                <List.Item>
+                  <List.Item.Header>header two</List.Item.Header>
+                  <List.Item.Description>description two</List.Item.Description>
+                </List.Item>
+                <List.Item>
+                  <List.Item.Header>header three</List.Item.Header>
+                  <List.Item.Description>description three</List.Item.Description>
+                </List.Item>
+              </List>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='selection'>
+          <Example>
+            <List selection>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='animated'>
+          <Example>
+            <List animated>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='relaxed'>
+          <Example title='(true)'>
+            <List relaxed>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+          <Example title='very'>
+            <List relaxed='very'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='divided'>
+          <Example title='(true)'>
+            <List divided>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+          <Example title='celled'>
+            <List divided='celled'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Iterator component={List} propKey='size' definition={listDefinition} props={{
+            children: () => {
+              return [<List.Item key='one'>one</List.Item>, <List.Item key='two'>two</List.Item>, <List.Item key='three'>three</List.Item>]
+            }
+          }} />
+        </Story.Segment>
+        <Story.Segment title='valigned'>
+          <Example>
+            <List valigned='top'>
+              <List.Item>
+                <Image avatar src='images/jenny.jpg' />
+                <List.Item.Content>top valigned</List.Item.Content>
+              </List.Item>
+            </List>
+            <List valigned='middle'>
+              <List.Item>
+                <Image avatar src='images/jenny.jpg' />
+                <List.Item.Content>middle valigned</List.Item.Content>
+              </List.Item>
+            </List>
+            <List valigned='bottom'>
+              <List.Item>
+                <Image avatar src='images/jenny.jpg' />
+                <List.Item.Content>bottom valigned</List.Item.Content>
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floated'>
+          <Example>
+            <List floated='right'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+            <List floated='left'>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<List> format', () => {
+  .add('<List.Item />', () => {
     return (
-      <Story examples='<List format=[ "bulleted" | "ordered" ]><Item/></List>'>
-        <List format='bulleted'>
-          {_makeItems()}
-        </List>
-        <List format='ordered'>
-          {_makeItems()}
-        </List>
+      <Story title='<List.Item />'>
+        <Api definition={itemDefinition} otherProps={_otherProps} />
+        <Story.Segment title='(default)'>
+          <p>This component will render as a {'<div />'} tag</p>
+          <Example>
+            <List>
+              <List.Item>one</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='href'>
+          <p>When passed, component will render as an {'<a />'} tag</p>
+          <Example>
+            <List>
+              <List.Item href='http://www.google.com' target='_blank'>href</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='disabled'>
+          <Example>
+            <List>
+              <List.Item disabled>disabled</List.Item>
+              <List.Item>two</List.Item>
+              <List.Item>three</List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<List> horizontal', () => {
+  .add('<List.Item.Header />', () => {
     return (
-      <Story examples='<List horizontal><Item/></List>'>
-        <List horizontal>
-          {_makeItems()}
-        </List>
+      <Story title='<List.Item.Header />'>
+        <Api otherProps={_otherProps} />
+        <Story.Segment title='(default)'>
+          <p>This component will render as a {'<div />'} tag</p>
+          <Example>
+            <List>
+              <List.Item>
+                <List.Item.Header>header one</List.Item.Header>
+                some other content
+              </List.Item>
+              <List.Item>
+                <List.Item.Header>header two</List.Item.Header>
+                some other content
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='href'>
+          <p>When passed, component will render as an {'<a />'} tag</p>
+          <Example>
+            <List>
+              <List.Item>
+                <List.Item.Header href='http://www.google.com' target='_blank'>href header</List.Item.Header>
+                some other content
+              </List.Item>
+              <List.Item>
+                <List.Item.Header>header two</List.Item.Header>
+                some other content
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<List> inverted', () => {
+  .add('<List.Item.Content />', () => {
     return (
-      <Story examples='<List inverted><Item/></List>' container={{ inverted: true }}>
-        <List inverted>
-          {_makeItems()}
-        </List>
+      <Story definition={contentDefinition} title='<List.Item.Content />'>
+        <Story.Segment title='(default)'>
+          <p>This component helps position content along side {'<Icon /> or <Image />'}</p>
+          <Example>
+            <List>
+              <List.Item>
+                <Icon glyph='home' />
+                <List.Item.Content>home content</List.Item.Content>
+              </List.Item>
+              <List.Item>
+                <Icon glyph='user' />
+                <List.Item.Content>user content</List.Item.Content>
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='valigned'>
+          <Example>
+            <List horizontal>
+              <List.Item>
+                <Image src='images/jenny.jpg' />
+                <List.Item.Content valigned='top'>top valigned</List.Item.Content>
+              </List.Item>
+              <List.Item>
+                <Image src='images/jenny.jpg' />
+                <List.Item.Content valigned='middle'>middle valigned</List.Item.Content>
+              </List.Item>
+              <List.Item>
+                <Image src='images/jenny.jpg' />
+                <List.Item.Content valigned='bottom'>bottom valigned</List.Item.Content>
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floated'>
+          <Example>
+            <List>
+              <List.Item>
+                <List.Item.Content floated='right'>right floated</List.Item.Content>
+                <List.Item.Content floated='left'>left floated</List.Item.Content>
+                <List.Item.Content>content</List.Item.Content>
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<List> selection', () => {
+  .add('<List.Item.Description />', () => {
     return (
-      <Story examples='<List selection><Item/></List>'>
-        <List selection>
-          {_makeItems()}
-        </List>
-      </Story>
-    )
-  })
-  .add('<List> animated', () => {
-    return (
-      <Story examples='<List animated><Item/></List>'>
-        <List animated>
-          {_makeItems()}
-        </List>
-      </Story>
-    )
-  })
-  .add('<List> relaxed', () => {
-    return (
-      <Story examples='<List relaxed=[ true | "very "]><Item/></List>'>
-        <List>
-          <Item>non-relaxed list</Item>
-          {_makeItems()}
-        </List>
-        <List relaxed>
-          <Item>relaxed list</Item>
-          {_makeItems()}
-        </List>
-        <List relaxed='very'>
-          <Item>very relaxed list</Item>
-          {_makeItems()}
-        </List>
-      </Story>
-    )
-  })
-  .add('<List> divided', () => {
-    return (
-      <Story examples='<List divided=[ true | "celled "]><Item/></List>'>
-        <List>
-          <Item>non-divided list</Item>
-          {_makeItems()}
-        </List>
-        <List divided>
-          <Item>divided list</Item>
-          {_makeItems()}
-        </List>
-        <List divided='celled'>
-          <Item>celled list</Item>
-          {_makeItems()}
-        </List>
-      </Story>
-    )
-  })
-  .add('<List> size', makeSizeStory(List, {
-    options: SIZES,
-    props: { children: _makeItems() }
-  }))
-  .add('<List> passes .className and other props', makePassesPropsStory(List, {
-    props: {
-      className: 'bulleted',
-      onClick: action('List was clicked'),
-      children: _makeItems()
-    }
-  }))
-  .add('<Item> default', () => {
-    return (
-      <Story examples='<List><Item/></List>'
-        notes='Item renders as <div> by default. To generate an <a> tag look at link.'>
-        <List>
-          {_makeItems()}
-        </List>
-      </Story>
-    )
-  })
-  .add('<Item> link', () => {
-    return (
-      <Story examples={[
-          '<List><Item link/></List>',
-          '<List><Item href={url}/></List>'
-        ]} notes='An <Item> with [link] or [href] will generate an <a> tag'>
-        <List>
-          <Item>Item has link</Item>
-          {_makeItems(null, { link: true })}
-        </List>
-        <List>
-          <Item>Item has href</Item>
-          {_makeItems(null, { href: 'http://www.google.com', target: '_blank' })}
-        </List>
-      </Story>
-    )
-  })
-  .add('<Item> icon content', () => {
-    return (
-      <Story examples='<List><Item><Icon/><Content/></Item></List>'>
-        <List>
-          <Item>
-            <Icon glyph='close'/>
-            <Content>item content here</Content>
-          </Item>
-          <Item>
-            <Icon glyph='hand pointer'/>
-            <Content>item content here</Content>
-          </Item>
-          <Item>
-            <Icon glyph='add'/>
-            <Content>item content here</Content>
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Item> image content', () => {
-    return (
-      <Story examples='<List><Item><Image/><Content/></Item></List>'>
-        <List>
-          <Item>
-            <Image avatar src='images/lindsay.png'/>
-            <Content>item content here</Content>
-          </Item>
-          <Item>
-            <Image avatar src='images/lindsay.png'/>
-            <Content>item content here</Content>
-          </Item>
-          <Item>
-            <Image avatar src='images/lindsay.png'/>
-            <Content>item content here</Content>
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Item> passes .className and other props', () => {
-    return (
-      <Story examples='<List><Item className="link" onClick={ function }/></List>'>
-        <List>
-          <Item className='link' onClick={action('Item was clicked')}>
-            link clickable item
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Content> valigned', () => {
-    return (
-      <Story examples='<List><Item><Content valigned=[ "top" | "middle" | "bottom" ]/></Item></List>'>
-        <List selection>
-          <Item>
-            <Icon size='big' glyph='user'/>
-            <Content>non-aligned content</Content>
-          </Item>
-          <Item>
-            <Icon size='big' glyph='user'/>
-            <Content valigned='top'>top aligned content</Content>
-          </Item>
-          <Item>
-            <Icon size='big' glyph='user'/>
-            <Content valigned='middle'>middle aligned content</Content>
-          </Item>
-          <Item>
-            <Icon size='big' glyph='user'/>
-            <Content valigned='bottom'>bottom aligned content</Content>
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Content> floated', () => {
-    return (
-      <Story examples='<List><Item><Content floated=[ "left" | "right" ]/></Item></List>'>
-        <List selection>
-          <Item>
-            <Content floated='right'>right floated</Content>
-            <Content floated='left'>left floated</Content>
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Content> passes .className and other props', () => {
-    return (
-      <Story examples='<List><Item><Content className="bottom aligned" onClick={ function }/></Item></List>'>
-        <List>
-          <Item>
-            <Icon size='big' glyph='user'/>
-            <Content className='bottom aligned' onClick={action('Content was clicked')}>
-              bottom aligned clickable item
-            </Content>
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Header>', () => {
-    return (
-      <Story examples='<List><Item><Header/></Item></List>'>
-        <List selection>
-          <Item>
-            <Header>Header 1</Header>
-            Item 1
-          </Item>
-          <Item>
-            <Header>Header 2</Header>
-            Item 2
-          </Item>
-          <Item>
-            <Header>Header 3</Header>
-            Item 3
-          </Item>
-        </List>
-      </Story>
-    )
-  })
-  .add('<Description>', () => {
-    return (
-      <Story examples='<List><Item><Description/></Item></List>'>
-        <List selection>
-          <Item>
-            <Header>Header 1</Header>
-            <Description>Description 1</Description>
-          </Item>
-          <Item>
-            <Header>Header 2</Header>
-            <Description>Description 2</Description>
-          </Item>
-          <Item>
-            <Header>Header 3</Header>
-            <Description>Description 3</Description>
-          </Item>
-        </List>
+      <Story title='<List.Item.Description />'>
+        <Story.Segment title='(default)'>
+          <p>This component is to be used within {'<List.Item /> or <List.Item.Content />'}</p>
+          <Example>
+            <List>
+              <List.Item>
+                <List.Item.Header>header</List.Item.Header>
+                <List.Item.Description>description</List.Item.Description>
+              </List.Item>
+              <List.Item>
+                <Icon glyph='user' />
+                <List.Item.Content>
+                  <List.Item.Header>header</List.Item.Header>
+                  <List.Item.Description>description</List.Item.Description>
+                </List.Item.Content>
+              </List.Item>
+            </List>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

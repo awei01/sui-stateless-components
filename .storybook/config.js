@@ -10,8 +10,8 @@ function loadStories() {
   require('../elements/Image/.stories')
   require('../elements/Input/.stories')
   require('../elements/Label/.stories')
-  return
   require('../elements/List/.stories')
+  return
   require('../elements/Loader/.stories')
   require('../elements/Segment/.stories')
 

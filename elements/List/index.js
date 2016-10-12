@@ -1,97 +1,114 @@
-import without from 'lodash/without'
+import React from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
-import React from 'react';
-import { makeClassnameFactory, makeComponentWithClasses, OPTIONS } from '../../utils';
 import 'semantic-ui-css/components/list.css';
-
-/*
- |---------------------------
- | Shared options
- |---------------------------
- */
 
 /*
  |---------------------------
  | List
  |---------------------------
  */
-const { relaxed, size } = OPTIONS
-export const SIZES = without(size, 'medium')
-export const makeListClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'list',
-  options: {
-    format: ['bulleted', 'ordered'],
-    relaxed,
-    divided: {
-      values: [true, 'celled'],
-      makeKey: (value) => {
-        if (value === true) {
-          return 'divided'
-        }
-        return value
-      }
-    },
-    size: SIZES
-  }
-})
-export const List = ({
-                      format, relaxed, divided, size,
-                      horizontal, inverted, selection, animated,
-                      className, ...rest}) => {
-  const classes = makeListClasses({
-    format, relaxed, divided, size,
-    horizontal, inverted, selection, animated
-  }, className)
-  return (
-    <div {...rest} className={classes}/>
-  )
-}
-
-/*
- |---------------------------
- | Item
- |---------------------------
- */
-export const Item = ({
-                      link, href,
-                      className, ...rest}) => {
-  const classes = classnames(className, 'item')
-  const passedProps = { ...rest, className: classes }
-  let element = 'div'
-  if (link || href) {
-    element = 'a'
-    if (href) {
-      passedProps.href = href
+export const listDefinition = {
+  format: ['bulleted', 'ordered'],
+  link: true,
+  horizontal: true,
+  inverted: true,
+  selection: true,
+  animated: true,
+  relaxed: {
+    values: [true, 'very'],
+    makeClassname: makeSuffixedClass.bind(null, 'relaxed')
+  },
+  divided: {
+    values: [true, 'celled'],
+    makeClassname: (value) => {
+      return value === true ? 'divided' : value
     }
-  }
-  return React.createElement(element, passedProps)
+  },
+  size: ['tiny', 'mini', 'small', 'large', 'big', 'huge', 'massive'],
+  valigned: options.valigned,
+  floated: options.floated
 }
-
-/*
- |---------------------------
- | Content
- |---------------------------
- */
- const { valigned, floated } = OPTIONS
-export const makeContentClasses = makeClassnameFactory({
-  suffix: 'content',
-  options: {
-    valigned,
-    floated
-  }
-})
-export const Content = ({ valigned, floated, className, ...rest }) => {
-  const classes = makeContentClasses({ valigned, floated }, className)
+const _listFactory = makeFactory(listDefinition)
+const List = (props) => {
+  const [classes, rest] = _listFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'list')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+List.propTypes = { ..._listFactory.propTypes }
+export default List
 
 /*
  |---------------------------
- | Supporting components
+ | List.Item
  |---------------------------
  */
-export const Header = makeComponentWithClasses('header')
-export const Description = makeComponentWithClasses('description')
+export const itemDefinition = {
+  disabled: true
+}
+const _itemFactory = makeFactory(itemDefinition)
+const Item = (props) => {
+  const [classes, rest] = _itemFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'item')
+  let element = 'div'
+  if (props.href) {
+    element = 'a'
+  }
+  return React.createElement(element, {...rest, className})
+}
+Item.propTypes = { ..._itemFactory.propTypes }
+Item.displayName = 'List.Item'
+List.Item = Item
+
+/*
+ |---------------------------
+ | List.Item.Header
+ |---------------------------
+ */
+const Header = (props) => {
+  const className = classnames(props.className, 'header')
+  let element = 'div'
+  if (props.href) {
+    element = 'a'
+  }
+  return React.createElement(element, {...props, className})
+}
+Header.displayName = 'List.Item.Header'
+Item.Header = Header
+
+/*
+ |---------------------------
+ | List.Item.Content
+ |---------------------------
+ */
+export const contentDefinition = {
+  valigned: options.valigned,
+  floated: options.floated
+}
+const _contentFactory = makeFactory(contentDefinition)
+const Content = (props) => {
+  const [classes, rest] = _contentFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'content')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Content.propTypes = { ..._contentFactory.propTypes }
+Content.displayName = 'List.Item.Content'
+Item.Content = Content
+
+/*
+ |---------------------------
+ | List.Item.Description
+ |---------------------------
+ */
+const Description = (props) => {
+  const className = classnames(props.className, 'description')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Description.displayName = 'List.Item.Description'
+Item.Description = Description
