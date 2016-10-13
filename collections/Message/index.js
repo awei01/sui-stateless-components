@@ -1,8 +1,98 @@
-import React from 'react';
+import React from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
-import { makeClassnameFactory, makeComponentWithClasses, OPTIONS } from '../../utils'
 import 'semantic-ui-css/components/message.css'
+import Icon from '../../elements/Icon'
 
+/*
+ |-------------------------
+ | Message
+ |-------------------------
+ */
+export const messageDefinition = {
+  icon: true,
+  visible: {
+    makeClassname: (value) => {
+      return value ? 'visible' : 'hidden'
+    }
+  },
+  floating: true,
+  compact: true,
+  attached: {
+    values: ['top', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'attached')
+  },
+  state: ['info', 'warning', 'success', 'error', 'positive', 'negative'],
+  color: enums.colors,
+  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
+}
+const _messageFactory = makeFactory(messageDefinition)
+const Message = (props) => {
+  const [classes, rest] = _messageFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'message')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Message.propTypes = { ..._messageFactory.propTypes }
+export default Message
+
+/*
+ |-------------------------
+ | Message.Header
+ |-------------------------
+ */
+const Header = (props) => {
+  const className = classnames(props.className, 'header')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Header.displayName = 'Message.Header'
+Message.Header = Header
+
+/*
+ |-------------------------
+ | Message.List
+ |-------------------------
+ */
+const List = (props) => {
+  const className = classnames(props.className, 'list')
+  return (
+    <ul {...props} className={className} />
+  )
+}
+List.displayName = 'Message.List'
+Message.List = List
+
+/*
+ |-------------------------
+ | Message.Content
+ |-------------------------
+ */
+const Content = (props) => {
+  const className = classnames(props.className, 'content')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Content.displayName = 'Message.Content'
+Message.Content = Content
+
+/*
+ |-------------------------
+ | Message.Close
+ |-------------------------
+ */
+const Close = (props) => {
+  return (
+    <Icon {...props} glyph='close' />
+  )
+}
+Close.displayName = 'Message.Close'
+Message.Close = Close
+
+/*
 const { color, size } = OPTIONS
 export const STATES = [
   'warning', 'info',
@@ -40,3 +130,4 @@ export const Message = ({
 
 export const Header = makeComponentWithClasses('header')
 export const Content = makeComponentWithClasses('content')
+*/

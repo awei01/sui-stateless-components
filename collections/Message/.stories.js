@@ -1,79 +1,171 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeSizeStory, makeColorStory, makeStoryForKeyAndOptions, makePassesPropsStory } from '../../.storybook/utils';
-import { Story } from '../../.storybook/components';
-import { Message, Header, Content, STATES } from './index'
-import { Icon } from '../../elements/Icon'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Message, { messageDefinition } from './index'
+import Icon from '../../elements/Icon'
+import Segment from '../../elements/Segment'
+
+const { Header, List, Content, Close } = Message
 
 storiesOf('Message', module)
-  .add('<Message> default', () => {
+  .add('<Message />', () => {
     return (
-      <Story examples='<Message>{ content }</Message>'>
-        <Message>some message</Message>
+      <Story title='<Message />'>
+        <Api definition={messageDefinition}>
+          import Message from 'sui-stateless-components/collections/Message'
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Message>some message</Message>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Message className='error'>some message</Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='icon'>
+          <Example>
+            <Message icon>
+              <Icon glyph='user' />
+              <Content>
+                <Header>message header</Header>
+                some other content
+              </Content>
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='visible'>
+          <Example title='(true)'>
+            <Message visible>
+              visible message
+            </Message>
+          </Example>
+          <Example title='(false)'>
+            <Message visible={false}>
+              hidden message
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floating'>
+          <Example>
+            <Message floating>
+              floating message
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='compact'>
+          <Example>
+            <Message compact>
+              compact message
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='attached'>
+          <Example>
+            <Message attached='top'>
+              top attached message
+            </Message>
+            <Segment attached />
+            <Message attached='bottom'>
+              bottom attached message
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='state'>
+          <Example>
+            <Message state='warning'>
+              warning message
+            </Message>
+            <Message state='info'>
+              info message
+            </Message>
+            <Message state='success'>
+              success message
+            </Message>
+            <Message state='error'>
+              error message
+            </Message>
+            <Message state='positive'>
+              positive message
+            </Message>
+            <Message state='negative'>
+              negative message
+            </Message>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='color'>
+          <Example.Iterator component={Message} propKey='color' definition={messageDefinition} />
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Iterator component={Message} propKey='size' definition={messageDefinition} />
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Message> icon', () => {
+  .add('<Message.Header />', () => {
     return (
-      <Story examples='<Message icon><Icon/><Content>{ content }</Content></Message>'>
-        <Message icon>
-          <Icon glyph='user'/>
-          <Content>
-            Icon message
-          </Content>
-        </Message>
+      <Story title='<Message.Header />'>
+        <p>This component is to be used within {'<Message />'}</p>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Message>
+              <Header>message header</Header>
+            </Message>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Message> visible', () => {
+  .add('<Message.List />', () => {
     return (
-      <Story examples='<Message visible=[ true | false ]>{ content }</Message>'>
-        <Message visible={true}>You can see this message</Message>
-        <Message visible={false}>You can't see this message</Message>
+      <Story title='<Message.List />'>
+        <p>This component is to be used within {'<Message />'}</p>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Message>
+              <Header>message header</Header>
+              <List>
+                <li>item one</li>
+                <li>item two</li>
+              </List>
+            </Message>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Message> floating', () => {
+  .add('<Message.Content />', () => {
     return (
-      <Story examples='<Message floating>{ content }</Message>'>
-        <Message floating>some message</Message>
+      <Story title='<Message.Content />'>
+        <p>This component is to be used within {'<Message />'} to help format content alongside {'<Icon />'}</p>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Message icon>
+              <Icon glyph='user' />
+              <Content>
+                <Header>some header</Header>
+                some other content
+              </Content>
+            </Message>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Message> compact', () => {
+  .add('<Message.Close />', () => {
     return (
-      <Story examples='<Message compact>{ content }</Message>'>
-        <Message compact>some message</Message>
-      </Story>
-    )
-  })
-  .add('<Message> state', makeStoryForKeyAndOptions(Message, { key: 'state', options: STATES }))
-  .add('<Message> color', makeColorStory(Message))
-  .add('<Message> size', makeSizeStory(Message))
-  .add('<Message> passes .className and other props', makePassesPropsStory(Message, { props: {
-    className: "red",
-    onClick: action('Message was clicked'),
-    children: 'I am red and clickable'
-  }}))
-  .add('<Header>', () => {
-    return (
-      <Story examples='<Message><Header/></Message>'>
-        <Message>
-          <Header>message header</Header>
-          <p>some message</p>
-        </Message>
-      </Story>
-    )
-  })
-  .add('<Content>', () => {
-    return (
-      <Story examples='<Message><Content/></Message>'>
-        <Message>
-          <Content>
-            <Header>message header</Header>
-            <p>message content</p>
-          </Content>
-        </Message>
+      <Story title='<Message.Close />'>
+        <p>This component is to be used within {'<Message />'}. It is just shorthand for {'<Icon glyph="close" />'}</p>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Message icon>
+              <Close />
+              <Content>
+                <Header>some header</Header>
+                some other content
+              </Content>
+            </Message>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
