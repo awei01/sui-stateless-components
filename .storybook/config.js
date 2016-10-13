@@ -13,6 +13,7 @@ function loadStories() {
   require('../elements/List/.stories')
   require('../elements/Loader/.stories')
   require('../elements/Segment/.stories')
+  require('../elements/Steps/.stories')
   return
 
   require('../collections/Form/.stories')

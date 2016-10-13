@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Label, { labelDefinition, Labels, labelsDefinition } from './index'
 import Image from '../../elements/Image'
-import { Segment } from '../../elements/Segment'
+import Segment from '../../elements/Segment'
 import { Grid, Column } from '../../collections/Grid'
 
 const _path = 'sui-stateless-components/elements/Label'

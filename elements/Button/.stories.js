@@ -4,7 +4,7 @@ import { Story, Api, Example } from '../../.storybook/comps'
 import Button, { buttonDefinition, contentDefinition, Buttons, buttonsDefinition } from './index'
 import Label from '../../elements/Label'
 import Icon from '../../elements/Icon'
-import { Segment } from '../../elements/Segment'
+import Segment from '../../elements/Segment'
 
 const _path = 'sui-stateless-components/elements/Button'
 

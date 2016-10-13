@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Loader, { loaderDefinition } from './index'
-import { Segment } from '../../elements/Segment'
+import Segment from '../../elements/Segment'
 
 storiesOf('Loader', module)
   .add('<Loader />', () => {
@@ -42,15 +42,15 @@ storiesOf('Loader', module)
         </Story.Segment>
         <Story.Segment title='inline'>
           <Example>
-            <p>
+            <div>
               {makeLipsum(100)}
               <Loader inline active />
               {makeLipsum(100)}
-            </p>
+            </div>
             <Loader inline='centered' active />
-            <p>
+            <div>
               {makeLipsum(100)}
-            </p>
+            </div>
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>

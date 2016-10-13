@@ -94,7 +94,7 @@ storiesOf('Input', module)
             {' '}
             <Input labeled='corner'>
               <input placeholder='corner labeled'/>
-              <Label corner='right'><Icon glyph='asterisk' /></Label>
+              <Label corner><Icon glyph='asterisk' /></Label>
             </Input>
           </Example>
         </Story.Segment>

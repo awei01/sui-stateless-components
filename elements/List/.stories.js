@@ -148,19 +148,19 @@ storiesOf('List', module)
           <Example>
             <List valigned='top'>
               <List.Item>
-                <Image avatar src='images/jenny.jpg' />
+                <Image src='images/jenny.jpg' />
                 <List.Item.Content>top valigned</List.Item.Content>
               </List.Item>
             </List>
             <List valigned='middle'>
               <List.Item>
-                <Image avatar src='images/jenny.jpg' />
+                <Image src='images/jenny.jpg' />
                 <List.Item.Content>middle valigned</List.Item.Content>
               </List.Item>
             </List>
             <List valigned='bottom'>
               <List.Item>
-                <Image avatar src='images/jenny.jpg' />
+                <Image src='images/jenny.jpg' />
                 <List.Item.Content>bottom valigned</List.Item.Content>
               </List.Item>
             </List>
