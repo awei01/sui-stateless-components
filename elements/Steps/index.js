@@ -12,7 +12,10 @@ export const stepsDefinition = {
   ordered: true,
   vertical: true,
   fluid: true,
-  attached: true,
+  attached: {
+    values: ['top', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'attached')
+  },
   count: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'],
   size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 }
