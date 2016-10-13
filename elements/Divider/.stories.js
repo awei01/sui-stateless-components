@@ -2,7 +2,8 @@ import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Divider, { dividerDefinition } from './index'
-import { Grid, Column } from '../../collections/Grid'
+import Grid from '../../collections/Grid'
+const { Column } = Grid
 
 storiesOf('Divider', module)
   .add('<Divider />', () => {
@@ -24,7 +25,7 @@ storiesOf('Divider', module)
         <Story.Segment title='orientation'>
           <p>The element containing a vertical {'<Divider />'} must have [position="relative"]</p>
           <Example title='vertical'>
-            <Grid columns='two' style={{ position: 'relative' }}>
+            <Grid count='two' style={{ position: 'relative' }}>
               <Column>{makeLipsum(200)}</Column>
               <Divider orientation='vertical'>Or</Divider>
               <Column>{makeLipsum(200)}</Column>

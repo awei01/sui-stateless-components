@@ -78,7 +78,7 @@ storiesOf('Checkbox', module)
         </Story.Segment>
         <Story.Segment title='readOnly'>
           <Example>
-            <Checkbox id='readOnlyCheckboxOn' readOnly checked label='read only checked checkbox' />
+            <Checkbox id='readOnlyCheckboxOn' readOnly checked onChange={_noop} label='read only checked checkbox' />
             <br/>
             <Checkbox id='readOnlyCheckboxOff' readOnly label='read only checkbox' />
             <br/>

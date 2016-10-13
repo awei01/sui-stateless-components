@@ -4,7 +4,8 @@ import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
 import Label, { labelDefinition, Labels, labelsDefinition } from './index'
 import Image from '../../elements/Image'
 import Segment from '../../elements/Segment'
-import { Grid, Column } from '../../collections/Grid'
+import Grid from '../../collections/Grid'
+const { Column } = Grid
 
 const _path = 'sui-stateless-components/elements/Label'
 
@@ -78,7 +79,7 @@ storiesOf('Label', module)
         </Story.Segment>
         <Story.Segment title='attached'>
           <Example title='top left/right'>
-            <Grid columns='two'>
+            <Grid count='two'>
               <Column>
                 <Segment>
                   <Label attached='top left'>top left</Label>
@@ -94,7 +95,7 @@ storiesOf('Label', module)
             </Grid>
           </Example>
           <Example title='top/bottom'>
-            <Grid columns='two'>
+            <Grid count='two'>
               <Column>
                 <Segment>
                   <Label attached='top'>top</Label>
@@ -110,7 +111,7 @@ storiesOf('Label', module)
             </Grid>
           </Example>
           <Example title='bottom left/right'>
-            <Grid columns='two'>
+            <Grid count='two'>
               <Column>
                 <Segment>
                   <Label attached='bottom left'>bottom left</Label>
