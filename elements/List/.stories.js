@@ -204,8 +204,8 @@ storiesOf('List', module)
           <p>When passed, component will render as an {'<a />'} tag</p>
           <Example>
             <List>
-              <Item href='http://www.google.com' target='_blank'>href</Item>
-              <Item>two</Item>
+              <Item href='http://www.google.com' target='_blank'>actual link</Item>
+              <Item href={null}>looks like a link</Item>
               <Item>three</Item>
             </List>
           </Example>
@@ -246,11 +246,11 @@ storiesOf('List', module)
           <Example>
             <List>
               <Item>
-                <Header href='http://www.google.com' target='_blank'>href header</Header>
+                <Header href='http://www.google.com' target='_blank'>link header</Header>
                 some other content
               </Item>
               <Item>
-                <Header>header two</Header>
+                <Header href={null}>looks like a link</Header>
                 some other content
               </Item>
             </List>

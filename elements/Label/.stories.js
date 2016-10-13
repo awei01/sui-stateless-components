@@ -33,7 +33,8 @@ storiesOf('Label', module)
         <Story.Segment title='href'>
           <p>When href is passed, component will render as an {'<a />'} tag</p>
           <Example>
-            <Label href='http://www.google.com' target='_blank'>href</Label>
+            <Label href='http://www.google.com' target='_blank'>links to href</Label>
+            <Label href={null}>looks like a link</Label>
           </Example>
         </Story.Segment>
         <Story.Segment title='image'>
@@ -177,7 +178,11 @@ storiesOf('Label', module)
           <Example>
             <Label>
               label
-              <Label.Detail href='http://www.google.com' target='_blank'>href detail</Label.Detail>
+              <Label.Detail href='http://www.google.com' target='_blank'>detail links to href</Label.Detail>
+            </Label>
+            <Label>
+              label
+              <Label.Detail href={null}>detail looks like a link</Label.Detail>
             </Label>
           </Example>
         </Story.Segment>

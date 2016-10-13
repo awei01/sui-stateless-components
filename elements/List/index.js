@@ -53,7 +53,7 @@ const Item = (props) => {
   const [classes, rest] = _itemFactory.extractClassesAndProps(props)
   const className = classnames(classes, 'item')
   let element = 'div'
-  if (props.href) {
+  if ('href' in rest) {
     element = 'a'
   }
   return React.createElement(element, {...rest, className})
@@ -70,7 +70,7 @@ List.Item = Item
 const Header = (props) => {
   const className = classnames(props.className, 'header')
   let element = 'div'
-  if (props.href) {
+  if ('href' in props) {
     element = 'a'
   }
   return React.createElement(element, {...props, className})

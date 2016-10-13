@@ -121,8 +121,8 @@ storiesOf('Steps', module)
         <Story.Segment title='href'>
           <Example>
             <Steps>
-              <Step href='http://www.google.com' target='_blank'>href step</Step>
-              <Step>step two</Step>
+              <Step href='http://www.google.com' target='_blank'>linked step</Step>
+              <Step href={null}>looks like a link</Step>
             </Steps>
           </Example>
         </Story.Segment>

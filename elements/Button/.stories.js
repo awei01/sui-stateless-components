@@ -7,12 +7,17 @@ import Icon from '../../elements/Icon'
 import Segment from '../../elements/Segment'
 
 const _path = 'sui-stateless-components/elements/Button'
+const _otherProps = {
+  href: {
+    description: 'When passed, component will render as an <a />'
+  }
+}
 
 storiesOf('Button', module)
   .add('<Button />', () => {
     return (
       <Story title='<Button />'>
-        <Api definition={buttonDefinition}>
+        <Api definition={buttonDefinition} otherProps={_otherProps}>
           import Button from '{_path}'
         </Api>
         <Story.Segment title='(default)'>

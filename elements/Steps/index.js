@@ -45,7 +45,7 @@ export const Step = (props) => {
   const [classes, rest] = _stepFactory.extractClassesAndProps(props)
   const className = classnames(classes, 'step')
   let element = 'div'
-  if (rest.href && !props.disabled) {
+  if ('href' in rest && !props.disabled) {
     element = 'a'
   }
   return React.createElement(element, { ...rest, className })

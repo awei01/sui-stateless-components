@@ -51,7 +51,7 @@ const Label = (props) => {
   const [classes, rest] = _labelFactory.extractClassesAndProps(props)
   const className = classnames('ui', classes, 'label')
   let element = 'div'
-  if (rest.href) {
+  if ('href' in rest) {
     element = 'a'
   }
   return React.createElement(element, { ...rest, className })
@@ -62,7 +62,7 @@ export default Label
 const Detail = (props) => {
   const className = classnames(props.className, 'detail')
   let element = 'div'
-  if (props.href) {
+  if ('href' in props) {
     element = 'a'
   }
   return React.createElement(element, { ...props, className })
