@@ -11,6 +11,9 @@ const _otherProps = {
   }
 }
 
+const Item = List.Item
+const { Header, Description, Content } = Item
+
 storiesOf('List', module)
   .add('<List />', () => {
     return (
@@ -22,48 +25,48 @@ storiesOf('List', module)
           <p>This component will render as a {'<div />'} tag</p>
           <Example>
             <List>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
           <Example title='[className] gets passsed'>
             <List className='horizontal'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='format'>
           <Example>
             <List format='bulleted'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
             <List format='ordered'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='link'>
           <Example>
             <List link>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='horizontal'>
           <Example>
             <List horizontal>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
@@ -71,18 +74,18 @@ storiesOf('List', module)
           <Example>
             <div style={{ background: '#000', padding: '1em' }}>
               <List inverted>
-                <List.Item>
-                  <List.Item.Header>header one</List.Item.Header>
-                  <List.Item.Description>description one</List.Item.Description>
-                </List.Item>
-                <List.Item>
-                  <List.Item.Header>header two</List.Item.Header>
-                  <List.Item.Description>description two</List.Item.Description>
-                </List.Item>
-                <List.Item>
-                  <List.Item.Header>header three</List.Item.Header>
-                  <List.Item.Description>description three</List.Item.Description>
-                </List.Item>
+                <Item>
+                  <Header>header one</Header>
+                  <Description>description one</Description>
+                </Item>
+                <Item>
+                  <Header>header two</Header>
+                  <Description>description two</Description>
+                </Item>
+                <Item>
+                  <Header>header three</Header>
+                  <Description>description three</Description>
+                </Item>
               </List>
             </div>
           </Example>
@@ -90,93 +93,93 @@ storiesOf('List', module)
         <Story.Segment title='selection'>
           <Example>
             <List selection>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='animated'>
           <Example>
             <List animated>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='relaxed'>
           <Example title='(true)'>
             <List relaxed>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
           <Example title='very'>
             <List relaxed='very'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='divided'>
           <Example title='(true)'>
             <List divided>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
           <Example title='celled'>
             <List divided='celled'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
           <Example.Iterator component={List} propKey='size' definition={listDefinition} props={{
             children: () => {
-              return [<List.Item key='one'>one</List.Item>, <List.Item key='two'>two</List.Item>, <List.Item key='three'>three</List.Item>]
+              return [<Item key='one'>one</Item>, <Item key='two'>two</Item>, <Item key='three'>three</Item>]
             }
           }} />
         </Story.Segment>
         <Story.Segment title='valigned'>
           <Example>
             <List valigned='top'>
-              <List.Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content>top valigned</List.Item.Content>
-              </List.Item>
+                <Content>top valigned</Content>
+              </Item>
             </List>
             <List valigned='middle'>
-              <List.Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content>middle valigned</List.Item.Content>
-              </List.Item>
+                <Content>middle valigned</Content>
+              </Item>
             </List>
             <List valigned='bottom'>
-              <List.Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content>bottom valigned</List.Item.Content>
-              </List.Item>
+                <Content>bottom valigned</Content>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='floated'>
           <Example>
             <List floated='right'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
             <List floated='left'>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
@@ -191,9 +194,9 @@ storiesOf('List', module)
           <p>This component will render as a {'<div />'} tag</p>
           <Example>
             <List>
-              <List.Item>one</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item>one</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
@@ -201,18 +204,18 @@ storiesOf('List', module)
           <p>When passed, component will render as an {'<a />'} tag</p>
           <Example>
             <List>
-              <List.Item href='http://www.google.com' target='_blank'>href</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item href='http://www.google.com' target='_blank'>href</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='disabled'>
           <Example>
             <List>
-              <List.Item disabled>disabled</List.Item>
-              <List.Item>two</List.Item>
-              <List.Item>three</List.Item>
+              <Item disabled>disabled</Item>
+              <Item>two</Item>
+              <Item>three</Item>
             </List>
           </Example>
         </Story.Segment>
@@ -227,14 +230,14 @@ storiesOf('List', module)
           <p>This component will render as a {'<div />'} tag</p>
           <Example>
             <List>
-              <List.Item>
-                <List.Item.Header>header one</List.Item.Header>
+              <Item>
+                <Header>header one</Header>
                 some other content
-              </List.Item>
-              <List.Item>
-                <List.Item.Header>header two</List.Item.Header>
+              </Item>
+              <Item>
+                <Header>header two</Header>
                 some other content
-              </List.Item>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
@@ -242,14 +245,14 @@ storiesOf('List', module)
           <p>When passed, component will render as an {'<a />'} tag</p>
           <Example>
             <List>
-              <List.Item>
-                <List.Item.Header href='http://www.google.com' target='_blank'>href header</List.Item.Header>
+              <Item>
+                <Header href='http://www.google.com' target='_blank'>href header</Header>
                 some other content
-              </List.Item>
-              <List.Item>
-                <List.Item.Header>header two</List.Item.Header>
+              </Item>
+              <Item>
+                <Header>header two</Header>
                 some other content
-              </List.Item>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
@@ -263,43 +266,43 @@ storiesOf('List', module)
           <p>This component helps position content along side {'<Icon /> or <Image />'}</p>
           <Example>
             <List>
-              <List.Item>
+              <Item>
                 <Icon glyph='home' />
-                <List.Item.Content>home content</List.Item.Content>
-              </List.Item>
-              <List.Item>
+                <Content>home content</Content>
+              </Item>
+              <Item>
                 <Icon glyph='user' />
-                <List.Item.Content>user content</List.Item.Content>
-              </List.Item>
+                <Content>user content</Content>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='valigned'>
           <Example>
             <List horizontal>
-              <List.Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content valigned='top'>top valigned</List.Item.Content>
-              </List.Item>
-              <List.Item>
+                <Content valigned='top'>top valigned</Content>
+              </Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content valigned='middle'>middle valigned</List.Item.Content>
-              </List.Item>
-              <List.Item>
+                <Content valigned='middle'>middle valigned</Content>
+              </Item>
+              <Item>
                 <Image src='images/jenny.jpg' />
-                <List.Item.Content valigned='bottom'>bottom valigned</List.Item.Content>
-              </List.Item>
+                <Content valigned='bottom'>bottom valigned</Content>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
         <Story.Segment title='floated'>
           <Example>
             <List>
-              <List.Item>
-                <List.Item.Content floated='right'>right floated</List.Item.Content>
-                <List.Item.Content floated='left'>left floated</List.Item.Content>
-                <List.Item.Content>content</List.Item.Content>
-              </List.Item>
+              <Item>
+                <Content floated='right'>right floated</Content>
+                <Content floated='left'>left floated</Content>
+                <Content>content</Content>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
@@ -313,17 +316,17 @@ storiesOf('List', module)
           <p>This component is to be used within {'<List.Item /> or <List.Item.Content />'}</p>
           <Example>
             <List>
-              <List.Item>
-                <List.Item.Header>header</List.Item.Header>
-                <List.Item.Description>description</List.Item.Description>
-              </List.Item>
-              <List.Item>
+              <Item>
+                <Header>header</Header>
+                <Description>description</Description>
+              </Item>
+              <Item>
                 <Icon glyph='user' />
-                <List.Item.Content>
-                  <List.Item.Header>header</List.Item.Header>
-                  <List.Item.Description>description</List.Item.Description>
-                </List.Item.Content>
-              </List.Item>
+                <Content>
+                  <Header>header</Header>
+                  <Description>description</Description>
+                </Content>
+              </Item>
             </List>
           </Example>
         </Story.Segment>
