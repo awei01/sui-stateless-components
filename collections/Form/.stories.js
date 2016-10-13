@@ -4,6 +4,7 @@ import { Story, Api, Example } from '../../.storybook/comps'
 import Form, { formDefinition, fieldDefinition, fieldsDefinition } from './index'
 import Button from '../../elements/Button'
 import { Message } from '../../collections/Message'
+import Checkbox from '../../modules/Checkbox'
 
 const { Field, Fields } = Form
 const _otherProps = {
@@ -432,11 +433,13 @@ storiesOf('Form', module)
             <Form>
               <Fields grouped>
                 <Field>
-                  need a Checkbox comopnent
+                  <Checkbox id='groupedRadio1' type='radio' name='foo' label='first option' />
                 </Field>
                 <Field>
+                  <Checkbox id='groupedRadio2' type='radio' name='foo' label='second option' />
                 </Field>
                 <Field>
+                  <Checkbox id='groupedRadio3' type='radio' name='foo' label='third option' />
                 </Field>
               </Fields>
             </Form>
