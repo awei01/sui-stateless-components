@@ -29,30 +29,3 @@ const Loader = (props) => {
 }
 Loader.propTypes = { ..._loaderFactory.propTypes }
 export default Loader
-
-/*
- |---------------------------
- | Shared options
- |---------------------------
-const { size } = OPTIONS
-export const makeLoaderClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'loader',
-  options: {
-    inline: makeOptionForValuesAndSuffix([true, 'centered'], 'inline'),
-    size
-  }
-})
-export const Loader = ({
-                        inline, size,
-                        active, text, indeterminate, disabled,
-                        className, ...rest }) => {
-  const classes = makeLoaderClasses({
-    inline, size,
-    active, text, indeterminate, disabled
-  }, className)
-  return (
-    <div {...rest} className={classes}/>
-  )
-}
-*/
