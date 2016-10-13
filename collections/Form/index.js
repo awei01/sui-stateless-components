@@ -1,149 +1,97 @@
-import React, { PropTypes } from 'react'
-import { makeClassnameFactory, OPTIONS } from '../../utils';
+import React from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/form.css'
 import 'semantic-ui-css/components/checkbox.css'
 
 /*
  |---------------------------
- | Shared options
+ | shared
  |---------------------------
  */
-const { equal, wide } = OPTIONS
+const equalWidth = {
+  makeClassname: (value) => {
+    return value && 'equal width'
+  }
+}
 
 /*
  |---------------------------
  | Form
  |---------------------------
  */
-const { size } = OPTIONS
-export const FORM_STATES = ['success', 'error', 'warning']
-export const makeFormClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'form',
-  options: {
-    size,
-    equal,
-    state: FORM_STATES
-  }
-})
-export const Form = ({
-                      size, equal,
-                      inverted, loading,
-                      state,
-                      className, ...rest }) => {
-  const classes = makeFormClasses({
-    size, equal,
-    inverted, loading,
-    state
-  }, className)
-  return (
-    <form {...rest} className={classes}/>
-  )
+export const formDefinition = {
+  loading: true,
+  state: ['success', 'warning', 'error'],
+  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive'],
+  equalWidth,
+  inverted: true
 }
+const _formFactory = makeFactory(formDefinition)
+const Form = (props) => {
+  const [classes, rest] = _formFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'form')
+  let element = 'div'
+  if ('action' in rest) {
+    element = 'form'
+  }
+  return React.createElement(element, { ...rest, className })
+}
+Form.propTypes = { ..._formFactory.propTypes }
+export default Form
 
 /*
  |---------------------------
- | Fields
+ | Form.Field
  |---------------------------
  */
-export const FIELDS_COUNTS = wide.values.slice(1, 10)
-export const makeFieldsClasses = makeClassnameFactory({
-  suffix: 'fields',
-  options: {
-    fields: FIELDS_COUNTS,
-    equal
-  }
-})
-export const Fields = ({
-                        fields, grouped, equal, inline,
-                        className, ...rest
-                        }) => {
-  const classes = makeFieldsClasses({
-    fields, grouped, equal, inline
-  }, className)
+export const fieldDefinition = {
+  error: true,
+  disabled: true,
+  inline: true,
+  wide: {
+    values: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'],
+    makeClassname: makeSuffixedClass.bind(null, 'wide')
+  },
+  required: true
+}
+const _fieldFactory = makeFactory(fieldDefinition)
+const Field = (props) => {
+  const [classes, rest] = _fieldFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'field')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Field.propTypes = { ..._fieldFactory.propTypes }
+Field.displayName = 'Form.Field'
+Form.Field = Field
 
 /*
  |---------------------------
- | Field
+ | Form.Fields
  |---------------------------
  */
-export const makeFieldClasses = makeClassnameFactory({
-  suffix: 'field',
-  options: {
-    wide
-  }
-})
-export const Field = ({
-                        wide,
-                        inline, required, error, disabled,
-                        className, ...rest
-                        }) => {
-  const classes = makeFieldClasses({
-    wide,
-    inline, required, error, disabled
-  }, className)
+export const fieldsDefinition = {
+  error: true,
+  disabled: true,
+  equalWidth,
+  inline: true,
+  required: true,
+  count: {
+    values: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'],
+    makeClassname: makeSuffixedClass.bind(null, 'fields')
+  },
+  grouped: true
+}
+const _fieldsFactory = makeFactory(fieldsDefinition)
+const Fields = (props) => {
+  const [classes, rest] = _fieldsFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'fields')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
-
-// checkbox and radio helpers
-const CheckboxOrRadio = ({
-                          id, label, type, disabled,
-                          className, ...rest }) => {
-  return (
-    <div className={className}>
-      <input {...rest} id={id} type={type} disabled={disabled}/>
-      {/*
-        - we're manually adding in the { cursor: pointer } when [id] is present
-          it seems like SUI doesn't do this for us
-        - we CANNOT wrap <label><input/></label> nor can we put <label/> before <input/>
-          because SUI does some funky stuff with CSS to cover up the actual input
-        - we ALWAYS render label, otherwise SUI can't display properly
-      */}
-      <label htmlFor={id} style={id && { cursor: 'pointer' }}>{label}</label>
-    </div>
-  )
-}
-CheckboxOrRadio.propTypes = {
-  label: PropTypes.string
-}
-
-/*
- |---------------------------
- | Checkbox
- |---------------------------
- */
-export const makeCheckboxClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'checkbox',
-  options: {
-    format: ['slider', 'toggle']
-  }
-})
-export const Checkbox = ({ format, className, ...rest }) => {
-  const classes = makeCheckboxClasses({ format }, className)
-  return (
-    <CheckboxOrRadio {...rest} type='checkbox' className={classes}/>
-  )
-}
-
-/*
- |---------------------------
- | Radio
- |---------------------------
- */
-export const makeRadioClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'radio checkbox',
-})
-export const Radio = ({ className, ...rest }) => {
-  const classes = makeRadioClasses(className)
-  return (
-    <CheckboxOrRadio {...rest} type='radio' className={classes}/>
-  )
-}
+Fields.propTypes = { ..._fieldsFactory.propTypes }
+Fields.displayName = 'Form.Fields'
+Form.Fields = Fields
