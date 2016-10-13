@@ -63,9 +63,8 @@ const _extractDefinition = (definition) => {
 }
 
 // Api component
-export const Api = ({ definition, overridden, otherProps, children }) => {
+export const Api = ({ definition, otherProps, children }) => {
   definition = definition || {}
-  overridden = overridden || {}
   otherProps = otherProps || {}
   return (
     <div>
@@ -92,14 +91,10 @@ export const Api = ({ definition, overridden, otherProps, children }) => {
         {
           Object.keys(definition).map((key, index) => {
             let { values, isRequired } = _extractDefinition(definition[key])
-            if (overridden[key]) {
-              values = overridden[key]
+            if (values === true) {
+              values = 'boolean'
             } else {
-              if (values === true) {
-                values = 'boolean'
-              } else {
-                values = _extractValues(values)
-              }
+              values = _extractValues(values)
             }
             return (
               <tr key={index}>
