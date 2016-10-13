@@ -1,65 +1,94 @@
 import React from 'react'
 import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
-import 'semantic-ui-css/components/segment.css'
+import 'semantic-ui-css/components/step.css'
 
 /*
  |---------------------------
- | Segment
+ | Steps
  |---------------------------
  */
-export const segmentDefinition = {
-  format: ['raised', 'stacked', 'tall stacked', 'piled', 'vertical'],
-  disabled: true,
-  loading: true,
-  inverted: true,
-  attached: {
-    values: [true, 'top', 'bottom'],
-    makeClassname: makeSuffixedClass.bind(null, 'attached')
-  },
-  padded: {
-    values: [true, 'very'],
-    makeClassname: makeSuffixedClass.bind(null, 'padded')
-  },
-  compact: true,
-  color: enums.colors,
-  emphasis: ['secondary', 'tertiary'],
-  circular: true,
-  clearing: true,
-  floated: options.floated,
-  aligned: {
-    values: ['left', 'center', 'right'],
-    makeClassname: makeSuffixedClass.bind(null, 'aligned')
-  },
-  basic: true
+export const stepsDefinition = {
+  ordered: true,
+  vertical: true,
+  fluid: true,
+  attached: true,
+  count: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'],
+  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 }
-const _segmentFactory = makeFactory(segmentDefinition)
-const Segment = (props) => {
-  const [classes, rest] = _segmentFactory.extractClassesAndProps(props)
-  const className = classnames('ui', classes, 'segment')
+const _stepsFactory = makeFactory(stepsDefinition)
+export const Steps = (props) => {
+  const [classes, rest] = _stepsFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'steps')
   return (
     <div {...rest} className={className} />
   )
 }
-Segment.propTypes = { ..._segmentFactory.propTypes }
-export default Segment
+Steps.propTypes = { ..._stepsFactory.propTypes }
+export default Steps
 
 /*
  |---------------------------
- | Segments
+ | Steps.Step
  |---------------------------
  */
-export const segmentsDefinition = {
-  horizontal: true,
-  format: ['raised', 'stacked', 'piled'],
-  compact: true
+export const stepDefinition = {
+  active: true,
+  completed: true,
+  disabled: true
 }
-const _segmentsFactory = makeFactory(segmentsDefinition)
-export const Segments = (props) => {
-  const [classes, rest] = _segmentsFactory.extractClassesAndProps(props)
-  const className = classnames('ui', classes, 'segments')
+const _stepFactory = makeFactory(stepDefinition)
+export const Step = (props) => {
+  const [classes, rest] = _stepFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'step')
+  let element = 'div'
+  if (rest.href && !props.disabled) {
+    element = 'a'
+  }
+  return React.createElement(element, { ...rest, className })
+}
+Step.propTypes = { ..._stepFactory.propTypes }
+Step.displayName = 'Steps.Step'
+Steps.Step = Step
+
+/*
+ |---------------------------
+ | Steps.Step.Content
+ |---------------------------
+ */
+const Content = (props) => {
+  const className = classnames(props.className, 'content')
   return (
-    <div {...rest} className={className} />
+    <div {...props} className={className} />
   )
 }
-Segments.propTypes = { ..._segmentsFactory.propTypes }
+Content.displayName = 'Steps.Step.Content'
+Step.Content = Content
+
+/*
+ |---------------------------
+ | Steps.Step.Title
+ |---------------------------
+ */
+const Title = (props) => {
+  const className = classnames(props.className, 'title')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Title.displayName = 'Steps.Step.Title'
+Step.Title = Title
+
+/*
+ |---------------------------
+ | Steps.Step.Description
+ |---------------------------
+ */
+const Description = (props) => {
+  const className = classnames(props.className, 'description')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Description.displayName = 'Steps.Step.Description'
+Step.Description = Description

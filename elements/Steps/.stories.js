@@ -1,143 +1,214 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
-import Segment, { segmentDefinition, Segments, segmentsDefinition } from './index'
+import Steps, { stepsDefinition, stepDefinition } from './index'
+import Icon from '../../elements/Icon'
+import Segment from '../../elements/Segment'
 
-const _path ='sui-stateless-components/elements/Segment'
+const Step = Steps.Step
+const { Content, Title, Description } = Step
+const _otherProps = {
+  href: {
+    description: 'When provided, this component will render as an <a />'
+  }
+}
 
-storiesOf('Segment', module)
-  .add('<Segment />', () => {
+storiesOf('Steps', module)
+  .add('<Steps />', () => {
     return (
-      <Story title='<Segment />'>
-        <Api definition={segmentDefinition}>
-          import Segment from '{_path}'
+      <Story title='<Steps />'>
+        <Api definition={stepsDefinition}>
+          import Steps from 'sui-stateless-components/elements/Steps'
         </Api>
         <Story.Segment title='(default)'>
           <Example>
-            <Segment>{makeLipsum(100)}</Segment>
+            <Steps>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
           <Example title='[className] gets passed'>
-            <Segment className='red'>{makeLipsum(100)}</Segment>
+            <Steps className='vertical'>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='format'>
-          <Example.Iterator component={Segment} propKey='format' definition={segmentDefinition} />
-        </Story.Segment>
-        <Story.Segment title='disabled'>
+        <Story.Segment title='ordered'>
           <Example>
-            <Segment disabled>{makeLipsum(100)}</Segment>
+            <Steps ordered>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='loading'>
+        <Story.Segment title='vertical'>
           <Example>
-            <Segment loading>{makeLipsum(200)}</Segment>
+            <Steps vertical>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='inverted'>
+        <Story.Segment title='fluid'>
           <Example>
-            <Segment inverted>{makeLipsum(100)}</Segment>
+            <Steps fluid vertical>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
         <Story.Segment title='attached'>
           <Example>
-            <Segment attached='top'>{makeLipsum(100)}</Segment>
-            <Segment attached>{makeLipsum(100)}</Segment>
-            <Segment attached='bottom'>{makeLipsum(100)}</Segment>
+            <Steps attached='top'>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
+            <Segment attached />
+            <Steps attached='bottom'>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='padded'>
+        <Story.Segment title='count'>
           <Example>
-            <Segment padded>{makeLipsum(100)}</Segment>
-            <Segment padded='very'>{makeLipsum(100)}</Segment>
+            <Steps count='four'>
+              <Step>1</Step>
+              <Step>2</Step>
+              <Step>3</Step>
+              <Step>4</Step>
+            </Steps>
+            <Steps count='eight'>
+              <Step>1</Step>
+              <Step>2</Step>
+              <Step>3</Step>
+              <Step>4</Step>
+              <Step>5</Step>
+              <Step>6</Step>
+              <Step>7</Step>
+              <Step>8</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='compact'>
+        <Story.Segment title='size'>
+          <Example.Iterator component={Steps} propKey='size' definition={stepsDefinition} props={{
+            children: (value) => { return (<Step>{value}</Step>) }
+          }} />
+        </Story.Segment>
+      </Story>
+    )
+  })
+  .add('<Steps.Step />', () => {
+    return (
+      <Story title='<Steps.Step />'>
+        <p>This component is to be used within {'<Steps />'}</p>
+        <Api definition={stepDefinition} otherProps={_otherProps} />
+        <Story.Segment title='(default)'>
           <Example>
-            <Segment compact>{makeLipsum(100)}</Segment>
+            <Steps>
+              <Step>step one</Step>
+              <Step>step two</Step>
+            </Steps>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Steps>
+              <Step className='active'>step one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='color'>
-          <Example.Iterator component={Segment} propKey='color' definition={segmentDefinition} />
-        </Story.Segment>
-        <Story.Segment title='emphasis'>
-          <Example.Iterator component={Segment} propKey='emphasis' definition={segmentDefinition} />
-        </Story.Segment>
-        <Story.Segment title='circular'>
+        <Story.Segment title='href'>
           <Example>
-            <Segment circular>circular</Segment>
+            <Steps>
+              <Step href='http://www.google.com' target='_blank'>href step</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='clearing'>
+        <Story.Segment title='active'>
           <Example>
-            <Segment clearing><div style={{ float: 'right'}}>floated content</div></Segment>
+            <Steps>
+              <Step active>active one</Step>
+              <Step>step two</Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='floated'>
+        <Story.Segment title='completed'>
           <Example>
-            <Segment floated='right'>right floated</Segment>
-            <Segment floated='left'>left floated</Segment>
+            <Steps>
+              <Step completed>
+                <Icon glyph='user' />
+                <Content>completed step</Content>
+              </Step>
+              <Step>
+                <Icon glyph='user' />
+                <Content>step two</Content>
+              </Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='aligned'>
+        <Story.Segment title='disabled'>
+          <p>When [disabled] is true, the component will render as a {'<div />'} even if [href] is passed</p>
           <Example>
-            <Segment aligned='left'>left aligned</Segment>
-            <Segment aligned='center'>center aligned</Segment>
-            <Segment aligned='right'>right aligned</Segment>
-          </Example>
-        </Story.Segment>
-        <Story.Segment title='basic'>
-          <Example>
-            <Segment basic>{makeLipsum(100)}</Segment>
+            <Steps>
+              <Step disabled href='http://www.google.com' target='_blank'>disabled href step</Step>
+              <Step disabled>disabled step</Step>
+            </Steps>
           </Example>
         </Story.Segment>
       </Story>
     )
   })
-  .add('<Segments />', () => {
+  .add('<Steps.Step.Content />', () => {
     return (
-      <Story title='<Segments />'>
-        <Api definition={segmentsDefinition}>
-          {'import { Segments } from \'' + _path + '\''}
-        </Api>
+      <Story title='<Steps.Step.Content />'>
+        <p>This component is to be used within {'<Steps.Step />'} and helps with content alongside an {'<Icon />'}</p>
         <Story.Segment title='(default)'>
           <Example>
-            <Segments>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-            </Segments>
-          </Example>
-          <Example title='[className] gets passed'>
-            <Segments className='horizontal'>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-            </Segments>
+            <Steps>
+              <Step>
+                <Icon glyph='user' />
+                <Content>
+                  <Title>this is the title</Title>
+                  <Description>this is the description</Description>
+                </Content>
+              </Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='horizontal'>
+      </Story>
+    )
+  })
+  .add('<Steps.Step.Title />', () => {
+    return (
+      <Story title='<Steps.Step.Title />'>
+        <p>This component is to be used within {'<Steps.Step />'}</p>
+        <Story.Segment title='(default)'>
           <Example>
-            <Segments horizontal>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-            </Segments>
+            <Steps>
+              <Step>
+                <Title>this is the title</Title>
+                <Description>this is the description</Description>
+              </Step>
+            </Steps>
           </Example>
         </Story.Segment>
-        <Story.Segment title='format'>
-          <Example.Iterator component={Segments} propKey='format' definition={segmentsDefinition} props={{
-            children: (value) => {
-              return [<Segment key='one'>{value}</Segment>, <Segment key='two'>{makeLipsum(50)}</Segment>]
-            }
-          }} />
-        </Story.Segment>
-        <Story.Segment title='compact'>
+      </Story>
+    )
+  })
+  .add('<Steps.Step.Description />', () => {
+    return (
+      <Story title='<Steps.Step.Description />'>
+        <p>This component is to be used within {'<Steps.Step />'}</p>
+        <Story.Segment title='(default)'>
           <Example>
-            <Segments compact>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-              <Segment>{makeLipsum(50)}</Segment>
-            </Segments>
+            <Steps>
+              <Step>
+                <Title>this is the title</Title>
+                <Description>this is the description</Description>
+              </Step>
+            </Steps>
           </Example>
         </Story.Segment>
       </Story>
