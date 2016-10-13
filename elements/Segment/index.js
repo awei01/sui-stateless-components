@@ -1,72 +1,65 @@
-import without from 'lodash/without'
-import React, { PropTypes } from 'react';
-import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS } from '../../utils';
-import 'semantic-ui-css/components/segment.css';
-
-/*
- |---------------------------
- | Shared options
- |---------------------------
- */
+import React from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
+import 'semantic-ui-css/components/segment.css'
 
 /*
  |---------------------------
  | Segment
  |---------------------------
  */
-const { color, floated, aligned } = OPTIONS
-export const SEGMENT_FORMATS = ['raised', 'stacked', 'tall stacked', 'piled', 'vertical']
-export const makeSegmentClasses = makeClassnameFactory({
-  prefix: "ui",
-  suffix: "segment",
-  options: {
-    format: SEGMENT_FORMATS,
-    attached: makeOptionForValuesAndSuffix([true, 'top', 'bottom'], 'attached'),
-    padded: makeOptionForValuesAndSuffix([true, 'very'], 'padded'),
-    color,
-    emphasis: ['secondary', 'tertiary'],
-    floated,
-    aligned: {
-      ...aligned,
-      values: without(aligned.values, 'justified')
-    }
-  }
-});
-export const Segment = ({
-                        format, attached, padded, color, emphasis, floated, aligned,
-                        disabled, loading, inverted, compact, clearing, circular, basic,
-                        className, ...rest }) => {
-  const classes = makeSegmentClasses({
-    format, attached, padded, color, emphasis, floated, aligned,
-    disabled, loading, inverted, compact, clearing, circular, basic
-  }, className)
+export const segmentDefinition = {
+  format: ['raised', 'stacked', 'tall stacked', 'piled', 'vertical'],
+  disabled: true,
+  loading: true,
+  inverted: true,
+  attached: {
+    values: [true, 'top', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'attached')
+  },
+  padded: {
+    values: [true, 'very'],
+    makeClassname: makeSuffixedClass.bind(null, 'padded')
+  },
+  compact: true,
+  color: enums.colors,
+  emphasis: ['secondary', 'tertiary'],
+  circular: true,
+  clearing: true,
+  floated: options.floated,
+  aligned: {
+    values: ['left', 'center', 'right'],
+    makeClassname: makeSuffixedClass.bind(null, 'aligned')
+  },
+  basic: true
+}
+const _segmentFactory = makeFactory(segmentDefinition)
+const Segment = (props) => {
+  const [classes, rest] = _segmentFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'segment')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Segment.propTypes = { ..._segmentFactory.propTypes }
+export default Segment
 
 /*
  |---------------------------
  | Segments
  |---------------------------
  */
-export const SEGMENTS_FORMATS = ['raised', 'stacked', 'piled']
-export const makeSegementsClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'segments',
-  options: {
-    format: SEGMENTS_FORMATS
-  }
-})
-export const Segments = ({
-                          format,
-                          horizontal,
-                          className, ...rest }) => {
-  const classes = makeSegementsClasses({
-    format,
-    horizontal
-  }, className)
+export const segmentsDefinition = {
+  horizontal: true,
+  format: ['raised', 'stacked', 'piled'],
+  compact: true
+}
+const _segmentsFactory = makeFactory(segmentsDefinition)
+export const Segments = (props) => {
+  const [classes, rest] = _segmentsFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'segments')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Segments.propTypes = { ..._segmentsFactory.propTypes }
