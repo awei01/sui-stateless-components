@@ -1,44 +1,16 @@
 import React from 'react'
-import { makeClassnameFactory, makeOptionForValuesAndSuffix, OPTIONS, COUNTS } from '../../utils';
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/grid.css'
 
 /*
  |---------------------------
- | Shared options
+ | shared
  |---------------------------
  */
-const { color, aligned, equal, wide, relaxed, valigned } = OPTIONS
-const columns = makeOptionForValuesAndSuffix(COUNTS, 'column')
-/*
- |---------------------------
- | Grid
- |---------------------------
- */
-export const makeGridClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'grid',
-  options: {
-    columns,
-    equal,
-    aligned,
-    valigned,
-    divided: makeOptionForValuesAndSuffix([true, 'vertically'], 'divided'),
-    celled: makeOptionForValuesAndSuffix([true, 'internally'], 'celled'),
-    padded: makeOptionForValuesAndSuffix([true, 'vertically', 'horizontally'], 'padded'),
-    relaxed
-  }
-})
-export const Grid = ({
-                    stretched, centered,
-                    equal, columns, aligned, valigned, padded, relaxed, divided, celled,
-                    className, ...rest }) => {
-  const classes = makeGridClasses({
-    stretched, centered,
-    equal, columns, aligned, valigned, padded, relaxed, divided, celled
-  }, className)
-  return (
-    <div { ...rest } className={classes}/>
-  )
+const count = {
+  values: options.wide.values,
+  makeClassname: makeSuffixedClass.bind(null, 'column')
 }
 
 /*
@@ -46,53 +18,88 @@ export const Grid = ({
  | Grid
  |---------------------------
  */
-export const makeRowClasses = makeClassnameFactory({
-  suffix: 'row',
-  options: {
-    columns,
-    equal,
-    color,
-    aligned,
-    valigned
-  }
-})
-export const Row = ({
-                    stretched, centered,
-                    equal, columns, color, aligned, valigned,
-                    className, ...rest }) => {
-  const classes = makeRowClasses({
-    stretched, centered,
-    equal, columns, color, aligned, valigned,
-  }, className)
+export const gridDefinition = {
+  divided: {
+    values: [true, 'vertically', 'celled', 'internally celled'],
+    makeClassname: (value) => {
+      if (value.toString().indexOf('celled') > -1) {
+        return value
+      }
+      return makeSuffixedClass('divided', value)
+    }
+  },
+  count,
+  equalWidth: options.equalWidth,
+  stretched: true,
+  padded: {
+    values: [true, 'vertically', 'horizontally'],
+    makeClassname: makeSuffixedClass.bind(null, 'padded')
+  },
+  relaxed: {
+    values: [true, 'very'],
+    makeClassname: makeSuffixedClass.bind(null, 'relaxed')
+  },
+  centered: true,
+  aligned: options.aligned,
+  valigned: options.valigned
+}
+const _gridFactory = makeFactory(gridDefinition)
+const Grid = (props) => {
+  const [classes, rest] = _gridFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'grid')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
-
+Grid.propTypes = { ..._gridFactory.propTypes }
+export default Grid
 
 /*
  |---------------------------
- | Column
+ | Grid.Column
  |---------------------------
  */
-const { floated } = OPTIONS
-export const makeColumnClasses = makeClassnameFactory({
-  suffix: 'column',
-  options: {
-    color,
-    aligned,
-    wide,
-    floated
-  }
-})
-export const Column = ({
-                        wide, floated, color, aligned,
-                        className, ...rest }) => {
-  const classes = makeColumnClasses({
-    wide, floated, color, aligned
-  }, className)
+export const columnDefinition = {
+  floated: options.floated,
+  wide: options.wide,
+  color: enums.colors,
+  aligned: options.aligned,
+  valigned: options.valigned
+}
+const _columnFactory = makeFactory(columnDefinition)
+const Column = (props) => {
+  const [classes, rest] = _columnFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'column')
   return (
-    <div { ...rest } className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Column.propTypes = { ..._columnFactory.propTypes }
+Column.displayName = 'Grid.Column'
+Grid.Column = Column
 
+/*
+ |---------------------------
+ | Grid.Row
+ |---------------------------
+ */
+export const rowDefinition = {
+  count,
+  equalWidth: options.equalWidth,
+  stretched: true,
+  color: enums.colors,
+  centered: true,
+  aligned: options.aligned,
+  valigned: options.valigned
+}
+const _rowFactory = makeFactory(rowDefinition)
+const Row = (props) => {
+  const [classes, rest] = _rowFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'row')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Row.propTypes = { ..._rowFactory.propTypes }
+Row.displayName = 'Grid.Row'
+Grid.Row = Row

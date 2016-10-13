@@ -5,17 +5,6 @@ import 'semantic-ui-css/components/form.css'
 
 /*
  |---------------------------
- | shared
- |---------------------------
- */
-const equalWidth = {
-  makeClassname: (value) => {
-    return value && 'equal width'
-  }
-}
-
-/*
- |---------------------------
  | Form
  |---------------------------
  */
@@ -23,7 +12,7 @@ export const formDefinition = {
   loading: true,
   state: ['success', 'warning', 'error'],
   size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive'],
-  equalWidth,
+  equalWidth: options.equalWidth,
   inverted: true
 }
 const _formFactory = makeFactory(formDefinition)
@@ -48,10 +37,7 @@ export const fieldDefinition = {
   error: true,
   disabled: true,
   inline: true,
-  wide: {
-    values: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'],
-    makeClassname: makeSuffixedClass.bind(null, 'wide')
-  },
+  wide: options.wide,
   required: true
 }
 const _fieldFactory = makeFactory(fieldDefinition)
@@ -74,7 +60,7 @@ Form.Field = Field
 export const fieldsDefinition = {
   error: true,
   disabled: true,
-  equalWidth,
+  equalWidth: options.equalWidth,
   inline: true,
   required: true,
   count: {

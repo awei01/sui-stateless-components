@@ -16,19 +16,19 @@ function loadStories() {
   require('../elements/Steps/.stories')
 
   require('../collections/Form/.stories')
-  return
   require('../collections/Grid/.stories')
-  require('../collections/Menu/.stories')
-  require('../collections/Message/.stories')
-  require('../collections/Table/.stories')
+//  require('../collections/Menu/.stories')
+//  require('../collections/Message/.stories')
+//  require('../collections/Table/.stories')
 
-  require ('../views/Card/.stories')
+//  require ('../views/Card/.stories')
 
-  require('../modules/Dimmer/.stories')
-  require('../modules/Dropdown/.stories')
-  require('../modules/Modal/.stories')
-  require('../modules/Popup/.stories')
-  require('../modules/Search/.stories')
+  require('../modules/Checkbox/.stories')
+//  require('../modules/Dimmer/.stories')
+//  require('../modules/Dropdown/.stories')
+//  require('../modules/Modal/.stories')
+//  require('../modules/Popup/.stories')
+//  require('../modules/Search/.stories')
 }
 
 configure(loadStories(), module);

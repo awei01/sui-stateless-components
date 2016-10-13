@@ -1,433 +1,408 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeComponentsForKeyAndOptions, makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
-import { Story } from '../../.storybook/components';
-import { COLORS } from '../../utils'
-import { Grid, Row, Column } from './index'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Grid, { gridDefinition, columnDefinition, rowDefinition } from './index'
+import Segment from '../../elements/Segment'
+import Image from '../../elements/Image'
+import Divider from '../../elements/Divider'
 
-const Content = (props) => {
-  return (
-    <div {...props} style={{ backgroundColor: '#ccc' }}/>
-  )
-}
+const { Column, Row } = Grid
 
 storiesOf('Grid', module)
-  .add('<Grid> columns', () => {
+  .add('<Grid />', () => {
     return (
-      <Story examples='<Grid columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Grid>'>
-        <Grid columns="two">
-          <Column><Content>two wide</Content></Column>
-          <Column><Content>two wide</Content></Column>
-        </Grid>
-        <Grid columns="four">
-          <Column><Content>four wide</Content></Column>
-          <Column><Content>four wide</Content></Column>
-          <Column><Content>four wide</Content></Column>
-          <Column><Content>four wide</Content></Column>
-        </Grid>
+      <Story title='<Grid />'>
+        <Api definition={gridDefinition}>
+          import Grid from 'sui-stateless-components/collections/Grid'
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Grid>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+            </Grid>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Grid className='equal width'>
+              <Column><Segment>1</Segment></Column>
+              <Column><Segment>2</Segment></Column>
+              <Column><Segment>3</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='divided'>
+          <Example title='(true)'>
+            <Grid divided className='equal width'>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+          <Example title='vertically'>
+            <Grid divided='vertically' className='equal width'>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+          <Example title='celled'>
+            <Grid divided='celled' className='equal width'>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+          <Example title='internally celled'>
+            <Grid divided='internally celled' className='equal width'>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+              <Row>
+                <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='count'>
+          <Example>
+            <Grid count='three'>
+              <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='equalWidth'>
+          <Example>
+            <Grid equalWidth>
+              <Column><Segment>1</Segment></Column><Column><Segment>2</Segment></Column><Column><Segment>3</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='stretched'>
+          <Example>
+            <Grid stretched equalWidth>
+              <Row>
+                <Column>
+                  <Segment>1</Segment>
+                  <Segment>2</Segment>
+                </Column>
+                <Column>
+                  <Segment><Image src='images/lindsay.png' /></Segment>
+                </Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='padded'>
+          <Example title='(true)'>
+            <Divider margin='fitted' />
+            <Grid padded count='one'>
+              <Column><Segment>padded</Segment></Column>
+            </Grid>
+            <Divider margin='fitted' />
+          </Example>
+          <Example title='vertically'>
+            <Divider margin='fitted' />
+            <Grid padded='vertically' count='one'>
+              <Column><Segment>vertically padded</Segment></Column>
+            </Grid>
+            <Divider margin='fitted' />
+          </Example>
+          <Example title='horizontally'>
+            <Divider margin='fitted' />
+            <Grid padded='horizontally' count='one'>
+              <Column><Segment>horizontally padded</Segment></Column>
+            </Grid>
+            <Divider margin='fitted' />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='relaxed'>
+          <Example title='(true)'>
+            <Grid relaxed equalWidth>
+              <Column><Segment>relaxed</Segment></Column>
+              <Column><Segment>relaxed</Segment></Column>
+              <Column><Segment>relaxed</Segment></Column>
+            </Grid>
+          </Example>
+          <Example title='very'>
+            <Grid relaxed='very' equalWidth>
+              <Column><Segment>very relaxed</Segment></Column>
+              <Column><Segment>very relaxed</Segment></Column>
+              <Column><Segment>very relaxed</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='centered'>
+          <Example>
+            <Grid count='four' centered>
+              <Column><Segment>centered</Segment></Column>
+              <Column><Segment>centered</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Grid aligned='left' count='one'>
+              <Column><Segment>left</Segment></Column>
+            </Grid>
+            <Grid aligned='right' count='one'>
+              <Column><Segment>right</Segment></Column>
+            </Grid>
+            <Grid aligned='center' count='one'>
+              <Column><Segment>center</Segment></Column>
+            </Grid>
+            <Grid aligned='justified' count='one'>
+              <Column><Segment>justified. {makeLipsum()}</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='valigned'>
+          <Example>
+            <Grid valigned='top' count='two'>
+              <Column><Segment>top</Segment></Column>
+              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+            </Grid>
+            <Grid valigned='middle' count='two'>
+              <Column><Segment>middle</Segment></Column>
+              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+            </Grid>
+            <Grid valigned='bottom' count='two'>
+              <Column><Segment>bottom</Segment></Column>
+              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Grid> divided', () => {
+  .add('<Grid.Column />', () => {
     return (
-      <Story examples='<Grid divided=[ true | "vertically" ]/><Row><Column/></Row></Grid>'>
-        <Grid columns="four" divided>
-          <Row>
-            <Column>divided</Column><Column>divided</Column><Column>divided</Column><Column>divided</Column>
-          </Row>
-          <Row>
-            <Column>divided</Column><Column>divided</Column><Column>divided</Column><Column>divided</Column>
-          </Row>
-        </Grid>
-        <Grid columns="four" divided='vertically'>
-          <Row>
-            <Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column>
-          </Row>
-          <Row>
-            <Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column><Column>vertically divided</Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> celled', () => {
-    return (
-      <Story examples='<Grid celled=[ true | "internally" ]/><Row><Column/></Row></Grid>'>
-        <Grid columns="four" celled>
-          <Row>
-            <Column>celled</Column><Column>celled</Column><Column>celled</Column><Column>celled</Column>
-          </Row>
-          <Row>
-            <Column>celled</Column><Column>celled</Column><Column>celled</Column><Column>celled</Column>
-          </Row>
-        </Grid>
-        <Grid columns="four" celled='internally'>
-          <Row>
-            <Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column>
-          </Row>
-          <Row>
-            <Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column><Column>internally celled</Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> equal', () => {
-    return (
-      <Story examples='<Grid equal/><Column/></Grid>'>
-        <Grid equal>
-          <Column><Content>three columns</Content></Column>
-          <Column><Content>three columns</Content></Column>
-          <Column><Content>three columns</Content></Column>
-          <Row>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-          </Row>
-          <Row>
-            <Column><Content>two columns in row</Content></Column>
-            <Column><Content>two columns in row</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> stretched', () => {
-    return (
-      <Story examples='<Grid stretched/><Column/></Grid>'>
-        <Grid equal stretched>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(200) }</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Row>
-            <Column><Content><h3>Inside Row</h3>{ makeLipsum(100)}</Content></Column>
-            <Column><Content><h3>Inside Row</h3>{ makeLipsum(200) }</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> padded', () => {
-    return (
-      <Story examples='<Grid padded/><Column/></Grid>'>
-        <Grid columns="two" padded>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" padded="vertically">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" padded="horizontally">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> relaxed', () => {
-    return (
-      <Story examples='<Grid relaxed=[ true | "very" ]/><Column/></Grid>'>
-        <Grid columns="two" relaxed>
-          <Column><Content><h3>relaxed</h3>{ makeLipsum(100)}</Content></Column>
-          <Column><Content><h3>relaxed</h3>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" relaxed="very">
-          <Column><Content><h3>very relaxed</h3>{ makeLipsum(100)}</Content></Column>
-          <Column><Content><h3>very relaxed</h3>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two">
-          <Column><Content><h3>not relaxed</h3>{ makeLipsum(100) }</Content></Column>
-          <Column><Content><h3>not relaxed</h3>{ makeLipsum(100) }</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> centered', () => {
-    return (
-      <Story examples={[
-          '<Grid centered><Column/></Grid>',
-          '<Grid centered><Row><Column/></Row></Grid>'
-        ]}>
-        <Grid columns="four" centered>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="four" centered>
-          <Row>
-            <Column><Content><h3>inside row</h3>{ makeLipsum(100)}</Content></Column>
-            <Column><Content><h3>inside row</h3>{ makeLipsum(100)}</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> aligned', () => {
-    return (
-      <Story examples='<Grid aligned=[ "left" | "right" | "center" | "justified" ]><Column/></Grid>'>
-        <Grid columns="two" aligned="left">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" aligned="right">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" aligned="center">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-        <Grid columns="two" aligned="justified">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> valigned', () => {
-    return (
-      <Story examples='<Grid valigned=[ "top" | "middle" | "bottom" ]><Column/></Grid>'>
-        <Grid columns="two" valigned="top">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(200)}</Content></Column>
-        </Grid>
-        <Grid columns="two" valigned="middle">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(200)}</Content></Column>
-        </Grid>
-        <Grid columns="two" valigned="bottom">
-          <Column><Content>{ makeLipsum(100)}</Content></Column>
-          <Column><Content>{ makeLipsum(200)}</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Grid> passes .className and other props', makePassesPropsStory(Grid, { props: {
-    className: "centered",
-    onClick: action('Grid was clicked'),
-    children: <Column>centered and clickable</Column>
-  }}))
-  .add('<Row> columns', () => {
-    return (
-      <Story examples='<Grid><Row columns=[ "one" | "two" | ... "sixteen" ]/><Column/></Row></Grid>'>
-        <Grid>
-          <Row columns="two">
-            <Column><Content>two wide</Content></Column>
-            <Column><Content>two wide</Content></Column>
-          </Row>
-          <Row columns="four">
-            <Column><Content>four wide</Content></Column>
-            <Column><Content>four wide</Content></Column>
-            <Column><Content>four wide</Content></Column>
-            <Column><Content>four wide</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> equal', () => {
-    return (
-      <Story examples='<Grid><Row equal/><Column/></Row></Grid>'>
-        <Grid>
-          <Row equal>
-            <Column><Content>three columns in row</Content></Column>
-            <Column><Content>three columns in row</Content></Column>
-            <Column><Content>three columns in row</Content></Column>
-          </Row>
-          <Row equal>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-            <Column><Content>four columns in row</Content></Column>
-          </Row>
-          <Row equal>
-            <Column><Content>two columns in row</Content></Column>
-            <Column><Content>two columns in row</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> stretched', () => {
-    return (
-      <Story examples='<Grid><Row stretched/><Column/></Row></Grid>'>
-        <Grid>
-          <Row equal stretched>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(200) }</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> centered', () => {
-    return (
-      <Story examples='<Grid><Row centered><Column/></Row></Grid>'>
-        <Grid>
-          <Row columns="four" centered>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-        </Grid>
-        <Grid>
-          <Row columns="four" centered>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> aligned', () => {
-    return (
-      <Story examples='<Grid><Row aligned=[ "left" | "right" | "center" | "justified" ]><Column/></Row></Grid>'>
-        <Grid>
-          <Row columns="two" aligned="left">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-          <Row columns="two" aligned="right">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-          <Row columns="two" aligned="center">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-          <Row columns="two" aligned="justified">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> valigned', () => {
-    return (
-      <Story examples='<Grid><Row valigned=[ "top" | "middle" | "bottom" ]><Column/></Row></Grid>'>
-        <Grid>
-          <Row columns="two" valigned="top">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(200)}</Content></Column>
-          </Row>
-          <Row columns="two" valigned="middle">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(200)}</Content></Column>
-          </Row>
-          <Row columns="two" valigned="bottom">
-            <Column><Content>{ makeLipsum(100)}</Content></Column>
-            <Column><Content>{ makeLipsum(200)}</Content></Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Row> color', () => {
-    return (
-      <Story examples='<Grid><Row color={ valid color }/><Column/></Row></Grid>'>
-        <Grid>
-          { makeComponentsForKeyAndOptions(Row, { key: 'color', options: COLORS, props: {
-            wide: 'one',
-            children: (value) => {
-              return (<Column>{value}</Column>)
+      <Story title='<Grid.Column />'>
+        <Api definition={columnDefinition} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <Grid>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+              <Column>1</Column><Column>1</Column><Column>1</Column><Column>1</Column>
+            </Grid>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Grid>
+              <Column className='sixteen wide'><Segment>1</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='floated'>
+          <Example>
+            <Grid>
+              <Column floated='left' className='four wide'><Segment>{makeLipsum(100)}</Segment></Column>
+              <Column floated='right' className='four wide'><Segment>{makeLipsum(100)}</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='wide'>
+          <Example>
+            <Grid>
+              <Column wide='one'><Segment>one</Segment></Column>
+              <Column wide='fifteen'><Segment>fifteen</Segment></Column>
+              <Column wide='two'><Segment>two</Segment></Column>
+              <Column wide='fourteen'><Segment>fourteen</Segment></Column>
+              <Column wide='three'><Segment>three</Segment></Column>
+              <Column wide='thirteen'><Segment>thirteen</Segment></Column>
+              <Column wide='four'><Segment>four</Segment></Column>
+              <Column wide='twelve'><Segment>twelve</Segment></Column>
+              <Column wide='five'><Segment>five</Segment></Column>
+              <Column wide='eleven'><Segment>eleven</Segment></Column>
+              <Column wide='six'><Segment>six</Segment></Column>
+              <Column wide='ten'><Segment>ten</Segment></Column>
+              <Column wide='seven'><Segment>seven</Segment></Column>
+              <Column wide='nine'><Segment>nine</Segment></Column>
+              <Column wide='eight'><Segment>eight</Segment></Column>
+              <Column wide='eight'><Segment>eight</Segment></Column>
+              <Column wide='sixteen'><Segment>sixteen</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='color'>
+          <Example>
+            <Grid count='five'>
+            {
+              columnDefinition.color.map((value, index) => {
+                return (<Column key={index} color={value}>{value}</Column>)
+              })
             }
-          }})}
-        </Grid>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Grid equalWidth>
+              <Column aligned='left'><Segment>{makeLipsum(100)}</Segment></Column>
+              <Column aligned='right'><Segment>{makeLipsum(100)}</Segment></Column>
+              <Column aligned='center'><Segment>{makeLipsum(100)}</Segment></Column>
+              <Column aligned='justified'><Segment>{makeLipsum(100)}</Segment></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='valigned'>
+          <Example>
+            <Grid count='two'>
+              <Row>
+                <Column valigned='top'><Segment>top</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+              <Row>
+                <Column valigned='middle'><Segment>middle</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+              <Row>
+                <Column valigned='bottom'><Segment>bottom</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Row> passes .className and other props', () => {
+  .add('<Grid.Row />', () => {
     return (
-      <Story examples='<Grid><Row className="red" onClick={function}><Column/></Row></Grid>'>
-        <Grid>
-          <Row className='red' onClick={action('Row was clicked')}>
-            <Column>I am red and clickable</Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Column> wide', () => {
-    return (
-      <Story examples='<Grid><Column wide=[ "one" | "two" | ... "sixteen" ]/></Grid>'>
-        <Grid>
-          <Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column>
-          <Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column><Column wide="two"><Content>two wide</Content></Column>
-
-          <Column wide="four"><Content>four wide</Content></Column><Column wide="four"><Content>four wide</Content></Column><Column wide="four"><Content>four wide</Content></Column><Column wide="four"><Content>four wide</Content></Column>
-
-          <Column wide="eight"><Content>eight wide</Content></Column><Column wide="eight"><Content>eight wide</Content></Column>
-
-          <Column wide="sixteen"><Content>sixteen wide</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Column> floated', () => {
-    return (
-      <Story examples='<Grid><Column floated=[ "left" | "right" ]/></Grid>'>
-        <Grid>
-          <Column floated="left" wide="three"><Content>left floated three wide</Content></Column>
-          <Column floated="right" wide="three"><Content>right floated three wide</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Column> color', () => {
-    return (
-      <Story examples='<Grid><Column color={ valid color }/><Column/></Column></Grid>'>
-        <Grid columns='three'>
-          { makeComponentsForKeyAndOptions(Column, { key: 'color', options: COLORS })}
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Column> aligned', () => {
-    return (
-      <Story examples='<Grid><Column aligned=[ "left" | "right" | "center" | "justified" ]/></Grid>'>
-        <Grid columns="four">
-          <Column aligned="left"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column aligned="right"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column aligned="center"><Content>{ makeLipsum(100)}</Content></Column>
-          <Column aligned="justified"><Content>{ makeLipsum(100)}</Content></Column>
-        </Grid>
-      </Story>
-    )
-  })
-  /*
-  Not sure how to test this yet. Not sure if needed
-  .add('<Column> valigned', () => {
-    const _divStyle = { display: 'inline-flex', width: '50%' }
-    return (
-      <Story examples='<Grid><Column valigned=[ "top" | "middle" | "bottom" ]/></Grid>'>
-        <Grid columns="one">
-          <Column valigned="top">
-            <div style={_divStyle}>{ makeLipsum(100)}</div>
-            <div style={_divStyle}>{ makeLipsum(200)}</div>
-          </Column>
-          <Column valigned="middle">
-            <div style={_divStyle}>{ makeLipsum(100)}</div>
-            <div style={_divStyle}>{ makeLipsum(200)}</div>
-          </Column>
-          <Column valigned="bottom">
-            <div style={_divStyle}>{ makeLipsum(100)}</div>
-            <div style={_divStyle}>{ makeLipsum(200)}</div>
-          </Column>
-        </Grid>
-      </Story>
-    )
-  })
-  */
-  .add('<Column> passes .className and other props', () => {
-    return (
-      <Story examples='<Grid><Column className="red" onClick={function}></Column></Grid>'>
-        <Grid>
-          <Column className='red' onClick={action('Column was clicked')}>I am red and clickable</Column>
-        </Grid>
+      <Story title='<Grid.Row />'>
+        <Api definition={rowDefinition} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <Grid>
+              <Row>
+                <Column>1</Column>
+                <Column>2</Column>
+                <Column>3</Column>
+              </Row>
+            </Grid>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Grid>
+              <Row className='equal width'>
+                <Column><Segment>1</Segment></Column>
+                <Column><Segment>2</Segment></Column>
+                <Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='count'>
+          <Example>
+            <Grid>
+              <Row count='two'>
+                <Column><Segment>1</Segment></Column>
+                <Column><Segment>2</Segment></Column>
+              </Row>
+              <Row count='three'>
+                <Column><Segment>1</Segment></Column>
+                <Column><Segment>2</Segment></Column>
+                <Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='equalWidth'>
+          <Example>
+            <Grid>
+              <Row equalWidth>
+                <Column><Segment>1</Segment></Column>
+                <Column><Segment>2</Segment></Column>
+                <Column><Segment>3</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='stretched'>
+          <Example>
+            <Grid equalWidth>
+              <Row stretched>
+                <Column>
+                  <Segment>1</Segment>
+                  <Segment>2</Segment>
+                </Column>
+                <Column>
+                  <Segment><Image src='images/lindsay.png' /></Segment>
+                </Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='color'>
+          <Example>
+            <Grid count='one'>
+            {
+              columnDefinition.color.map((value, index) => {
+                return (<Row key={index} color={value}><Column>{value}</Column></Row>)
+              })
+            }
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='centered'>
+          <Example>
+            <Grid count='four'>
+              <Row centered>
+                <Column><Segment>centered</Segment></Column>
+                <Column><Segment>centered</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Grid equalWidth>
+              <Row aligned='left'>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+              </Row>
+              <Row aligned='right'>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+              </Row>
+              <Row aligned='center'>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+              </Row>
+              <Row aligned='justified'>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+                <Column><Segment>{makeLipsum(100)}</Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='valigned'>
+          <Example>
+            <Grid count='two'>
+              <Row valigned='top'>
+                <Column><Segment>top</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+              <Row valigned='middle'>
+                <Column><Segment>middle</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+              <Row valigned='bottom'>
+                <Column><Segment>bottom</Segment></Column>
+                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              </Row>
+            </Grid>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

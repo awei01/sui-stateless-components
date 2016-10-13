@@ -99,5 +99,14 @@ export const options = {
   valigned: {
     values: ['top', 'middle', 'bottom'],
     makeClassname: makeSuffixedClass.bind(null, 'aligned')
+  },
+  wide: {
+    values: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen'],
+    makeClassname: makeSuffixedClass.bind(null, 'wide')
+  },
+  equalWidth: {
+    makeClassname: (value) => {
+      return value && 'equal width'
+    }
   }
 }
