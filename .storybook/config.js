@@ -11,8 +11,8 @@ function loadStories() {
   require('../elements/Input/.stories')
   require('../elements/Label/.stories')
   require('../elements/List/.stories')
-  return
   require('../elements/Loader/.stories')
+  return
   require('../elements/Segment/.stories')
 
   require('../collections/Form/.stories')
