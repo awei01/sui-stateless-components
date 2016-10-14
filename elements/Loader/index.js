@@ -16,7 +16,7 @@ export const loaderDefinition = {
     values: [true, 'centered'],
     makeClassname: makeSuffixedClass.bind(null, 'inline')
   },
-  size: enums.options,
+  size: enums.sizes,
   inverted: true
 }
 const _loaderFactory = makeFactory(loaderDefinition)

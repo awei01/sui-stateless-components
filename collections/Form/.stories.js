@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook'
 import { Story, Api, Example } from '../../.storybook/comps'
 import Form, { formDefinition, fieldDefinition, fieldsDefinition } from './index'
 import Button from '../../elements/Button'
-import { Message } from '../../collections/Message'
+import Message from '../../collections/Message'
 import Checkbox from '../../modules/Checkbox'
 
 const { Field, Fields } = Form

@@ -55,9 +55,11 @@ storiesOf('Loader', module)
         </Story.Segment>
         <Story.Segment title='size'>
           <Example>
-            <Segment style={{ height: '150px' }}>
-              <Loader active size='massive' />
-            </Segment>
+            {
+              loaderDefinition.size.map((value, index) => {
+                return (<div key={index} style={{ height: '150px', position: 'relative' }}><Loader size={value} active /></div>)
+              })
+            }
           </Example>
         </Story.Segment>
         <Story.Segment title='inverted'>
