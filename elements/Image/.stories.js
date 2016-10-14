@@ -145,13 +145,9 @@ storiesOf('Image', module)
           </Example>
         </Story.Segment>
         <Story.Segment title='size'>
-          <Example>
-            <Images size='tiny'>
-              <Image spaced='right' src='images/jenny.jpg' />
-              <Image format='circular' src='images/lindsay.png' />
-              <Image bordered src='images/matthew.png' />
-            </Images>
-          </Example>
+          <Example.Iterator component={Images} propKey='size' definition={imagesDefinition} props={{
+            children: [<Image key='1' src='images/jenny.jpg' />, <Image key='2' src='images/lindsay.png' />]
+          }} />
         </Story.Segment>
       </Story>
     )

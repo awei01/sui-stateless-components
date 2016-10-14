@@ -11,7 +11,7 @@ import 'semantic-ui-css/components/form.css'
 export const formDefinition = {
   loading: true,
   state: ['success', 'warning', 'error'],
-  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive'],
+  size: enums.sizes,
   equalWidth: options.equalWidth,
   inverted: true
 }

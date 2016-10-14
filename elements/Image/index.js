@@ -3,6 +3,8 @@ import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/image.css';
 
+const size = ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
+
 /*
  |---------------------------
  | Image
@@ -21,7 +23,7 @@ export const imageDefinition = {
     makeClassname: makeSuffixedClass.bind(null, 'spaced')
   },
   floated: options.floated,
-  size: enums.sizes
+  size
 }
 const _imageFactory = makeFactory(imageDefinition)
 const Image = (props) => {
@@ -51,7 +53,7 @@ export default Image
  |---------------------------
  */
 export const imagesDefinition = {
-  size: enums.sizes
+  size
 }
 const _imagesFactory = makeFactory(imagesDefinition)
 export const Images = (props) => {

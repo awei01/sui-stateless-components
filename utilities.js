@@ -79,7 +79,7 @@ export const makeFactory = (options) => {
 
 export const enums = {
   colors: ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black'],
-  sizes: ['mini', 'tiny', 'small', 'medium', 'large', 'big', 'huge', 'massive']
+  sizes: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
 }
 
 export const options = {

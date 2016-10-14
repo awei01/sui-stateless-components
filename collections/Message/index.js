@@ -24,7 +24,7 @@ export const messageDefinition = {
   },
   state: ['info', 'warning', 'success', 'error', 'positive', 'negative'],
   color: enums.colors,
-  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
+  size: enums.sizes
 }
 const _messageFactory = makeFactory(messageDefinition)
 const Message = (props) => {

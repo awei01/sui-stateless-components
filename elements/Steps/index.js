@@ -17,7 +17,7 @@ export const stepsDefinition = {
     makeClassname: makeSuffixedClass.bind(null, 'attached')
   },
   count: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'],
-  size: ['mini', 'tiny', 'small', 'large', 'big', 'huge', 'massive']
+  size: enums.sizes
 }
 const _stepsFactory = makeFactory(stepsDefinition)
 export const Steps = (props) => {
