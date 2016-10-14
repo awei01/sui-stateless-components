@@ -1,28 +1,331 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { makeSizeStory, makeColorStory, makePassesPropsStory, extractOptionsValues, makeLipsum } from '../../.storybook/utils';
-import { Story } from '../../.storybook/components';
-import { Menu, Item, Submenu, SIZES, COLORS, COUNTS, FORMATS } from './index'
-import { Menu as DropdownMenu } from '../../modules/Dropdown'
-import { Icon } from '../../elements/Icon'
-import { Segment } from '../../elements/Segment'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Menu, { menuDefinition, itemDefinition, submenuDefinition } from './index'
+import Input from '../../elements/Input'
+import Icon from '../../elements/Icon'
+import Segment from '../../elements/Segment'
+const { Item, Submenu } = Menu
 
-const _makeItems = (items, activeIndex = 0) => {
-  items = items || ['Menu Item 1', 'Menu Item 2', 'Menu Item 3']
-  return items.map((item, index) => {
-    const isActive = index === activeIndex
-    return <Item key={index} active={isActive}>{item}</Item>
-  })
+const _otherProps = {
+  href: {
+    description: 'When passed, this causes the component to render as an <a />'
+  }
 }
 
 storiesOf('Menu', module)
-  .add('<Menu> default', () => {
+  .add('<Menu />', () => {
     return (
-      <Story examples='<Menu>{ content }</Menu>'>
-        <Menu>{_makeItems()}</Menu>
+      <Story title='<Menu />'>
+        <Api definition={menuDefinition}>
+          import Menu from 'sui-stateless-components/collections/Menu'
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Menu>
+              <Item>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Menu className='secondary'>
+              <Item>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='format'>
+          <Example title='secondary'>
+            <Menu format='secondary'>
+              <Item className='active'>active item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+          <Example title='tabular'>
+            <Menu format='tabular'>
+              <Item className='active'>active item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+          <Example title='text'>
+            <Menu format='text'>
+              <Item className='active'>active item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+          <Example title='pagination'>
+            <Menu format='pagination'>
+              <Item className='active'>1</Item>
+              <Item>2</Item>
+              <Item>3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='pointing'>
+          <Example>
+            <Menu pointing>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='vertical'>
+          <Example>
+            <Menu vertical>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='fixed'>
+          <Example title='top'>
+            <div style={{ background: '#ccc', WebkitTransform: 'translateZ(0)', height: '100px', border: '1px solid #999' }}>
+              <Menu fixed='top'>
+                <Item className='active'>item 1</Item>
+                <Item>item 2</Item>
+                <Item>item 3</Item>
+              </Menu>
+            </div>
+          </Example>
+          <Example title='bottom'>
+            <div style={{ background: '#ccc', WebkitTransform: 'translateZ(0)', height: '100px', border: '1px solid #999' }}>
+              <Menu fixed='bottom'>
+                <Item className='active'>item 1</Item>
+                <Item>item 2</Item>
+                <Item>item 3</Item>
+              </Menu>
+            </div>
+          </Example>
+          <Example title='left/right'>
+            <div style={{ background: '#ccc', WebkitTransform: 'translateZ(0)', height: '150px', border: '1px solid #999' }}>
+              <Menu fixed='left' vertical>
+                <Item className='active'>item 1</Item>
+                <Item>item 2</Item>
+                <Item>item 3</Item>
+              </Menu>
+              <Menu fixed='right' vertical>
+                <Item className='active'>item 1</Item>
+                <Item>item 2</Item>
+                <Item>item 3</Item>
+              </Menu>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <Menu inverted>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='color'>
+          <Example.Iterator component={Menu} propKey='color' definition={menuDefinition} props={{
+            children: (value) => {
+              return [<Item header key='1'>{value} menu</Item>, <Item active key='2'>active</Item>, <Item key='3'>item</Item>]
+            }
+          }} />
+        </Story.Segment>
+        <Story.Segment title='icon'>
+          <Example>
+            <Menu icon>
+              <Item className='active'><Icon glyph='home' /></Item>
+              <Item><Icon glyph='user' /></Item>
+              <Item><Icon glyph='close' /></Item>
+            </Menu>
+            <Menu icon='labeled'>
+              <Item className='active'><Icon glyph='home' />home</Item>
+              <Item><Icon glyph='user' />user</Item>
+              <Item><Icon glyph='close' />close</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='fit'>
+          <Example>
+            <Menu fit='fluid' vertical>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+            <Menu fit='compact'>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='count'>
+          <Example>
+            <Menu count='two'>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+            </Menu>
+            <Menu count='four'>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+              <Item>item 4</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Iterator component={Menu} propKey='size' definition={menuDefinition} props={{
+            children: (value) => {
+              return [<Item header key='1'>{value} menu</Item>, <Item active key='2'>active</Item>, <Item key='3'>item</Item>]
+            }
+          }} />
+        </Story.Segment>
+        <Story.Segment title='fitted'>
+          <Example>
+            <Menu fitted vertical>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+            <Menu fitted='vertically' vertical>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+            <Menu fitted='horizontally'>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='borderless'>
+          <Example>
+            <Menu borderless>
+              <Item className='active'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
+  .add('<Menu.Item />', () => {
+    return (
+      <Story title='<Menu.Item />'>
+        <Api definition={itemDefinition} otherProps={_otherProps} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <Menu>
+              <Item>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Menu>
+              <Item className='header'>item 1</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='href'>
+          <p>This will cause the component to render as an {'<a />'}</p>
+          <Example>
+            <Menu>
+              <Item href='http://www.google.com' target='_blank'>href item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='header'>
+          <Example>
+            <Menu>
+              <Item header>header item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='link'>
+          <Example>
+            <Menu>
+              <Item link>link item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='dropdown'>
+          <Example>
+            need Dropdown component
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='down'>
+          <Example>
+            <Menu>
+              <Item down>down item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='active'>
+          <Example>
+            <Menu>
+              <Item active>active item</Item>
+              <Item>item 2</Item>
+              <Item>item 3</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='fitted'>
+          <Example>
+            <Menu vertical>
+              <Item fitted>fitted item</Item>
+              <Item fitted='vertically'>vertically fitted item</Item>
+              <Item fitted='horizontally'>horizontally fitted item</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
+      </Story>
+    )
+  })
+  .add('<Menu.Submenu />', () => {
+    return (
+      <Story title='<Menu.Submenu />'>
+        <Api definition={submenuDefinition} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <Menu vertical>
+              <Item>item 1</Item>
+              <Submenu>
+                <Item>sub menu item 1</Item>
+                <Item>sub menu item 2</Item>
+              </Submenu>
+            </Menu>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Menu>
+              <Item>item 1</Item>
+              <Submenu className='right'>
+                <Item>sub menu item 1</Item>
+                <Item>sub menu item 2</Item>
+              </Submenu>
+            </Menu>
+          </Example>
+        </Story.Segment>
+      </Story>
+    )
+  })
+
+        /*
   .add('<Menu> format', () => {
     const formats = extractOptionsValues(FORMATS)
     return (
@@ -233,10 +536,8 @@ storiesOf('Menu', module)
       </Story>
     )
   })
-  /*
   .add('<Item> search', () => {
   })
-  */
   .add('<Item> fitted', () => {
     return (
       <Story examples='<Menu><Item fitted=[ true | "horizontally" | "vertically" ]/></Menu>'>
@@ -316,3 +617,4 @@ storiesOf('Menu', module)
       </Story>
     )
   })
+*/
