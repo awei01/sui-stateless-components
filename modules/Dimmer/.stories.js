@@ -1,63 +1,121 @@
-import React from 'react'
-import { storiesOf, action, linkTo } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, makeLipsum } from '../../.storybook/utils';
-import { Dimmer, Content } from './index'
+import React, { Component } from 'react'
+import { storiesOf, action } from '@kadira/storybook'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Dimmer, { dimmerDefinition, contentDefinition } from './index'
+import Segment from '../../elements/Segment'
+import Button from '../../elements/Button'
+const { Content } = Dimmer
+
+class PageDimmer extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+  render () {
+    const { isActive } = this.state
+    const handleClick = this._handleClick.bind(this)
+    if (isActive) {
+      return (<Dimmer page active onClick={handleClick} style={{ cursor: 'pointer' }}/>)
+    }
+    return (<Button onClick={handleClick}>show dimmer</Button>)
+  }
+  _handleClick (event) {
+    this.setState({ isActive: !this.state.isActive })
+  }
+}
 
 storiesOf('Dimmer', module)
-  .add('<Dimmer> default', () => {
+  .add('<Dimmer />', () => {
     return (
-      <Story examples='<Dimmer/>'
-        notes='<Dimmer> is hidden by default'>
-        { makeLipsum() }
-        <Dimmer/>
+      <Story title='<Dimmer />'>
+        <Api definition={dimmerDefinition}>
+          import Dimmer from 'sui-stateless-components/modules/Dimmer'
+        </Api>
+        <Story.Segment title='(default)'>
+          <p>The {'<Dimmer />'} is hidden by default</p>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer />
+            </Segment>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer className='active' />
+            </Segment>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='active'>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active />
+            </Segment>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='page'>
+          <Example code='<Dimmer page />'>
+            <PageDimmer />
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='disabled'>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active disabled />
+            </Segment>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active inverted />
+            </Segment>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Dimmer> active', () => {
+  .add('<Dimmer.Content />', () => {
     return (
-      <Story examples='<Dimmer active/>'>
-        { makeLipsum() }
-        <Dimmer active/>
-      </Story>
-    )
-  })
-  .add('<Dimmer> page', () => {
-    return (
-      <Story examples='<Dimmer page/>'>
-        { makeLipsum() }
-        <Dimmer active page/>
-      </Story>
-    )
-  })
-  .add('<Dimmer> inverted', () => {
-    return (
-      <Story examples='<Dimmer inverted/>'>
-        { makeLipsum() }
-        <Dimmer active inverted/>
-      </Story>
-    )
-  })
-  .add('<Dimmer> passes .className and other props', makePassesPropsStory(Dimmer, {
-    props: {
-      active: true,
-      page: true,
-      className: "inverted",
-      onClick: action('Dimmer was clicked'),
-      children: (<Content><h1 style={{ color: '#000' }}>I am inverted and clickable</h1></Content>)
-    },
-    Story: Story
-  }))
-  .add('<Content>', () => {
-    return (
-      <Story examples='<Dimmer><Content>{ content }</Content></Dimmer>'>
-        { makeLipsum() }
-        <Dimmer active>
-          <Content>
-            <h1>This is some header</h1>
-            <p>Here is a paragraph</p>
-          </Content>
-        </Dimmer>
+      <Story title='<Dimmer.Content />'>
+        <Api definition={contentDefinition} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active>
+                <Content>This is some content</Content>
+              </Dimmer>
+            </Segment>
+          </Example>
+          <Example title='[className] gets passed'>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active>
+                <Content className='top aligned'>This is some content</Content>
+              </Dimmer>
+            </Segment>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='aligned'>
+          <Example>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active>
+                <Content aligned='top'>top aligned</Content>
+              </Dimmer>
+            </Segment>
+            <Segment>
+              {makeLipsum(300)}
+              <Dimmer active>
+                <Content aligned='bottom'>bottom aligned</Content>
+              </Dimmer>
+            </Segment>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

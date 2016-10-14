@@ -24,7 +24,7 @@ function loadStories() {
 //  require ('../views/Card/.stories')
 
   require('../modules/Checkbox/.stories')
-//  require('../modules/Dimmer/.stories')
+  require('../modules/Dimmer/.stories')
 //  require('../modules/Dropdown/.stories')
 //  require('../modules/Modal/.stories')
 //  require('../modules/Popup/.stories')

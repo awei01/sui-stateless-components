@@ -1,24 +1,53 @@
-import React from 'react'
-import { makeClassnameFactory } from '../../utils';
+import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/dimmer.css'
 
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'dimmer'
-})
-export const Dimmer = ({
-  active, page, inverted, modals,
-  className, ...rest }) => {
-  const classes = makeClasses({ active, page, modals, inverted }, className)
+/*
+ |-----------------------
+ | Dimmer
+ |-----------------------
+ */
+export const dimmerDefinition = {
+  active: true,
+  page: true,
+  disabled: true,
+  inverted: true
+}
+const _dimmerFactory = makeFactory(dimmerDefinition)
+const Dimmer = (props) => {
+  const [classes, rest] = _dimmerFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'dimmer')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Dimmer.propTypes = { ..._dimmerFactory.propTypes }
+export default Dimmer
 
-export const Content = ({ children }) => {
+/*
+ |-----------------------
+ | Dimmer.Content
+ |-----------------------
+ */
+export const contentDefinition = {
+  aligned: {
+    values: ['top', 'bottom'],
+    makeClassname: makeSuffixedClass.bind(null, 'aligned')
+  }
+}
+const _contentFactory = makeFactory(contentDefinition)
+const Content = (props) => {
+  // pull children out to be put inside <div className='content' />
+  const { children, ...remaining } = props
+  const [classes, rest] = _contentFactory.extractClassesAndProps(remaining)
+  const className = classnames(classes, 'content')
   return (
-    <div className='content'>
-      <div className='center'>{children}</div>
+    <div {...rest} className={className}>
+      <div className='content'>{children}</div>
     </div>
   )
 }
+Content.propTypes = { ..._contentFactory.propTypes }
+Content.displayName = 'Dimmer.Content'
+Dimmer.Content = Content
