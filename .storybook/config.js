@@ -19,7 +19,7 @@ function loadStories() {
   require('../collections/Grid/.stories')
   require('../collections/Menu/.stories')
   require('../collections/Message/.stories')
-//  require('../collections/Table/.stories')
+  require('../collections/Table/.stories')
 
 //  require ('../views/Card/.stories')
 

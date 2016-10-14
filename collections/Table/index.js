@@ -1,125 +1,138 @@
-import React, { PropTypes } from 'react'
-import { makeClassnameFactory, OPTIONS, makeOptionForValuesAndSuffix } from '../../utils';
+import React from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/table.css'
 
-/*
- |---------------------------
- | Shared options
- |---------------------------
- */
-const { aligned, valigned } = OPTIONS
+const state = ['positive', 'negative', 'error', 'warning']
+const aligned = {
+  values: ['left', 'right', 'center'],
+  makeClassname: makeSuffixedClass.bind(null, 'aligned')
+}
 
 /*
  |---------------------------
  | Table
  |---------------------------
  */
-export const makeTableClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'table',
-  options: {
-    stackable: {
-      values: [true, false, 'tablet'],
-      makeKey: (value) => {
-        if (!value) {
-          return 'unstackable'
-        }
-        return value === true ? '' : `${value} stackable`
-      }
-    },
-    singleLine: {
-      // this can actually go on any descendant of table according to SUI css
-      values: [true],
-      makeKey: () => {
-        return 'single line'
-      }
-    },
-    compact: makeOptionForValuesAndSuffix([true, 'very'], 'compact'),
-    size: ['small', 'large']
+export const tableDefinition = {
+  definition: true,
+  structured: true,
+  singleLine: {
+    makeClassname: (value) => {
+      return value && 'single line'
+    }
+  },
+  fixed: true,
+  selectable: true,
+  striped: true,
+  celled: true,
+  basic: true,
+  collapsing: true,
+  count: {
+    values: options.wide.values,
+    makeClassname: makeSuffixedClass.bind(null, 'column')
+  },
+  color: enums.colors,
+  inverted: true,
+  sortable: true,
+  padded: {
+    values: [true, 'very'],
+    makeClassname: makeSuffixedClass.bind(null, 'padded')
+  },
+  compact: {
+    values: [true, 'very'],
+    makeClassname: makeSuffixedClass.bind(null, 'compact')
+  },
+  size: ['small', 'large']
+}
+const _tableFactory = makeFactory(tableDefinition)
+const Table = (props) => {
+  const [classes, rest] = _tableFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'table')
+  return (
+    <table {...rest} className={className} />
+  )
+}
+Table.propTypes = { ..._tableFactory.propTypes }
+export default Table
+
+/*
+ |---------------------------
+ | Table.Th
+ |---------------------------
+ */
+export const thDefinition = {
+  valigned: options.valigned,
+  aligned,
+  collapsing: true,
+  wide: options.wide,
+  sorted: {
+    values: [true, 'ascending', 'descending'],
+    makeClassname: (value) => {
+      return 'sorted ' + (value === true ? '' : value)
+    }
   }
-})
-export const Table = ({
-                      stackable, singleLine, compact, size,
-                      definition, structured, fixed,
-                      className, ...rest }) => {
-  const classes = makeTableClasses({
-    stackable, singleLine, compact, size,
-    definition, structured, fixed
-  }, className)
+}
+const _thFactory = makeFactory(thDefinition)
+const Th = (props) => {
+  const [classes, rest] = _thFactory.extractClassesAndProps(props)
+  const className = classnames(classes)
   return (
-    <table {...rest} className={classes}/>
+    <th {...rest} className={className} />
   )
 }
-Table.defaultProps = {
-  stackable: true
-}
+Th.propTypes = { ..._thFactory.propTypes }
+Th.displayName = 'Table.Th'
+Table.Th = Th
 
 /*
  |---------------------------
- | Thead
+ | Table.Td
  |---------------------------
  */
-export const makeTheadClasses = makeClassnameFactory({
-})
-export const Thead = ({
-                    className, ...rest }) => {
-  const classes = makeTheadClasses({}, className)
+export const tdDefinition = {
+  state,
+  active: true,
+  disabled: true,
+  selectable: true,
+  valigned: options.valigned,
+  aligned,
+  collapsing: true,
+  wide: options.wide
+}
+const _tdFactory = makeFactory(tdDefinition)
+const Td = (props) => {
+  const [classes, rest] = _tdFactory.extractClassesAndProps(props)
+  const className = classnames(classes)
   return (
-    <thead {...rest} className={classes}/>
+    <td {...rest} className={className} />
   )
 }
+Td.propTypes = { ..._tdFactory.propTypes }
+Td.displayName = 'Table.Td'
+Table.Td = Td
 
 /*
  |---------------------------
- | Tbody
+ | Table.Tr
  |---------------------------
  */
-export const Tbody = (props) => {
+export const trDefinition = {
+  state,
+  active: true,
+  disabled: true,
+  valigned: options.valigned,
+  aligned
+}
+const _trFactory = makeFactory(trDefinition)
+const Tr = (props) => {
+  const [classes, rest] = _trFactory.extractClassesAndProps(props)
+  const className = classnames(classes)
   return (
-    <tbody {...props}/>
+    <tr {...rest} className={className} />
   )
 }
-
-/*
- |---------------------------
- | Th
- |---------------------------
- */
-export const makeThClasses = makeClassnameFactory({
-})
-export const Th = ({
-                    className, ...rest }) => {
-  const classes = makeThClasses({}, className)
-  return (
-    <th {...rest} className={classes}/>
-  )
-}
-
-/*
- |---------------------------
- | Tr, Td
- |---------------------------
- */
-export const makeTrTdClasses = makeClassnameFactory({
-  options: {
-    state: ['positive', 'negative', 'error', 'warning', 'active', 'disabled'],
-    valigned
-  }
-})
-export const Tr = ({
-                    state, valigned,
-                    className, ...rest }) => {
-  const classes = makeTrTdClasses({ state, valigned }, className)
-  return (
-    <tr {...rest} className={classes}/>
-  )
-}
-export const Td = ({
-                    state, valigned,
-                    className, ...rest }) => {
-  const classes = makeTrTdClasses({ state, valigned }, className)
-  return (
-    <td {...rest} className={classes}/>
-  )
-}
+Tr.propTypes = { ..._trFactory.propTypes }
+Tr.displayName = 'Table.Tr'
+Table.Tr = Tr
 
