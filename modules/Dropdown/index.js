@@ -1,19 +1,82 @@
-import React from 'react';
-import { makeClassnameFactory, makeComponentWithClasses, makeOptionForValuesAndSuffix, OPTIONS } from '../../utils';
-import 'semantic-ui-css/components/dropdown.css';
+import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
+import 'semantic-ui-css/components/dropdown.css'
+import BaseIcon from '../../elements/Icon'
+import Menu from '../../collections/Menu'
+
+/*
+ |-----------------------
+ | Dropdown
+ |-----------------------
+ */
+export const dropdownDefinition = {
+  active: true,
+  selection: true,
+  search: true
+}
+const _dropdownFactory = makeFactory(dropdownDefinition)
+const Dropdown = (props) => {
+  const [classes, rest] = _dropdownFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'dropdown')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Dropdown.propTypes = { ..._dropdownFactory.propTypes }
+export default Dropdown
+
+/*
+ |-----------------------
+ | Dropdown.Text
+ |-----------------------
+ */
+export const textDefinition = {
+}
+const _textFactory = makeFactory(textDefinition)
+const Text = (props) => {
+  const [classes, rest] = _textFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'text')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Text.propTypes = { ..._textFactory.propTypes }
+Text.displayName = 'Dropdown.Text'
+Dropdown.Text = Text
+
+/*
+ |-----------------------
+ | Dropdown.Icon
+ |-----------------------
+ */
+const Icon = (props) => {
+  return (
+    <BaseIcon {...props} glyph='dropdown' />
+  )
+}
+Icon.displayName = 'Dropdown.Icon'
+Dropdown.Icon = Icon
+
+
+/*
+ |-----------------------
+ | Dropdown.Menu
+ |-----------------------
+ */
+Dropdown.Menu = Menu.Submenu
+
+/*
+ |-----------------------
+ | Dropdown.Item
+ |-----------------------
+ */
+Dropdown.Item = Menu.Item
 
 /*
  |---------------------------
  | Shared options
  |---------------------------
- */
-
-
-/*
- |---------------------------
- | Dropdown
- |---------------------------
- */
 export const SELECTIONS = [true, 'search', 'multiple', 'multiple search']
 export const POINTINGS = [true, 'top left', 'top right', 'left', 'right', 'bottom', 'bottom left', 'bottom right', 'upward']
 export const makeDropdownClasses = makeClassnameFactory({
@@ -50,7 +113,6 @@ export const Dropdown = ({
  |---------------------------
  | Menu
  |---------------------------
- */
 export const makeMenuClasses = makeClassnameFactory({
   suffix: 'menu',
   options: {
@@ -75,7 +137,7 @@ export const Menu = ({
  |---------------------------
  | Text
  |---------------------------
- */
+/
 export const makeItemClasses = makeClassnameFactory({
   suffix: 'item'
 })
@@ -90,7 +152,6 @@ export const Item = ({ selected, filtered, disabled, className, ...rest }) => {
  |---------------------------
  | Text
  |---------------------------
- */
 export const makeTextClasses = makeClassnameFactory({
   suffix: 'text'
 })
@@ -110,9 +171,10 @@ export const Text = ({ filtered, className, ...rest }) => {
  |---------------------------
  | Supporting components
  |---------------------------
- */
 export const Search = makeComponentWithClasses('search', 'input')
 export const Header = makeComponentWithClasses('header')
 export const Divider = makeComponentWithClasses('divider')
 export const Description = makeComponentWithClasses('description', 'span')
 export const Icon = makeComponentWithClasses('dropdown icon', 'i')
+
+*/

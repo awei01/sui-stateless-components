@@ -25,7 +25,7 @@ function loadStories() {
 
   require('../modules/Checkbox/.stories')
   require('../modules/Dimmer/.stories')
-//  require('../modules/Dropdown/.stories')
+  require('../modules/Dropdown/.stories')
 //  require('../modules/Modal/.stories')
 //  require('../modules/Popup/.stories')
 //  require('../modules/Search/.stories')
