@@ -14,7 +14,7 @@ const fitted = {
  |---------------------------
  */
 export const menuDefinition = {
-  format: ['secondary', 'tabular', 'text', 'pointing'],
+  format: ['secondary', 'tabular', 'text', 'pagination'],
   pointing: true,
   vertical: true,
   fixed: {
