@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Divider, { dividerDefinition } from './index'
 import Grid from '../../collections/Grid'
 const { Column } = Grid

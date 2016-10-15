@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Dimmer, { dimmerDefinition, contentDefinition } from './index'
 import Segment from '../../elements/Segment'
 import Button from '../../elements/Button'

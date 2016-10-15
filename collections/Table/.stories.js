@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Table, { tableDefinition, thDefinition, trDefinition, tdDefinition } from './index'
 
 const { Thead, Th, Tr, Td } = Table

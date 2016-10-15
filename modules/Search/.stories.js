@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
-import { Story, Api, Example } from '../../.storybook/comps'
+import { Story, Api, Example } from '../../.storybook/components'
 import Search, { searchDefinition, resultsDefinition, resultDefinition } from './index'
 import Input from '../../elements/Input'
 const { Prompt, Icon, Results } = Search

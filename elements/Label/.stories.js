@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Label, { labelDefinition, Labels, labelsDefinition } from './index'
 import Image from '../../elements/Image'
 import Segment from '../../elements/Segment'

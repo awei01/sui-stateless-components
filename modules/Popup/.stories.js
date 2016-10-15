@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action, linkTo } from '@kadira/storybook'
-import { Story, Api, Example } from '../../.storybook/comps'
+import { Story, Api, Example } from '../../.storybook/components'
 import Popup, { popupDefinition, Tooltip, tooltipDefinition } from './index'
 import Grid from '../../collections/Grid'
 const { Column } = Grid

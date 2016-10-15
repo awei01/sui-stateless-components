@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Loader, { loaderDefinition } from './index'
 import Segment from '../../elements/Segment'
 

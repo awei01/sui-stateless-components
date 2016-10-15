@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example } from '../../.storybook/comps'
+import { Story, Api, Example } from '../../.storybook/components'
 import Form, { formDefinition, fieldDefinition, fieldsDefinition } from './index'
 import Button from '../../elements/Button'
 import Message from '../../collections/Message'

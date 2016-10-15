@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Icon, { iconDefinition, Icons, iconsDefinition } from '../Icon'
 
 const _path = 'sui-stateless-components/elements/Icon'

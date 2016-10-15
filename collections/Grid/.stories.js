@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/components'
 import Grid, { gridDefinition, columnDefinition, rowDefinition } from './index'
 import Segment from '../../elements/Segment'
 import Image from '../../elements/Image'

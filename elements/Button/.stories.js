@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example } from '../../.storybook/comps'
+import { Story, Api, Example } from '../../.storybook/components'
 import Button, { buttonDefinition, contentDefinition, Buttons, buttonsDefinition } from './index'
 import Label from '../../elements/Label'
 import Icon from '../../elements/Icon'

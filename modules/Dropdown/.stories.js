@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story, Api, Example } from '../../.storybook/comps'
+import { Story, Api, Example } from '../../.storybook/components'
 import Dropdown, { dropdownDefinition, textDefinition } from './index'
 import Icon from '../../elements/Icon'
 const { Text, Menu, Item } = Dropdown
