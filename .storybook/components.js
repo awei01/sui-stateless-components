@@ -1,5 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import reactToJsx from 'react-to-jsx'
+import Menu from '../collections/Menu'
+import Segment from '../elements/Segment'
+import Icon from '../elements/Icon'
+import Header from '../elements/Header'
+import Table from '../collections/Table'
+import Divider from '../elements/Divider'
+const { Item } = Menu
+const { Tr, Th, Td } = Table
 
 const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lectus metus, consectetur et eros at, maximus rutrum magna. Aliquam ullamcorper, magna vel pulvinar finibus, neque augue placerat libero, vel auctor mi ligula nec risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis velit luctus congue sagittis. Etiam vel sollicitudin velit. Aliquam finibus sodales eros eu sollicitudin. Morbi commodo lorem urna, ac condimentum magna ullamcorper vitae. Sed ac dapibus dui. Aenean quis faucibus purus, ac volutpat metus. Phasellus semper sapien et lobortis interdum. Donec scelerisque orci massa, in hendrerit neque hendrerit in. Nullam porttitor ornare massa sed varius.'
 export const makeLipsum = (chars) => {
@@ -11,14 +19,16 @@ export class Story extends Component {
     const { title, children } = this.props
     return (
       <div>
-        <a name='top'></a>
-        <div style={{background: '#ccc'}}>
-          <h3>sui-stateless-components</h3>
-        </div>
-        <div style={{margin: '1em'}}>
-          <h1>{title}</h1>
+        <Menu id='_top' borderless inverted size='massive' fixed='top' style={{ position: 'relative' }}>
+          <Item header>
+            sui-stateless-components
+          </Item>
+          <Item href='https://github.com/awei01/sui-stateless-components' right><Icon glyph='github' /></Item>
+        </Menu>
+        <Segment basic>
+          <Header size='huge'>{title}</Header>
           {children}
-        </div>
+        </Segment>
       </div>
     )
   }
@@ -27,8 +37,8 @@ export class Story extends Component {
 const StorySegment = ({ title, children }) => {
   return (
     <div id={title} style={{ marginTop: '2em', borderBottom: '1px solid #ccc' }}>
-      <a style={{ float: 'right' }} href='#top'>back to top</a>
-      { title ? (<h2>{title}</h2>) : null }
+      <a style={{ float: 'right' }} href='#_top'>back to top</a>
+      { title ? (<Header size='large'>{title}</Header>) : null }
       {children}
     </div>
   )
@@ -62,6 +72,15 @@ const _extractDefinition = (definition) => {
   return { values, isRequired }
 }
 
+export const ApiRow = ({ isRequired, propKey, description }) => {
+  return (
+    <Tr state={isRequired && 'error'}>
+      <Td><a href={'#' + propKey}>{propKey}</a></Td>
+      <Td>{isRequired && '(required)'} {description}</Td>
+    </Tr>
+  )
+}
+
 // Api component
 export const Api = ({ definition, otherProps, children }) => {
   definition = definition || {}
@@ -69,22 +88,13 @@ export const Api = ({ definition, otherProps, children }) => {
   return (
     <div>
       <pre>{children}</pre>
-      <table>
-        <thead>
-          <tr>
-            <th colSpan={3} style={{ background: '#eee' }}>Component props API</th>
-          </tr>
-        </thead>
+      <Table definition stackable={false} compact='very'>
         <tbody>
         {
           Object.keys(otherProps).map((key, index) => {
             const { description, isRequired } = otherProps[key]
             return (
-              <tr key={index}>
-                <th style={{ textAlign: 'left', verticalAlign: 'top' }}><a href={'#' + key}>{key}</a></th>
-                <td style={{ fontWeight: 'bold', color: 'red', paddingRight: '.5em' }}>{ isRequired ? '*' : ' ' }</td>
-                <td>{description}</td>
-              </tr>
+              <ApiRow key={index} propKey={key} isRequired={isRequired} description={description} />
             )
           })
         }
@@ -97,16 +107,12 @@ export const Api = ({ definition, otherProps, children }) => {
               values = _extractValues(values)
             }
             return (
-              <tr key={index}>
-                <th style={{ textAlign: 'left', verticalAlign: 'top' }}><a href={'#' + key}>{key}</a></th>
-                <td style={{ fontWeight: 'bold', color: 'red', paddingRight: '.5em' }}>{ isRequired ? '*' : ' ' }</td>
-                <td>{values}</td>
-              </tr>
+              <ApiRow key={index} propKey={key} description={values} />
             )
           })
         }
         </tbody>
-      </table>
+      </Table>
     </div>
   )
 }
@@ -121,16 +127,15 @@ const _extractJsx = (children) => {
 }
 export class Example extends Component {
   render () {
-    let { title, description, children, code } = this.props
+    let { title, children, code } = this.props
     code = code || _extractJsx(children)
     return (
-      <div style={{ margin: '2em 1em', paddingBottom: '1em' }}>
-        { title ? (<h3>{title}</h3>) : null }
-        { description ? (<p>{description}</p>) : null }
+      <Segment format='vertical'>
+        { title ? (<Header>{title}</Header>) : null }
         <div>{children}</div>
-        <br style={{ clear: 'both' }} />
+        <Divider clearing hidden/>
         <Code>{code}</Code>
-      </div>
+      </Segment>
     )
   }
 }

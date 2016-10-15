@@ -43,7 +43,13 @@ export const tableDefinition = {
     values: [true, 'very'],
     makeClassname: makeSuffixedClass.bind(null, 'compact')
   },
-  size: ['small', 'large']
+  size: ['small', 'large'],
+  stackable: {
+    values: [false, 'tablet'],
+    makeClassname: (value) => {
+      return value ? 'tablet stackable' : 'unstackable'
+    }
+  }
 }
 const _tableFactory = makeFactory(tableDefinition)
 const Table = (props) => {

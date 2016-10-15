@@ -286,6 +286,28 @@ storiesOf('Table', module)
             </Table>
           </Example>
         </Story.Segment>
+         <Story.Segment title='stackable'>
+          <Example>
+            <Table stackable='tablet'>
+              <tbody>
+                <Tr>
+                  <td>tablet stackable</td>
+                  <td>tablet stackable</td>
+                  <td>tablet stackable</td>
+                </Tr>
+              </tbody>
+            </Table>
+            <Table stackable={false}>
+              <tbody>
+                <Tr>
+                  <td>not stackable</td>
+                  <td>not stackable</td>
+                  <td>not stackable</td>
+                </Tr>
+              </tbody>
+            </Table>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

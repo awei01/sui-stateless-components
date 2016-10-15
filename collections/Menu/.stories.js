@@ -294,6 +294,14 @@ storiesOf('Menu', module)
             </Menu>
           </Example>
         </Story.Segment>
+        <Story.Segment title='right'>
+          <Example>
+            <Menu>
+              <Item>item</Item>
+              <Item right>right item</Item>
+            </Menu>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

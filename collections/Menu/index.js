@@ -58,7 +58,8 @@ export const itemDefinition = {
   link: true,
   down: true,
   active: true,
-  fitted
+  fitted,
+  right: true
 }
 const _itemFactory = makeFactory(itemDefinition)
 const Item = (props) => {
