@@ -93,17 +93,16 @@ const Result = (props) => {
   const { title, description, src, price, ...remainder } = props
   const [classes, rest] = _resultFactory.extractClassesAndProps(remainder)
   const className = classnames(classes, 'result')
-  if (rest.children) {
-    return (
-      <div {...rest} className={className} />
-    )
+  let element = 'div'
+  if (rest.href) {
+    element =  'a'
   }
-  return (
-    <div {...rest} className={className}>
-      { src ? <Image src={src} /> : null }
-      <Content title={title} description={description} price={price} />
-    </div>
-  )
+  if (rest.children) {
+    return React.createElement(element, { ...rest, className })
+  }
+  const image = src ? (<Image src={src} />) : null
+  const content = (<Content title={title} description={description} price={price} />)
+  return React.createElement(element, { ...rest, className }, image, content)
 }
 Result.propTypes = {
   ..._resultFactory.propTypes,

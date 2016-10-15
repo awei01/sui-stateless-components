@@ -121,6 +121,9 @@ storiesOf('Search', module)
     return (
       <Story title='<Search.Results.Result />'>
         <Api definition={resultDefinition} otherProps={{
+          href: {
+            description: 'Optional href for the <Result />. If passed, component renders as an <a />'
+          },
           title: {
             description: 'Optional title of the result. If [children] is provided, this props is ignored'
           },
@@ -153,6 +156,19 @@ storiesOf('Search', module)
                 <Results visible>
                   <Result className='active'>result one</Result>
                   <Result>result two</Result>
+                </Results>
+              </Search>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='href'>
+          <Example>
+            <div style={{ height: '150px' }}>
+              <Search>
+                <Prompt placeholder='default' />
+                <Results visible>
+                  <Result href='http://www.google.com' target='_blank'>linked result</Result>
+                  <Result title='title' description='another link' href='http://www.google.com' target='_blank' />
                 </Results>
               </Search>
             </div>
