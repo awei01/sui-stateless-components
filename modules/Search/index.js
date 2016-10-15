@@ -1,170 +1,199 @@
-import React from 'react';
-import { makeClassnameFactory, makeComponentWithClasses, makeOptionForValuesAndSuffix } from '../../utils';
+import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/search.css';
+import BaseIcon from '../../elements/Icon'
 
 /*
- |---------------------------
+ |-----------------------
  | Search
- |---------------------------
+ |-----------------------
  */
-export const makeSearchClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'search',
-  options: {
-    aligned: makeOptionForValuesAndSuffix(['left', 'right'], 'aligned')
+export const searchDefinition = {
+  category: true,
+  fluid: true,
+  aligned: {
+    values: ['left', 'right'],
+    makeClassname: makeSuffixedClass.bind(null, 'aligned')
   }
-})
-export const Search = ({
-                        loading, fluid, category,
-                        aligned,
-                        className, ...rest }) => {
-  const classes = makeSearchClasses({
-    loading, fluid, category,
-    aligned
-  }, className)
+}
+const _searchFactory = makeFactory(searchDefinition)
+const Search = (props) => {
+  const [classes, rest] = _searchFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'search')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Search.propTypes = { ..._searchFactory.propTypes }
+export default Search
 
 /*
- |---------------------------
- | Results
- |---------------------------
+ |-----------------------
+ | Search.Prompt
+ |-----------------------
  */
-export const makeResultsClasses = makeClassnameFactory({
-  suffix: 'results'
-})
-export const Results = ({
-                        active,
-                        className, ...rest }) => {
-  const classes = makeResultsClasses({}, className)
-  const passedStyles = {}
-
-  if (active) {
-    // when active, use style
-    passedStyles.display = 'block'
-  }
+const Prompt = (props) => {
+  const className = classnames(props.className, 'prompt')
   return (
-    <div {...rest} className={classes} style={passedStyles}/>
+    <input {...props} className={className} />
   )
 }
+Prompt.displayName = 'Search.Prompt'
+Search.Prompt = Prompt
 
 /*
- |---------------------------
- | Result
- |---------------------------
+ |-----------------------
+ | Search.Icon
+ |-----------------------
  */
-export const makeResultClasses = makeClassnameFactory({
-  suffix: 'result'
-})
-export const Result = ({
-                        active,
-                        title, description, price, image,
-                        children, className, ...rest }) => {
-  const classes = makeResultClasses({ active }, className)
-  if (!children) {
-    children = []
-    if (image) {
-      children.push(<Image key='image' src={image}/>)
-    }
-    children.push(
-      <Content key='content'>
-        { price
-          ? <Price>{ price }</Price>
-          : null
-        }
-        { title
-          ? <Title>{ title }</Title>
-          : null
-        }
-        { description
-          ? <Description>{ description }</Description>
-          : null
-        }
-      </Content>
+const Icon = (props) => {
+  return (
+    <BaseIcon {...props} glyph='search' />
+  )
+}
+Icon.displayName = 'Search.Icon'
+Search.Icon = Icon
+
+/*
+ |-----------------------
+ | Search.Results
+ |-----------------------
+ */
+export const resultsDefinition = {
+  visible: true
+}
+const _resultsFactory = makeFactory(resultsDefinition)
+const Results = (props) => {
+  const [classes, rest] = _resultsFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'results')
+  const style = rest.style || {}
+  if (props.visible) {
+    // need to handle style to get it to display
+    style.display = 'block'
+  }
+  return (
+    <div {...rest} className={className} style={style} />
+  )
+}
+Results.propTypes = { ..._resultsFactory.propTypes }
+Results.displayName = 'Search.Results'
+Search.Results = Results
+
+/*
+ |-----------------------
+ | Search.Results.Result
+ |-----------------------
+ */
+export const resultDefinition = {
+  active: true
+}
+const _resultFactory = makeFactory(resultDefinition)
+const Result = (props) => {
+  const { title, description, src, price, ...remainder } = props
+  const [classes, rest] = _resultFactory.extractClassesAndProps(remainder)
+  const className = classnames(classes, 'result')
+  if (rest.children) {
+    return (
+      <div {...rest} className={className} />
     )
   }
   return (
-    <a {...rest} className={classes}>{children}</a>
-  )
-}
-
-/*
- |---------------------------
- | Image
- |---------------------------
- */
-export const makeImageClasses = makeClassnameFactory({
-  suffix: 'image'
-})
-export const Image = ({ src, className, children, ...rest }) => {
-  const classes = makeImageClasses({}, className)
-  return (
-    <div {...rest} className={classes}>
-      { children
-        ? children
-        : (<img src={src}/>)
-      }
+    <div {...rest} className={className}>
+      { src ? <Image src={src} /> : null }
+      <Content title={title} description={description} price={price} />
     </div>
   )
 }
+Result.propTypes = {
+  ..._resultFactory.propTypes,
+  src: PropTypes.string
+}
+Result.displayName = 'Search.Results.Result'
+Results.Result = Result
 
-/*
- |---------------------------
- | Category
- |---------------------------
- */
-export const makeCategoryClasses = makeClassnameFactory({
-  suffix: 'category'
-})
-export const Category = ({ name, children, className, ...rest }) => {
-  const classes = makeCategoryClasses({}, className)
+// private components
+const Image = ({ src }) => {
   return (
-    <div {...rest} className={classes}>
-      { name
-        ? (<Name>{name}</Name>)
-        : null
-      }
-      { children }
+    <div className='image'><img src={src} /></div>
+  )
+}
+Image.propTypes = {
+  src: PropTypes.string.isRequired
+}
+Image.displayName = 'Search.Results.Result.Image'
+const Content = ({ title, description, price }) => {
+  return (
+    <div className='content'>
+      { price ? <div className='price'>{price}</div> : null}
+      { title ? <div className='title'>{title}</div> : null}
+      { description ? <div className='description'>{description}</div> : null}
     </div>
   )
 }
+Content.displayName = 'Search.Results.Result.Content'
+Content.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  price: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+}
 
 /*
- |---------------------------
- | Message
- |---------------------------
+ |-----------------------
+ | Search.Results.Category
+ |-----------------------
  */
-export const makeMessageClasses = makeClassnameFactory({
-  suffix: 'message'
-})
-export const Message = ({ header, description, className, ...rest }) => {
-  const classes = makeMessageClasses({}, className)
+const Category = (props) => {
+  const { name, children, ...rest } = props
+  const className = classnames(rest.className, 'category')
   return (
-    <div {...rest} className={classes}>
-      { header
-        ? (<div className='header'>{header}</div>)
-        : null
-      }
-      { description
-        ? (<div className='description'>{description}</div>)
-        : null
-      }
+    <div {...rest} className={className}>
+      <div className='name'>{name}</div>
+      {children}
     </div>
   )
 }
-/*
- |---------------------------
- | Supporting components
- |---------------------------
- */
-export const Prompt = makeComponentWithClasses('prompt', 'input')
-export const Content = makeComponentWithClasses('content')
-export const Title = makeComponentWithClasses('title')
-export const Description = makeComponentWithClasses('description')
-export const Price = makeComponentWithClasses('price')
-export const Action = makeComponentWithClasses('action', 'a')
-export const Name = makeComponentWithClasses('name')
-export const Icon = makeComponentWithClasses('search icon', 'i')
+Category.displayName = 'Search.Results.Category'
+Category.propTypes = {
+  name: PropTypes.string.isRequired
+}
+Results.Category = Category
 
+/*
+ |-----------------------
+ | Search.Results.Message
+ |-----------------------
+ */
+const Message = (props) => {
+  const { header, description, ...rest } = props
+  const className = classnames(rest.className, 'message')
+  if (rest.children) {
+    return (<div {...rest} className={className} />)
+  }
+  return (
+    <div {...rest} className={className}>
+      { header ? <div className='header'>{header}</div> : null }
+      { description ? <div className='description'>{description}</div> : null }
+    </div>
+  )
+}
+Message.displayName = 'Search.Results.Message'
+Message.propTypes = {
+  header: PropTypes.string,
+  description: PropTypes.string
+}
+Results.Message = Message
+
+/*
+ |-----------------------
+ | Search.Results.Action
+ |-----------------------
+ */
+const Action = (props) => {
+  const className = classnames(props.className, 'action')
+  return (
+    <a {...props} className={className} />
+  )
+}
+Action.displayName = 'Search.Results.Action'
+Results.Action = Action

@@ -28,7 +28,7 @@ function loadStories() {
   require('../modules/Dropdown/.stories')
 //  require('../modules/Modal/.stories')
 //  require('../modules/Popup/.stories')
-//  require('../modules/Search/.stories')
+  require('../modules/Search/.stories')
 }
 
 configure(loadStories(), module);
