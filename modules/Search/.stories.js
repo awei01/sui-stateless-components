@@ -68,6 +68,13 @@ storiesOf('Search', module)
             </div>
           </Example>
         </Story.Segment>
+        <Story.Segment title='size'>
+          <Example.Iterator component={Search} propKey='size' definition={searchDefinition} props={{
+            children: (value) => {
+              return (<Prompt placeholder={value} />)
+            }
+          }} />
+        </Story.Segment>
       </Story>
     )
   })

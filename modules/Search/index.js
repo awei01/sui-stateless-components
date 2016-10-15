@@ -15,7 +15,8 @@ export const searchDefinition = {
   aligned: {
     values: ['left', 'right'],
     makeClassname: makeSuffixedClass.bind(null, 'aligned')
-  }
+  },
+  size: ['mini', 'small', 'large', 'big', 'huge', 'massive']
 }
 const _searchFactory = makeFactory(searchDefinition)
 const Search = (props) => {
