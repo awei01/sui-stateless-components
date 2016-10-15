@@ -23,7 +23,7 @@ export class Story extends Component {
           <Item header>
             sui-stateless-components
           </Item>
-          <Item href='https://github.com/awei01/sui-stateless-components' right><Icon glyph='github' /></Item>
+          <Item href='https://github.com/awei01/sui-stateless-components' target='_top' right><Icon glyph='github' /></Item>
         </Menu>
         <Segment basic>
           <Header size='huge'>{title}</Header>

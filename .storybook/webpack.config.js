@@ -23,7 +23,7 @@ module.exports = {
           replacements: [{
             pattern: /url\(".\/..\/themes/g,
             replacement: function(match, p1, offset, string) {
-              return 'url("./themes'
+              return 'url("./public/themes'
             }
           }]
         })
