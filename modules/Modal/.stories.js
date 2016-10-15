@@ -1,133 +1,171 @@
 import React from 'react'
 import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makeLipsum } from '../../.storybook/utils'
-import { Modal, Header, Content, Actions, Description } from './index'
-import { Image } from '../../elements/Image'
-import { Dimmer } from '../../modules/Dimmer'
+import { Story, Api, Example, makeLipsum } from '../../.storybook/comps'
+import Modal, { modalDefinition, contentDefinition } from './index'
+import Image from '../../elements/Image'
+import Dimmer from '../../modules/Dimmer'
 
-const _container = { format: 'vertical' }
+const { Content, Header, Actions } = Modal
+const { Description } = Content
 
 storiesOf('Modal', module)
-  .add('<Modal> default', () => {
+  .add('<Modal />', () => {
     return (
-      <Story examples='<Modal>[ content ]</Modal>'
-        notes='<Modal> is hidden by default' container={_container}>
-        <Modal>
-          <Content>Some modal content here</Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Modal> active', () => {
-    return (
-      <Story examples='<Modal>[ content ]</Modal>' container={_container}>
-        <Modal active>
-          <Content>Some modal content here</Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Modal> size="small"', () => {
-    return (
-      <Story examples='<Modal size="small"/>' showToggleNote container={_container}>
-        <Modal active size="small">
-          <Content>small modal</Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Modal> size="large"', () => {
-    return (
-      <Story examples='<Modal size="large"/>' showToggleNote container={_container}>
-        <Modal active size="large">
-          <Content>large modal</Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Modal> size="fullscreen"', () => {
-    return (
-      <Story examples='<Modal size="fullscreen"/>' showToggleNote container={_container}>
-        <Modal active size="fullscreen">
-          <Content>fullscreen modal</Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Modal> scrolling', () => {
-    return (
-      <Story examples='<Modal scrolling/>' showToggleNote container={_container}
-          notes={['<Modal scrolling> should be wrapped in <Dimmer modals>',
-            '<Dimmer modals> should be immediate child of an element with className="scrolling dimmable dimmed"']}>
-        <div className='scrolling dimmable dimmed' style={{height: '1000px'}}>
-          <Dimmer page active modals>
-            <Modal active scrolling>
-              <Content>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-                <p>{makeLipsum()}</p>
-              </Content>
+      <Story title='<Modal />'>
+        <Api definition={modalDefinition}>
+          import Modal from 'sui-stateless-components/modules/Modal'
+        </Api>
+        <Story.Segment title='(default)'>
+          <p>This component is hidden by default. See [active]</p>
+          <Example>
+            <Modal>
+              <Content>you can't see me</Content>
             </Modal>
-          </Dimmer>
-
-        </div>
+          </Example>
+          <Example title='[className] gets passed'>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal className='active'>
+                <Content>modal content</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='active'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal active>
+                <Content>active modal</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='basic'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px', background: '#666' }}>
+              <Modal basic active>
+                <Content>basic modal</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example title='small'>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal size='small' active>
+                <Content>small modal</Content>
+              </Modal>
+            </div>
+          </Example>
+          <Example title='large'>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal size='large' active>
+                <Content>large modal</Content>
+              </Modal>
+            </div>
+          </Example>
+          <Example title='fullscreen'>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal size='fullscreen' active>
+                <Content>fullscreen modal</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='scrolling'>
+          <p>In order to use [scrolling], the {'<Modal />'} needs to inside {'<div className="scrolling dimmable dimmed"><Dimmer page className="modals" />'}</p>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '400px' }}>
+              <div className='scrolling dimmable dimmed' style={{height: '400px'}}>
+                <Dimmer page active className='modals'>
+                  <Modal active scrolling>
+                    <Content>
+                      <p>{makeLipsum()}</p>
+                      <p>{makeLipsum()}</p>
+                      <p>{makeLipsum()}</p>
+                    </Content>
+                  </Modal>
+                </Dimmer>
+              </div>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Modal> passes .className and other props', () => {
+  .add('<Modal.Content />', () => {
     return (
-      <Story examples='<Modal className="small" onClick={function}/>' showToggleNote container={_container}>
-        <Modal active className="small" onClick={ action('Modal was clicked')}>
-          <Content>Some modal content here</Content>
-        </Modal>
+      <Story title='<Modal.Content />'>
+        <Api definition={contentDefinition} />
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '100px' }}>
+              <Modal active>
+                <Content>modal content</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='image'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '300px' }}>
+              <Modal active>
+                <Content image>
+                  <Image src='images/jenny.jpg' />
+                </Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Header>', () => {
+  .add('<Modal.Content.Description />', () => {
     return (
-      <Story examples='<Modal><Header/></Modal>' container={_container}>
-        <Modal active>
-          <Header>modal header area</Header>
-        </Modal>
+      <Story title='<Modal.Content.Description />'>
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '300px' }}>
+              <Modal active>
+                <Content image>
+                  <Image src='images/jenny.jpg' />
+                  <Description>some description</Description>
+                </Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Content>', () => {
+  .add('<Modal.Header />', () => {
     return (
-      <Story examples='<Modal><Content/></Modal>' container={_container}>
-        <Modal active>
-          <Content>modal content area</Content>
-        </Modal>
+      <Story title='<Modal.Header />'>
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '200px' }}>
+              <Modal active>
+                <Header>modal header</Header>
+                <Content>modal content</Content>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Content> image', () => {
+  .add('<Modal.Actions />', () => {
     return (
-      <Story examples='<Modal><Content image><Image/><Description/></Content></Modal>' container={_container}>
-        <Modal active>
-          <Content image>
-            <Image src='images/lindsay.png'/>
-            <Description>
-              Some description here
-            </Description>
-          </Content>
-        </Modal>
-      </Story>
-    )
-  })
-  .add('<Actions> image', () => {
-    return (
-      <Story examples='<Modal><Actions/></Modal>' container={_container}>
-        <Modal active>
-          <Actions>
-            modal actions area
-          </Actions>
-        </Modal>
+      <Story title='<Modal.Actions />'>
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ WebkitTransform: 'translateZ(0)', height: '200px' }}>
+              <Modal active>
+                <Content>modal content</Content>
+                <Actions>modal actions</Actions>
+              </Modal>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

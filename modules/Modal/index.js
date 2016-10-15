@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
-import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
 import 'semantic-ui-css/components/modal.css';
 
 /*
@@ -8,37 +8,82 @@ import 'semantic-ui-css/components/modal.css';
  | Modal
  |---------------------------
  */
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'modal',
-  options: {
-    size: ['fullscreen', 'small', 'large']
-  }
-})
-export const Modal = ({ active, size, scrolling, className, ...rest }) => {
-  const classes = makeClasses({ active, size, scrolling }, className);
-  return (
-    <div {...rest} className={ classes }/>
-  );
+export const modalDefinition = {
+  active: true,
+  basic: true,
+  size: ['small', 'large', 'fullscreen'],
+  scrolling: true
 }
-
-/*
- |---------------------------
- | Content
- |---------------------------
- */
-export const Content = ({ image, className, ...rest }) => {
-  const classes = classnames({image}, className, 'content')
+const _modalFactory = makeFactory(modalDefinition)
+const Modal = (props) => {
+  const [classes, rest] = _modalFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'modal')
   return (
-    <div {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Modal.propTypes = { ..._modalFactory.propTypes }
+export default Modal
 
 /*
  |---------------------------
- | Supporting components
+ | Modal.Content
  |---------------------------
  */
-export const Header = makeComponentWithClasses('header')
-export const Description = makeComponentWithClasses('description')
-export const Actions = makeComponentWithClasses('actions')
+export const contentDefnition = {
+  image: true
+}
+const  _contentFactory = makeFactory(contentDefnition)
+const Content = (props) => {
+  const [classes, rest] = _contentFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'content')
+  return (
+    <div {...rest} className={className} />
+  )
+}
+Content.propTypes = { ..._contentFactory.propTypes }
+Content.displayName = 'Modal.Content'
+Modal.Content = Content
+
+/*
+ |---------------------------
+ | Modal.Content.Description
+ |---------------------------
+ */
+const Description = (props) => {
+  const className = classnames(props.className, 'description')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Description.displayName = 'Modal.Content.Description'
+Content.Description = Description
+
+
+/*
+ |---------------------------
+ | Modal.Header
+ |---------------------------
+ */
+const Header = (props) => {
+  const className = classnames(props.className, 'header')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Header.displayName = 'Modal.Header'
+Modal.Header = Header
+
+/*
+ |---------------------------
+ | Modal.Actions
+ |---------------------------
+ */
+const Actions = (props) => {
+  const className = classnames(props.className, 'actions')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Actions.displayName = 'Modal.Actions'
+Modal.Actions = Actions
