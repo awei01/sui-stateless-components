@@ -1,246 +1,259 @@
 import React from 'react'
-import { storiesOf, action } from '@kadira/storybook'
-import { Story } from '../../.storybook/components';
-import { makePassesPropsStory, extractOptionsValues } from '../../.storybook/utils';
-import { Popup, makeTooltipProps, POSITIONS, WIDTHS, SIZES, Header, Content } from './index'
-import { Grid, Row, Column } from '../../collections/Grid'
-import { Segment } from '../../elements/Segment'
+import { storiesOf, action, linkTo } from '@kadira/storybook'
+import { Story, Api, Example } from '../../.storybook/comps'
+import Popup, { popupDefinition, Tooltip, tooltipDefinition } from './index'
+import Grid from '../../collections/Grid'
+const { Column } = Grid
+const { Header, Content } = Popup
 
-const _container = { format: 'vertical' }
-const _popupStyle = { left: 0 }
+const _path = 'sui-stateless-components/modules/Popup'
 
 storiesOf('Popup', module)
-  .add('makeTooltipProps()', () => {
-    const positions = extractOptionsValues(POSITIONS, 0)
+  .add('<Popup />', () => {
     return (
-      <Story examples={[
-          '<element {...makeTooltipProps()}/>',
-          'function makeTooltipProps(string content, [object options])',
-          'options.position = [ ' + positions + ' ]',
-          'options.inverted = [ true | false ]',
-        ]}
-        notes='Convenience method to generate props for CSS-only tooltip solution'>
-        <Grid aligned='center' columns='three'>
-          <Row>
-            <Column>
-              <button {...makeTooltipProps("tooltip here")}>default position</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { inverted: true })}>inverted</button>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'top left' })}>top left</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'top center' })}>top center</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'top right' })}>top right</button>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'bottom left' })}>bottom left</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'bottom center' })}>bottom center</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'bottom right' })}>bottom right</button>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'left center' })}>left center</button>
-            </Column>
-            <Column>
-              <button {...makeTooltipProps("tooltip here", { position: 'right center' })}>right center</button>
-            </Column>
-          </Row>
-        </Grid>
+      <Story title='<Popup />'>
+        <Api definition={popupDefinition}>
+          import Popup from '{_path}'
+        </Api>
+        <Story.Segment title='(default)'>
+          <p>By default, this component will be hidden. Use [visible]. You will also need to provide [style] to position the popup</p>
+          <Example>
+            <Popup>
+              you cannot see me
+            </Popup>
+          </Example>
+          <Example title='[className] gets passed'>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} className='visible'>
+                popup here
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='visible'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible>
+                popup here
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='position'>
+          <Example title='top left|center|right'>
+            <Grid count='three' relaxed='very' padded>
+              <Column><Popup style={{ left: 0 }} visible position='top left'>top left</Popup></Column>
+              <Column><Popup style={{ left: 0 }} visible position='top center'>top center</Popup></Column>
+              <Column><Popup style={{ left: 0 }} visible position='top right'>top right</Popup></Column>
+            </Grid>
+          </Example>
+          <Example title='left|right center'>
+            <Grid count='two' relaxed='very' padded>
+              <Column><Popup style={{ left: 0 }} visible position='left center'>left center</Popup></Column>
+              <Column><Popup style={{ left: 0 }} visible position='right center'>right center</Popup></Column>
+            </Grid>
+          </Example>
+          <Example title='bottom left|center|right'>
+            <Grid count='three' relaxed='very' padded>
+              <Column><Popup style={{ left: 0 }} visible position='bottom left'>bottom left</Popup></Column>
+              <Column><Popup style={{ left: 0 }} visible position='bottom center'>bottom center</Popup></Column>
+              <Column><Popup style={{ left: 0 }} visible position='bottom right'>bottom right</Popup></Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='basic'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} basic visible>
+                basic popup has no pointer
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='width'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible width='wide'>
+                wide popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible width='very wide'>
+                very wide popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible width='fluid'>
+                fluid popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible width='flowing'>
+                flowing popup
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='size'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} size='mini' visible>
+                mini popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} size='tiny' visible>
+                tiny popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} size='small' visible>
+                small popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} size='large' visible>
+                large popup
+              </Popup>
+            </div>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} size='huge' visible>
+                huge popup
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} inverted visible>
+                inverted popup
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Popup> default', () => {
+  .add('<Popup.Header />', () => {
     return (
-      <Story examples='<Popup>{ content }></Popup>'
-          notes='<Popup> is hidden by default.' container={_container}>
-        <Popup>
-          Some popup here
-        </Popup>
+      <Story title='<Popup.Header />'>
+        <Api definition={popupDefinition}>
+          import Popup from '{_path}'
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible>
+                <Header>popup header</Header>
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Popup> visible', () => {
+  .add('<Popup.Content />', () => {
     return (
-      <Story examples='<Popup visible>{ content }></Popup>'
-          notes='<Popup> requires positioning via [style] prop.' container={_container}>
-        <Popup visible style={ _popupStyle}>
-          Some popup here
-        </Popup>
+      <Story title='<Popup.Content />'>
+        <Api definition={popupDefinition}>
+          import Popup from '{_path}'
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <div style={{ position: 'relative', height: '70px' }}>
+              <Popup style={{ left: 0 }} visible>
+                <Content>popup content</Content>
+              </Popup>
+            </div>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })
-  .add('<Popup> position', () => {
-    const positions = extractOptionsValues(POSITIONS, 0)
+  .add('<Tooltip />', () => {
     return (
-      <Story examples={'<Popup position=[ ' + positions + ' ]>{ content }></Popup>'}
-          notes='[position] defaults to "top center"' container={_container}>
-        <Grid stretched aligned='center' columns='three'>
-          <Row>
-            <Column>
-              <Popup visible position='top left' style={ _popupStyle}>top left popup</Popup>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </Column>
-            <Column>
-              <Popup visible position='top center' style={ _popupStyle}>top center popup</Popup>
-            </Column>
-            <Column>
-              <Popup visible position='top right' style={ _popupStyle}>top right popup</Popup>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <Popup visible position='bottom left' style={ _popupStyle}>bottom left popup</Popup>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </Column>
-            <Column>
-              <Popup visible position='bottom center' style={ _popupStyle}>bottom center popup</Popup>
-            </Column>
-            <Column>
-              <Popup visible position='bottom right' style={ _popupStyle}>bottom right popup</Popup>
-            </Column>
-          </Row>
-          <Row>
-            <Column>
-              <Popup visible position='left center' style={ _popupStyle}>left center popup</Popup>
-              <p></p>
-              <p></p>
-              <p></p>
-              <p></p>
-            </Column>
-            <Column>
-              <Popup visible position='right center' style={ _popupStyle}>right center popup</Popup>
-            </Column>
-          </Row>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Popup> basic', () => {
-    return (
-      <Story examples='<Popup basic>{ content }></Popup>' container={_container}>
-        <Popup basic visible style={ _popupStyle}>
-          Some popup here
-        </Popup>
-      </Story>
-    )
-  })
-  .add('<Popup> width', () => {
-    const widths = extractOptionsValues(WIDTHS, 0)
-    return (
-      <Story examples={'<Popup width=[ ' + widths + ' ]>{ content }></Popup>'} showToggleNote container={_container}>
-        <Grid stretched aligned='center' columns='one'>
-          <Column>
-            <Popup visible width='wide' style={ _popupStyle}>wide popup</Popup>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </Column>
-          <Column>
-            <Popup visible width='very wide' style={ _popupStyle}>very wide popup</Popup>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </Column>
-          <Column>
-            <Popup visible width='fluid' style={ _popupStyle}>fluid popup</Popup>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </Column>
-          <Column>
-            <Popup visible width='flowing' style={ _popupStyle}>flowing popup</Popup>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </Column>
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Popup> size', () => {
-    const sizes = extractOptionsValues(SIZES, 0)
-    return (
-      <Story examples={'<Popup size=[ ' + sizes + ' ]>{ content }></Popup>'} container={_container}>
-        <Grid stretched aligned='center' columns='one'>
-        {
-          SIZES.map((size, index) => {
-            return (
-              <Column key={index}>
-                <Popup visible size={size} style={ _popupStyle}>{size} popup</Popup>
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+      <Story examples='<Tooltip />'>
+        <p>This is SUI's simple css-only solution for tool tips. Wrap this component around a component or an element and you'll have a tool tip.</p>
+        <Api definition={tooltipDefinition} otherProps={{
+          message: {
+            description: 'The text content for your tooltip',
+            isRequired: true
+          }
+        }}>
+          {'import { Tooltip } from \'' + _path + '\''}
+        </Api>
+        <Story.Segment title='(default)'>
+          <Example>
+            <Tooltip message='tooltip message'>
+              <span>mouseover me</span>
+            </Tooltip>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='message'>
+          See example <a href='#(default)'>#(default)</a>
+        </Story.Segment>
+        <Story.Segment title='position'>
+          <Example title='top left|right|center'>
+            <Grid count='three' relaxed='very' aligned='center'>
+              <Column>
+                <Tooltip message='tooltip message' position='top left'>
+                  <span>top left</span>
+                </Tooltip>
               </Column>
-            )
-          })
-        }
-        </Grid>
-      </Story>
-    )
-  })
-  .add('<Popup> inverted', () => {
-    return (
-      <Story examples='<Popup inverted>{ content }></Popup>' container={_container}>
-        <Popup inverted visible style={ _popupStyle}>
-          Some popup here
-        </Popup>
-      </Story>
-    )
-  })
-  .add('<Popup> passes .className and other props', makePassesPropsStory(Popup, {
-    props: {
-      visible: true,
-      style: _popupStyle,
-      className: 'huge',
-      onClick: action('Popup was clicked'),
-      children: 'huge clickable popup'
-    },
-    container: _container
-  }))
-  .add('<Header>', () => {
-    return (
-      <Story examples='<Popup><Header/></Popup>' container={_container}>
-        <Popup visible style={ _popupStyle}>
-          <Header>
-            popup header
-          </Header>
-        </Popup>
-      </Story>
-    )
-  })
-  .add('<Content>', () => {
-    return (
-      <Story examples='<Popup><Content/></Popup>' container={_container}>
-        <Popup visible style={ _popupStyle}>
-          <Content>
-            Some popup here
-          </Content>
-        </Popup>
+              <Column>
+                <Tooltip message='tooltip message' position='top center'>
+                  <span>top center</span>
+                </Tooltip>
+              </Column>
+              <Column>
+                <Tooltip message='tooltip message' position='top right'>
+                  <span>top right</span>
+                </Tooltip>
+              </Column>
+            </Grid>
+          </Example>
+          <Example title='left|right center'>
+            <Grid count='two' relaxed='very' aligned='center'>
+              <Column>
+                <Tooltip message='tooltip message' position='left center'>
+                  <span>left center</span>
+                </Tooltip>
+              </Column>
+              <Column>
+                <Tooltip message='tooltip message' position='right center'>
+                  <span>right center</span>
+                </Tooltip>
+              </Column>
+            </Grid>
+          </Example>
+          <Example title='bottom left|right|center'>
+            <Grid count='three' relaxed='very' aligned='center'>
+              <Column>
+                <Tooltip message='tooltip message' position='bottom left'>
+                  <span>bottom left</span>
+                </Tooltip>
+              </Column>
+              <Column>
+                <Tooltip message='tooltip message' position='bottom center'>
+                  <span>bottom center</span>
+                </Tooltip>
+              </Column>
+              <Column>
+                <Tooltip message='tooltip message' position='bottom right'>
+                  <span>bottom right</span>
+                </Tooltip>
+              </Column>
+            </Grid>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='inverted'>
+          <Example>
+            <Tooltip message='tooltip message' inverted>
+              <span>inverted tooltip</span>
+            </Tooltip>
+          </Example>
+        </Story.Segment>
       </Story>
     )
   })

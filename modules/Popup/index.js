@@ -1,8 +1,9 @@
-import React from 'react';
-import { makeClassnameFactory, makeComponentWithClasses } from '../../utils';
+import React, { PropTypes } from 'react'
+import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
+import classnames from 'classnames'
 import 'semantic-ui-css/components/popup.css';
 
-export const POSITIONS = [
+const _positions = [
   'top left', 'top center', 'top right',
   'bottom left', 'bottom center', 'bottom right',
   'left center', 'right center'
@@ -10,26 +11,28 @@ export const POSITIONS = [
 
 /*
  |---------------------------
- | makeTooltipProps
+ | Tooltip
  |---------------------------
  */
-export const makeTooltipProps = (content, options) => {
-  options = options || {}
-  if (!content || typeof content !== 'string') {
-    throw new Error('First argument must be a non-empty string')
-  }
-  let { position, inverted } = options
-  if (position && POSITIONS.indexOf(position) === -1) {
-    throw new Error(`Invalid value [${position}] for option [position]`)
-  }
-  const result = {
-    'data-tooltip': content,
-    'data-position': position,
+export const tooltipDefinition = {
+  position: _positions,
+  inverted: true
+}
+const _tooltipFactory = makeFactory(tooltipDefinition)
+export const Tooltip = (props) => {
+  const { position, message, inverted, children } = props
+  const data = {
+    'data-position': position || _positions[0],
+    'data-tooltip': message
   }
   if (inverted) {
-    result['data-inverted'] = ''
+    data['data-inverted'] = ''
   }
-  return result
+  return React.cloneElement(children, data)
+}
+Tooltip.propTypes = {
+  ..._tooltipFactory.propTypes,
+  message: PropTypes.string.isRequired
 }
 
 /*
@@ -37,43 +40,56 @@ export const makeTooltipProps = (content, options) => {
  | Popup
  |---------------------------
  */
-export const WIDTHS = ['wide', 'very wide', 'fluid', 'flowing']
-export const SIZES = ['mini', 'tiny', 'small', 'large', 'huge']
-export const makeClasses = makeClassnameFactory({
-  prefix: 'ui',
-  suffix: 'popup',
-  options: {
-    position: POSITIONS,
-    width: WIDTHS,
-    size: SIZES
-  }
-})
-export const Popup = ({
-                      position, width, size,
-                      visible, basic, inverted,
-                      style, className, ...rest }) => {
-  const classes = makeClasses({
-    position, width, size,
-    visible, basic, inverted
-  }, className)
-  // handle flowing style to set right: auto
-  style = style || {}
-  const passedStyle = { ...style }
-  if (width === 'flowing') {
-    passedStyle.right = 'auto'
+export const popupDefinition = {
+  visible: true,
+  position: _positions,
+  basic: true,
+  width: ['wide', 'very wide', 'flowing', 'fluid'],
+  size: ['mini', 'tiny', 'small', 'large', 'huge'],
+  inverted: true
+}
+const _popupFactory = makeFactory(popupDefinition)
+const Popup = (props) => {
+  const [classes, rest] = _popupFactory.extractClassesAndProps(props)
+  const className = classnames('ui', classes, 'popup')
+  const style = rest.style || {}
+  if (props.width === 'flowing') {
+    style.right = 'auto'
   }
   return (
-    <div {...rest} className={classes} style={passedStyle}/>
+    <div {...rest} className={className} style={style} />
   )
 }
+Popup.propTypes = { ..._popupFactory.propTypes }
 Popup.defaultProps = {
-  position: 'top center'
+  position: 'top center'  // provide default, otherwise the arrow pointy thing position is screwy
 }
+export default Popup
 
 /*
  |---------------------------
- | Supporting components
+ | Popup.Header
  |---------------------------
  */
-export const Header = makeComponentWithClasses('header')
-export const Content = makeComponentWithClasses('content')
+const Header = (props) => {
+  const className = classnames(props.className, 'header')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Header.displayName = 'Popup.Header'
+Popup.Header = Header
+
+/*
+ |---------------------------
+ | Popup.Content
+ |---------------------------
+ */
+const Content = (props) => {
+  const className = classnames(props.className, 'content')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Content.displayName = 'Popup.Content'
+Popup.Content = Content
