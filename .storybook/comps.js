@@ -129,16 +129,22 @@ export class Example extends Component {
         { description ? (<p>{description}</p>) : null }
         <div>{children}</div>
         <br style={{ clear: 'both' }} />
-        <div style={{ background: '#333', color: '#eee', marginBottom: '1em', position: 'relative' }}>
-          <div style={{ padding: '.25em .5em', background: '#666', color: '#fff', position: 'absolute', top: 0, right: 0 }}>
-            Code
-          </div>
-          <pre style={{ padding: '2em' }}>{code}</pre>
-        </div>
+        <Code>{code}</Code>
       </div>
     )
   }
 }
+export const Code = ({ children }) => {
+  return (
+    <div style={{ background: '#333', color: '#eee', marginBottom: '1em', position: 'relative' }}>
+      <div style={{ padding: '.25em .5em', background: '#666', color: '#fff', position: 'absolute', top: 0, right: 0 }}>
+        Code
+      </div>
+      <pre style={{ padding: '2em' }}>{children}</pre>
+    </div>
+  )
+}
+
 const ExampleIterator = ({ component, propKey, definition, props }) => {
   props = props || {}
   const { children, ...rest } = props
