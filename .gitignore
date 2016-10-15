@@ -2,6 +2,9 @@
 node_modules
 npm-debug.log
 
+# Our copied folder
+public/themes
+
 # Storybook
 storybook-static
 .out
