@@ -30,6 +30,7 @@ export const Tooltip = (props) => {
   }
   return React.cloneElement(children, data)
 }
+Tooltip.displayName = 'Tooltip'
 Tooltip.propTypes = {
   ..._tooltipFactory.propTypes,
   message: PropTypes.string.isRequired
