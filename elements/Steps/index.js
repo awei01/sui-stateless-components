@@ -61,15 +61,15 @@ Steps.Step = Step
  |---------------------------
  */
 const Content = (props) => {
-  const { title, description, children } = props
+  const { title, description, children, ...rest } = props
   const className = classnames(props.className, 'content')
   if (children) {
     return (
-      <div {...props} className={className}>{children}</div>
+      <div {...rest} className={className}>{children}</div>
     )
   }
   return (
-    <div {...props} className={className}>
+    <div {...rest} className={className}>
       { title ? (<Title>{title}</Title>) : null }
       { description ? (<Description>{description}</Description>) : null }
     </div>
