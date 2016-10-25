@@ -164,6 +164,14 @@ storiesOf('Steps', module)
     return (
       <Story title='<Steps.Step.Content />'>
         <p>This component is to be used within {'<Steps.Step />'} and helps with content alongside an {'<Icon />'}</p>
+        <Api otherProps={{
+          title: {
+            description: 'If passed, this will render <Title />. This prop is ignored if [children] is passed'
+          }
+          description: {
+            description: 'If passed, this will render <Description />. This prop is ignored if [children] is passed'
+          }
+        }} />
         <Story.Segment title='(default)'>
           <Example>
             <Steps>
@@ -173,6 +181,26 @@ storiesOf('Steps', module)
                   <Title>this is the title</Title>
                   <Description>this is the description</Description>
                 </Content>
+              </Step>
+            </Steps>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='title'>
+          <Example>
+            <Steps>
+              <Step>
+                <Icon glyph='user' />
+                <Content title='title passed via props' />
+              </Step>
+            </Steps>
+          </Example>
+        </Story.Segment>
+        <Story.Segment title='description'>
+          <Example>
+            <Steps>
+              <Step>
+                <Icon glyph='user' />
+                <Content description='description passed via props' />
               </Step>
             </Steps>
           </Example>

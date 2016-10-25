@@ -28,6 +28,7 @@ export const Steps = (props) => {
   )
 }
 Steps.propTypes = { ..._stepsFactory.propTypes }
+Steps.displayName = 'Steps'
 export default Steps
 
 /*
@@ -60,9 +61,18 @@ Steps.Step = Step
  |---------------------------
  */
 const Content = (props) => {
+  const { title, description, children } = props
   const className = classnames(props.className, 'content')
+  if (children) {
+    return (
+      <div {...props} className={className}>{children}</div>
+    )
+  }
   return (
-    <div {...props} className={className} />
+    <div {...props} className={className}>
+      { title ? (<Title>{title}</Title>) : null }
+      { description ? (<Description>{description}</Description>) : null }
+    </div>
   )
 }
 Content.displayName = 'Steps.Step.Content'
