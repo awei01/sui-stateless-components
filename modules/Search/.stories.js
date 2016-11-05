@@ -226,8 +226,8 @@ storiesOf('Search', module)
               <Search>
                 <Prompt placeholder='default' />
                 <Results visible>
-                  <Result title='title' description='description' src='images/public/lindsay.png'/>
-                  <Result title='title' description='description' src='images/public/jenny.jpg'/>
+                  <Result title='title' description='description' src='public/images/lindsay.png'/>
+                  <Result title='title' description='description' src='public/images/jenny.jpg'/>
                 </Results>
               </Search>
             </div>
@@ -239,8 +239,8 @@ storiesOf('Search', module)
               <Search>
                 <Prompt placeholder='default' />
                 <Results visible>
-                  <Result title='title' description='description' src='images/public/lindsay.png' price='10.00'/>
-                  <Result title='title' description='description' src='images/public/jenny.jpg' price='20.00'/>
+                  <Result title='title' description='description' src='public/images/lindsay.png' price='10.00'/>
+                  <Result title='title' description='description' src='public/images/jenny.jpg' price='20.00'/>
                 </Results>
               </Search>
             </div>

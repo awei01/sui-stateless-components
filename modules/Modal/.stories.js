@@ -110,7 +110,7 @@ storiesOf('Modal', module)
             <div style={{ WebkitTransform: 'translateZ(0)', height: '300px' }}>
               <Modal active>
                 <Content image>
-                  <Image src='images/public/jenny.jpg' />
+                  <Image src='public/images/jenny.jpg' />
                 </Content>
               </Modal>
             </div>
@@ -127,7 +127,7 @@ storiesOf('Modal', module)
             <div style={{ WebkitTransform: 'translateZ(0)', height: '300px' }}>
               <Modal active>
                 <Content image>
-                  <Image src='images/public/jenny.jpg' />
+                  <Image src='public/images/jenny.jpg' />
                   <Description>some description</Description>
                 </Content>
               </Modal>

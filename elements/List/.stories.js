@@ -151,19 +151,19 @@ storiesOf('List', module)
           <Example>
             <List valigned='top'>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content>top valigned</Content>
               </Item>
             </List>
             <List valigned='middle'>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content>middle valigned</Content>
               </Item>
             </List>
             <List valigned='bottom'>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content>bottom valigned</Content>
               </Item>
             </List>
@@ -281,15 +281,15 @@ storiesOf('List', module)
           <Example>
             <List horizontal>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content valigned='top'>top valigned</Content>
               </Item>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content valigned='middle'>middle valigned</Content>
               </Item>
               <Item>
-                <Image src='images/public/jenny.jpg' />
+                <Image src='public/images/jenny.jpg' />
                 <Content valigned='bottom'>bottom valigned</Content>
               </Item>
             </List>
