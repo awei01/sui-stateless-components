@@ -21,7 +21,7 @@
     "clean": "rm -rf ./public/themes",
     "copy": "cp -R ./node_modules/semantic-ui-css/themes ./public/",
     "deploy": "npm run clean && npm run copy && npm run deploy-storybook",
-    "publish-all": "git push origin master && npm publish && npm run deploy",
+    "publish-all": "git push origin master --tags && npm publish && npm run deploy",
     "start": "npm run clean && npm run copy && npm run storybook"
   },
   "author": "",
