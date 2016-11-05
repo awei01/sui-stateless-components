@@ -138,7 +138,7 @@ storiesOf('Card', module)
       <Story examples='<Modal><Content image><Image/><Description/></Content></Modal>' container={_container}>
         <Modal active>
           <Content image>
-            <Image src='images/lindsay.png'/>
+            <Image src='images/public/lindsay.png'/>
             <Description>
               Some description here
             </Description>

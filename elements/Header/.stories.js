@@ -139,7 +139,7 @@ storiesOf('Header', module)
     return (
       <Story examples='<Header><Image/></Header>'>
         <Header>
-          <Image src='images/lindsay.png'/>Some header
+          <Image src='images/public/lindsay.png'/>Some header
         </Header>
       </Story>
     )

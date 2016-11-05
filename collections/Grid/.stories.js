@@ -97,7 +97,7 @@ storiesOf('Grid', module)
                   <Segment>2</Segment>
                 </Column>
                 <Column>
-                  <Segment><Image src='images/lindsay.png' /></Segment>
+                  <Segment><Image src='images/public/lindsay.png' /></Segment>
                 </Column>
               </Row>
             </Grid>
@@ -170,15 +170,15 @@ storiesOf('Grid', module)
           <Example>
             <Grid valigned='top' count='two'>
               <Column><Segment>top</Segment></Column>
-              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
             </Grid>
             <Grid valigned='middle' count='two'>
               <Column><Segment>middle</Segment></Column>
-              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
             </Grid>
             <Grid valigned='bottom' count='two'>
               <Column><Segment>bottom</Segment></Column>
-              <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+              <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
             </Grid>
           </Example>
         </Story.Segment>
@@ -261,15 +261,15 @@ storiesOf('Grid', module)
             <Grid count='two'>
               <Row>
                 <Column valigned='top'><Segment>top</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
               <Row>
                 <Column valigned='middle'><Segment>middle</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
               <Row>
                 <Column valigned='bottom'><Segment>bottom</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
             </Grid>
           </Example>
@@ -336,7 +336,7 @@ storiesOf('Grid', module)
                   <Segment>2</Segment>
                 </Column>
                 <Column>
-                  <Segment><Image src='images/lindsay.png' /></Segment>
+                  <Segment><Image src='images/public/lindsay.png' /></Segment>
                 </Column>
               </Row>
             </Grid>
@@ -390,15 +390,15 @@ storiesOf('Grid', module)
             <Grid count='two'>
               <Row valigned='top'>
                 <Column><Segment>top</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
               <Row valigned='middle'>
                 <Column><Segment>middle</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
               <Row valigned='bottom'>
                 <Column><Segment>bottom</Segment></Column>
-                <Column><Segment><Image src='images/lindsay.png' /></Segment></Column>
+                <Column><Segment><Image src='images/public/lindsay.png' /></Segment></Column>
               </Row>
             </Grid>
           </Example>

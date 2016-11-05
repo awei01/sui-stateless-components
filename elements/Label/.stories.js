@@ -41,7 +41,7 @@ storiesOf('Label', module)
         <Story.Segment title='image'>
           <Example>
             <Label image>
-              <Image src='images/jenny.jpg' />
+              <Image src='images/public/jenny.jpg' />
               image
             </Label>
           </Example>
