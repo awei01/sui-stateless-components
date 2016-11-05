@@ -167,7 +167,7 @@ storiesOf('Steps', module)
         <Api otherProps={{
           title: {
             description: 'If passed, this will render <Title />. This prop is ignored if [children] is passed'
-          }
+          },
           description: {
             description: 'If passed, this will render <Description />. This prop is ignored if [children] is passed'
           }

@@ -23,6 +23,7 @@ const Modal = (props) => {
   )
 }
 Modal.propTypes = { ..._modalFactory.propTypes }
+Modal.displayName = 'Modal'
 export default Modal
 
 /*

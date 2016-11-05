@@ -38,4 +38,5 @@ const Input = (props) => {
   )
 }
 Input.propTypes = { ..._inputFactory.propTypes }
+Input.displayName = 'Input'
 export default Input

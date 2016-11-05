@@ -57,6 +57,7 @@ const Label = (props) => {
   return React.createElement(element, { ...rest, className })
 }
 Label.propTypes = { ..._labelFactory.propTypes }
+Label.displayName = 'Label'
 export default Label
 
 const Detail = (props) => {
@@ -85,3 +86,4 @@ export const Labels = (props) => {
   )
 }
 Labels.propTypes = { ..._labelsFactory.propTypes }
+Labels.displayName = 'Labels'

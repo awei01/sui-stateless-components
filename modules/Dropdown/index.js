@@ -24,6 +24,7 @@ const Dropdown = (props) => {
   )
 }
 Dropdown.propTypes = { ..._dropdownFactory.propTypes }
+Dropdown.displayName = 'Dropdown'
 export default Dropdown
 
 /*

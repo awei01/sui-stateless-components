@@ -52,6 +52,7 @@ const Grid = (props) => {
   )
 }
 Grid.propTypes = { ..._gridFactory.propTypes }
+Grid.displayName = 'Grid'
 export default Grid
 
 /*

@@ -28,4 +28,5 @@ const Loader = (props) => {
   )
 }
 Loader.propTypes = { ..._loaderFactory.propTypes }
+Loader.displayName = 'Loader'
 export default Loader

@@ -45,6 +45,7 @@ Image.propTypes = {
   ..._imageFactory.propTypes,
   src: PropTypes.string.isRequired
 }
+Image.displayName = 'Image'
 export default Image
 
 /*
@@ -64,3 +65,4 @@ export const Images = (props) => {
   )
 }
 Images.propTypes = { ..._imagesFactory.propTypes }
+Images.displayName = 'Images'

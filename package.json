@@ -14,14 +14,15 @@
     "url": "git+https://github.com/awei01/sui-stateless-components.git"
   },
   "scripts": {
-    "storybook": "start-storybook -p 9001 -s ./public",
+    "storybook": "start-storybook -p 9001 -s ./.storybook/static",
     "deploy-storybook": "storybook-to-ghpages",
     "build-storybook": "build-storybook -s ./public -o .out",
     "lint": "node_modules/.bin/standard",
     "clean": "rm -rf ./public/themes",
     "copy": "cp -R ./node_modules/semantic-ui-css/themes ./public/",
     "deploy": "npm run clean && npm run copy && npm run deploy-storybook",
-    "publish-all": "git push origin master && npm publish && npm run deploy"
+    "publish-all": "git push origin master && npm publish && npm run deploy",
+    "start": "npm run clean && npm run copy && npm run storybook"
   },
   "author": "",
   "license": "ISC",

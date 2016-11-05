@@ -23,6 +23,7 @@ const Dimmer = (props) => {
   )
 }
 Dimmer.propTypes = { ..._dimmerFactory.propTypes }
+Dimmer.displayName = 'Dimmer'
 export default Dimmer
 
 /*

@@ -27,6 +27,7 @@ const Search = (props) => {
   )
 }
 Search.propTypes = { ..._searchFactory.propTypes }
+Search.displayName = 'Search'
 export default Search
 
 /*

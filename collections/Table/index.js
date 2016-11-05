@@ -60,6 +60,7 @@ const Table = (props) => {
   )
 }
 Table.propTypes = { ..._tableFactory.propTypes }
+Table.displayName = 'Table'
 export default Table
 
 /*

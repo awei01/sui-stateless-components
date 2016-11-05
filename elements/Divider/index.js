@@ -19,4 +19,5 @@ const Divider = (props) => {
   )
 }
 Divider.propTypes = { ..._dividerFactory.propTypes }
+Divider.displayName = 'Divider'
 export default Divider

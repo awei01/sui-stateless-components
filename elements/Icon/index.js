@@ -48,6 +48,7 @@ Icon.propTypes = {
   ..._iconFactory.propTypes,
   glyph: PropTypes.string.isRequired
 }
+Icon.displayName = 'Icon'
 export default Icon
 
 /*
@@ -66,3 +67,5 @@ export const Icons = (props) => {
     <i {...rest} className={className} />
   )
 }
+Icons.displayName = 'Icons'
+

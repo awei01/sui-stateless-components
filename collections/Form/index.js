@@ -26,6 +26,7 @@ const Form = (props) => {
   return React.createElement(element, { ...rest, className })
 }
 Form.propTypes = { ..._formFactory.propTypes }
+Form.displayName = 'Form'
 export default Form
 
 /*

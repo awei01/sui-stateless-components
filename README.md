@@ -18,7 +18,7 @@
 * use it: `<Button hint="positive" disabled>some label</Button>`
 
 ## Testing
-This package uses `@kadira/storybook` to help develop visual tests for components. To test it out do: `npm run storybook`
+This package uses `@kadira/storybook` to help develop visual tests for components. To test it out do: `npm start`
 
 See https://github.com/kadirahq/react-storybook for more info.
 

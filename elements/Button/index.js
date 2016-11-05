@@ -72,6 +72,7 @@ const Button = (props) => {
   })
 }
 Button.propTypes = { ..._buttonFactory.propTypes }
+Button.displayName = 'Button'
 export default Button
 
 /*
@@ -123,6 +124,7 @@ export const Buttons = (props) => {
   const className = classnames('ui', classes, 'buttons')
   return (<div {...rest} className={className} />)
 }
+Buttons.displayName = 'Buttons'
 Buttons.propTypes = { ... _buttonsFactory.propTypes }
 
 /*

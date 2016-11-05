@@ -46,6 +46,7 @@ const Menu = (props) => {
   )
 }
 Menu.propTypes = { ..._menuFactory.propTypes }
+Menu.displayName = 'Menu'
 export default Menu
 
 /*

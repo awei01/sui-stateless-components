@@ -20,6 +20,8 @@ export const tooltipDefinition = {
 }
 const _tooltipFactory = makeFactory(tooltipDefinition)
 export const Tooltip = (props) => {
+  // this causes a problem when the children contains an input
+  // the input will lose focuse because of cloning
   const { position, message, inverted, children } = props
   const data = {
     'data-position': position || _positions[0],
@@ -65,6 +67,7 @@ Popup.propTypes = { ..._popupFactory.propTypes }
 Popup.defaultProps = {
   position: 'top center'  // provide default, otherwise the arrow pointy thing position is screwy
 }
+Popup.displayName = 'Popup'
 export default Popup
 
 /*

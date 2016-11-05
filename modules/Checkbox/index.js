@@ -72,4 +72,5 @@ Checkbox.propTypes = {
 Checkbox.defaultProps = {
   type: 'checkbox'
 }
+Checkbox.displayName = 'Checkbox'
 export default Checkbox

@@ -35,6 +35,7 @@ const Message = (props) => {
   )
 }
 Message.propTypes = { ..._messageFactory.propTypes }
+Message.displayName = 'Message'
 export default Message
 
 /*

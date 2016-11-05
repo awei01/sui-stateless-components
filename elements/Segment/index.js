@@ -42,6 +42,7 @@ const Segment = (props) => {
   )
 }
 Segment.propTypes = { ..._segmentFactory.propTypes }
+Segment.displayName = 'Segment'
 export default Segment
 
 /*
@@ -63,3 +64,4 @@ export const Segments = (props) => {
   )
 }
 Segments.propTypes = { ..._segmentsFactory.propTypes }
+Segments.displayName = 'Segments'

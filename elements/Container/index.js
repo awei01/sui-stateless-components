@@ -17,5 +17,6 @@ const Container = (props) => {
   );
 }
 Container.propTypes = { ..._containerFactory.propTypes }
+Container.displayName = 'Container'
 
 export default Container

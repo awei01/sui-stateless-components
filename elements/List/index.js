@@ -38,6 +38,7 @@ const List = (props) => {
   )
 }
 List.propTypes = { ..._listFactory.propTypes }
+List.displayName = 'List'
 export default List
 
 /*

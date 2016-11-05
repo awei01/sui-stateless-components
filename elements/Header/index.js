@@ -28,6 +28,7 @@ const Header = (props) => {
   );
 }
 Header.propTypes = { ..._headerFactory.propTypes }
+Header.displayName = 'Header'
 export default Header
 
 const Sub = (props) => {
