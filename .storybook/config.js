@@ -21,14 +21,15 @@ function loadStories() {
   require('../collections/Message/.stories')
   require('../collections/Table/.stories')
 
-//  require ('../views/Card/.stories')
-
   require('../modules/Checkbox/.stories')
   require('../modules/Dimmer/.stories')
   require('../modules/Dropdown/.stories')
   require('../modules/Modal/.stories')
   require('../modules/Popup/.stories')
   require('../modules/Search/.stories')
+
+//  require ('../views/Card/.stories')
+  require('../views/Statistic/.stories')
 }
 
 configure(loadStories(), module);
