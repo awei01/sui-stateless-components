@@ -35,7 +35,7 @@ function extractClassesAndProps (props = {}) {
     // we got here so this prop should be put into classes
     const makeClassname = makeClassnames[key]
     const className = makeClassname ? makeClassname(value) : key
-    classes[className] = value
+    classes[className] = makeClassname ? true : value
   })
   return [classes, rest]
 }
