@@ -28,7 +28,7 @@ function loadStories() {
   require('../modules/Popup/.stories')
   require('../modules/Search/.stories')
 
-//  require ('../views/Card/.stories')
+  require ('../views/Card/.stories')
   require('../views/Statistic/.stories')
 }
 

@@ -6,6 +6,8 @@ import Icon from '../elements/Icon'
 import Header from '../elements/Header'
 import Table from '../collections/Table'
 import Divider from '../elements/Divider'
+import checkStyles from './styles'
+
 const { Item } = Menu
 const { Tr, Th, Td } = Table
 

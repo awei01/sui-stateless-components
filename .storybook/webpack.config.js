@@ -1,6 +1,9 @@
 var StringReplacePlugin = require('string-replace-webpack-plugin')
 
 module.exports = {
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.json', '.css', '.scss']
+  },
   module: {
     loaders: [
       {

@@ -1,0 +1,4 @@
+/* just to ensure that we aren't outputting stupid classNames */
+:global(.undefined), :global(.false), :global(.true), :global(.null) {
+  opacity: .3 !important;
+}
