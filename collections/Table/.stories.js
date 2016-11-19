@@ -400,9 +400,10 @@ storiesOf('Table', module)
         <Story.Segment title='sorted'>
           <p>This prop requires that the {'<Table />'} has [sortable] prop</p>
           <Example>
-            <Table sortable>
+            <Table sortable stackable={false}>
               <thead>
                 <Tr>
+                  <Th sorted={null}>unsorted header</Th>
                   <Th sorted>sorted header</Th>
                   <Th sorted='ascending'>ascending sorted header</Th>
                   <Th sorted='descending'>descending sorted header</Th>

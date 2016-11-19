@@ -28,8 +28,8 @@ function extractClassesAndProps (props = {}) {
       rest[key] = value
       return
     }
-    if (typeof value === 'undefined') {
-      // the prop is set to undefined, completely skip it
+    if (typeof value === 'undefined' || value === null) {
+      // the prop is set to undefined or null, completely skip it
       return
     }
     // we got here so this prop should be put into classes
