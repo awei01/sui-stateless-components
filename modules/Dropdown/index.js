@@ -3,7 +3,6 @@ import { makeSuffixedClass, makeFactory, enums, options } from '../../utilities'
 import classnames from 'classnames'
 import 'semantic-ui-css/components/dropdown.css'
 import BaseIcon from '../../elements/Icon'
-import Menu from '../../collections/Menu'
 
 /*
  |-----------------------
@@ -13,7 +12,15 @@ import Menu from '../../collections/Menu'
 export const dropdownDefinition = {
   active: true,
   selection: true,
-  search: true
+  inline: true,
+  pointing: true,
+  floating: true,
+  simple: true,
+  loading: true,
+  error: true,
+  disabled: true,
+  compact: true,
+  fluid: true
 }
 const _dropdownFactory = makeFactory(dropdownDefinition)
 const Dropdown = (props) => {
@@ -33,11 +40,12 @@ export default Dropdown
  |-----------------------
  */
 export const textDefinition = {
+  default: true
 }
 const _textFactory = makeFactory(textDefinition)
 const Text = (props) => {
   const [classes, rest] = _textFactory.extractClassesAndProps(props)
-  const className = classnames('ui', classes, 'text')
+  const className = classnames(classes, 'text')
   return (
     <div {...rest} className={className} />
   )
@@ -65,117 +73,70 @@ Dropdown.Icon = Icon
  | Dropdown.Menu
  |-----------------------
  */
-Dropdown.Menu = Menu.Submenu
-
-/*
- |-----------------------
- | Dropdown.Item
- |-----------------------
- */
-Dropdown.Item = Menu.Item
-
-/*
- |---------------------------
- | Shared options
- |---------------------------
-export const SELECTIONS = [true, 'search', 'multiple', 'multiple search']
-export const POINTINGS = [true, 'top left', 'top right', 'left', 'right', 'bottom', 'bottom left', 'bottom right', 'upward']
-export const makeDropdownClasses = makeClassnameFactory({
-  prefix: "ui",
-  suffix: "dropdown",
-  options: {
-    selection: makeOptionForValuesAndSuffix(SELECTIONS, 'selection'),
-    pointing: makeOptionForValuesAndSuffix(POINTINGS, 'pointing')
-  }
-});
-export const Dropdown = ({
-                        selection, pointing,
-                        active, inline, floating, simple, loading, error, disabled, scrolling, compact, fluid,
-                        className, children, ...rest }) => {
-  const classes = makeDropdownClasses({
-    selection, pointing,
-    active, inline, floating, simple, loading, error, disabled, scrolling, compact, fluid
-  }, className)
-  if (active && !disabled) {
-    children = React.Children.map(children, (child) => {
-      if (child.type !== Menu) {
-        // not a menu, ignore it
-        return child
-      }
-      return React.cloneElement(child, { active: true })
-    })
-  }
-  return (
-    <div {...rest} className={classes}>{children}</div>
-  )
+export const menuDefinition = {
+  visible: true
 }
-
-/*
- |---------------------------
- | Menu
- |---------------------------
-export const makeMenuClasses = makeClassnameFactory({
-  suffix: 'menu',
-  options: {
-    direction: ['left', 'right']
-  }
-})
-export const Menu = ({
-                      active, scrolling, direction,
-                      style, className, ...rest }) => {
-  style = style || {}
-  // active doesn't do anything other than set the style
-  const classes = makeMenuClasses({ scrolling, direction }, className)
-  if (active) {
+const _menuFactory = makeFactory(menuDefinition)
+const Menu = (props) => {
+  const [classes, rest] = _menuFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'menu')
+  const style = rest.style || {}
+  if (props.visible) {
     style.display = 'block'
   }
   return (
-    <div {...rest} className={classes} style={style}/>
+    <div {...rest} className={className} style={style}/>
   )
 }
+Menu.propTypes = { ..._menuFactory.propTypes }
+Menu.displayName = 'Dropdown.Menu'
+Dropdown.Menu = Menu
 
 /*
- |---------------------------
- | Text
- |---------------------------
-/
-export const makeItemClasses = makeClassnameFactory({
-  suffix: 'item'
-})
-export const Item = ({ selected, filtered, disabled, className, ...rest }) => {
-  const classes = makeItemClasses({ selected, filtered, disabled }, className)
+ |-----------------------
+ | Dropdown.Menu.Header
+ |-----------------------
+ */
+const Header = (props) => {
+  const className = classnames(props.className, 'header')
   return (
-    <div {...rest} className={classes}/>
+    <div {...props} className={className} />
   )
 }
+Header.displayName = 'Dropdown.Menu.Header'
+Menu.Header = Header
 
 /*
- |---------------------------
- | Text
- |---------------------------
-export const makeTextClasses = makeClassnameFactory({
-  suffix: 'text'
-})
-export const Text = ({ filtered, className, ...rest }) => {
-  // special handling for [default] key because it causes syntax errors
-  const isDefault = {
-    default: rest.default
-  }
-  delete rest.default
-  const classes = makeTextClasses({ filtered, ...isDefault }, className)
+ |-----------------------
+ | Dropdown.Menu.Item
+ |-----------------------
+ */
+export const itemDefinition = {
+  active: true,
+  disabled: true
+}
+const _itemFactory = makeFactory(itemDefinition)
+const Item = (props) => {
+  const [classes, rest] = _itemFactory.extractClassesAndProps(props)
+  const className = classnames(classes, 'item')
   return (
-    <span {...rest} className={classes}/>
+    <div {...rest} className={className} />
   )
 }
+Item.propTypes = { ..._itemFactory.propTypes }
+Item.displayName = 'Dropdown.Menu.Item'
+Menu.Item = Item
 
 /*
- |---------------------------
- | Supporting components
- |---------------------------
-export const Search = makeComponentWithClasses('search', 'input')
-export const Header = makeComponentWithClasses('header')
-export const Divider = makeComponentWithClasses('divider')
-export const Description = makeComponentWithClasses('description', 'span')
-export const Icon = makeComponentWithClasses('dropdown icon', 'i')
-
-*/
+ |-----------------------
+ | Dropdown.Menu.Divider
+ |-----------------------
+ */
+const Divider = (props) => {
+  const className = classnames(props.className, 'divider')
+  return (
+    <div {...props} className={className} />
+  )
+}
+Divider.displayName = 'Dropdown.Menu.Divider'
+Menu.Divider = Divider
